@@ -1,0 +1,56 @@
+[gd_scene load_steps=12 format=3 uid="uid://cwd8ss6omg511"]
+
+[ext_resource type="Texture2D" uid="uid://cpld0qqok53ji" path="res://assets/materials/textures/forest_leaves/forest_leaves_02_diffuse_8k.jpg" id="1_ftcys"]
+[ext_resource type="Script" path="res://scenes/levels/overworld/overworld.gd" id="1_p8aow"]
+[ext_resource type="Texture2D" uid="uid://crx0lp1ww272c" path="res://assets/materials/textures/forest_leaves/forest_leaves_02_rough_8k.jpg" id="2_wae4x"]
+[ext_resource type="PackedScene" uid="uid://uf3tqv21d4vw" path="res://scenes/actors/characters/player/player.tscn" id="3_hgl8u"]
+[ext_resource type="PackedScene" uid="uid://bkoh8fdo3fhav" path="res://scenes/actors/characters/x_ray_bot/x_ray_bot.tscn" id="5_m878s"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_iykqy"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_1jmfa"]
+sky_material = SubResource("ProceduralSkyMaterial_iykqy")
+
+[sub_resource type="Environment" id="Environment_lqlbl"]
+background_mode = 2
+sky = SubResource("Sky_1jmfa")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_37v0x"]
+albedo_texture = ExtResource("1_ftcys")
+roughness_texture = ExtResource("2_wae4x")
+uv1_scale = Vector3(2, 2, 2)
+
+[sub_resource type="QuadMesh" id="QuadMesh_7ikyu"]
+material = SubResource("StandardMaterial3D_37v0x")
+size = Vector2(20, 20)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_uqmkt"]
+size = Vector3(20, 1, 20)
+
+[node name="Overworld" type="Node"]
+script = ExtResource("1_p8aow")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_lqlbl")
+
+[node name="Floor" type="StaticBody3D" parent="."]
+
+[node name="Mesh" type="MeshInstance3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("QuadMesh_7ikyu")
+
+[node name="Collision" type="CollisionShape3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("BoxShape3D_uqmkt")
+
+[node name="Player" parent="." instance=ExtResource("3_hgl8u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.432355, 2.38419e-07, 4.69559)
+
+[node name="XRayBot" parent="." instance=ExtResource("5_m878s")]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.892586, 0.450878, 0, -0.450878, 0.892586, 0, 0, 0)

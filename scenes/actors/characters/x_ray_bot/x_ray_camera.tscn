@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://dyou2duiyc5l1"]
+
+[node name="XRayCamera" type="Node3D"]
+
+[node name="Camera" type="Camera3D" parent="."]
+
+[node name="Sprite" type="Sprite3D" parent="."]
