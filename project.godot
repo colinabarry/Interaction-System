@@ -53,5 +53,5 @@ move_jump={
 
 [layer_names]
 
-3d_render/layer_2="skin_bot"
-3d_render/layer_3="bones_bot"
+3d_render/layer_2="non_x_ray"
+3d_render/layer_3="x_ray"

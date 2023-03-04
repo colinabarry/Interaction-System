@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://cwd8ss6omg511"]
+[gd_scene load_steps=13 format=3 uid="uid://cwd8ss6omg511"]
 
 [ext_resource type="Texture2D" uid="uid://cpld0qqok53ji" path="res://assets/materials/textures/forest_leaves/forest_leaves_02_diffuse_8k.jpg" id="1_ftcys"]
 [ext_resource type="Script" path="res://scenes/levels/overworld/overworld.gd" id="1_p8aow"]
 [ext_resource type="Texture2D" uid="uid://crx0lp1ww272c" path="res://assets/materials/textures/forest_leaves/forest_leaves_02_rough_8k.jpg" id="2_wae4x"]
-[ext_resource type="PackedScene" uid="uid://uf3tqv21d4vw" path="res://scenes/actors/characters/player/player.tscn" id="3_hgl8u"]
+[ext_resource type="PackedScene" uid="uid://dwciwtcfenl82" path="res://scenes/actors/characters/player/player.tscn" id="3_hgl8u"]
 [ext_resource type="PackedScene" uid="uid://bkoh8fdo3fhav" path="res://scenes/actors/characters/x_ray_bot/x_ray_bot.tscn" id="5_m878s"]
+[ext_resource type="PackedScene" uid="uid://dyou2duiyc5l1" path="res://scenes/actors/x_ray_camera/x_ray_camera.tscn" id="6_h63h8"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_iykqy"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -55,3 +56,6 @@ shape = SubResource("BoxShape3D_uqmkt")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.432355, 2.38419e-07, 4.69559)
 
 [node name="XRayBot" parent="." instance=ExtResource("5_m878s")]
+
+[node name="XRayCamera" parent="." instance=ExtResource("6_h63h8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0437905, 0.542781, 0.602293)

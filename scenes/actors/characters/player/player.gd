@@ -2,7 +2,7 @@ extends CharacterBody3D
 
 const SPEED = 2.0
 const JUMP_VELOCITY = 4.5
-const MOUSE_SENSITIVITY = 0.1
+const MOUSE_SENSITIVITY = 0.3
 
 @export var min_camera_pitch: float = -40
 @export var max_camera_pitch: float = 20
