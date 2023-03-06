@@ -54,7 +54,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 shape = SubResource("BoxShape3D_uqmkt")
 
 [node name="Player" parent="." instance=ExtResource("3_hgl8u")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.432355, 2.38419e-07, 4.69559)
+transform = Transform3D(0.887478, 0, 0.46085, 0, 1, 0, -0.46085, 0, 0.887478, -0.432355, 2.38419e-07, 4.69559)
 
 [node name="XRayBot" parent="." instance=ExtResource("5_m878s")]
 
