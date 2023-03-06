@@ -2,15 +2,31 @@
 
 A 3D educational experience designed to engage students while informing them about ACL injury risk and joint health.
 
-## File Structure Explanation <span style="color: red">(Needs Better Format)</span>
+## Style
 
-<p style="color: gray">
-The file structure of this project is grounded in <a target="_blank" href="https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/gdscript_styleguide.html">Godot's style guide</a> and inspired by <a href="https://new.pythonforengineers.com/blog/how-to-structure-your-godot-project-so-you-dont-get-confused/">this article by Shantnu Tiwari</a>.
-</p>
+<!-- TODO: Figure out better formatting for this section -->
 
-All folders which categorize their contents should be plural.
+This project strictly follows [Godot's style guide][1]. The file structure is grounded in the [project organization reference][2] and inspired by [this article by Shantnu Tiwari][3]. The principles are described below:
 
-- addons (3rd party files, such as plugins, and custom engine/editor files)
-- assets (raw materials used to build scenes)
-- scenes (all scenes [.tscn files] and their related scripts)
-- src (all code that isn't strictly tied to one scene)
+- All folders and files are `snake_case`.
+- All folders which categorize their contents should be plural.
+  - `scenes, actors, characters`
+- All files should be in the folder which categorizes them.
+  - `scenes > actors > characters > x_bot.tscn`
+- If there are two or more directly related files, they should be placed in their own sub-folder.
+  - `scenes > actors > characters > player > player.gd, player.tscn`
+
+<!-- ? Is this useful at all? The subfolders seem pretty self explanatory -->
+
+| Top-level folder | Contents                                                         |
+| ---------------- | ---------------------------------------------------------------- |
+| addons           | 3rd party files, such as plugins <br> Custom engine/editor files |
+| assets           | Raw materials used to build scenes                               |
+| scenes           | All scenes (.tscn files) and their related scripts               |
+| src              | All code that isn't tied to a particular scene                   |
+
+<!-- Links are here for cleanliness above -->
+
+[1]: https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/gdscript_styleguide.html
+[2]: https://docs.godotengine.org/en/stable/tutorials/best_practices/project_organization.html
+[3]: https://new.pythonforengineers.com/blog/how-to-structure-your-godot-project-so-you-dont-get-confused/
