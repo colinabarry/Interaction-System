@@ -8,7 +8,7 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v2
-            - uses: ghgsrt/godot-tester@v3
+            - uses: ghgsrt/godot-tester-ci@master
               with:
                   # required
                   version: "4.0"
