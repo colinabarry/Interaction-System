@@ -1,6 +1,5 @@
 extends CharacterBody3D
 
-
 const SPEED = 2.0
 const JUMP_VELOCITY = 4.5
 const MOUSE_SENSITIVITY = 0.1
@@ -30,7 +29,7 @@ func _input(event: InputEvent) -> void:
 	# limit x rotation of camera so it doesn't go wheeeeeeee
 	camera_rotation.x = clampf(camera_rotation.x, min_camera_pitch, max_camera_pitch)
 	camera_origin.rotation_degrees = camera_rotation
-	
+
 	# jump
 	if Input.is_action_just_pressed("move_jump"):
 		animation_tree["parameters/OneShot/request"] = true
@@ -43,14 +42,20 @@ func _physics_process(delta: float) -> void:
 
 	# get the input direction and handle movement/deceleration.
 	input_dir = Input.get_vector("move_left", "move_right", "move_backward", "move_forward")
-	var direction: Vector3 = (camera_origin.transform.basis * Vector3(input_dir.x, 0, -input_dir.y)).normalized()
-	
+	var direction: Vector3 = (
+		(camera_origin.transform.basis * Vector3(input_dir.x, 0, -input_dir.y)).normalized()
+	)
+
 	# this is a bit verbose
-	var blend_position: Vector2
-	blend_position.x = lerp(animation_tree["parameters/BlendSpace2D/blend_position"].x, input_dir.x, 0.1)
-	blend_position.y = lerp(animation_tree["parameters/BlendSpace2D/blend_position"].y, input_dir.y, 0.1)
+	var blend_position = Vector2()
+	blend_position.x = lerp(
+		animation_tree["parameters/BlendSpace2D/blend_position"].x, input_dir.x, 0.1
+	)
+	blend_position.y = lerp(
+		animation_tree["parameters/BlendSpace2D/blend_position"].y, input_dir.y, 0.1
+	)
 	animation_tree["parameters/BlendSpace2D/blend_position"] = blend_position
-	
+
 	if direction:
 		velocity.x = direction.x * SPEED
 		velocity.z = direction.z * SPEED
@@ -60,6 +65,6 @@ func _physics_process(delta: float) -> void:
 		# slow down and stop if no input
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
-	
+
 	# move - this uses `velocity`, which is built-in to CharacterBody3D
 	move_and_slide()
