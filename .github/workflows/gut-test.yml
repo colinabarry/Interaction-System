@@ -11,7 +11,7 @@ jobs:
             - name: Checkout
               uses: actions/checkout@v2
             - name: Docker test
-              uses: ceceppa/godot-gut-ci@master
+              uses: ghgsrt/godot-gut-ci@master
               with:
                   godot_version: 4.0
                   gut_params: -gdir=res://test -gsuffix=.test.gd
