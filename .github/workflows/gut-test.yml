@@ -14,4 +14,4 @@ jobs:
               uses: ghgsrt/godot-gut-ci@master
               with:
                   godot_version: 4.0
-                  gut_params: -gdir=res://test -gsuffix=.test.gd
+                  gut_params: -gdir=res://test
