@@ -46,15 +46,10 @@ func _physics_process(delta: float) -> void:
 		(camera_origin.transform.basis * Vector3(input_dir.x, 0, -input_dir.y)).normalized()
 	)
 
-	# this is a bit verbose
-	var blend_position := Vector2()
-	blend_position.x = lerp(
-		animation_tree["parameters/BlendSpace2D/blend_position"].x, input_dir.x, 0.1
-	)
-	blend_position.y = lerp(
-		animation_tree["parameters/BlendSpace2D/blend_position"].y, input_dir.y, 0.1
-	)
-	animation_tree["parameters/BlendSpace2D/blend_position"] = blend_position
+	# this is a bit verbose (not anymore?)
+	var blend_pos = animation_tree["parameters/BlendSpace2D/blend_position"]
+	blend_pos = Vector2(lerp(blend_pos.x, input_dir.x, 0.1), lerp(blend_pos.y, input_dir.y, 0.1))
+	animation_tree["parameters/BlendSpace2D/blend_position"] = blend_pos
 
 	if direction:
 		velocity.x = direction.x * SPEED

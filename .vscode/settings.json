@@ -1,0 +1,7 @@
+{
+	"godot_tools.editor_path": "c:\\Users\\Alex\\Desktop\\Godot_v4.0-rc6_win64.exe\\Godot_v4.0-rc6_win64.exe",
+	"editor.formatOnSave": true,
+	"[gdscript]": {
+		"editor.defaultFormatter": "Razoric.gdscript-toolkit-formatter"
+	}
+}

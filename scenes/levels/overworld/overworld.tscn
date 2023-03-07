@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bkiuix2x66gbr"]
+[gd_scene load_steps=14 format=3 uid="uid://1ethajcku6wd"]
 
 [ext_resource type="Texture2D" uid="uid://cpld0qqok53ji" path="res://assets/materials/textures/forest_leaves/forest_leaves_02_diffuse_8k.jpg" id="1_ftcys"]
 [ext_resource type="Script" path="res://scenes/levels/overworld/overworld.gd" id="1_p8aow"]

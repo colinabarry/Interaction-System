@@ -1,0 +1,14 @@
+{
+	"recommendations": [
+		"aaron-bond.better-comments",
+		"wayou.vscode-todo-highlight",
+		"vscode-icons-team.vscode-icons",
+		"eamodio.gitlens",
+		"christian-kohler.path-intellisense",
+		"github.vscode-pull-request-github",
+		"shardulm94.trailing-spaces",
+		"geequlim.godot-tools",
+		"razoric.gdscript-toolkit-formatter",
+		"bitwes.gut-extension"
+	]
+}
