@@ -14,7 +14,7 @@ jobs:
                   version: "4.0"
                   # the type of release of godot that the tests should be run with
                   release_type: "rc6"
-                  is-mono: "true"
+                  is-mono: "false"
                   # the folder with your projects.godot file in it
                   path: ""
                   # how long to spend importing assets before tests are run
