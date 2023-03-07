@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dq1rx8wwuu0pe"]
+
+[ext_resource type="Script" path="res://scenes/actors/scene_switcher/scene_switcher.gd" id="1_ns65c"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ha1yp"]
+
+[node name="SceneSwitcher" type="Area3D"]
+script = ExtResource("1_ns65c")
+
+[node name="CollisionShape" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_ha1yp")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

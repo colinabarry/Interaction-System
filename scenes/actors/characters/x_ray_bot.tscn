@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="PackedScene" uid="uid://cicqqfqse5xq7" path="res://scenes/actors/characters/bones_bot.tscn" id="1_lqsvf"]
+[ext_resource type="PackedScene" uid="uid://b4tcamv7flaq6" path="res://scenes/actors/characters/skin_bot.tscn" id="2_aciqy"]
+
+[node name="XRayBot" type="Node3D"]
+
+[node name="BonesBot" parent="." instance=ExtResource("1_lqsvf")]
+
+[node name="SkinBot" parent="." instance=ExtResource("2_aciqy")]

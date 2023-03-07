@@ -2,16 +2,16 @@ extends CharacterBody3D
 
 const SPEED = 2.0
 const JUMP_VELOCITY = 4.5
-const MOUSE_SENSITIVITY = 0.1
+const MOUSE_SENSITIVITY = 0.3
 
 @export var min_camera_pitch: float = -40
 @export var max_camera_pitch: float = 20
 
 var input_dir: Vector2
 
-@onready var camera_origin := $CameraOrigin as Marker3D
-@onready var armature := $Armature as Node3D
-@onready var animation_tree := $AnimationTree as AnimationTree
+@onready var camera_origin: Marker3D = $CameraOrigin
+@onready var armature: Node3D = $Armature
+@onready var animation_tree: AnimationTree = $AnimationTree
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")

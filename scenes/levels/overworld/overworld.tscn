@@ -1,10 +1,12 @@
-[gd_scene load_steps=12 format=3 uid="uid://cwd8ss6omg511"]
+[gd_scene load_steps=14 format=3 uid="uid://bkiuix2x66gbr"]
 
 [ext_resource type="Texture2D" uid="uid://cpld0qqok53ji" path="res://assets/materials/textures/forest_leaves/forest_leaves_02_diffuse_8k.jpg" id="1_ftcys"]
 [ext_resource type="Script" path="res://scenes/levels/overworld/overworld.gd" id="1_p8aow"]
 [ext_resource type="Texture2D" uid="uid://crx0lp1ww272c" path="res://assets/materials/textures/forest_leaves/forest_leaves_02_rough_8k.jpg" id="2_wae4x"]
-[ext_resource type="PackedScene" uid="uid://uf3tqv21d4vw" path="res://scenes/actors/characters/player/player.tscn" id="3_hgl8u"]
-[ext_resource type="PackedScene" uid="uid://bkoh8fdo3fhav" path="res://scenes/actors/characters/x_ray_bot/x_ray_bot.tscn" id="5_m878s"]
+[ext_resource type="PackedScene" path="res://scenes/actors/characters/player/player.tscn" id="3_hgl8u"]
+[ext_resource type="PackedScene" path="res://scenes/actors/characters/x_ray_bot.tscn" id="5_m878s"]
+[ext_resource type="PackedScene" uid="uid://dyou2duiyc5l1" path="res://scenes/actors/x_ray_camera.tscn" id="6_h63h8"]
+[ext_resource type="PackedScene" uid="uid://c8btc1fg5ahjh" path="res://scenes/actors/buildings/hospital.tscn" id="7_m3eiq"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_iykqy"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -37,7 +39,11 @@ script = ExtResource("1_p8aow")
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_lqlbl")
 
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.960779, 0.277315, 0, -0.277315, 0.960779, 0, 0, 0)
+
 [node name="Floor" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0544405, 0)
 
 [node name="Mesh" type="MeshInstance3D" parent="Floor"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
@@ -48,9 +54,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 shape = SubResource("BoxShape3D_uqmkt")
 
 [node name="Player" parent="." instance=ExtResource("3_hgl8u")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.432355, 2.38419e-07, 4.69559)
+transform = Transform3D(0.887478, 0, 0.46085, 0, 1, 0, -0.46085, 0, 0.887478, -0.432355, 2.38419e-07, 4.69559)
 
 [node name="XRayBot" parent="." instance=ExtResource("5_m878s")]
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.892586, 0.450878, 0, -0.450878, 0.892586, 0, 0, 0)
+[node name="XRayCamera" parent="." instance=ExtResource("6_h63h8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0437905, 0.542781, 0.602293)
+
+[node name="Hospital" parent="." instance=ExtResource("7_m3eiq")]
+transform = Transform3D(0.849119, 0, -0.528201, 0, 1, 0, 0.528201, 0, 0.849119, -5.5636, 0.256059, -1.05461)

@@ -17,8 +17,11 @@ config/icon="res://assets/materials/textures/icon.svg"
 
 [display]
 
-window/size/viewport_width=1280
-window/size/viewport_height=720
+window/size/viewport_width=640
+window/size/viewport_height=360
+window/size/window_width_override=1920
+window/size/window_height_override=1080
+window/stretch/mode="viewport"
 
 [input]
 
@@ -50,6 +53,5 @@ move_jump={
 
 [layer_names]
 
-3d_render/layer_1="Layer 1"
-3d_render/layer_2="skin_bot"
-3d_render/layer_3="bones_bot"
+3d_render/layer_2="non_x_ray"
+3d_render/layer_3="x_ray"
