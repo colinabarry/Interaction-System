@@ -1,0 +1,3 @@
+res://test/unit/test_example.gd
+res://scenes/actors/characters/player/player.gd
+res://scenes/levels/overworld/overworld.tscn
