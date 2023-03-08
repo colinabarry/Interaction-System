@@ -4,17 +4,17 @@ on:
         branches: [main]
 
 jobs:
-    build:
+    test:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v2
-            - uses: croconut/godot-tester@v3
+            - uses: ghgsrt/godot-tester-ci@master
               with:
                   # required
                   version: "4.0"
                   # the type of release of godot that the tests should be run with
-                  release_type: "rc6"
-                  is-mono: "true"
+                  release_type: "stable"
+                  is-mono: "false"
                   # the folder with your projects.godot file in it
                   path: ""
                   # how long to spend importing assets before tests are run
@@ -23,7 +23,7 @@ jobs:
                   test-timeout: "45"
                   # the ratio of tests that must pass for this action to pass
                   # e.g. 0.6 means 60% of your tests must pass
-                  minimum-pass: "0.6"
+                  minimum-pass: "1"
                   # the directory containing Gut tests
                   test-dir: "res://test"
                   # instead of running GUT's command line tool, you can run a GUT test scene if you have one
@@ -46,7 +46,7 @@ jobs:
                   # default is GUTs default: 'res://.gutconfig.json'; set this to load a different config file
                   config-file: "res://.gutconfig.json"
                   # designate a custom url to download the godot binary from
-                  custom-godot-dl-url: ""
+                  #   custom-godot-dl-url: "https://downloads.tuxfamily.org/godotengine/4.0/rc6/mono/Godot_v4.0-rc6_mono_linux_x86_64.zip"
                   # relative path to the xml file to read / write GUT's results from, recommended
                   # for direct-scene users to check this file if you have issues
-                  result-output-file: "test_results.xml"
+                  result-output-file: "test_results.xml" 
