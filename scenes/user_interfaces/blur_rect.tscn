@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://durcee2oc5mvi"]
+
+[ext_resource type="Shader" path="res://src/shaders/blur.gdshader" id="1_ebxe1"]
+[ext_resource type="Texture2D" uid="uid://c0o4nh37dbseu" path="res://assets/materials/textures/white.png" id="2_feerl"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_np3ld"]
+shader = ExtResource("1_ebxe1")
+shader_parameter/amount = 0.0
+
+[node name="Blur" type="TextureRect"]
+material = SubResource("ShaderMaterial_np3ld")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_feerl")
+expand_mode = 1
