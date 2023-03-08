@@ -1,24 +1,5 @@
 extends TextureRect
 
-# func _ready():
-# 	modulate = Color.TRANSPARENT
-
-# func pause() -> void:
-# 	is_paused = true
-
-# 	pause_menu.show_menu()
-
-# 	if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
-# 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-
-# func resume() -> void:
-# 	is_paused = false
-
-# 	pause_menu.hide_menu()
-
-# 	if Input.mouse_mode == Input.MOUSE_MODE_VISIBLE:
-# 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-
 
 func show_menu() -> void:
 	var tween = get_tree().create_tween().set_parallel(true).set_trans(Tween.TRANS_CUBIC)
@@ -40,3 +21,7 @@ func hide_menu() -> void:
 
 func _on_quit_pressed() -> void:
 	get_tree().quit()
+
+
+func _on_resume_pressed() -> void:
+	Global.resume()

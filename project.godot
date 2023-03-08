@@ -15,6 +15,10 @@ run/main_scene="res://scenes/levels/overworld/overworld.tscn"
 config/features=PackedStringArray("4.0", "Forward Plus")
 config/icon="res://assets/materials/textures/icon.svg"
 
+[autoload]
+
+Global="*res://src/scripts/global.gd"
+
 [display]
 
 window/size/viewport_width=640

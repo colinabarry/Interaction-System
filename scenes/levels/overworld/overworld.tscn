@@ -34,37 +34,35 @@ size = Vector2(20, 20)
 [sub_resource type="BoxShape3D" id="BoxShape3D_uqmkt"]
 size = Vector3(20, 1, 20)
 
-[node name="Global" type="Node"]
-
-[node name="Overworld" type="Node" parent="."]
+[node name="Overworld" type="Node"]
 script = ExtResource("1_p8aow")
 
-[node name="Blur" parent="Overworld" instance=ExtResource("8_j8xjp")]
+[node name="PauseMenu" parent="." instance=ExtResource("8_j8xjp")]
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="Overworld"]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_lqlbl")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Overworld"]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.960779, 0.277315, 0, -0.277315, 0.960779, 0, 0, 0)
 
-[node name="Floor" type="StaticBody3D" parent="Overworld"]
+[node name="Floor" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0544405, 0)
 
-[node name="Mesh" type="MeshInstance3D" parent="Overworld/Floor"]
+[node name="Mesh" type="MeshInstance3D" parent="Floor"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
 mesh = SubResource("QuadMesh_7ikyu")
 
-[node name="Collision" type="CollisionShape3D" parent="Overworld/Floor"]
+[node name="Collision" type="CollisionShape3D" parent="Floor"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 shape = SubResource("BoxShape3D_uqmkt")
 
-[node name="Player" parent="Overworld" instance=ExtResource("3_hgl8u")]
+[node name="Player" parent="." instance=ExtResource("3_hgl8u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.432355, 2.38419e-07, 4.69559)
 
-[node name="XRayBot" parent="Overworld" instance=ExtResource("5_m878s")]
+[node name="XRayBot" parent="." instance=ExtResource("5_m878s")]
 
-[node name="XRayCamera" parent="Overworld" instance=ExtResource("6_h63h8")]
+[node name="XRayCamera" parent="." instance=ExtResource("6_h63h8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0437905, 0.542781, 0.602293)
 
-[node name="Hospital" parent="Overworld" instance=ExtResource("7_m3eiq")]
+[node name="Hospital" parent="." instance=ExtResource("7_m3eiq")]
 transform = Transform3D(0.849119, 0, -0.528201, 0, 1, 0, 0.528201, 0, 0.849119, -5.5636, 0.256059, -1.05461)

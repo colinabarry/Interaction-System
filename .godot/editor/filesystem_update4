@@ -7,3 +7,4 @@ res://scenes/actors/scene_switcher/scene_switcher.tscn
 res://scenes/actors/characters/player/player.tscn
 res://src/shaders/shader_materials/blur_material.tres
 res://scenes/user_interfaces/pause_menu.gd
+res://src/scripts/global.gd
