@@ -1,5 +1,12 @@
-# Godot 4+ specific ignores
-.godot/ 
+# ignore all contents of the .godot directory
+.godot/**
+# still track the .godot/imported/ directory
+!.godot/imported/
+# ignore all contents of the .godot/imported/ directory
+.godot/imported/**
+
+# still track the following files within the .godot/imported/ directory
+
 # next line used by pause_menu?? Maybe fine to error since not used by GUT?
 !.godot/imported/white.png-0e8948c91585c3bf088b93609adcae43.ctex
 # All of the following included files are used by GUT
