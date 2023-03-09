@@ -1,7 +1,8 @@
 # ignore all contents of the .godot directory
 .godot/**
-# still track the .godot/imported/ directory
+# still track the .godot/imported/ directory and the global_script_class_cache file
 !.godot/imported/
+!.godot/global_script_class_cache.cfg
 # ignore all contents of the .godot/imported/ directory
 .godot/imported/**
 
