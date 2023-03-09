@@ -1,25 +1,4 @@
 # ignore all contents of the .godot directory
 .godot/**
-# still track the .godot/imported/ directory and the global_script_class_cache file
-# !.godot/imported/
+# still track the .godot/global_script_class_cache.cfg file (for the GutHookScript global)
 !.godot/global_script_class_cache.cfg
-# ignore all contents of the .godot/imported/ directory
-# .godot/imported/**
-
-# still track the following files within the .godot/imported/ directory
-
-# next line used by pause_menu?? Maybe fine to error since not used by GUT?
-# !.godot/imported/white.png-0e8948c91585c3bf088b93609adcae43.ctex
-# All of the following included files are used by GUT
-# !.godot/imported/play.png-5c90e88e8136487a183a099d67a7de24.ctex
-# !.godot/imported/arrow.png-2b5b2d838b5b3467cf300ac2da1630d9.ctex
-# hmmmmmmmmmm
-# SCRIPT ERROR: Parse Error: Could not find type "GutHookScript" in the current scope.
-#         at: GDScript::reload (res://addons/gut/gut.gd:477)
-# !.godot/imported/red.png-47a557c3922e800f76686bc1a4ad0c3c.ctex
-# !.godot/imported/green.png-e3a17091688e10a7013279b38edc7f8a.ctex
-# !.godot/imported/yellow.png-b3cf3d463958a169d909273d3d742052.ctex
-# !.godot/imported/AnonymousPro-Regular.ttf-856c843fd6f89964d2ca8d8ff1724f13.fontdata
-# seems to break the test automation
-# .godot/shader_cache/
-# .godot/imported/forest_leaves_02_nor_gl_8k.jpg-5f28b83fa70dc50a89df01686daa5714.ctex
