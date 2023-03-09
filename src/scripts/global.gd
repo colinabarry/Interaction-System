@@ -2,10 +2,11 @@ extends Node
 
 var is_paused := false
 
-@onready var pause_menu: TextureRect = get_tree().current_scene.get_node("PauseMenu")
+var pause_menu: TextureRect = preload("res://scenes/user_interfaces/pause_menu.tscn").instantiate()
 
 
 func _ready() -> void:
+	add_child(pause_menu)
 	pause()
 
 
