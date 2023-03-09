@@ -1,5 +1,11 @@
-C:/Users/Alex/AppData/Local/Programs/Microsoft VS Code
-C:/Users/Alex/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Visual Studio Code
-C:/Users/Alex/Desktop/Godot_v4.0-rc6_win64.exe
-e:/Workspace/Senior-Design/interaction-system/.vscode
-e:/Workspace/Senior-Design/interaction-system
+res://addons
+res://src/scripts
+res://src/shaders/shader_materials
+res://src/shaders
+res://scenes/user_interfaces
+res://scenes/actors/scene_switcher
+res://scenes/actors/buildings
+res://
+res://scenes/levels/overworld
+C:/Users/col_b/OneDrive/Documents/Godot Projects
+res://scenes/actors/characters/player

@@ -63,3 +63,9 @@ func _physics_process(delta: float) -> void:
 
 	# move - this uses `velocity`, which is built-in to CharacterBody3D
 	move_and_slide()
+
+
+## Does this do antrhing
+## at all?
+func test():
+	pass

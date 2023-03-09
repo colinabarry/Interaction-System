@@ -15,10 +15,14 @@ run/main_scene="res://scenes/levels/overworld/overworld.tscn"
 config/features=PackedStringArray("4.0", "Forward Plus")
 config/icon="res://assets/materials/textures/icon.svg"
 
+[autoload]
+
+Global="*res://src/scripts/global.gd"
+
 [display]
 
-window/size/viewport_width=640
-window/size/viewport_height=360
+window/size/viewport_width=1280
+window/size/viewport_height=720
 window/size/window_width_override=1920
 window/size/window_height_override=1080
 window/stretch/mode="viewport"
@@ -59,3 +63,8 @@ move_jump={
 
 3d_render/layer_2="non_x_ray"
 3d_render/layer_3="x_ray"
+
+[rendering]
+
+anti_aliasing/quality/msaa_3d=2
+anti_aliasing/quality/use_taa=true
