@@ -1,5 +1,5 @@
 # Godot 4+ specific ignores
-.godot/
+.godot/ 
 # seems to break the test automation
 # .godot/shader_cache/
 # .godot/imported/forest_leaves_02_nor_gl_8k.jpg-5f28b83fa70dc50a89df01686daa5714.ctex
