@@ -1,7 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://1ethajcku6wd"]
+[gd_scene load_steps=15 format=3 uid="uid://1ethajcku6wd"]
 
 [ext_resource type="Texture2D" uid="uid://cpld0qqok53ji" path="res://assets/materials/textures/forest_leaves/forest_leaves_02_diffuse_8k.jpg" id="1_ftcys"]
 [ext_resource type="Script" path="res://scenes/levels/overworld/overworld.gd" id="1_p8aow"]
+[ext_resource type="Script" path="res://src/scripts/sun.gd" id="2_7bfvv"]
 [ext_resource type="Texture2D" uid="uid://crx0lp1ww272c" path="res://assets/materials/textures/forest_leaves/forest_leaves_02_rough_8k.jpg" id="2_wae4x"]
 [ext_resource type="PackedScene" uid="uid://bs4j6acxwyjdx" path="res://scenes/actors/characters/player/player.tscn" id="3_hgl8u"]
 [ext_resource type="PackedScene" path="res://scenes/actors/characters/x_ray_bot.tscn" id="5_m878s"]
@@ -9,7 +10,6 @@
 [ext_resource type="PackedScene" uid="uid://c8btc1fg5ahjh" path="res://scenes/actors/buildings/hospital.tscn" id="7_m3eiq"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_iykqy"]
-sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
 ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
 
 [sub_resource type="Sky" id="Sky_1jmfa"]
@@ -18,6 +18,7 @@ sky_material = SubResource("ProceduralSkyMaterial_iykqy")
 [sub_resource type="Environment" id="Environment_lqlbl"]
 background_mode = 2
 sky = SubResource("Sky_1jmfa")
+ambient_light_color = Color(1, 1, 1, 1)
 tonemap_mode = 2
 glow_enabled = true
 
@@ -40,7 +41,9 @@ script = ExtResource("1_p8aow")
 environment = SubResource("Environment_lqlbl")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.960779, 0.277315, 0, -0.277315, 0.960779, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, -0.909657, -0.41536, 0, 0.41536, -0.909657, 0, 0, 0)
+shadow_enabled = true
+script = ExtResource("2_7bfvv")
 
 [node name="Floor" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0544405, 0)

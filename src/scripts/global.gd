@@ -2,7 +2,9 @@ extends Node
 
 var is_paused := false
 
-var pause_menu: TextureRect = preload("res://scenes/user_interfaces/pause_menu.tscn").instantiate()
+var pause_menu: TextureRect = (
+	preload("res://scenes/user_interfaces/pause_menu/pause_menu.tscn").instantiate()
+)
 
 
 func _ready() -> void:
