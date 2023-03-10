@@ -1,0 +1,48 @@
+[gd_scene load_steps=5 format=3 uid="uid://d1t0ebe2wjepr"]
+
+[ext_resource type="Material" uid="uid://dc3q277rsy30k" path="res://src/shaders/shader_materials/blur_material.tres" id="1_h5xah"]
+[ext_resource type="Theme" uid="uid://o03o6n842mwp" path="res://addons/theme.tres" id="2_7aaxd"]
+[ext_resource type="Texture2D" uid="uid://c0o4nh37dbseu" path="res://assets/materials/textures/white.png" id="3_pvg0t"]
+[ext_resource type="Script" path="res://scenes/user_interfaces/pause_menu/pause_menu.gd" id="4_xmmvw"]
+
+[node name="PauseMenu" type="TextureRect"]
+material = ExtResource("1_h5xah")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_7aaxd")
+texture = ExtResource("3_pvg0t")
+expand_mode = 1
+script = ExtResource("4_xmmvw")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="Resume" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Resume"
+
+[node name="Options" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+disabled = true
+text = "Options"
+
+[node name="Quit" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Quit"
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

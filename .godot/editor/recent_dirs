@@ -1,7 +1,7 @@
-res://addons
 res://src/scripts
-res://src/shaders/shader_materials
 res://src/shaders
+res://addons
+res://src/shaders/shader_materials
 res://scenes/user_interfaces
 res://scenes/actors/scene_switcher
 res://scenes/actors/buildings
