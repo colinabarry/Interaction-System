@@ -4,7 +4,7 @@ var blur_amount := 3.0
 
 
 func show_menu() -> void:
-	var tween = get_tree().create_tween().set_parallel(true).set_trans(Tween.TRANS_CUBIC)
+	var tween := get_tree().create_tween().set_parallel(true).set_trans(Tween.TRANS_CUBIC)
 
 	# fade menu in
 	tween.tween_property(self, "modulate", Color.WHITE, 0.25)
@@ -13,7 +13,7 @@ func show_menu() -> void:
 
 
 func hide_menu() -> void:
-	var tween = get_tree().create_tween().set_parallel(true).set_trans(Tween.TRANS_CUBIC)
+	var tween := get_tree().create_tween().set_parallel(true).set_trans(Tween.TRANS_CUBIC)
 
 	# fade menu out
 	tween.tween_property(self, "modulate", Color.TRANSPARENT, 0.25)

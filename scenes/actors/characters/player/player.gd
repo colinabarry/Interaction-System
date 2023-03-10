@@ -1,3 +1,4 @@
+class_name Player
 extends CharacterBody3D
 
 const SPEED = 2.0
@@ -67,5 +68,7 @@ func _physics_process(delta: float) -> void:
 
 ## Does this do antrhing
 ## at all?
+## No. -Alex 🙂
+## only tests defined inside the 'test' folder will be ran
 func test():
 	pass
