@@ -1,5 +1,10 @@
-class_name Player
-extends CharacterBody3D
+class_name Player extends CharacterBody3D
+
+## Class representing the player
+##
+## Detailed description? I believe that's what should be here
+##
+## @tutorial: google.com
 
 const SPEED = 2.0
 const JUMP_VELOCITY = 4.5
@@ -66,8 +71,9 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 
-## Does this do antrhing
-## at all?
+## This is a doc comment that you can see by going to:
+## Script tab -> "Search help" and search "Player"
+## You'll see the auto-generated in-editor doc page for this class
 ## No. -Alex 🙂
 ## only tests defined inside the 'test' folder will be ran
 func test():
