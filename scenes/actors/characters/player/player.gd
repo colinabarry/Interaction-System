@@ -1,4 +1,5 @@
-class_name Player extends CharacterBody3D
+class_name Player
+extends CharacterBody3D
 
 ## Class representing the player
 ##
@@ -74,7 +75,7 @@ func _physics_process(delta: float) -> void:
 ## This is a doc comment that you can see by going to:
 ## Script tab -> "Search help" and search "Player"
 ## You'll see the auto-generated in-editor doc page for this class
-## No. -Alex 🙂
+## No. -Alex
 ## only tests defined inside the 'test' folder will be ran
 func test():
 	pass

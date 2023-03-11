@@ -9,11 +9,15 @@ extends GutTest
 
 
 class MockUser:
+	extends Node
 	var InputSender
 	var _sender
 
-	func _init(input_sender):
-		InputSender = input_sender
+	func _init(_input_sender):
+		var _utils = load("res://addons/gut/utils.gd").get_instance()
+		InputSender = _utils.InputSender
+		var player = get_tree().current_scene.get_node_or_null("Player")
+		_sender = InputSender.new(player)
 
 	func set_sender(player: Player):
 		_sender = InputSender.new(player)
@@ -33,10 +37,12 @@ var mock_user = MockUser.new(InputSender)
 
 
 func create_player():
-	var player = Player.new()
-	add_child_autofree(player)
+	pass
+	# var player = Player.new()
+	var player = get_tree().current_scene.get_node_or_null("Player")
+	# add_child_autofree(player)
 
-	mock_user.set_sender(player)
+	# mock_user.set_sender(player)
 
 	return player
 
@@ -54,7 +60,7 @@ func after_each():
 	mock_user.cleanup()
 
 
-func assert_move(player, dir: String, hold_for_s := 0.25, wait_s := 0.5):
+func assert_move(player, dir: String, hold_for_s := 0.25, wait_s := 0.5) -> void:
 	var vec_comp: String
 	match dir:
 		"left", "right":
