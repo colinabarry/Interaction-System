@@ -11,11 +11,9 @@ extends GutTest
 #		rather than creating a duplicate player
 
 const OVERWORLD_SCENE_PATH = "res://scenes/levels/overworld/overworld.tscn"
-const PLAYER_SCENE_PATH = "res://scenes/actors/characters/player/player.tscn"
 
-var overworld = preload(OVERWORLD_SCENE_PATH).instantiate()
-var player = preload(PLAYER_SCENE_PATH).instantiate()  # w/ overworld this creates a dup player
-var sender = InputSender.new(player)
+var overworld = preload(OVERWORLD_SCENE_PATH).instantiate()  # debugging view
+var sender = InputSender.new(Input)
 
 
 func _cleanup():
@@ -24,8 +22,7 @@ func _cleanup():
 
 
 func before_all():
-	Global.add_child(overworld)
-	Global.add_child(player)
+	Global.add_child(overworld)  #!dbg
 	gut.p("Player:Unit->START\n", 2)
 
 
@@ -38,7 +35,7 @@ func after_each():
 	_cleanup()
 
 
-const dirMap = {
+const dir_map = {
 	"-x": "left",
 	"+x": "right",
 	"-y": null,
@@ -46,15 +43,18 @@ const dirMap = {
 	"-z": "backward",
 	"+z": "forward",
 }
+var assert_map = {"-": assert_gt, "+": assert_lt}
 
 
-func assert_move(dir: String, hold_for_s := 1.0, wait_s := 1.5) -> void:
+func assert_move(dir: String, hold_for_s := 2.0, wait_s := 2.5) -> void:
+	var player = Global.get_node("Player") as Player
+
 	var prev_pos = player.position[dir[1]]
-	sender.action_down("move_" + dirMap[dir]).hold_for(hold_for_s).wait(wait_s)
+	sender.action_down("move_" + dir_map[dir]).hold_for(hold_for_s).wait(wait_s)
 	await sender
 	var new_pos = player.position[dir[1]]
 
-	(assert_gt if dir[0] == "-" else assert_lt).call(new_pos, prev_pos)
+	assert_map[dir[0]].call(new_pos, prev_pos)
 
 
 func test_move_left():
