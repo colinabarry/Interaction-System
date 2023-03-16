@@ -1,7 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://1ethajcku6wd"]
+[gd_scene load_steps=16 format=3 uid="uid://1ethajcku6wd"]
 
 [ext_resource type="Texture2D" uid="uid://cpld0qqok53ji" path="res://assets/materials/textures/forest_leaves/forest_leaves_02_diffuse_8k.jpg" id="1_ftcys"]
 [ext_resource type="Script" path="res://scenes/levels/overworld/overworld.gd" id="1_p8aow"]
+[ext_resource type="Script" path="res://scenes/levels/overworld/DialogBox.gd" id="2_0saok"]
 [ext_resource type="Script" path="res://src/scripts/sun.gd" id="2_7bfvv"]
 [ext_resource type="Texture2D" uid="uid://crx0lp1ww272c" path="res://assets/materials/textures/forest_leaves/forest_leaves_02_rough_8k.jpg" id="2_wae4x"]
 [ext_resource type="PackedScene" uid="uid://bs4j6acxwyjdx" path="res://scenes/actors/characters/player/player.tscn" id="3_hgl8u"]
@@ -37,6 +38,43 @@ size = Vector3(20, 1, 20)
 [node name="Overworld" type="Node"]
 script = ExtResource("1_p8aow")
 
+[node name="Control" type="Control" parent="."]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 3
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("2_0saok")
+
+[node name="Panel" type="Panel" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DialogOptions" type="ItemList" parent="Control/Panel/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+
+[node name="DialogText" type="RichTextLabel" parent="Control/Panel/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_lqlbl")
 
@@ -66,3 +104,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0437905, 0.542781, 0.602293
 
 [node name="Hospital" parent="." instance=ExtResource("7_m3eiq")]
 transform = Transform3D(0.849119, 0, -0.528201, 0, 1, 0, 0.528201, 0, 0.849119, -5.5636, 0.256059, -1.05461)
+
+[connection signal="item_clicked" from="Control/Panel/HBoxContainer/DialogOptions" to="Control" method="_on_dialog_options_item_clicked"]
+[connection signal="gui_input" from="Control/Panel/HBoxContainer/DialogText" to="Control" method="_on_rich_text_label_gui_input"]
