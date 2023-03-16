@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://src/scripts/sun.gd" id="2_7bfvv"]
 [ext_resource type="Texture2D" uid="uid://crx0lp1ww272c" path="res://assets/materials/textures/forest_leaves/forest_leaves_02_rough_8k.jpg" id="2_wae4x"]
 [ext_resource type="PackedScene" uid="uid://bs4j6acxwyjdx" path="res://scenes/actors/characters/player/player.tscn" id="3_hgl8u"]
-[ext_resource type="PackedScene" path="res://scenes/actors/characters/x_ray_bot.tscn" id="5_m878s"]
+[ext_resource type="PackedScene" uid="uid://c257qcr1offo5" path="res://scenes/actors/characters/x_ray_bot.tscn" id="5_m878s"]
 [ext_resource type="PackedScene" uid="uid://dyou2duiyc5l1" path="res://scenes/actors/x_ray_camera.tscn" id="6_h63h8"]
 [ext_resource type="PackedScene" uid="uid://c8btc1fg5ahjh" path="res://scenes/actors/buildings/hospital.tscn" id="7_m3eiq"]
 
