@@ -5,21 +5,6 @@ const ONE_NEXT = "You shouldn't see any options, but clicking should show new di
 const CYCLES = "Clicking should bring you back to the start dialog!"
 const MULT_NEXT = "You should see options!"
 
-var start_dialog = Dialog.new(
-	["This is the starting dialog!!", "This is cool, huh?", MULT_NEXT], "start_dialog"
-)
-var opt0_dead = Dialog.new(["Hey there, this is the first option!", DEAD], "1st (dead)")
-var opt1_cycle = Dialog.new(["Hey there, this is the second option!", CYCLES], "2nd (cycles)")
-var opt2 = Dialog.new(["Oh wow, the third option!", ONE_NEXT], "3rd (1 next, dead)")
-var opt3 = Dialog.new(["Holy cow! The fourth option!", ONE_NEXT], "4th (1 next, cycles)")
-var opt4 = Dialog.new(["bing bong I'm #5", MULT_NEXT], "5th (2 next)")
-var after_opt2_dead = Dialog.new(["Uh oh, I'm after option 3!", DEAD], "after 3rd (dead)")
-var after_opt3_cycle = Dialog.new(["After option 4", CYCLES], "after 4th (cycles)")
-var after_opt4_dead = Dialog.new(["After option 5", DEAD], "after 5th (dead)")
-var after_opt4_cycle = Dialog.new(["After opt five", CYCLES], "after 5th (cycles)")
-
-var dialog_sequence: Dialog.Sequence
-
 var dialogue_config = {
 	"start":
 	{
@@ -82,6 +67,21 @@ var dialogue_config = {
 		"next": ["start"],
 	},
 }
+
+var start_dialog = Dialog.new(
+	["This is the starting dialog!!", "This is cool, huh?", MULT_NEXT], "start_dialog"
+)
+var opt0_dead = Dialog.new(["Hey there, this is the first option!", DEAD], "1st (dead)")
+var opt1_cycle = Dialog.new(["Hey there, this is the second option!", CYCLES], "2nd (cycles)")
+var opt2 = Dialog.new(["Oh wow, the third option!", ONE_NEXT], "3rd (1 next, dead)")
+var opt3 = Dialog.new(["Holy cow! The fourth option!", ONE_NEXT], "4th (1 next, cycles)")
+var opt4 = Dialog.new(["bing bong I'm #5", MULT_NEXT], "5th (2 next)")
+var after_opt2_dead = Dialog.new(["Uh oh, I'm after option 3!", DEAD], "after 3rd (dead)")
+var after_opt3_cycle = Dialog.new(["After option 4", CYCLES], "after 4th (cycles)")
+var after_opt4_dead = Dialog.new(["After option 5", DEAD], "after 5th (dead)")
+var after_opt4_cycle = Dialog.new(["After opt five", CYCLES], "after 5th (cycles)")
+
+var dialog_sequence: Dialog.Sequence
 
 @onready var dialog_options = get_node("%DialogOptions")
 @onready var dialog_text = get_node("%DialogText")
