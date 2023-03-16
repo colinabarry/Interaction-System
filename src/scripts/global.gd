@@ -9,7 +9,7 @@ var pause_menu: TextureRect = (
 
 func _ready() -> void:
 	add_child(pause_menu)
-	pause()
+	# pause()
 
 
 func _input(event: InputEvent) -> void:
