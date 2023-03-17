@@ -9,9 +9,9 @@ shader_parameter/ColorParameter = Color(0, 0.266667, 0.533333, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_sipqv"]
 material = SubResource("ShaderMaterial_anv7u")
-size = Vector2(200, 200)
-subdivide_width = 5
-subdivide_depth = 5
+size = Vector2(1000, 1000)
+subdivide_width = 1000
+subdivide_depth = 1000
 
 [node name="Ocean" type="MeshInstance3D"]
 mesh = SubResource("PlaneMesh_sipqv")

@@ -9,6 +9,8 @@ var pause_menu: TextureRect = (
 
 func _ready() -> void:
 	add_child(pause_menu)
+	var fstring = "%s is a string, %d is an int" % ["hello", 4]
+	print(fstring)
 	# pause()
 
 

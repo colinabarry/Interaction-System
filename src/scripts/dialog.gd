@@ -43,7 +43,7 @@ var after_next_dialog := func():
 		return
 	_after_next_dialog.call()
 
-	
+
 func _init(base = [], option = ""):
 	dialogues = base
 	option_name = option
@@ -65,12 +65,12 @@ func set_active(idx: int):
 	active_idx = idx % dialogues.size()
 
 func next():
-	if active_idx == dialogues.size(): 
+	if active_idx == dialogues.size():
 		return
 	set_active(active_idx + 1)
 
 func prev():
-	if active_idx == 0: 
+	if active_idx == 0:
 		return
 	set_active(active_idx - 1)
 
