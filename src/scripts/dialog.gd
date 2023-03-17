@@ -1,5 +1,6 @@
 class_name Dialog
 
+var speakers := [] #<String>
 var option_name := ""
 var active_idx := -1
 var dialogues := []  #<String>
@@ -99,6 +100,12 @@ func get_next_as_strs():
 
 # PROPERTIES
 
+## Set the names of the speakers for this Dialog object.
+## Returns self for builder pattern.
+func set_speakers(names: Array):
+	speakers = names
+	return self
+
 ## Set the dialogues for this Dialog object.
 ## Returns self for builder pattern.
 func set_base(texts: Array):
@@ -107,7 +114,7 @@ func set_base(texts: Array):
 
 ## Set the option name for this Dialog object that will be used when this object is one of many potential next Dialogs.
 ## Returns self for builder pattern.
-func set_opt_name(name: String):
+func set_option_name(name: String):
 	option_name = name
 	return self
 
@@ -117,13 +124,18 @@ func set_next(dialogs: Array):
 	next_dialogs = dialogs
 	return self
 
+## Add a speaker name to the end of this Dialog object's list of speakers. 
+## Returns self for builder pattern.
+func add_speaker(name: String):
+	speakers.push_back(name);
+
 ## Add a dialogue to the end of this Dialog object's list of dialogues
 ## Returns self for builder pattern.
 func add_base(text: String):
 	dialogues.push_back(text)
 	return self
 
-## Add a Dialog object to the end of this Dialog object's list of next Dialogs
+## Add a Dialog object to the end of this Dialog object's list of next Dialogs.
 ## Returns self for builder pattern.
 func add_next(dialog: Dialog):
 	next_dialogs.push_back(dialog)
@@ -160,7 +172,6 @@ func build_sequence():
 
 class Sequence:
 	var dialog: Dialog
-	var still_talking = true
 	var dead = false
 
 	func _init(head: Dialog):
@@ -170,8 +181,14 @@ class Sequence:
 	static func build(config: Dictionary, head: String, return_objs = false):
 		var dialog_map = {}
 		for name in config:
-			print("name: ", name)
-			dialog_map[name] = Dialog.new(config[name].base, config[name].option_name)
+			var _dialog = Dialog.new()
+			for field in config[name]:
+				if field == "next":
+					continue
+
+				_dialog["set_%s" % field].call(config[name][field])
+
+			dialog_map[name] = _dialog
 
 		for name in dialog_map:
 			for next_dialog in config[name].next:
@@ -190,12 +207,15 @@ class Sequence:
 	func get_option_names():
 		return dialog.get_next_as_strs()
 
+	func still_talking():
+		return dialog.still_talking()
+
 	func set_dialog(new_dialog: Dialog):
 		dialog = new_dialog
 		dialog.reset()
 		dead = false
 
-	func next(idx = -1):
+	func next(idx: int = -1):
 		if idx != -1:
 			dialog = dialog.get_next_dialog(idx)
 			dialog.reset()
@@ -203,12 +223,10 @@ class Sequence:
 
 		if dialog.active_idx == -1:
 			dialog.before_all.call()
-			still_talking = true
 
-		if still_talking:
+		if still_talking():
 			dialog.before_each.call()
 			dialog.next()
-			still_talking = dialog.still_talking()
 			return dialog.get_active()
 
 		if not dialog.has_next():
@@ -216,6 +234,9 @@ class Sequence:
 			return ''
 
 		if not dialog.has_options():
+			print("doesn't have options")
 			dialog = dialog.get_next_dialog(0)
 			dialog.reset()
 			return next()
+
+		return dialog.get_active()

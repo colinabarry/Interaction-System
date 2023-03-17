@@ -97,8 +97,8 @@ func _init():
 
 	start_dialog.set_next([opt0_dead, opt1_cycle, opt2, opt3, opt4])
 
-	dialog_sequence = start_dialog.build_sequence()
-	# dialog_sequence = Dialog.Sequence.build(dialogue_config, "start")
+	# dialog_sequence = start_dialog.build_sequence()
+	dialog_sequence = Dialog.Sequence.build(dialogue_config, "start")
 
 
 func _ready():
@@ -117,6 +117,7 @@ func _on_rich_text_label_gui_input(event: InputEvent):
 	#TEMP
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT:
 		dialog_sequence.set_dialog(start_dialog)
+		dialog_options.clear()
 	elif (
 		not event is InputEventMouseButton
 		or event.button_index != MOUSE_BUTTON_LEFT
@@ -126,14 +127,14 @@ func _on_rich_text_label_gui_input(event: InputEvent):
 
 	var active_text = dialog_sequence.next()
 
-	if not dialog_sequence.dead:
-		dialog_text.text = active_text
-	else:
+	if dialog_sequence.dead:
 		dialog_text.text = "DEAD SEQUENCE"
 		# TODO: remove dialog display
+	else:
+		dialog_text.text = active_text
 
 	if (
-		not dialog_sequence.still_talking
+		not dialog_sequence.still_talking()
 		and dialog_sequence.has_options()
 		and dialog_options.get_item_count() == 0
 	):
