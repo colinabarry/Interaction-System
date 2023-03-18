@@ -8,6 +8,7 @@ const MULT_NEXT = "You should see options!"
 var dialogue_config = {
 	"start":
 	{
+		"using_typing": true,  # this will propagate to all proceeding Dialogs
 		"base": ["This is the starting dialog!!", "This is cool, huh?", MULT_NEXT],
 		"option_name": "Starting Dialog",
 		"next": ["opt0_dead", "opt1_cycle", "opt2", "opt3", "opt4"],
@@ -85,6 +86,9 @@ var dialog_sequence: Dialog.Sequence
 
 @onready var dialog_options = get_node("%DialogOptions")
 @onready var dialog_text = get_node("%DialogText")
+@onready var next_char_timer = get_node("%NextChar")
+
+var _using_typing = true
 
 
 func _init():
@@ -101,8 +105,20 @@ func _init():
 	dialog_sequence = Dialog.Sequence.build(dialogue_config, "start")
 
 
+func begin_dialog(using_typing = false):
+	_using_typing = using_typing
+
+	if using_typing:
+		next_char_timer.set_wait_time(0.15)
+		dialog_sequence.set_typing_timer(next_char_timer)
+		dialog_sequence.next()  # set the first phrase as active
+		next_char_timer.start()
+	else:
+		dialog_text.text = dialog_sequence.next()
+
+
 func _ready():
-	dialog_text.text = dialog_sequence.next()
+	begin_dialog(true)
 
 
 func _on_dialog_options_item_clicked(index, _at_position, mouse_button_index):
@@ -110,14 +126,15 @@ func _on_dialog_options_item_clicked(index, _at_position, mouse_button_index):
 		return
 
 	dialog_options.clear()
-	dialog_text.text = dialog_sequence.next(index)
+	dialog_text.text = dialog_sequence.choose_option(index)
 
 
 func _on_rich_text_label_gui_input(event: InputEvent):
-	#TEMP
+	#<TEMP :debug>
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT:
 		dialog_sequence.set_dialog(start_dialog)
 		dialog_options.clear()
+	#</TEMP>
 	elif (
 		not event is InputEventMouseButton
 		or event.button_index != MOUSE_BUTTON_LEFT
@@ -126,17 +143,17 @@ func _on_rich_text_label_gui_input(event: InputEvent):
 		return
 
 	var active_text = dialog_sequence.next()
-
+	print("active_text: ", active_text)
 	if dialog_sequence.dead:
 		dialog_text.text = "DEAD SEQUENCE"
 		# TODO: remove dialog display
 	else:
 		dialog_text.text = active_text
 
-	if (
-		not dialog_sequence.still_talking()
-		and dialog_sequence.has_options()
-		and dialog_options.get_item_count() == 0
-	):
+	if dialog_sequence.ready_for_options() and dialog_options.get_item_count() == 0:
 		for option_name in dialog_sequence.get_option_names():
 			dialog_options.add_item(option_name)
+
+
+func _on_next_char_timeout():
+	dialog_text.append_text(dialog_sequence.next(true))  #> from_tick
