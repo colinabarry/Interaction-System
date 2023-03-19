@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bdf0mcn5ijo1q"
-path.s3tc="res://.godot/imported/icon.svg-b48023d09cf7efc91beba940e0878fee.s3tc.ctex"
+uid="uid://bw50ccncn8o3a"
+path.s3tc="res://.godot/imported/island-height-map-278-0_large.jpg-124f6401bf8ec0312f082e2f0b35103e.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/materials/textures/icon.svg"
-dest_files=["res://.godot/imported/icon.svg-b48023d09cf7efc91beba940e0878fee.s3tc.ctex"]
+source_file="res://assets/materials/textures/island-height-map-278-0_large.jpg"
+dest_files=["res://.godot/imported/island-height-map-278-0_large.jpg-124f6401bf8ec0312f082e2f0b35103e.s3tc.ctex"]
 
 [params]
 
@@ -33,6 +33,3 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=0
-svg/scale=1.0
-editor/scale_with_editor_scale=false
-editor/convert_colors_with_editor_theme=false
