@@ -15,15 +15,43 @@ func _init(base = [], option = "") -> void:
 	option_name = option
 
 
-func _process():
-	pass
+var first_call = true
+
+
+## Run the after_each and attempt to run the after_all lifecycle events
+func after():
+	after_each()
+
+	if not still_talking():
+		after_all()
+
+		if has_options():
+			before_next_dialog()
+
+
+## Attempt to run the after_each and after_all lifecycle events (w/ a silly caveat)
+func after_skip():
+	# weird stuff (read: bad design) means this block must be entered
+	# at the very start of the sequence, but obviously we don't want
+	# to run "after_xxx" lifecycles before anything's happened
+	if not first_call:
+		print("> skip_typing")
+		after()
+	else:
+		first_call = false
 
 
 func next(skip_typing := false) -> String:
 	if using_typing and still_typing():
 		if skip_typing:
+			stop_typing()
+			after_skip()
 			return get_active_phrase()
 		return next_char()
+	else:
+		reset_typing()
+
+	reset_each()
 	return next_phrase()
 
 
@@ -64,14 +92,29 @@ func set_active_char(idx: int) -> void:
 
 
 func next_phrase() -> String:
+	print("> next_phrase")
+
+	if phrase_idx == -1:
+		before_all()
+
 	if still_talking():
 		set_active_phrase(phrase_idx + 1)
+
+		before_each()
+		if not using_typing:
+			after()
+
 	return get_active_phrase()
 
 
 func next_char() -> String:
 	if still_typing():
 		set_active_char(char_idx + 1)
+
+		if not still_typing():
+			print("> next_char")
+			after()
+
 	return get_active_char()
 
 
@@ -83,6 +126,7 @@ func stop_typing() -> void:
 ## Set the phrase_idx to -1 (so that calling next() will return the first phrase)
 func reset_talking() -> void:
 	set_active_phrase(-1)
+	reset_all()
 
 
 ## Set the char_idx to -1 (so that calling next() will return the first character)
@@ -94,6 +138,8 @@ func reset_typing() -> void:
 func reset() -> void:
 	reset_talking()
 	reset_typing()
+
+	reset_next()  # prolly should be handled by the sequence?
 
 
 # GETTERS
@@ -113,6 +159,7 @@ func get_next_dialog(idx := 0) -> Dialog:
 
 func get_option_names() -> Array:
 	var names = []
+
 	for dialog in next_dialogs:
 		names.push_back(dialog.option_name)
 
@@ -187,6 +234,12 @@ func build_sequence() -> Sequence:
 	return Sequence.new(self)
 
 
+## FOR TOMORROW!!
+# - fix the options not displaying after the first set
+#	(closure issue?? but then why does the first set display properly??)
+#	(everything else in the lambda gets called, only display_options doesn't on subsequent calls????)
+# - reset the sequence?
+
 ## FOR THE FUTURE!!
 # - add phrase_timer functionality
 
@@ -200,7 +253,7 @@ class Sequence:
 	var dead := false
 
 	func _init(head: Dialog) -> void:
-		dialog = head
+		set_dialog(head)
 
 	## An alternative option to build a dialog sequence using a JSON-style config.
 	static func build(config: Dictionary, head: String, return_objs = false):
@@ -260,19 +313,41 @@ class Sequence:
 	func ready_for_options() -> bool:
 		return not dialog.still_talking() and dialog.has_options()
 
-	func start_typing() -> void:
-		dialog.reset_typing()
-		next_char_timer.start()
-
-	func stop_typing() -> void:
-		dialog.stop_typing()
-		next_char_timer.stop()
-
-	# mostly for debug
 	func set_dialog(new_dialog: Dialog) -> void:
 		dialog = new_dialog
 		dialog.reset()
-		dead = false
+		print("> set_dialog: ", before_next_dialog.is_valid())
+		print("> set_dialog > display_options:", ready_for_options())
+		# let the Dialog object manage calling the Sequence's lifecycle events
+		(
+			dialog
+			. on_before_each(func():
+				before_each(false)
+				dialog.before_each()
+				)
+			. on_after_each(func():
+				after_each(false)
+				dialog.after_each()
+				)
+			. on_before_all(func():
+				before_all(false)
+				dialog.before_all()
+				)
+			. on_after_all(func():
+				after_all(false)
+				dialog.after_all()
+				)
+			. on_before_next(func():
+				before_next_dialog(false)
+				dialog.before_next_dialog()
+				print("ready for opt: ", ready_for_options())
+				)
+			. on_after_next(func():
+				after_next_dialog(false)
+				dialog.after_next_dialog()
+				)
+		)
+		dead = false  # mostly for debug
 
 	func begin_dialog(char_timer: Timer = null, wait_time := 0.15) -> String:
 		if char_timer != null:
@@ -289,7 +364,7 @@ class Sequence:
 			var _next = dialog.next(should_skip_typing)
 
 			if should_skip_typing or not dialog.still_typing():
-				stop_typing()
+				next_char_timer.stop()
 
 			return _next
 		# beyond here:=> effectively, still_typing is false
@@ -297,7 +372,6 @@ class Sequence:
 		if dialog.still_talking():
 			if dialog.using_typing:
 				dialog.next()  # set next phrase as active
-				dialog.reset_typing()
 				next_char_timer.start()
 				return ""  # clear the previous phrase to prep. for typing
 			return dialog.next()  # next_phrase
@@ -327,8 +401,11 @@ class Sequence:
 	# INTERNAL HELPERS
 
 	func _next_dialog(idx := 0) -> String:
+		if dialog.has_options():
+			dialog.after_next_dialog()
+
 		var using = dialog.using_typing
-		dialog = dialog.get_next_dialog(idx)
+		set_dialog(dialog.get_next_dialog(idx))
 		dialog.reset()
 
 		if using:

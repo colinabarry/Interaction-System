@@ -71,7 +71,7 @@ input_name = "time"
 
 [sub_resource type="Gradient" id="Gradient_hel2d"]
 interpolation_mode = 2
-offsets = PackedFloat32Array(0, 0.529801)
+offsets = PackedFloat32Array(0, 0.188742)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_3mqcs"]
 gradient = SubResource("Gradient_hel2d")
@@ -91,10 +91,8 @@ operator = 2
 default_input_values = [0, Quaternion(0, 0, 0, 0), 1, Quaternion(0, 0, 0, 0)]
 op_type = 2
 
-[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_tauwu"]
-parameter_name = "base_height"
-default_value_enabled = true
-default_value = 0.1
+[sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_sf3fw"]
+constant = 0.1
 
 [sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_wbh5p"]
 input_name = "time"
@@ -125,20 +123,13 @@ op_type = 3
 default_input_values = [0, Vector3(0, 0, 0), 1, Vector3(0.2, 0.2, 0.2)]
 operator = 2
 
-[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_exkrq"]
-parameter_name = "wave_height"
-hint = 2
-max = 50.0
-step = 1.0
-default_value_enabled = true
-default_value = 10.0
+[sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_m6xfs"]
+constant = 10.0
 
 [resource]
 code = "shader_type spatial;
 uniform sampler2D tex_vtx_4;
 uniform sampler2D tex_vtx_11;
-uniform float base_height = 0.10000000149012;
-uniform float wave_height : hint_range(0, 50, 1) = 10;
 uniform vec4 ColorParameter : source_color = vec4(0.000000, 0.266667, 0.533333, 1.000000);
 uniform sampler2D tex_frg_3;
 uniform sampler2D tex_frg_7;
@@ -163,8 +154,8 @@ void vertex() {
 	vec4 n_out11p0 = texture(tex_vtx_11, UV);
 
 
-// FloatParameter:14
-	float n_out14p0 = base_height;
+// FloatConstant:14
+	float n_out14p0 = 0.100000;
 
 
 // VectorOp:13
@@ -179,8 +170,8 @@ void vertex() {
 	vec3 n_out5p0 = NORMAL;
 
 
-// FloatParameter:9
-	float n_out9p0 = wave_height;
+// FloatConstant:9
+	float n_out9p0 = 10.000000;
 
 
 // VectorOp:8
@@ -278,7 +269,7 @@ nodes/vertex/7/node = SubResource("VisualShaderNodeMultiplyAdd_1whfr")
 nodes/vertex/7/position = Vector2(400, 200)
 nodes/vertex/8/node = SubResource("VisualShaderNodeVectorOp_rkn0f")
 nodes/vertex/8/position = Vector2(-300, 400)
-nodes/vertex/9/node = SubResource("VisualShaderNodeFloatParameter_exkrq")
+nodes/vertex/9/node = SubResource("VisualShaderNodeFloatConstant_m6xfs")
 nodes/vertex/9/position = Vector2(-800, 600)
 nodes/vertex/11/node = SubResource("VisualShaderNodeTexture_0lxi1")
 nodes/vertex/11/position = Vector2(-1400, 0)
@@ -286,7 +277,7 @@ nodes/vertex/12/node = SubResource("VisualShaderNodeVectorOp_iduap")
 nodes/vertex/12/position = Vector2(-280, -60)
 nodes/vertex/13/node = SubResource("VisualShaderNodeVectorOp_nw5ld")
 nodes/vertex/13/position = Vector2(-1000, 0)
-nodes/vertex/14/node = SubResource("VisualShaderNodeFloatParameter_tauwu")
+nodes/vertex/14/node = SubResource("VisualShaderNodeFloatConstant_sf3fw")
 nodes/vertex/14/position = Vector2(-1400, 400)
 nodes/vertex/connections = PackedInt32Array(3, 0, 4, 0, 6, 0, 7, 2, 2, 0, 3, 2, 5, 0, 8, 0, 8, 0, 7, 1, 9, 0, 8, 1, 7, 0, 0, 0, 12, 0, 7, 0, 4, 0, 12, 0, 11, 0, 13, 0, 13, 0, 12, 1, 14, 0, 13, 1)
 nodes/fragment/0/position = Vector2(1600, 200)

@@ -16,6 +16,8 @@ func _init():
 	dialogs = temp.dialogs
 	dialog_sequence = temp.sequence
 
+	dialog_sequence.on_before_next(display_options)
+
 
 func _ready():
 	hide_box()
@@ -66,13 +68,16 @@ func show_box():
 	dialogue.text = dialog_sequence.begin_dialog(next_char_timer, 0.15)
 
 
+func display_options():
+	print("> display_options:", dialog_sequence.ready_for_options() and dialog_options.get_item_count() == 0)
+	if dialog_sequence.ready_for_options() and dialog_options.get_item_count() == 0:
+		for option_name in dialog_sequence.get_option_names():
+			dialog_options.add_item(option_name)
+
+
 func handle_next_phrase():
 	var active_text = dialog_sequence.next()
 	if dialog_sequence.dead:
 		hide_box()
 	else:
 		dialogue.text = active_text
-
-	if dialog_sequence.ready_for_options() and dialog_options.get_item_count() == 0:
-		for option_name in dialog_sequence.get_option_names():
-			dialog_options.add_item(option_name)
