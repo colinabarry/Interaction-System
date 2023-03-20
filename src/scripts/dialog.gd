@@ -1,7 +1,7 @@
 extends DialogueLifecycleEvents
 class_name Dialog
 
-var speakers := []  #<String>
+var speaker := ""
 var option_name := ""
 var phrase_idx := -1
 var char_idx := -1
@@ -175,8 +175,8 @@ func get_option_names() -> Array:
 
 ## Set the names of the speakers for this Dialog object.
 ## Returns self.
-func set_speakers(names: Array) -> Dialog:
-	speakers = names
+func set_speaker(name: String) -> Dialog:
+	speaker = name
 	return self
 
 
@@ -208,13 +208,6 @@ func set_using_typing(using: bool) -> Dialog:
 	return self
 
 
-## Add a speaker name to the end of this Dialog object's list of speakers.
-## Returns self.
-func add_speaker(name: String) -> Dialog:
-	speakers.push_back(name)
-	return self
-
-
 ## Add a dialogue to the end of this Dialog object's list of phrases
 ## Returns self.
 func add_base(text: String) -> Dialog:
@@ -234,21 +227,15 @@ func build_sequence() -> Sequence:
 	return Sequence.new(self)
 
 
-## FOR TOMORROW!!
-# - fix the options not displaying after the first set
-#	(closure issue?? but then why does the first set display properly??)
-#	(everything else in the lambda gets called, only display_options doesn't on subsequent calls????)
-# - reset the sequence?
-
 ## FOR THE FUTURE!!
-# - add phrase_timer functionality
+# - reset the sequence?
+# - give Sequence master control for allowing_typing?
 
 
 class Sequence:
 	extends DialogueLifecycleEvents
 
 	var dialog: Dialog
-	var next_phrase_timer: Timer
 	var next_char_timer: Timer
 	var dead := false
 
@@ -256,7 +243,7 @@ class Sequence:
 		set_dialog(head)
 
 	## An alternative option to build a dialog sequence using a JSON-style config.
-	static func build(config: Dictionary, head: String, return_objs = false):
+	static func build(config: Dictionary, head: String, return_objs := false):
 		var dialog_map = {}
 
 		for name in config:
@@ -308,45 +295,44 @@ class Sequence:
 	func get_option_names() -> Array:
 		return dialog.get_option_names()
 
+	## Get the speaker name for the current Dialog object
+	func get_speaker() -> String:
+		return dialog.speaker
+
 	# SEQUENCE API
 
 	func ready_for_options() -> bool:
 		return not dialog.still_talking() and dialog.has_options()
 
 	func set_dialog(new_dialog: Dialog) -> void:
-		dialog = new_dialog
-		dialog.reset()
-		print("> set_dialog: ", before_next_dialog.is_valid())
-		print("> set_dialog > display_options:", ready_for_options())
 		# let the Dialog object manage calling the Sequence's lifecycle events
-		(
-			dialog
+		# except for after_next_dialog as the Sequence will handle that for the Dialog
+		dialog = (
+			new_dialog
 			. on_before_each(func():
 				before_each(false)
-				dialog.before_each()
+				new_dialog.before_each()
 				)
 			. on_after_each(func():
 				after_each(false)
-				dialog.after_each()
+				new_dialog.after_each()
 				)
 			. on_before_all(func():
 				before_all(false)
-				dialog.before_all()
+				new_dialog.before_all()
 				)
 			. on_after_all(func():
 				after_all(false)
-				dialog.after_all()
+				new_dialog.after_all()
 				)
 			. on_before_next(func():
 				before_next_dialog(false)
-				dialog.before_next_dialog()
-				print("ready for opt: ", ready_for_options())
-				)
-			. on_after_next(func():
-				after_next_dialog(false)
-				dialog.after_next_dialog()
+				new_dialog.before_next_dialog()
 				)
 		)
+		dialog.reset()
+		_reset()
+
 		dead = false  # mostly for debug
 
 	func begin_dialog(char_timer: Timer = null, wait_time := 0.15) -> String:
@@ -359,7 +345,9 @@ class Sequence:
 		else:
 			return next()  # return the first phrase
 
-	func next(should_skip_typing = true) -> String:
+	func next(should_skip_typing := true) -> String:
+		_reset()
+
 		if dialog.using_typing and dialog.still_typing():
 			var _next = dialog.next(should_skip_typing)
 
@@ -401,15 +389,27 @@ class Sequence:
 	# INTERNAL HELPERS
 
 	func _next_dialog(idx := 0) -> String:
-		if dialog.has_options():
-			dialog.after_next_dialog()
+		var _using_typing = dialog.using_typing
+		var _speaker = dialog.speaker
+		var _had_options = dialog.has_options()
+		var _after_next = dialog.after_next_dialog
 
-		var using = dialog.using_typing
 		set_dialog(dialog.get_next_dialog(idx))
 		dialog.reset()
+		_reset()
 
-		if using:
-			dialog.using_typing = using  # propagate using_typing (only if true tho)
+		if _using_typing:
+			dialog.using_typing = _using_typing  # propagate using_typing (only if true tho)
+		if dialog.speaker == "":
+			dialog.set_speaker(_speaker) # propagate speaker if next_dialog does not have one
+		if _had_options:
+			after_next_dialog()
+			_after_next.call()
 
 		# sets first phrase of the new Dialog as active
 		return next()  # val returned is either the first phrase or the first char
+
+	func _reset():
+		reset_each()
+		reset_all()
+		reset_next()

@@ -5,10 +5,14 @@ var is_visible := false
 var dialogs: Dictionary  #<String, Dialog>
 var dialog_sequence: Dialog.Sequence
 
+@onready var dialog_options = $OptionsContainer/Options
 @onready var dialog_container = $DialogContainer
-@onready var dialog_options = $DialogContainer/MarginContainer/HBoxContainer/Options
-@onready var dialogue = $DialogContainer/MarginContainer/HBoxContainer/Dialogue
+@onready var speaker_name = $DialogContainer/MarginContainer/VBoxContainer/SpeakerName
+@onready var dialogue = $DialogContainer/MarginContainer/VBoxContainer/HBoxContainer/Dialogue
+@onready
+var next_indicator = $DialogContainer/MarginContainer/VBoxContainer/HBoxContainer/NextIndicator
 @onready var next_char_timer = $NextCharTimer
+@onready var next_phrase_timer = $NextPhraseTimer
 
 
 func _init():
@@ -16,11 +20,28 @@ func _init():
 	dialogs = temp.dialogs
 	dialog_sequence = temp.sequence
 
-	dialog_sequence.on_before_next(display_options)
-
 
 func _ready():
+	next_phrase_timer.one_shot = true
+	next_phrase_timer.wait_time = 1
+
+	dialog_sequence.on_before_each(next_indicator.hide)
+	dialog_sequence.on_after_each(func():
+		# next_phrase_timer.start()
+		if not dialog_sequence.ready_for_options():
+			next_indicator.show()
+		)
+	dialog_sequence.on_before_all(func():
+		speaker_name.text = dialog_sequence.get_speaker()
+	)
+	dialog_sequence.on_before_next(display_options)
+	dialog_sequence.on_after_next(dialog_options.hide)
+
+	# speaker_name.text = dialog_sequence.get_speaker()
+
 	hide_box()
+	dialog_options.hide()
+	next_indicator.hide()
 
 
 func _input(event: InputEvent):
@@ -52,6 +73,10 @@ func _on_dialogue_gui_input(event: InputEvent):
 	handle_next_phrase()
 
 
+func _on_next_phrase_timer_timeout():
+	handle_next_phrase()
+
+
 func _on_next_char_timer_timeout():
 	dialogue.text += dialog_sequence.next(false)  #> shouldn't_skip_typing
 
@@ -69,10 +94,11 @@ func show_box():
 
 
 func display_options():
-	print("> display_options:", dialog_sequence.ready_for_options() and dialog_options.get_item_count() == 0)
 	if dialog_sequence.ready_for_options() and dialog_options.get_item_count() == 0:
 		for option_name in dialog_sequence.get_option_names():
 			dialog_options.add_item(option_name)
+
+			dialog_options.show()
 
 
 func handle_next_phrase():

@@ -37,6 +37,7 @@ const MULT_NEXT = "You should see options!"
 const test_config = {
 	"start":
 	{
+		"speaker": "Melanie Ford",
 		"using_typing": true,  # this will propagate to all proceeding Dialogs
 		"base": ["This is the starting dialog!!", "This is cool, huh?", MULT_NEXT],
 		"next": ["opt0_dead", "opt1_cycle", "opt2", "opt3", "opt4"],
@@ -67,6 +68,7 @@ const test_config = {
 	},
 	"opt4":
 	{
+		"speaker": "Dr. Wu",
 		"base": ["bing bong I'm #5", MULT_NEXT],
 		"option_name": "5th (2 next)",
 		"next": ["after_opt4_dead", "after_opt4_cycle"],
