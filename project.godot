@@ -18,6 +18,7 @@ config/icon="res://assets/materials/textures/icon.svg"
 [autoload]
 
 Global="*res://src/scripts/global.gd"
+Dialogues="*res://src/scripts/dialogues.gd"
 
 [display]
 

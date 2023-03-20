@@ -1,0 +1,62 @@
+[gd_scene load_steps=3 format=3 uid="uid://dp1cmjurpj3uk"]
+
+[ext_resource type="Script" path="res://scenes/user_interfaces/dialog_box/dialog_box.gd" id="1_p8d2j"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_guupc"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="DialogBox" type="CanvasLayer"]
+script = ExtResource("1_p8d2j")
+
+[node name="DialogContainer" type="MarginContainer" parent="."]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 139.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="Panel" type="Panel" parent="DialogContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_guupc")
+
+[node name="MarginContainer" type="MarginContainer" parent="DialogContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Panel" type="Panel" parent="DialogContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="DialogContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Options" type="ItemList" parent="DialogContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+
+[node name="Dialogue" type="Label" parent="DialogContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+autowrap_mode = 3
+clip_text = true
+text_overrun_behavior = 4
+
+[node name="NextCharTimer" type="Timer" parent="."]
+
+[connection signal="item_clicked" from="DialogContainer/MarginContainer/HBoxContainer/Options" to="." method="_on_options_item_clicked"]
+[connection signal="gui_input" from="DialogContainer/MarginContainer/HBoxContainer/Dialogue" to="." method="_on_dialogue_gui_input"]
+[connection signal="timeout" from="NextCharTimer" to="." method="_on_next_char_timer_timeout"]

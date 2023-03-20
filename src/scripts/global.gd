@@ -5,10 +5,14 @@ var is_paused := false
 var pause_menu: TextureRect = (
 	preload("res://scenes/user_interfaces/pause_menu/pause_menu.tscn").instantiate()
 )
+var dialog_box: CanvasLayer = (
+	preload("res://scenes/user_interfaces/dialog_box/dialog_box.tscn").instantiate()
+)
 
 
 func _ready() -> void:
 	add_child(pause_menu)
+	add_child(dialog_box)
 	var fstring = "%s is a string, %d is an int" % ["hello", 4]
 	print(fstring)
 	# pause()
@@ -21,6 +25,9 @@ func _input(event: InputEvent) -> void:
 
 	if event.is_action_pressed("ui_cancel"):
 		toggle_pause()
+
+	if event.is_action_pressed("ui_text_submit"):
+		dialog_box.show_box()
 
 
 func toggle_pause() -> void:
