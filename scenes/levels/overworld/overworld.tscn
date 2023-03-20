@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://1ethajcku6wd"]
+[gd_scene load_steps=18 format=3 uid="uid://1ethajcku6wd"]
 
 [ext_resource type="Texture2D" uid="uid://cpld0qqok53ji" path="res://assets/materials/textures/forest_leaves/forest_leaves_02_diffuse_8k.jpg" id="1_ftcys"]
 [ext_resource type="Script" path="res://scenes/levels/overworld/overworld.gd" id="1_p8aow"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dyou2duiyc5l1" path="res://scenes/actors/x_ray_camera.tscn" id="6_h63h8"]
 [ext_resource type="PackedScene" uid="uid://c8btc1fg5ahjh" path="res://scenes/actors/buildings/hospital.tscn" id="7_m3eiq"]
 [ext_resource type="PackedScene" uid="uid://cwvedt0rv1gh2" path="res://scenes/actors/ocean/ocean.tscn" id="10_7bboc"]
+[ext_resource type="PackedScene" uid="uid://bk67yky6u57ss" path="res://scenes/actors/heightmap_terrain/heightmap_terrain.tscn" id="11_pw2io"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_iykqy"]
 ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -48,6 +49,7 @@ script = ExtResource("2_7bfvv")
 
 [node name="Floor" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0544405, 0)
+visible = false
 
 [node name="Mesh" type="MeshInstance3D" parent="Floor"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
@@ -58,15 +60,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 shape = SubResource("BoxShape3D_uqmkt")
 
 [node name="Player" parent="." instance=ExtResource("3_hgl8u")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.432355, 2.38419e-07, 4.69559)
+transform = Transform3D(0.478508, 0, 0.878083, 0, 1, 0, -0.878083, 0, 0.478508, 21.1073, 5.38832, 18.0364)
 
 [node name="XRayBot" parent="." instance=ExtResource("5_m878s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.1025, 5.38832, 13.3708)
 
 [node name="XRayCamera" parent="." instance=ExtResource("6_h63h8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0437905, 0.542781, 0.602293)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.1463, 5.52772, 13.9731)
 
 [node name="Hospital" parent="." instance=ExtResource("7_m3eiq")]
-transform = Transform3D(0.849119, 0, -0.528201, 0, 1, 0, 0.528201, 0, 0.849119, -5.5636, 0.256059, -1.05461)
+transform = Transform3D(0.470365, 0, 0.882472, 0, 1, 0, -0.882472, 0, 0.470365, 9.06554, 5.69882, 26.4226)
 
 [node name="Ocean" parent="." instance=ExtResource("10_7bboc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.13358, 0)
+
+[node name="HeightmapTerrain" parent="." instance=ExtResource("11_pw2io")]
