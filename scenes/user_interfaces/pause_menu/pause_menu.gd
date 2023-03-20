@@ -3,8 +3,13 @@ extends TextureRect
 var blur_amount := 3.0
 
 
+func _ready():
+	process_mode = Node.PROCESS_MODE_ALWAYS
+
+
 func show_menu() -> void:
 	var tween := get_tree().create_tween().set_parallel(true).set_trans(Tween.TRANS_CUBIC)
+	tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
 
 	# fade menu in
 	tween.tween_property(self, "modulate", Color.WHITE, 0.25)
@@ -14,6 +19,7 @@ func show_menu() -> void:
 
 func hide_menu() -> void:
 	var tween := get_tree().create_tween().set_parallel(true).set_trans(Tween.TRANS_CUBIC)
+	tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
 
 	# fade menu out
 	tween.tween_property(self, "modulate", Color.TRANSPARENT, 0.25)

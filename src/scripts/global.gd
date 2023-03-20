@@ -11,6 +11,8 @@ var dialog_box: CanvasLayer = (
 
 
 func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS
+
 	add_child(pause_menu)
 	add_child(dialog_box)
 	pause()
@@ -37,6 +39,7 @@ func toggle_pause() -> void:
 
 func pause() -> void:
 	is_paused = true
+	get_tree().paused = true
 
 	pause_menu.show_menu()
 
@@ -46,6 +49,7 @@ func pause() -> void:
 
 func resume() -> void:
 	is_paused = false
+	get_tree().paused = false
 
 	pause_menu.hide_menu()
 

@@ -5,13 +5,11 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_anv7u"]
 render_priority = 0
 shader = ExtResource("1_tb03d")
-shader_parameter/base_height = 0.1
-shader_parameter/wave_height = 5.0
 shader_parameter/ColorParameter = Color(0, 0.266667, 0.533333, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_sipqv"]
 material = SubResource("ShaderMaterial_anv7u")
-size = Vector2(1000, 1000)
+size = Vector2(750, 750)
 subdivide_width = 1000
 subdivide_depth = 1000
 
