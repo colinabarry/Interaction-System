@@ -13,9 +13,7 @@ var dialog_box: CanvasLayer = (
 func _ready() -> void:
 	add_child(pause_menu)
 	add_child(dialog_box)
-	var fstring = "%s is a string, %d is an int" % ["hello", 4]
-	print(fstring)
-	# pause()
+	pause()
 
 
 func _input(event: InputEvent) -> void:
