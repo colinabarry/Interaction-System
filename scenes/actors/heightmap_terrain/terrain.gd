@@ -8,11 +8,11 @@ signal export_val_changed
 	set(val):
 		texture = val
 		export_val_changed.emit()
-@export var chunk_size := 80.0:
+@export_range(1.0, 500.0, 1.0) var chunk_size := 80.0:
 	set(val):
 		chunk_size = val
 		export_val_changed.emit()
-@export var height_multiplier := 15.0:
+@export_range(0.0, 50, 0.01) var height_multiplier := 15.0:
 	set(val):
 		height_multiplier = val
 		export_val_changed.emit()
