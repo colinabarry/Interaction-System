@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dyou2duiyc5l1"]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_uxswj"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_7fkr1"]
 viewport_path = NodePath("SubViewport")
 
 [sub_resource type="Gradient" id="Gradient_3hpsw"]
@@ -17,7 +17,7 @@ remote_path = NodePath("../SubViewport/Camera")
 [node name="XRaySprite" type="Sprite3D" parent="."]
 transform = Transform3D(0.139, 0, 0, 0, 0.139, 0, 0, 0, 0.139, 0, 0, 0.01)
 sorting_offset = 1.0
-texture = SubResource("ViewportTexture_uxswj")
+texture = SubResource("ViewportTexture_7fkr1")
 
 [node name="BGSprite" type="Sprite3D" parent="."]
 transform = Transform3D(0.2, 0, 0, 0, 27.88, 0, 0, 0, 0.2, 0, 0, 0.009)

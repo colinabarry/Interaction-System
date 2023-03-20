@@ -2,11 +2,21 @@
 class_name HeightmapTerrain
 extends MeshInstance3D
 
+signal export_val_changed
+
 @export var image_path: String
-# @export var image: Image
-@export var chunk_size := 2.0
-@export var height_multiplier := 1.0
-@export var collision_shape_size_multiplier := 0.1
+@export var chunk_size := 80.0:
+	set(val):
+		chunk_size = val
+		export_val_changed.emit()
+@export var height_multiplier := 15.0:
+	set(val):
+		height_multiplier = val
+		export_val_changed.emit()
+@export_range(0.01, 0.5) var collision_shape_size_multiplier := 0.1:
+	set(val):
+		collision_shape_size_multiplier = val
+		export_val_changed.emit()
 
 @onready var collision_shape: CollisionShape3D = $StaticBody/CollisionShape
 
@@ -14,7 +24,7 @@ var image = Image.new()
 var shape = HeightMapShape3D.new()
 
 
-func _process(_delta: float) -> void:
+func update() -> void:
 	collision_shape.shape = shape
 	mesh.size = Vector2(chunk_size, chunk_size)
 
@@ -31,7 +41,7 @@ func update_terrain(_height_multiplier: float, _collision_shape_size_multiplier:
 		image.get_height() * _collision_shape_size_multiplier
 	)
 
-	var data = image.get_data().to_float32_array()
+	var data := image.get_data().to_float32_array()
 	for i in range(0, data.size()):
 		data[i] *= _height_multiplier
 
@@ -41,3 +51,7 @@ func update_terrain(_height_multiplier: float, _collision_shape_size_multiplier:
 
 	var scale_multiplier = chunk_size / float(image.get_width())
 	collision_shape.scale = Vector3(scale_multiplier, 1, scale_multiplier)
+
+
+func _on_export_val_changed() -> void:
+	update()

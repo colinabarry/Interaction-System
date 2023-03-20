@@ -6,7 +6,7 @@
 render_priority = 0
 shader = ExtResource("1_tb03d")
 shader_parameter/base_height = 0.1
-shader_parameter/wave_height = 10.0
+shader_parameter/wave_height = 5.0
 shader_parameter/ColorParameter = Color(0, 0.266667, 0.533333, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_sipqv"]
