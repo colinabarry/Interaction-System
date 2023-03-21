@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://bbrprk72a3bod"]
+
+[node name="UI_overlay" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Container" type="Container" parent="."]
+layout_mode = 0
+offset_left = 204.0
+offset_top = 18.0
+offset_right = 244.0
+offset_bottom = 58.0
+
+[node name="Directions" type="Button" parent="Container"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Hit SPACE to jump"
