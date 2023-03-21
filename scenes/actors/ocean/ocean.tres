@@ -71,7 +71,7 @@ input_name = "time"
 
 [sub_resource type="Gradient" id="Gradient_hel2d"]
 interpolation_mode = 2
-offsets = PackedFloat32Array(0, 0.350993)
+offsets = PackedFloat32Array(0, 0.188742)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_3mqcs"]
 gradient = SubResource("Gradient_hel2d")

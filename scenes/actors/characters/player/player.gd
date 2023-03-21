@@ -30,6 +30,13 @@ func _ready():
 	animation_tree.active = true
 
 
+func _process(_delta):
+	if Input.is_action_pressed("move_sprint", true):
+		current_speed = SPRINT_SPEED
+	else:
+		current_speed = WALK_SPEED
+
+
 func _input(event: InputEvent) -> void:
 	if not Global.get_player_has_control():
 		return
@@ -49,11 +56,6 @@ func _input(event: InputEvent) -> void:
 	# jump
 	if event.is_action_pressed("move_jump"):
 		animation_tree["parameters/OneShot/request"] = true
-
-	if event.is_action_pressed("move_sprint", true):
-		current_speed = SPRINT_SPEED
-	else:
-		current_speed = WALK_SPEED
 
 
 func _physics_process(delta: float) -> void:

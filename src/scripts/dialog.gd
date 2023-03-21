@@ -235,9 +235,10 @@ func build_sequence() -> Sequence:
 class Sequence:
 	extends DialogueLifecycleEvents
 
-	var dialog: Dialog
+	var dialog: Dialog = null
 	var next_char_timer: Timer
-	var dead := false
+	var cold := true # has this Sequence been started?
+	var dead := false # has this Sequence reached a dead end?
 
 	func _init(head: Dialog) -> void:
 		set_dialog(head)
@@ -305,6 +306,12 @@ class Sequence:
 		return not dialog.still_talking() and dialog.has_options()
 
 	func set_dialog(new_dialog: Dialog) -> void:
+		var _using_typing = null #dialog.using_typing
+		var _speaker = null #dialog.speaker
+		if dialog != null:
+			_using_typing = dialog.using_typing
+			_speaker = dialog.speaker
+
 		# let the Dialog object manage calling the Sequence's lifecycle events
 		# except for after_next_dialog as the Sequence will handle that for the Dialog
 		dialog = (
@@ -332,6 +339,11 @@ class Sequence:
 		)
 		dialog.reset()
 		_reset()
+
+		if _using_typing:
+			dialog.using_typing = _using_typing  # propagate using_typing (only if true tho)
+		if dialog.speaker == "":
+			dialog.set_speaker(_speaker) # propagate speaker if next_dialog does not have one
 
 		dead = false  # mostly for debug
 
@@ -389,19 +401,11 @@ class Sequence:
 	# INTERNAL HELPERS
 
 	func _next_dialog(idx := 0) -> String:
-		var _using_typing = dialog.using_typing
-		var _speaker = dialog.speaker
 		var _had_options = dialog.has_options()
 		var _after_next = dialog.after_next_dialog
 
 		set_dialog(dialog.get_next_dialog(idx))
-		dialog.reset()
-		_reset()
 
-		if _using_typing:
-			dialog.using_typing = _using_typing  # propagate using_typing (only if true tho)
-		if dialog.speaker == "":
-			dialog.set_speaker(_speaker) # propagate speaker if next_dialog does not have one
 		if _had_options:
 			after_next_dialog()
 			_after_next.call()
