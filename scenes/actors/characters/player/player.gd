@@ -26,6 +26,10 @@ var input_dir: Vector2
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 
+func _ready():
+	animation_tree.active = true
+
+
 func _input(event: InputEvent) -> void:
 	# turn camera with mouse
 	var camera_rotation: Vector3 = camera_origin.rotation_degrees
