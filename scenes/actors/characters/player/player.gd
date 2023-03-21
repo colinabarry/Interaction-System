@@ -26,6 +26,13 @@ var input_dir: Vector2
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 
+func _process(_delta):
+	if Input.is_action_pressed("move_sprint", true):
+		current_speed = SPRINT_SPEED
+	else:
+		current_speed = WALK_SPEED
+
+
 func _input(event: InputEvent) -> void:
 	# turn camera with mouse
 	var camera_rotation: Vector3 = camera_origin.rotation_degrees
@@ -42,11 +49,6 @@ func _input(event: InputEvent) -> void:
 	# jump
 	if event.is_action_pressed("move_jump"):
 		animation_tree["parameters/OneShot/request"] = true
-
-	if event.is_action_pressed("move_sprint", true):
-		current_speed = SPRINT_SPEED
-	else:
-		current_speed = WALK_SPEED
 
 
 func _physics_process(delta: float) -> void:
