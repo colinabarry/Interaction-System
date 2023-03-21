@@ -26,6 +26,10 @@ var input_dir: Vector2
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 
+func _ready():
+	animation_tree.active = true
+
+
 func _process(_delta):
 	if Input.is_action_pressed("move_sprint", true):
 		current_speed = SPRINT_SPEED
@@ -34,6 +38,9 @@ func _process(_delta):
 
 
 func _input(event: InputEvent) -> void:
+	if not Global.get_player_has_control():
+		return
+
 	# turn camera with mouse
 	var camera_rotation: Vector3 = camera_origin.rotation_degrees
 	# casting with `as` for precision and to get autocomplete
@@ -52,6 +59,9 @@ func _input(event: InputEvent) -> void:
 
 
 func _physics_process(delta: float) -> void:
+	if not Global.player_has_control:
+		return
+
 	# add gravity
 	if not is_on_floor():
 		velocity.y -= gravity * delta

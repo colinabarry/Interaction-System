@@ -1,6 +1,7 @@
 extends Node
 
 var is_paused := false
+var player_has_control := true
 
 var pause_menu: TextureRect = (
 	preload("res://scenes/user_interfaces/pause_menu/pause_menu.tscn").instantiate()
@@ -28,6 +29,14 @@ func _input(event: InputEvent) -> void:
 
 	if event.is_action_pressed("ui_text_submit"):
 		dialog_box.show_box()
+
+
+func get_player_has_control():
+	return player_has_control
+
+
+func set_player_has_control(has_control: bool):
+	player_has_control = has_control
 
 
 func toggle_pause() -> void:

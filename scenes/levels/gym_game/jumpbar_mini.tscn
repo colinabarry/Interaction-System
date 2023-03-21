@@ -1,0 +1,37 @@
+[gd_scene load_steps=8 format=3 uid="uid://bqb4j7qviqmtn"]
+
+[ext_resource type="Texture2D" uid="uid://cpld0qqok53ji" path="res://assets/materials/textures/forest_leaves/forest_leaves_02_diffuse_8k.jpg" id="1_xl6w8"]
+[ext_resource type="Texture2D" uid="uid://crx0lp1ww272c" path="res://assets/materials/textures/forest_leaves/forest_leaves_02_rough_8k.jpg" id="2_hlw70"]
+[ext_resource type="PackedScene" uid="uid://bs4j6acxwyjdx" path="res://scenes/actors/characters/player/player.tscn" id="3_80wb3"]
+[ext_resource type="PackedScene" uid="uid://528phxlq3ab8" path="res://scenes/levels/gym_game/jump_2d.tscn" id="4_6igtl"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_37v0x"]
+albedo_texture = ExtResource("1_xl6w8")
+roughness_texture = ExtResource("2_hlw70")
+uv1_scale = Vector3(2, 2, 2)
+
+[sub_resource type="QuadMesh" id="QuadMesh_dxl36"]
+material = SubResource("StandardMaterial3D_37v0x")
+size = Vector2(20, 20)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_on857"]
+size = Vector3(20, 1, 20)
+
+[node name="jumpbar_mini" type="Node3D"]
+
+[node name="Floor" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0544405, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("QuadMesh_dxl36")
+
+[node name="Collision" type="CollisionShape3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("BoxShape3D_on857")
+
+[node name="Player" parent="." instance=ExtResource("3_80wb3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.328714, -0.0672127, 0.0106046)
+
+[node name="jump_2d" parent="." instance=ExtResource("4_6igtl")]
+position = Vector2(-186, 4)
