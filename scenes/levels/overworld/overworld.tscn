@@ -69,8 +69,6 @@ shape = SubResource("BoxShape3D_uqmkt")
 
 [node name="Player" parent="." instance=ExtResource("3_hgl8u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.3176, 1.64706, 14.8292)
-min_camera_pitch = null
-max_camera_pitch = null
 
 [node name="Terrain" parent="." instance=ExtResource("11_pw2io")]
 
