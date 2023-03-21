@@ -90,7 +90,11 @@ func hide_box():
 func show_box():
 	dialog_container.show()
 	is_visible = true
-	dialogue.text = dialog_sequence.begin_dialog(next_char_timer, 0.15)
+
+	if dialog_sequence.cold:
+		dialogue.text = dialog_sequence.begin_dialog(next_char_timer, 0.15)
+	else:
+		dialog_sequence.cold = false
 
 
 func display_options():

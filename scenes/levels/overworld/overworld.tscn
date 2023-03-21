@@ -70,12 +70,13 @@ shape = SubResource("BoxShape3D_uqmkt")
 [node name="Player" parent="." instance=ExtResource("3_hgl8u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.3176, 1.64706, 14.8292)
 
-[node name="Terrain" parent="." instance=ExtResource("11_pw2io")]
+[node name="XRayBot" parent="." instance=ExtResource("5_m878s")]
 
-[node name="Buildings" type="Node" parent="."]
+[node name="XRayCamera" parent="." instance=ExtResource("6_h63h8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0437905, 0.542781, 0.602293)
 
-[node name="Hospital" parent="Buildings" instance=ExtResource("7_m3eiq")]
-transform = Transform3D(0.615538, 0, 0.788107, 0, 1, 0, -0.788107, 0, 0.615538, -5.72724, 1.54566, 27.3274)
+[node name="Hospital" parent="." instance=ExtResource("7_m3eiq")]
+transform = Transform3D(0.849119, 0, -0.528201, 0, 1, 0, 0.528201, 0, 0.849119, -5.5636, 0.256059, -1.05461)
 
 [node name="Home" parent="Buildings" instance=ExtResource("12_vqy45")]
 transform = Transform3D(0.707156, 0, -0.707057, 0, 1, 0, 0.707057, 0, 0.707156, -15.7217, 8.017, 9.80853)
