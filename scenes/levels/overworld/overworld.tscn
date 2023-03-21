@@ -1,16 +1,14 @@
-[gd_scene load_steps=20 format=3 uid="uid://83wccexl0opk"]
+[gd_scene load_steps=16 format=3 uid="uid://1ethajcku6wd"]
 
 [ext_resource type="Texture2D" uid="uid://cpld0qqok53ji" path="res://assets/materials/textures/forest_leaves/forest_leaves_02_diffuse_8k.jpg" id="1_ftcys"]
 [ext_resource type="Script" path="res://scenes/levels/overworld/overworld.gd" id="1_p8aow"]
 [ext_resource type="Script" path="res://src/scripts/sun.gd" id="2_7bfvv"]
 [ext_resource type="Texture2D" uid="uid://crx0lp1ww272c" path="res://assets/materials/textures/forest_leaves/forest_leaves_02_rough_8k.jpg" id="2_wae4x"]
 [ext_resource type="PackedScene" uid="uid://bs4j6acxwyjdx" path="res://scenes/actors/characters/player/player.tscn" id="3_hgl8u"]
+[ext_resource type="PackedScene" uid="uid://c257qcr1offo5" path="res://scenes/actors/characters/x_ray_bot.tscn" id="5_m878s"]
+[ext_resource type="PackedScene" uid="uid://dyou2duiyc5l1" path="res://scenes/actors/x_ray_camera.tscn" id="6_h63h8"]
 [ext_resource type="PackedScene" uid="uid://c8btc1fg5ahjh" path="res://scenes/actors/buildings/hospital.tscn" id="7_m3eiq"]
-[ext_resource type="PackedScene" uid="uid://cwvedt0rv1gh2" path="res://scenes/actors/ocean/ocean.tscn" id="9_3jw8t"]
-[ext_resource type="PackedScene" uid="uid://badl76liavuak" path="res://scenes/actors/cutscene/cutscene.tscn" id="10_43gn4"]
-[ext_resource type="PackedScene" uid="uid://bk67yky6u57ss" path="res://scenes/actors/heightmap_terrain/heightmap_terrain.tscn" id="11_pw2io"]
-[ext_resource type="PackedScene" uid="uid://d2nw0hqf5njea" path="res://scenes/actors/buildings/home.tscn" id="12_vqy45"]
-[ext_resource type="PackedScene" uid="uid://cleywp2ohgotd" path="res://scenes/actors/buildings/gym.tscn" id="13_rn54b"]
+[ext_resource type="PackedScene" uid="uid://cwvedt0rv1gh2" path="res://scenes/actors/ocean/ocean.tscn" id="10_7bboc"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_iykqy"]
 ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -37,14 +35,6 @@ size = Vector2(20, 20)
 [sub_resource type="BoxShape3D" id="BoxShape3D_uqmkt"]
 size = Vector3(20, 1, 20)
 
-[sub_resource type="Animation" id="Animation_goxs2"]
-resource_name = "new_animation"
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_g74lt"]
-_data = {
-"new_animation": SubResource("Animation_goxs2")
-}
-
 [node name="Overworld" type="Node"]
 script = ExtResource("1_p8aow")
 
@@ -68,9 +58,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 shape = SubResource("BoxShape3D_uqmkt")
 
 [node name="Player" parent="." instance=ExtResource("3_hgl8u")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.3176, 1.64706, 14.8292)
-min_camera_pitch = null
-max_camera_pitch = null
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.432355, 2.38419e-07, 4.69559)
 
 [node name="XRayBot" parent="." instance=ExtResource("5_m878s")]
 
@@ -80,18 +68,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0437905, 0.542781, 0.602293
 [node name="Hospital" parent="." instance=ExtResource("7_m3eiq")]
 transform = Transform3D(0.849119, 0, -0.528201, 0, 1, 0, 0.528201, 0, 0.849119, -5.5636, 0.256059, -1.05461)
 
-[node name="Home" parent="Buildings" instance=ExtResource("12_vqy45")]
-transform = Transform3D(0.707156, 0, -0.707057, 0, 1, 0, 0.707057, 0, 0.707156, -15.7217, 8.017, 9.80853)
-
-[node name="Gym" parent="Buildings" instance=ExtResource("13_rn54b")]
-transform = Transform3D(-0.422618, 0, -0.906308, 0, 1, 0, 0.906308, 0, -0.422618, 19.6, 1.56876, -4)
-
-[node name="Ocean" parent="." instance=ExtResource("9_3jw8t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0454607, 0)
-
-[node name="Cutscene" parent="." instance=ExtResource("10_43gn4")]
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Cutscene"]
-libraries = {
-"": SubResource("AnimationLibrary_g74lt")
-}
+[node name="Ocean" parent="." instance=ExtResource("10_7bboc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.13358, 0)

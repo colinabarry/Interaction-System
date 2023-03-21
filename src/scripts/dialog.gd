@@ -237,8 +237,11 @@ class Sequence:
 
 	var dialog: Dialog = null
 	var next_char_timer: Timer
-	var cold := true # has this Sequence been started?
-	var dead := false # has this Sequence reached a dead end?
+
+	## Has this Sequence began?
+	var cold := true
+	## Has this Sequence reached a dead end?
+	var dead := false
 
 	func _init(head: Dialog) -> void:
 		set_dialog(head)
@@ -306,8 +309,8 @@ class Sequence:
 		return not dialog.still_talking() and dialog.has_options()
 
 	func set_dialog(new_dialog: Dialog) -> void:
-		var _using_typing = null #dialog.using_typing
-		var _speaker = null #dialog.speaker
+		var _using_typing = null
+		var _speaker = null
 		if dialog != null:
 			_using_typing = dialog.using_typing
 			_speaker = dialog.speaker
@@ -345,15 +348,15 @@ class Sequence:
 		if dialog.speaker == "":
 			dialog.set_speaker(_speaker) # propagate speaker if next_dialog does not have one
 
-		dead = false  # mostly for debug
+		dead = false  # should only be relevant for debug
 
-	func begin_dialog(char_timer: Timer = null, wait_time := 0.15) -> String:
+	func begin_dialog(char_timer: Timer = null, wait_time := 0.05) -> String:
 		if char_timer != null:
 			char_timer.set_wait_time(wait_time)
 			next_char_timer = char_timer
 			next()  # set the first phrase as active
 			next_char_timer.start()
-			return ""
+			return ""  # return nothing because it gonna start typing
 		else:
 			return next()  # return the first phrase
 

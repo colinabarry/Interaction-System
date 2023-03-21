@@ -30,6 +30,10 @@ func _ready():
 		# next_phrase_timer.start()
 		if not dialog_sequence.ready_for_options():
 			next_indicator.show()
+
+			var tween := create_tween().set_loops()
+			tween.tween_property(next_indicator, "position", Vector2(0, -5), 0.5).as_relative()
+			tween.tween_property(next_indicator, "position", Vector2(0, 5), 0.5).as_relative()
 		)
 	dialog_sequence.on_before_all(func():
 		speaker_name.text = dialog_sequence.get_speaker()
@@ -43,6 +47,9 @@ func _ready():
 	dialog_options.hide()
 	next_indicator.hide()
 
+
+func _process(_delta):
+	pass
 
 func _input(event: InputEvent):
 	if is_visible and event.is_action_pressed("move_jump"):
@@ -92,8 +99,7 @@ func show_box():
 	is_visible = true
 
 	if dialog_sequence.cold:
-		dialogue.text = dialog_sequence.begin_dialog(next_char_timer, 0.15)
-	else:
+		dialogue.text = dialog_sequence.begin_dialog(next_char_timer, 0.035)
 		dialog_sequence.cold = false
 
 
