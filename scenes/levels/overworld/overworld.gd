@@ -1,5 +1,5 @@
 extends Node
 
 
-func _ready():
-	$Cutscene.start()
+# func _ready():
+	# $Cutscene.start()
