@@ -16,7 +16,7 @@ func _ready() -> void:
 
 	add_child(pause_menu)
 	add_child(dialog_box)
-	pause()
+	resume()
 
 
 func _input(event: InputEvent) -> void:
