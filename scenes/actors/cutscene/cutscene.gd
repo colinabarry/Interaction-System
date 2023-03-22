@@ -14,6 +14,7 @@ const animation_player_name := "AnimPlayer"
 
 @export var remove_player_control := true
 @export var start_on_ready := false
+@export var start_delay := 0.0  # TODO: implement this
 # @export var auto_queue_animations := true # TODO: Implement "false"
 
 var animation_player: AnimationPlayer
@@ -22,7 +23,6 @@ var animation_player: AnimationPlayer
 func _enter_tree() -> void:
 	# don't create the anim player again when the game runs
 	animation_player = get_node_or_null(animation_player_name)
-	animation_player.animation_finished.connect(_on_AnimPlayer_animation_finished)
 	if animation_player != null:
 		return
 
@@ -31,6 +31,7 @@ func _enter_tree() -> void:
 	add_child(animation_player)
 	# this line is needed to make the node appear in the editor
 	animation_player.set_owner(get_tree().get_edited_scene_root())
+	animation_player.animation_finished.connect(_on_AnimPlayer_animation_finished)
 
 
 func _ready():
