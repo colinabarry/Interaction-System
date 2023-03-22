@@ -4,9 +4,13 @@ extends MeshInstance3D
 
 signal export_val_changed
 
-@export var texture: CompressedTexture2D:
+@export var albedo_texture: CompressedTexture2D:
 	set(val):
-		texture = val
+		albedo_texture = val
+		export_val_changed.emit()
+@export var heightmap_texture: CompressedTexture2D:
+	set(val):
+		heightmap_texture = val
 		export_val_changed.emit()
 @export_range(1.0, 500.0, 1.0) var chunk_size := 80.0:
 	set(val):
@@ -40,10 +44,10 @@ func update() -> void:
 
 func update_terrain(_height_multiplier: float, _collision_shape_size_multiplier: float) -> void:
 	material_override.set("shader_parameter/height_multiplier", _height_multiplier)
-	material_override.set("shader_parameter/albedo", texture)
-	material_override.set("shader_parameter/heightmap", texture)
+	material_override.set("shader_parameter/albedo", albedo_texture)
+	material_override.set("shader_parameter/heightmap", heightmap_texture)
 
-	image.load(texture.resource_path)
+	image.load(heightmap_texture.resource_path)
 	image.convert(Image.FORMAT_RF)
 	image.resize(
 		image.get_width() * _collision_shape_size_multiplier,
