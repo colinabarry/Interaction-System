@@ -1,6 +1,6 @@
 extends TextureRect
 
-var blur_amount := 3.0
+var blur_amount := 2.0
 
 
 func _ready():
