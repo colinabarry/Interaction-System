@@ -8,7 +8,7 @@ func _ready():
 
 
 func show_menu() -> void:
-	var tween := get_tree().create_tween().set_parallel(true).set_trans(Tween.TRANS_CUBIC)
+	var tween := create_tween().set_parallel(true).set_trans(Tween.TRANS_CUBIC)
 	tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
 
 	visible = true
@@ -19,14 +19,16 @@ func show_menu() -> void:
 
 
 func hide_menu() -> void:
-	var tween := get_tree().create_tween().set_parallel(true).set_trans(Tween.TRANS_CUBIC)
+	var tween := create_tween().set_parallel(true).set_trans(Tween.TRANS_CUBIC)
 	tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
 
 	# fade menu out
 	tween.tween_property(self, "modulate", Color.TRANSPARENT, 0.25)
 	# un-blur bg
 	tween.tween_property(self.get_material(), "shader_parameter/amount", 0.0, 0.25)
-	visible = false
+	tween.set_parallel(false)
+	tween.tween_property(self, "visible", false, 0)
+	# visible = false
 
 
 func _on_quit_pressed() -> void:
