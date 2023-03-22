@@ -4,6 +4,8 @@ var is_visible := false
 
 var dialog_sequence: Dialog.Sequence
 
+@export var dialog_list: Dictionary
+
 @onready var dialog_options = $OptionsContainer/Options
 @onready var dialog_container = $DialogContainer
 @onready var speaker_name = $DialogContainer/MarginContainer/VBoxContainer/SpeakerName
