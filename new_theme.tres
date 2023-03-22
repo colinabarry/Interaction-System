@@ -1,0 +1,11 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://nxdakxsr8td5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_58odc"]
+content_margin_left = 7.0
+content_margin_top = 5.0
+bg_color = Color(0.890196, 0.443137, 0.466667, 1)
+expand_margin_left = 14.0
+expand_margin_top = 6.0
+
+[resource]
+/styles/sdf = SubResource("StyleBoxFlat_58odc")

@@ -98,3 +98,15 @@ const test_config = {
 		"next": ["start"],
 	},
 }
+
+const test_bubble_config = {
+	"start":
+	{
+		"base":
+		[
+			"Hello",
+			"This is a test",
+			"REEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE"
+		],
+	}
+}

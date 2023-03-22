@@ -18,9 +18,15 @@ const MOUSE_SENSITIVITY := 0.3
 var current_speed: float
 var input_dir: Vector2
 
+var speech_bubble = (
+	preload("res://scenes/user_interfaces/speech_bubble/speech_bubble_3d.tscn").instantiate()
+)
+
 @onready var camera_origin: Marker3D = $CameraOrigin
 @onready var armature: Node3D = $Armature
 @onready var animation_tree: AnimationTree = $AnimationTree
+
+@onready var speech_bubble_anchor: Node3D = $SpeechBubbleAnchor
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -56,6 +62,10 @@ func _input(event: InputEvent) -> void:
 	# jump
 	if event.is_action_pressed("move_jump"):
 		animation_tree["parameters/OneShot/request"] = true
+
+	if event.is_action_pressed("test_restart"):
+		speech_bubble_anchor.add_child(speech_bubble)
+		speech_bubble.show_dialogue()
 
 
 func _physics_process(delta: float) -> void:
