@@ -14,8 +14,8 @@ var dialog_box: Control = (
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 
-	add_child(pause_menu)
 	add_child(dialog_box)
+	add_child(pause_menu)
 	resume()
 
 

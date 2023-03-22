@@ -38,6 +38,10 @@ tracks/0/keys = {
 "values": [Vector3(-6.19224, 1.54566, 27.5098)]
 }
 
+[sub_resource type="Animation" id="Animation_las4w"]
+resource_name = "a"
+length = 3.0
+
 [sub_resource type="Animation" id="Animation_jx5pb"]
 resource_name = "new_animation"
 tracks/0/type = "position_3d"
@@ -97,10 +101,6 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector3(-6.19224, 1.95756, 27.5098), Vector3(1.7277, 1.95756, 32.9322), Vector3(-2.35352, 1.95756, 19.0674), Vector3(-6.19224, 1.95756, 27.5098)]
 }
-
-[sub_resource type="Animation" id="Animation_las4w"]
-resource_name = "a"
-length = 3.0
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7h8ed"]
 _data = {

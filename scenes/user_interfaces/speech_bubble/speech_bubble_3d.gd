@@ -3,7 +3,7 @@ extends Sprite3D
 var dialog_sequence: Dialog.Sequence
 var is_visible := false
 
-@onready var dialogue = $SpeechBubble/Texture/MarginContainer/MarginContainer/VBoxContainer/Text
+@onready var dialogue = $Texture/MarginContainer/Text
 @onready var next_phrase_timer = $NextPhraseTimer
 
 
@@ -16,7 +16,7 @@ func _init():
 func _ready():
 	modulate = Color.TRANSPARENT
 	hide()
-	texture = $SpeechBubble/Texture.get_texture()
+	# texture = $SpeechBubble/Texture.get_texture()
 
 
 func _on_next_phrase_timer_timeout():
