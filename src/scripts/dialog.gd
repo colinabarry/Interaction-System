@@ -228,6 +228,9 @@ func build_sequence(options := {}) -> Sequence:
 ## FOR THE FUTURE!!
 # - reset the sequence?
 # - give Sequence master control for allowing_typing?
+# - Only one dialogue in base causes weird behavior
+# - options may pop up after dead sequence
+# - sometimes it shows a blank screen when it should be a dead sequence
 
 
 class Sequence:

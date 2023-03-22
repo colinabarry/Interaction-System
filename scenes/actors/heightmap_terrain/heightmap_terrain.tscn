@@ -26,8 +26,8 @@ map_data = PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 material_override = SubResource("ShaderMaterial_x3fcl")
 mesh = SubResource("PlaneMesh_su6av")
 script = ExtResource("1_11717")
-albedo_texture = ExtResource("2_6veet")
 heightmap_texture = ExtResource("2_beiil")
+height_multiplier = 8.39
 collision_shape_size_multiplier = 0.2
 
 [node name="StaticBody" type="StaticBody3D" parent="."]
