@@ -6,7 +6,7 @@ var player_has_control := true
 var pause_menu: TextureRect = (
 	preload("res://scenes/user_interfaces/pause_menu/pause_menu.tscn").instantiate()
 )
-var dialog_box: CanvasLayer = (
+var dialog_box: Control = (
 	preload("res://scenes/user_interfaces/dialog_box/dialog_box.tscn").instantiate()
 )
 

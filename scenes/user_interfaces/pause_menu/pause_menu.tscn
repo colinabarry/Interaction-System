@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://scenes/user_interfaces/pause_menu/pause_menu.gd" id="4_xmmvw"]
 
 [node name="PauseMenu" type="TextureRect"]
+z_index = 10
 material = ExtResource("1_h5xah")
 anchors_preset = 15
 anchor_right = 1.0

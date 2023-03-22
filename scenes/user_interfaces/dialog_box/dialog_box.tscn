@@ -42,11 +42,14 @@ font_size = 20
 font_color = Color(0, 0, 0, 1)
 outline_size = 1
 
-[node name="DialogBox" type="CanvasLayer"]
+[node name="DialogBox" type="Control"]
+layout_mode = 3
+anchors_preset = 0
 script = ExtResource("1_p8d2j")
 
 [node name="OptionsContainer" type="MarginContainer" parent="."]
 custom_minimum_size = Vector2(200, 0)
+layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0

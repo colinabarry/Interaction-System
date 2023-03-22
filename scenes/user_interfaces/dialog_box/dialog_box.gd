@@ -1,4 +1,4 @@
-extends CanvasLayer
+extends Control
 
 var is_visible := false
 
@@ -30,8 +30,9 @@ func _ready():
 		dialog_sequence
 		. on_after_each(func():
 			try_show_indicator()
-			if dialog_sequence.still_talking():
-				next_phrase_timer.start()
+			if dialog_sequence.still_talking() or (dialog_sequence.has_next() and not dialog_sequence.has_options()):
+				pass
+				# next_phrase_timer.start()
 			)
 	)
 	dialog_sequence.on_before_options(show_options)
