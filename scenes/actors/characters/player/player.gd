@@ -34,6 +34,7 @@ var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 func _ready():
 	animation_tree.active = true
+	# armature.rotation.y = rotation.y
 
 
 func _process(_delta):
@@ -91,20 +92,15 @@ func _physics_process(delta: float) -> void:
 		velocity.x = direction.x * current_speed
 		velocity.z = direction.z * current_speed
 		# lerp the player armature's y rotation toward the camera's y rotation while moving
-		armature.rotation.y = lerp_angle(armature.rotation.y, camera_origin.rotation.y, 0.1)
+		armature.rotation.y = lerp_angle(
+			armature.rotation.y, camera_origin.rotation.y - rotation.y, 0.1
+		)
 	else:
 		# slow down and stop if no input
 		velocity.x = move_toward(velocity.x, 0, current_speed)
 		velocity.z = move_toward(velocity.z, 0, current_speed)
 
+	camera_origin.position = lerp(camera_origin.position, position + Vector3(0, 1.6, 0), 0.25)
+
 	# move - this uses `velocity`, which is built-in to CharacterBody3D
 	move_and_slide()
-
-
-## This is a doc comment that you can see by going to:
-## Script tab -> "Search help" and search "Player"
-## You'll see the auto-generated in-editor doc page for this class
-## No. -Alex
-## only tests defined inside the 'test' folder will be ran
-func test():
-	pass
