@@ -3,5 +3,5 @@
 	"[gdscript]": {
 		"editor.defaultFormatter": "Razoric.gdscript-toolkit-formatter"
 	},
-	"editor.useTabStops": true
+	"prettier.useTabs": true
 }
