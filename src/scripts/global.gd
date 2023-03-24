@@ -38,6 +38,7 @@ func get_is_in_minigame():
 func set_is_in_minigame(in_mini: bool):
 	is_in_minigame = in_mini
 
+
 func get_player_has_control():
 	return player_has_control
 
