@@ -9,13 +9,13 @@ var move_at_all = true
 func _input(event):
 	if event.is_action_pressed("ui_select"):
 		#here determine whether you stopped it at a good position or not
-		if move_at_all == true:
+		if move_at_all:
 			if position.y > 160 and position.y < 240:
 				move_at_all = false
 				#Global.set_player_has_control(false)
 				
 	elif event.is_action_pressed("ui_up"):
-		if move_at_all == false:
+		if not move_at_all:
 			Global.set_player_has_control(true)
 			move_at_all = true
 
@@ -23,13 +23,13 @@ func _input(event):
 func _process(delta):
 	var direction = 1
 
-	if move_at_all == true:
+	if move_at_all:
 		Global.set_player_has_control(true)
-		if move_up == true:
+		if move_up:
 			position.y -= angular_speed + direction * delta
-			if position.y > 90 and position.y < 110:
+			if position.y > 40 and position.y < 60:
 				move_up = false
-		elif move_up == false:
+		elif not move_up:
 			Global.set_player_has_control(false)
 			position.y += angular_speed + direction * delta
 			if position.y > 290 and position.y < 310:
