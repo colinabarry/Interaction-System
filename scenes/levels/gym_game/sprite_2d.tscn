@@ -1,10 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://dinswffky2q83"]
 
 [ext_resource type="Texture2D" uid="uid://df8n8ogujkvch" path="res://scenes/levels/gym_game/icon_color.png" id="1_rjcst"]
-[ext_resource type="Script" path="res://scenes/levels/gym_game/Sprite.gd" id="2_l8y8v"]
+[ext_resource type="Script" path="res://scenes/levels/gym_game/Jumpbar_2d.gd" id="2_k6inm"]
 
 [node name="Sprite2D" type="Sprite2D"]
 position = Vector2(310, 170)
 scale = Vector2(-0.0108132, 0.00865492)
 texture = ExtResource("1_rjcst")
-script = ExtResource("2_l8y8v")
+script = ExtResource("2_k6inm")
