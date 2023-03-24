@@ -2,6 +2,7 @@ extends Node
 
 var is_paused := false
 var player_has_control := true
+var is_in_minigame := false
 
 var pause_menu: TextureRect = (
 	preload("res://scenes/user_interfaces/pause_menu/pause_menu.tscn").instantiate()
@@ -30,6 +31,12 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_text_submit"):
 		dialog_box.show_box()
 
+
+func get_is_in_minigame():
+	return is_in_minigame
+
+func set_is_in_minigame(in_mini: bool):
+	is_in_minigame = in_mini
 
 func get_player_has_control():
 	return player_has_control
@@ -64,3 +71,4 @@ func resume() -> void:
 
 	if Input.mouse_mode == Input.MOUSE_MODE_VISIBLE:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+
