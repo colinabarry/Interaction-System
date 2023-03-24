@@ -3,6 +3,7 @@ extends Node
 var is_paused := false
 var player_has_control := true
 var is_in_minigame := false
+var correct_input_jumpgame := false
 
 var pause_menu: TextureRect = (
 	preload("res://scenes/user_interfaces/pause_menu/pause_menu.tscn").instantiate()
@@ -31,6 +32,12 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_text_submit"):
 		dialog_box.show_box()
 
+
+func get_correct_input_jumpgame():
+	return correct_input_jumpgame
+
+func set_correct_input_jumpgame(correct_in: bool):
+	correct_input_jumpgame = correct_in
 
 func get_is_in_minigame():
 	return is_in_minigame

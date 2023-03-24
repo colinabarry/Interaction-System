@@ -38,6 +38,12 @@ func _ready():
 
 
 func _process(_delta):
+	if Global.get_is_in_minigame():
+		if Global.get_correct_input_jumpgame():
+			# jump
+			animation_tree["parameters/OneShot/request"] = true
+		return
+
 	if Input.is_action_pressed("move_sprint", true):
 		current_speed = SPRINT_SPEED
 	else:
