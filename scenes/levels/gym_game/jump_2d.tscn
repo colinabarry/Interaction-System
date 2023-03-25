@@ -37,3 +37,10 @@ offset_left = 1.0
 offset_top = 1.0
 offset_right = 1.0
 offset_bottom = 1.0
+
+[node name="YouWinButton" type="Button" parent="."]
+offset_left = 384.0
+offset_top = 128.0
+offset_right = 512.0
+offset_bottom = 191.0
+text = "You Win!"
