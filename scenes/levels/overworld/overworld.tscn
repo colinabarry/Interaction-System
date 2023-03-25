@@ -1,11 +1,11 @@
-[gd_scene load_steps=19 format=3 uid="uid://83wccexl0opk"]
+[gd_scene load_steps=14 format=3 uid="uid://83wccexl0opk"]
 
 [ext_resource type="Script" path="res://scenes/levels/overworld/overworld.gd" id="1_p8aow"]
 [ext_resource type="Script" path="res://src/scripts/sun.gd" id="2_7bfvv"]
 [ext_resource type="PackedScene" uid="uid://bs4j6acxwyjdx" path="res://scenes/actors/characters/player/player.tscn" id="3_hgl8u"]
 [ext_resource type="PackedScene" uid="uid://c8btc1fg5ahjh" path="res://scenes/actors/buildings/hospital.tscn" id="7_m3eiq"]
 [ext_resource type="PackedScene" uid="uid://cwvedt0rv1gh2" path="res://scenes/actors/ocean/ocean.tscn" id="9_3jw8t"]
-[ext_resource type="PackedScene" uid="uid://badl76liavuak" path="res://scenes/actors/cutscene/cutscene.tscn" id="10_43gn4"]
+[ext_resource type="Script" path="res://scenes/levels/overworld/DoorGymO.gd" id="10_osuv8"]
 [ext_resource type="PackedScene" uid="uid://bk67yky6u57ss" path="res://scenes/actors/heightmap_terrain/heightmap_terrain.tscn" id="11_pw2io"]
 [ext_resource type="PackedScene" uid="uid://d2nw0hqf5njea" path="res://scenes/actors/buildings/home.tscn" id="12_vqy45"]
 [ext_resource type="PackedScene" uid="uid://cleywp2ohgotd" path="res://scenes/actors/buildings/gym.tscn" id="13_rn54b"]
@@ -23,93 +23,7 @@ ambient_light_color = Color(1, 1, 1, 1)
 tonemap_mode = 2
 glow_enabled = true
 
-[sub_resource type="Animation" id="Animation_8kpiv"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../Buildings/Hospital:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-6.19224, 1.54566, 27.5098)]
-}
-
-[sub_resource type="Animation" id="Animation_las4w"]
-resource_name = "a"
-length = 3.0
-
-[sub_resource type="Animation" id="Animation_jx5pb"]
-resource_name = "new_animation"
-tracks/0/type = "position_3d"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../Buildings/Hospital")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array()
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../Buildings/Hospital:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5, 0.9),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(-6.19224, 1.54566, 27.5098), Vector3(-2.50342, 1.54566, 24.996), Vector3(-6.19224, 1.54566, 27.5098)]
-}
-
-[sub_resource type="Animation" id="Animation_nfle5"]
-resource_name = "new_animation_2"
-tracks/0/type = "rotation_3d"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../Buildings/Hospital")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array()
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../Buildings/Hospital:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(-6.19224, 1.95756, 27.5098), Vector3(-6.19224, 9.92459, 27.5098), Vector3(-6.19224, 1.95756, 27.5098)]
-}
-
-[sub_resource type="Animation" id="Animation_vcbem"]
-resource_name = "new_animation_3"
-length = 2.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../Buildings/Hospital:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.6, 1.3, 2),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(-6.19224, 1.95756, 27.5098), Vector3(1.7277, 1.95756, 32.9322), Vector3(-2.35352, 1.95756, 19.0674), Vector3(-6.19224, 1.95756, 27.5098)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_7h8ed"]
-_data = {
-"RESET": SubResource("Animation_8kpiv"),
-"a": SubResource("Animation_las4w"),
-"new_animation": SubResource("Animation_jx5pb"),
-"new_animation_2": SubResource("Animation_nfle5"),
-"new_animation_3": SubResource("Animation_vcbem")
-}
+[sub_resource type="BoxShape3D" id="BoxShape3D_e7n1h"]
 
 [node name="Overworld" type="Node"]
 script = ExtResource("1_p8aow")
@@ -130,7 +44,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.1251, 1.64706, 15.9455)
 [node name="Buildings" type="Node" parent="."]
 
 [node name="Hospital" parent="Buildings" instance=ExtResource("7_m3eiq")]
-transform = Transform3D(0.615538, 0, 0.788107, 0, 1, 0, -0.788107, 0, 0.615538, -6.19224, 1.54566, 27.5098)
+transform = Transform3D(0.615538, 0, 0.788107, 0, 1, 0, -0.788107, 0, 0.615538, -6.19224, 1.95756, 27.5098)
 
 [node name="Home" parent="Buildings" instance=ExtResource("12_vqy45")]
 transform = Transform3D(0.707156, 0, -0.707057, 0, 1, 0, 0.707057, 0, 0.707156, -15.7217, 8.017, 9.80853)
@@ -141,11 +55,12 @@ transform = Transform3D(-0.422618, 0, -0.906308, 0, 1, 0, 0.906308, 0, -0.422618
 [node name="Ocean" parent="." instance=ExtResource("9_3jw8t")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0454607, 0)
 
-[node name="Cutscene" parent="." instance=ExtResource("10_43gn4")]
-remove_player_control = false
-start_on_ready = true
+[node name="DoorGym" type="Area3D" parent="."]
+transform = Transform3D(1.83159, 0, -0.803288, 0, 2, 0, 0.803288, 0, 1.83159, 16.7884, 2.60088, -2.69813)
+script = ExtResource("10_osuv8")
 
-[node name="AnimPlayer" type="AnimationPlayer" parent="Cutscene"]
-libraries = {
-"": SubResource("AnimationLibrary_7h8ed")
-}
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DoorGym"]
+shape = SubResource("BoxShape3D_e7n1h")
+
+[connection signal="body_entered" from="DoorGym" to="DoorGym" method="_on_body_entered"]
+[connection signal="body_exited" from="DoorGym" to="DoorGym" method="_on_body_exited"]
