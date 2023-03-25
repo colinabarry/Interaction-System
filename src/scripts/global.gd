@@ -34,7 +34,7 @@ func _ready() -> void:
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		# click screen to capture mouse
-		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+		capture_mouse()
 
 	if event.is_action_pressed("ui_cancel"):
 		_toggle_pause()

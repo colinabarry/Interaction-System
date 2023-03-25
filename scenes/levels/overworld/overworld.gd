@@ -2,7 +2,7 @@ extends Node
 
 
 func _ready():
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	Global.capture_mouse()
 
 	Global.unpaused.connect(_on_unpaused)
 
