@@ -56,6 +56,8 @@ func change_difficulty():
 
 func end_mini():
 	mini_in_prog = false
+	# IT DID IT AGAIN, this is also inverse logic but it works. I'm floored idk what's wrong with Godot
+	Global.set_jumpmini_over(true)
 	pass
 
 func _process(delta):

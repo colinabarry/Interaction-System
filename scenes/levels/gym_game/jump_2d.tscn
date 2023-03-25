@@ -11,8 +11,8 @@ script = ExtResource("1_rxinh")
 [node name="BarBG" type="Sprite2D" parent="."]
 modulate = Color(0.176471, 0.690196, 0.32549, 1)
 self_modulate = Color(0.415686, 0.635294, 0.909804, 1)
-position = Vector2(310, 181.417)
-scale = Vector2(0.313103, 1.2558)
+position = Vector2(310, 173.417)
+scale = Vector2(0.313103, 1.34136)
 texture = ExtResource("1_hhlmw")
 
 [node name="BarHitArea" type="Sprite2D" parent="."]
@@ -33,10 +33,8 @@ texture = ExtResource("1_hhlmw")
 [node name="GodotSprite" parent="." instance=ExtResource("2_6obfx")]
 
 [node name="UI_overlay" parent="." instance=ExtResource("3_imms4")]
-offset_left = 1.0
-offset_top = 1.0
-offset_right = 1.0
-offset_bottom = 1.0
+offset_left = 136.0
+offset_right = 136.0
 
 [node name="YouWinButton" type="Button" parent="."]
 offset_left = 384.0
