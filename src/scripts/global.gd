@@ -94,33 +94,6 @@ func set_player_has_control(has_control: bool):
 	player_has_control = has_control
 
 
-func _toggle_pause() -> void:
-	if is_paused:
-		resume()
-	else:
-		pause()
-
-
-func pause() -> void:
-	is_paused = true
-	get_tree().paused = true
-
-	pause_menu.show_menu()
-
-	if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
-		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-
-
-func resume() -> void:
-	is_paused = false
-	get_tree().paused = false
-
-	pause_menu.hide_menu()
-
-	if Input.mouse_mode == Input.MOUSE_MODE_VISIBLE:
-		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-
-
 func set_jumpmini_global_diff(difficulty: int):
 	diff_progression = difficulty
 	minigame_progressed = true
@@ -129,3 +102,10 @@ func set_jumpmini_global_diff(difficulty: int):
 func get_jumpmini_global_diff():
 	minigame_progressed = false
 	return diff_progression
+
+
+func _toggle_pause() -> void:
+	if is_paused:
+		resume()
+	else:
+		pause()
