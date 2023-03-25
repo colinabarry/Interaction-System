@@ -2,8 +2,12 @@ extends Node
 
 var is_paused := false
 var player_has_control := true
+
+#jump minigame vars
 var is_in_minigame := false
 var correct_input_jumpgame := false
+var diff_progression = 0
+var minigame_progressed = false
 
 var pause_menu: TextureRect = (
 	preload("res://scenes/user_interfaces/pause_menu/pause_menu.tscn").instantiate()
@@ -79,4 +83,13 @@ func resume() -> void:
 
 	if Input.mouse_mode == Input.MOUSE_MODE_VISIBLE:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+		
+
+func set_jumpmini_global_diff(difficulty: int):
+	diff_progression = difficulty
+	minigame_progressed = true
+	
+func get_jumpmini_global_diff():
+	minigame_progressed = false
+	return diff_progression
 

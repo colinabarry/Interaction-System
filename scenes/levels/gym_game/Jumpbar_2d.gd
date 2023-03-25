@@ -46,8 +46,10 @@ func change_difficulty():
 	match difficulty:
 		1:
 			difficulty = 2
+			Global.set_jumpmini_global_diff(difficulty)
 		2:
 			difficulty = 3
+			Global.set_jumpmini_global_diff(difficulty)
 		3:
 			end_mini()	
 	pass
