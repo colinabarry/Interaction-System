@@ -33,7 +33,7 @@ collision_shape_size_multiplier = 0.2
 [node name="StaticBody" type="StaticBody3D" parent="."]
 
 [node name="CollisionShape" type="CollisionShape3D" parent="StaticBody"]
-transform = Transform3D(0.5, 0, 0, 0, 1, 0, 0, 0, 0.5, 0, 0, 0)
+transform = Transform3D(0.5, 0, 0, 0, 1, 0, 0, 0, 0.5, 0, -0.131578, 0)
 shape = SubResource("HeightMapShape3D_mgv38")
 
 [connection signal="export_val_changed" from="." to="." method="_on_export_val_changed"]

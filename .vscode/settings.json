@@ -3,5 +3,6 @@
 	"[gdscript]": {
 		"editor.defaultFormatter": "Razoric.gdscript-toolkit-formatter"
 	},
+	"godot_tools.editor_path": "c:\\Users\\Bryonna\\Downloads\\Godot_v4.0-stable_win64.exe\\Godot_v4.0-stable_win64.exe",
 	"editor.useTabStops": true
 }
