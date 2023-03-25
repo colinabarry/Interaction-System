@@ -107,7 +107,7 @@ func _physics_process(delta: float) -> void:
 		velocity.z = move_toward(velocity.z, 0, current_speed)
 
 	# camera_origin is "top level" in order to rotate independently, so the position must be updated manually
-	camera_origin.position = lerp(camera_origin.position, position + Vector3(0, 1.6, 0), 0.25)
+	camera_origin.position = lerp(camera_origin.position, position + Vector3(0, 1.6, 0), 0.5)
 
 	# move - this uses `velocity`, which is built-in to CharacterBody3D
 	move_and_slide()
