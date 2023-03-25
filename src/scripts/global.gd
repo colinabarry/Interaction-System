@@ -1,5 +1,8 @@
 extends Node
 
+signal paused
+signal unpaused
+
 var is_paused := false
 var player_has_control := true
 
@@ -19,20 +22,22 @@ var dialog_box: Control = (
 
 
 func _ready() -> void:
+	#
 	process_mode = Node.PROCESS_MODE_ALWAYS
 
 	add_child(dialog_box)
 	add_child(pause_menu)
+	# make sure that the game starts unpaused
 	resume()
 
 
 func _input(event: InputEvent) -> void:
-	# if event is InputEventMouseButton:
-	# 	# click screen to capture mouse
-	# 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	if event is InputEventMouseButton:
+		# click screen to capture mouse
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 	if event.is_action_pressed("ui_cancel"):
-		toggle_pause()
+		_toggle_pause()
 
 	if event.is_action_pressed("ui_text_submit"):
 		dialog_box.show_box()
@@ -41,14 +46,45 @@ func _input(event: InputEvent) -> void:
 func get_correct_input_jumpgame():
 	return correct_input_jumpgame
 
+
 func set_correct_input_jumpgame(correct_in: bool):
 	correct_input_jumpgame = correct_in
+
 
 func get_is_in_minigame():
 	return is_in_minigame
 
+
 func set_is_in_minigame(in_mini: bool):
 	is_in_minigame = in_mini
+
+
+## Call this function to pause the game
+func pause() -> void:
+	is_paused = true
+	get_tree().paused = true
+
+	pause_menu.show_menu()
+	paused.emit()
+
+
+## Call this function to resume the game
+func resume() -> void:
+	is_paused = false
+	get_tree().paused = false
+
+	pause_menu.hide_menu()
+	unpaused.emit()
+
+
+## Call me lazy, but I prefer to do this
+func show_mouse():
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+
+
+## Hate me if you want, but this is easier
+func capture_mouse():
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 
 func get_player_has_control():
@@ -59,7 +95,7 @@ func set_player_has_control(has_control: bool):
 	player_has_control = has_control
 
 
-func toggle_pause() -> void:
+func _toggle_pause() -> void:
 	if is_paused:
 		resume()
 	else:
@@ -84,7 +120,7 @@ func resume() -> void:
 
 	if Input.mouse_mode == Input.MOUSE_MODE_VISIBLE:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-		
+
 
 func set_jumpmini_over(is_over: bool):
 	jump_mini_over = is_over
@@ -95,8 +131,8 @@ func get_jumpmini_over():
 func set_jumpmini_global_diff(difficulty: int):
 	diff_progression = difficulty
 	minigame_progressed = true
-	
+
+
 func get_jumpmini_global_diff():
 	minigame_progressed = false
 	return diff_progression
-

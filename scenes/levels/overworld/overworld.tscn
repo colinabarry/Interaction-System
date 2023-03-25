@@ -126,7 +126,7 @@ shadow_enabled = true
 script = ExtResource("2_7bfvv")
 
 [node name="Player" parent="." instance=ExtResource("3_hgl8u")]
-transform = Transform3D(-0.985274, 0, -0.170983, 0, 1, 0, 0.170983, 0, -0.985274, 13.1251, 1.64706, 15.9455)
+transform = Transform3D(-0.989016, 0, 0.147809, 0, 1, 0, -0.147809, 0, -0.989016, 13.1251, 1.50312, 15.9455)
 
 [node name="Terrain" parent="." instance=ExtResource("11_pw2io")]
 
