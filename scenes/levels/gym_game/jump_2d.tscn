@@ -11,8 +11,8 @@ script = ExtResource("1_rxinh")
 [node name="BarBG" type="Sprite2D" parent="."]
 modulate = Color(0.176471, 0.690196, 0.32549, 1)
 self_modulate = Color(0.415686, 0.635294, 0.909804, 1)
-position = Vector2(310, 189.417)
-scale = Vector2(0.313103, 1.17024)
+position = Vector2(310, 181.417)
+scale = Vector2(0.313103, 1.2558)
 texture = ExtResource("1_hhlmw")
 
 [node name="BarHitArea" type="Sprite2D" parent="."]
