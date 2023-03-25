@@ -34,4 +34,4 @@ shape = SubResource("BoxShape3D_on857")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.328714, -0.0672127, 0.0106046)
 
 [node name="jump_2d" parent="." instance=ExtResource("4_6igtl")]
-position = Vector2(-186, 4)
+position = Vector2(-184, 8)
