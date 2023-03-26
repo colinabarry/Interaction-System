@@ -27,9 +27,6 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
 		toggle_pause()
 
-	if event.is_action_pressed("ui_text_submit"):
-		dialog_box.show_box()
-
 
 func get_player_has_control():
 	return player_has_control

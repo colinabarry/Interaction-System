@@ -34,66 +34,79 @@ const ONE_NEXT = "You shouldn't see any options, but clicking should show new di
 const CYCLES = "Clicking should bring you back to the start dialog!"
 const MULT_NEXT = "You should see options!"
 
+const hm_test = {
+	"start":
+	{
+		"speaker": "deez",
+		"using_typing": true,
+		"phrases": ["Hello there mr monkey man"],
+		"next": ["opt1"]
+	},
+	"opt1": {"phrases": ["hmmmm idk man", "uhhh yes you do man"], "next": ["opt2", "opt3"]},
+	"opt2": {"phrases": ["uh ohhhh"], "option_name": "ded"},
+	"opt3": {"phrases": ["oh ohoh ohoh"], "option_name": "lop", "next": ["start"]}
+}
+
 const test_config = {
 	"start":
 	{
 		"speaker": "Melanie Ford",
 		"using_typing": true,  # this will propagate to all proceeding Dialogs
-		"base": ["This is the starting dialog!!", "This is cool, huh?", MULT_NEXT],
+		"phrases": ["This is the starting dialog!!", "This is cool, huh?", MULT_NEXT],
 		"next": ["opt0_dead", "opt1_cycle", "opt2", "opt3", "opt4"],
 	},
 	"opt0_dead":
 	{
-		"base": ["Hey there, this is the first option!", DEAD],
+		"phrases": ["Hey there, this is the first option!", DEAD],
 		"option_name": "1st (dead)",
 		"next": [],
 	},
 	"opt1_cycle":
 	{
-		"base": ["Hey there, this is the second option!", CYCLES],
+		"phrases": ["Hey there, this is the second option!", CYCLES],
 		"option_name": "2nd (cycles)",
 		"next": ["start"],
 	},
 	"opt2":
 	{
-		"base": ["Oh wow, the third option!", ONE_NEXT],
+		"phrases": ["Oh wow, the third option!", ONE_NEXT],
 		"option_name": "3rd (1 next, dead)",
 		"next": ["after_opt2_dead"],
 	},
 	"opt3":
 	{
-		"base": ["Holy cow! The fourth option!", ONE_NEXT],
+		"phrases": ["Holy cow! The fourth option!", ONE_NEXT],
 		"option_name": "4th (1 next, cycles)",
 		"next": ["after_opt3_cycle"],
 	},
 	"opt4":
 	{
 		"speaker": "Dr. Wu",
-		"base": ["bing bong I'm #5", MULT_NEXT],
+		"phrases": ["bing bong I'm #5", MULT_NEXT],
 		"option_name": "5th (2 next)",
 		"next": ["after_opt4_dead", "after_opt4_cycle"],
 	},
 	"after_opt2_dead":
 	{
-		"base": ["Uh oh, I'm after option 3!", DEAD],
+		"phrases": ["Uh oh, I'm after option 3!", DEAD],
 		"option_name": "after 3rd (dead)",
 		"next": [],
 	},
 	"after_opt3_cycle":
 	{
-		"base": ["After option 4", CYCLES],
+		"phrases": ["After option 4", CYCLES],
 		"option_name": "after 4th (cycles)",
 		"next": ["start"],
 	},
 	"after_opt4_dead":
 	{
-		"base": ["After option 5", DEAD],
+		"phrases": ["After option 5", DEAD],
 		"option_name": "after 5th (dead)",
 		"next": [],
 	},
 	"after_opt4_cycle":
 	{
-		"base": ["After opt five", CYCLES],
+		"phrases": ["After opt five", CYCLES],
 		"option_name": "after 5th (cycles)",
 		"next": ["start"],
 	},
@@ -102,7 +115,7 @@ const test_config = {
 const test_bubble_config = {
 	"start":
 	{
-		"base":
+		"phrases":
 		[
 			"Hello",
 			"This is a test",
@@ -110,3 +123,5 @@ const test_bubble_config = {
 		],
 	}
 }
+
+const temp_doctor_config = {"start": {"phrases": []}}

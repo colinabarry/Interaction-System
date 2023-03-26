@@ -44,18 +44,25 @@ outline_size = 1
 
 [node name="DialogBox" type="Control"]
 layout_mode = 3
-anchors_preset = 0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_p8d2j")
 
 [node name="OptionsContainer" type="MarginContainer" parent="."]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 1
-anchors_preset = 11
+anchors_preset = 3
 anchor_left = 1.0
+anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -200.0
+offset_top = -181.0
 grow_horizontal = 0
-grow_vertical = 2
+grow_vertical = 0
 theme_override_constants/margin_bottom = 150
 
 [node name="Options" type="ItemList" parent="OptionsContainer"]
@@ -121,6 +128,7 @@ clip_text = true
 text_overrun_behavior = 4
 
 [node name="NextIndicator" type="Label" parent="DialogContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(13, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8

@@ -67,6 +67,6 @@ func handle_next_phrase():
 
 	if dialog_sequence.dead:
 		hide_bubble()
-		dialog_sequence.restart()
+		dialog_sequence.reset()
 	else:
 		dialogue.text = active_text
