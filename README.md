@@ -8,13 +8,13 @@ A 3D educational experience designed to engage students while informing them abo
 
 This project strictly follows [Godot's style guide][1]. The file structure is grounded in the [project organization reference][2] and inspired by [this article by Shantnu Tiwari][3]. The principles are described below:
 
-- All folders and files are `snake_case`.
-- All folders which categorize their contents should be plural.
-  - `scenes, actors, characters`
-- All files should be in the folder which categorizes them.
-  - `scenes > actors > characters > x_bot.tscn`
-- If there are two or more directly related files, they should be placed in their own sub-folder.
-  - `scenes > actors > characters > player > player.gd, player.tscn`
+-   All folders and files are `snake_case`.
+-   All folders which categorize their contents should be plural.
+    -   `scenes, actors, characters`
+-   All files should be in the folder which categorizes them.
+    -   `scenes > actors > characters > x_bot.tscn`
+-   If there are two or more directly related files, they should be placed in their own sub-folder.
+    -   `scenes > actors > characters > player > player.gd, player.tscn`
 
 <!-- ? Is this useful at all? The subfolders seem pretty self explanatory -->
 
@@ -24,6 +24,7 @@ This project strictly follows [Godot's style guide][1]. The file structure is gr
 | assets           | Raw materials used to build scenes                               |
 | scenes           | All scenes (.tscn files) and their related scripts               |
 | src              | All code that isn't tied to a particular scene                   |
+| test             | All test code                                                    |
 
 <!-- Links are here for cleanliness above -->
 

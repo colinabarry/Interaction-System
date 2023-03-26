@@ -1,9 +1,9 @@
 extends Camera3D
 
-@export var max_camera_rotation_x := 0.1
-@export var max_camera_rotation_y := 0.1
-@export var max_camera_position_x := 10.0
-@export var max_camera_position_y := 10.0
+@export var max_camera_rotation_x := 0.01
+@export var max_camera_rotation_y := 0.01
+@export var max_camera_position_x := 0.1
+@export var max_camera_position_y := 0.1
 
 @onready var render_width: int = ProjectSettings.get_setting("display/window/size/viewport_width")
 @onready var render_height: int = ProjectSettings.get_setting("display/window/size/viewport_height")

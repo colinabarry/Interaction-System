@@ -38,6 +38,12 @@ func _ready():
 
 
 func _process(_delta):
+	if Global.get_is_in_minigame():
+		if Global.get_correct_input_jumpgame():
+			# jump
+			animation_tree["parameters/OneShot/request"] = true
+		return
+
 	if Input.is_action_pressed("move_sprint", true):
 		current_speed = SPRINT_SPEED
 	else:
@@ -101,7 +107,7 @@ func _physics_process(delta: float) -> void:
 		velocity.z = move_toward(velocity.z, 0, current_speed)
 
 	# camera_origin is "top level" in order to rotate independently, so the position must be updated manually
-	camera_origin.position = lerp(camera_origin.position, position + Vector3(0, 1.6, 0), 0.25)
+	camera_origin.position = lerp(camera_origin.position, position + Vector3(0, 1.6, 0), 0.5)
 
 	# move - this uses `velocity`, which is built-in to CharacterBody3D
 	move_and_slide()

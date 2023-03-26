@@ -8,6 +8,8 @@ func _ready():
 
 
 func show_menu() -> void:
+	Global.show_mouse()
+
 	var tween := create_tween().set_parallel(true).set_trans(Tween.TRANS_CUBIC)
 	tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
 
