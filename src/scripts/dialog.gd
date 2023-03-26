@@ -52,7 +52,6 @@ func _after_skip():
 	# at the very start of the sequence, but obviously we don't want
 	# to run "after_xxx" lifecycles before anything's happened
 	if not _first_call:
-		print("> skip_typing")
 		after()
 	else:
 		_first_call = false
@@ -92,7 +91,6 @@ func still_talking() -> bool:
 
 ## When [member using_typing] is [b]true[/b], have all characters of the active phrase been displayed?
 func still_typing() -> bool:
-	print("still_typing: ", phrase_idx)
 	return phrase_idx > -1 and char_idx < len(get_active_phrase()) - 1
 
 
@@ -114,7 +112,6 @@ func set_active_char(idx: int) -> void:
 # Retrieves the next phrase in [member phrases], or the current phrase if still_talking() is false,
 # and calls any lifecycle events as appropriate.
 func _next_phrase() -> String:
-	print("> next_phrase")
 	reset_each()
 
 	if still_talking():
@@ -133,7 +130,6 @@ func _next_char() -> String:
 		set_active_char(char_idx + 1)
 
 		if not still_typing():
-			print("> next_char")
 			after()
 
 	return get_active_char()
@@ -469,7 +465,6 @@ class Sequence:
 		if dialog.using_typing and dialog.still_typing():
 			return _handle_typing(should_skip_typing)
 
-		print(dialog.phrase_idx)
 		if dialog.still_talking():
 			return _handle_still_talking()
 
