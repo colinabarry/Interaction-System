@@ -462,6 +462,10 @@ class Sequence:
 	func next(should_skip_typing := true) -> String:
 		reset_events()
 
+		# special case: wait for options without any dialogue
+		if dialog.phrases.size() == 0:
+			return ""
+
 		if dialog.using_typing and dialog.still_typing():
 			return _handle_typing(should_skip_typing)
 

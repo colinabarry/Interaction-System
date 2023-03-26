@@ -19,8 +19,14 @@ var next_indicator = $DialogContainer/MarginContainer/VBoxContainer/HBoxContaine
 
 
 func _init():
-	dialog_sequence = Dialog.Sequence.build(Dialogues.hm_test, "start")
-	# dialog_sequence.allow_typing = false
+	var temp = Dialog.Sequence.build(Dialogues.doctor, "start", {"return_objs": true})
+	dialog_sequence = temp.sequence
+	temp.dialogs.options.on_before_all(func():
+		print('yolo swag')
+		hide_box()
+		show_options()
+		)
+
 
 func _ready():
 	next_indicator_init_pos = next_indicator.position
@@ -66,17 +72,15 @@ func _input(event: InputEvent):
 				show_box()
 			_:
 				var temp = int(event.as_text())
-				if temp > 0 and temp < 5:
-					dialog_options.clear()
-					dialogue.text = dialog_sequence.choose_option(temp - 1)
+				if temp > 0 and temp < 6:
+					choose_option(temp - 1)
 
 
 func _on_options_item_clicked(index, _at_position, mouse_button_index):
 	if mouse_button_index != MOUSE_BUTTON_LEFT:
 		return
 
-	dialog_options.clear()
-	dialogue.text = dialog_sequence.choose_option(index)
+	choose_option(index)
 
 
 func _on_dialogue_gui_input(event: InputEvent):
@@ -120,11 +124,17 @@ func show_box():
 
 func show_options():
 	if dialog_sequence.ready_for_options() and dialog_options.get_item_count() == 0:
-		print(dialog_sequence.get_option_names())
 		for option_name in dialog_sequence.get_option_names():
 			dialog_options.add_item(option_name)
 
 			dialog_options.show()
+
+
+func choose_option(idx: int):
+	dialog_options.clear()
+	if not is_visible:
+		show_box()
+	dialogue.text = dialog_sequence.choose_option(idx)
 
 
 func try_show_indicator():
