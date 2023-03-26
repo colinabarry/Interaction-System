@@ -1,11 +1,14 @@
-[gd_scene load_steps=12 format=3 uid="uid://83wccexl0opk"]
+[gd_scene load_steps=18 format=3 uid="uid://83wccexl0opk"]
 
 [ext_resource type="Script" path="res://scenes/levels/overworld/overworld.gd" id="1_p8aow"]
 [ext_resource type="Script" path="res://src/scripts/sun.gd" id="2_7bfvv"]
 [ext_resource type="PackedScene" uid="uid://bs4j6acxwyjdx" path="res://scenes/actors/characters/player/player.tscn" id="3_hgl8u"]
 [ext_resource type="PackedScene" uid="uid://c8btc1fg5ahjh" path="res://scenes/actors/buildings/hospital.tscn" id="7_m3eiq"]
 [ext_resource type="PackedScene" uid="uid://cwvedt0rv1gh2" path="res://scenes/actors/ocean/ocean.tscn" id="9_3jw8t"]
+[ext_resource type="Script" path="res://scenes/levels/overworld/DoorHospO.gd" id="10_cwth2"]
+[ext_resource type="Script" path="res://scenes/levels/overworld/DoorGymO.gd" id="10_osuv8"]
 [ext_resource type="PackedScene" uid="uid://bk67yky6u57ss" path="res://scenes/actors/heightmap_terrain/heightmap_terrain.tscn" id="11_pw2io"]
+[ext_resource type="Script" path="res://scenes/levels/overworld/DoorHomeO.gd" id="11_v0imj"]
 [ext_resource type="PackedScene" uid="uid://d2nw0hqf5njea" path="res://scenes/actors/buildings/home.tscn" id="12_vqy45"]
 [ext_resource type="PackedScene" uid="uid://cleywp2ohgotd" path="res://scenes/actors/buildings/gym.tscn" id="13_rn54b"]
 
@@ -24,6 +27,12 @@ sky = SubResource("Sky_d60pc")
 ambient_light_source = 3
 tonemap_mode = 2
 glow_enabled = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_e7n1h"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_b2eg2"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_h30vl"]
 
 [node name="Overworld" type="Node"]
 script = ExtResource("1_p8aow")
@@ -54,3 +63,32 @@ transform = Transform3D(-0.422618, 0, -0.906308, 0, 1, 0, 0.906308, 0, -0.422618
 
 [node name="Ocean" parent="." instance=ExtResource("9_3jw8t")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0454607, 0)
+
+[node name="DoorGym" type="Area3D" parent="."]
+transform = Transform3D(1.83159, 0, -0.803288, 0, 2, 0, 0.803288, 0, 1.83159, 16.7884, 2.60088, -2.69813)
+script = ExtResource("10_osuv8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DoorGym"]
+shape = SubResource("BoxShape3D_e7n1h")
+
+[node name="DoorHosp" type="Area3D" parent="."]
+transform = Transform3D(1.20706, 0, 1.59468, 0, 2, 0, -1.59468, 0, 1.20706, -3.27371, 2.81632, 26.7389)
+script = ExtResource("10_cwth2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DoorHosp"]
+shape = SubResource("BoxShape3D_b2eg2")
+
+[node name="DoorHome" type="Area3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -15.1566, 8.78266, 12.7974)
+script = ExtResource("11_v0imj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DoorHome"]
+transform = Transform3D(0.724328, 0, 0.689455, 0, 1, 0, -0.689455, 0, 0.724328, 0, 0, 0)
+shape = SubResource("BoxShape3D_h30vl")
+
+[connection signal="body_entered" from="DoorGym" to="DoorGym" method="_on_body_entered"]
+[connection signal="body_exited" from="DoorGym" to="DoorGym" method="_on_body_exited"]
+[connection signal="body_entered" from="DoorHosp" to="DoorHosp" method="_on_body_entered"]
+[connection signal="body_exited" from="DoorHosp" to="DoorHosp" method="_on_body_exited"]
+[connection signal="body_entered" from="DoorHome" to="DoorHome" method="_on_body_entered"]
+[connection signal="body_exited" from="DoorHome" to="DoorHome" method="_on_body_exited"]

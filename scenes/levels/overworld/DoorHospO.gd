@@ -4,7 +4,6 @@ extends Area3D
 var entered = false
 
 
-
 func _on_body_entered(body: PhysicsBody3D):
 	if body.is_in_group("player"):
 		entered = true
