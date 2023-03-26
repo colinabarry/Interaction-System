@@ -91,12 +91,10 @@ func _on_dialogue_gui_input(event: InputEvent):
 
 
 func _on_next_phrase_timer_timeout():
-	print("next_phrase")
 	handle_next_phrase()
 
 
 func _on_next_char_timer_timeout():
-	print("next_char")
 	dialogue.text += dialog_sequence.next(false)  #> shouldn't_skip_typing
 
 
