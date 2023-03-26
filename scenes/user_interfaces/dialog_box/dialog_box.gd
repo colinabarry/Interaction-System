@@ -52,7 +52,7 @@ func _input(event: InputEvent):
 	# if not is_visible:
 	# 	return
 
-	if is_visible and event.is_action_pressed("move_jump"):
+	if is_visible and event.is_pressed() and event.as_text() == "BracketRight":
 		handle_next_phrase()
 
 	if event.is_action_pressed("test_restart"):
@@ -139,6 +139,6 @@ func handle_next_phrase():
 
 	if dialog_sequence.dead:
 		hide_box()
-		dialog_sequence.restart()
+		dialog_sequence.reset()
 	else:
 		dialogue.text = active_text

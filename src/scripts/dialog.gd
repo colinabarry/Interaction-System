@@ -19,9 +19,9 @@ var phrase_idx := -1
 ## The index of the active character of the active phrase of [member phrases].
 var char_idx := -1
 ## The dialogues to be displayed. Each element represents one pane.
-var phrases: Array[String] = []
+var phrases := [] #[String]
 ## The [Dialog]s which can come after this Dialog finishes iterating through its [member phrases].
-var next_dialogs: Array[Dialog] = []
+var next_dialogs := [] #[Dialog]
 ## Should [member phrases] be displayed one character at a time (i.e., recieve 1ch per [method next] call)?
 var using_typing := false  # this will be passed to proceeding Dialogs
 
@@ -330,7 +330,7 @@ class Sequence:
 					dialog_map[name].add_next(dialog_map[next_dialog])
 
 		var dialog_sequence = dialog_map[_head].build_sequence(options)
-		dialog_sequence._head = dialog_map[_head]
+		dialog_sequence.head = dialog_map[_head]
 
 		return (
 			{"dialogs": dialog_map, "sequence": dialog_sequence} if "return_objs" in options and options.return_objs else dialog_sequence
