@@ -3,8 +3,27 @@ extends Node
 signal paused
 signal unpaused
 
+# I'm debating on whether this should be named or not -
+# not is nicer, but less explicit:
+# if Global.current_progress_state >= Global.HOSPITAL_COMPLETED
+# vs
+# if Global.current_progress_state >= Global.PROGRESS_STATE.HOSPITAL_COMPLETED
+enum {
+	GAME_STARTED,
+	HOSPITAL_ENTERED,
+	HOSPITAL_COMPLETED,
+	GYM_ENTERED,
+	GYM_COMPLETED,
+	HOME_ENTERED,
+	HOME_COMPLETED,
+	GAME_COMPLETED,
+}
+
 var is_paused := false
-var player_has_control := true
+var player_has_control := true:
+	set = _set_player_has_control,
+	get = _get_player_has_control
+var progress_state: int = GAME_STARTED
 
 #jump minigame vars
 var is_in_minigame := false
@@ -56,6 +75,15 @@ func set_is_in_minigame(in_mini: bool):
 	is_in_minigame = in_mini
 
 
+## Advances the current `progress_state` to the next state.
+## Returns false if `progress_state` == GAME_COMPLETED, true otherwise.
+func advance_progress_state() -> bool:
+	if progress_state < GAME_COMPLETED:
+		progress_state += 1
+		return true
+	return false
+
+
 ## Call this function to pause the game
 func pause() -> void:
 	is_paused = true
@@ -84,11 +112,11 @@ func capture_mouse():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 
-func get_player_has_control():
+func _get_player_has_control():
 	return player_has_control
 
 
-func set_player_has_control(has_control: bool):
+func _set_player_has_control(has_control: bool):
 	player_has_control = has_control
 
 
