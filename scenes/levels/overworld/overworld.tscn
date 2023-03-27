@@ -41,7 +41,7 @@ script = ExtResource("1_p8aow")
 environment = SubResource("Environment_h52mc")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -0.961204, -0.275839, 0, 0.275839, -0.961204, 0, 0, -0.00407219)
+transform = Transform3D(1, 0, 0, 0, -0.950516, 0.310677, 0, -0.310677, -0.950516, 0, 0, -0.00407219)
 shadow_enabled = true
 script = ExtResource("2_7bfvv")
 
@@ -49,11 +49,12 @@ script = ExtResource("2_7bfvv")
 transform = Transform3D(-0.989016, 0, 0.147809, 0, 1, 0, -0.147809, 0, -0.989016, 13.1251, 1.50312, 15.9455)
 
 [node name="Terrain" parent="." instance=ExtResource("11_pw2io")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00807953, -0.0340605, 0.0390472)
 
 [node name="Buildings" type="Node" parent="."]
 
 [node name="Hospital" parent="Buildings" instance=ExtResource("7_m3eiq")]
-transform = Transform3D(0.615538, 0, 0.788107, 0, 1, 0, -0.788107, 0, 0.615538, -6.19224, 1.95756, 27.5098)
+transform = Transform3D(0.615538, 0, 0.788107, 0, 1, 0, -0.788107, 0, 0.615538, -6.19224, 1.62737, 27.5098)
 
 [node name="Home" parent="Buildings" instance=ExtResource("12_vqy45")]
 transform = Transform3D(0.707156, 0, -0.707057, 0, 1, 0, 0.707057, 0, 0.707156, -15.7217, 8.017, 9.80853)

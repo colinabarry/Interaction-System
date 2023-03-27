@@ -1,0 +1,25 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://cdh0k44ngfpx2"]
+
+[ext_resource type="Texture2D" uid="uid://bw50ccncn8o3a" path="res://assets/materials/textures/island-height-map-278-0_large.jpg" id="1_0ymii"]
+
+[sub_resource type="Shader" id="Shader_5l75m"]
+code = "shader_type spatial;
+
+uniform sampler2D albedo;
+uniform sampler2D heightmap;
+uniform float height_multiplier = 1.0;
+
+//void fragment() {
+//	ALBEDO = texture(albedo, UV).rgb;
+//}
+
+void vertex() {
+	VERTEX.y += texture(heightmap, UV).r * height_multiplier;
+}
+"
+
+[resource]
+render_priority = 0
+shader = SubResource("Shader_5l75m")
+shader_parameter/height_multiplier = 15.0
+shader_parameter/heightmap = ExtResource("1_0ymii")
