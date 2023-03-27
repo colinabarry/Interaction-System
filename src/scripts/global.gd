@@ -5,9 +5,9 @@ signal unpaused
 
 # I'm debating on whether this should be named or not -
 # not is nicer, but less explicit:
-# if Global.current_progress_state >= Global.HOSPITAL_COMPLETED
+# if Global.progress_state >= Global.HOSPITAL_COMPLETED
 # vs
-# if Global.current_progress_state >= Global.PROGRESS_STATE.HOSPITAL_COMPLETED
+# if Global.progress_state >= Global.PROGRESS_STATE.HOSPITAL_COMPLETED
 enum {
 	GAME_STARTED,
 	HOSPITAL_ENTERED,
@@ -23,7 +23,10 @@ var is_paused := false
 var player_has_control := true:
 	set = _set_player_has_control,
 	get = _get_player_has_control
-var progress_state: int = GAME_STARTED
+var progress_state: int = GAME_STARTED:
+	set(_new_val):
+		# don't let the progress_state be set manually
+		pass
 
 #jump minigame vars
 var is_in_minigame := false
