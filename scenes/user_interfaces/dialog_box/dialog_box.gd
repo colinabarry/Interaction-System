@@ -184,12 +184,6 @@ func _input(event: InputEvent) -> void:
 	if is_visible and event.is_pressed() and event.as_text() == "BracketRight":
 		handle_next_phrase()
 
-	if event.is_action_pressed("test_restart"):
-		dialog_sequence.reset()
-		if _dialog_options:
-			_dialog_options.clear()
-		hide_box()
-
 	if event.is_pressed():
 		match event.as_text():
 			"BracketLeft":
