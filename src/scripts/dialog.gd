@@ -45,24 +45,12 @@ func after():
 			before_options()
 
 
-var _first_call = true
-# Attempt to run the after_each and after_all lifecycle events (w/ a silly caveat).
-func _after_skip():
-	# weird stuff (read: bad design) means this block must be entered
-	# at the very start of the sequence, but obviously we don't want
-	# to run "after_xxx" lifecycles before anything's happened
-	if not _first_call:
-		after()
-	else:
-		_first_call = false
-
-
 ## Retrive the next character or phrase, or the full active phrase if [param skip_typing] is [b]true[/b].
 func next(skip_typing := false) -> String:
 	if using_typing and still_typing():
 		if skip_typing:
 			stop_typing()
-			_after_skip()
+			after()
 
 			return get_active_phrase()
 		return _next_char()
@@ -270,7 +258,7 @@ class Sequence:
 	var dead := false
 
 	func _init(_head: Dialog, options := {}) -> void:
-		head = head
+		head = _head
 
 		if "allow_typing" in options:
 			allow_typing = options.allow_typing

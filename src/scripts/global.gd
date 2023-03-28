@@ -16,16 +16,16 @@ var jump_mini_over = false
 var pause_menu: TextureRect = (
 	preload("res://scenes/user_interfaces/pause_menu/pause_menu.tscn").instantiate()
 )
-var dialog_box: Control = (
-	preload("res://scenes/user_interfaces/dialog_box/dialog_box.tscn").instantiate()
-)
+# var dialog_box: Control = (
+# 	preload("res://scenes/user_interfaces/dialog_box/dialog_box.tscn").instantiate()
+# )
 
 
 func _ready() -> void:
 	#
 	process_mode = Node.PROCESS_MODE_ALWAYS
 
-	add_child(dialog_box)
+	# add_child(dialog_box)
 	add_child(pause_menu)
 	# make sure that the game starts unpaused
 	resume()
