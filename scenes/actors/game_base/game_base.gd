@@ -13,4 +13,5 @@ func _ready():
 
 
 func _on_button_pressed() -> void:
+	Global.advance_progress_state()
 	get_tree().change_scene_to_packed(overworld)

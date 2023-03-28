@@ -8,7 +8,7 @@ var difficulty
 var mini_in_prog
 
 func _ready():
-	Global.set_player_has_control(false)
+	Global.player_has_control = false
 	Global.set_is_in_minigame(true)
 	Global.set_correct_input_jumpgame(true)
 

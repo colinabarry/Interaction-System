@@ -51,7 +51,7 @@ func _process(_delta):
 
 
 func _input(event: InputEvent) -> void:
-	if not Global.get_player_has_control():
+	if not Global.player_has_control:
 		return
 
 	# turn camera with mouse
@@ -76,7 +76,7 @@ func _input(event: InputEvent) -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if not Global.get_player_has_control():
+	if not Global.player_has_control:
 		return
 
 	# add gravity
