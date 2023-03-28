@@ -2,6 +2,13 @@
 extends Control
 
 
+@export var dialog_container: NodePath
+@export var dialog_options: NodePath
+@export var dialogue: NodePath
+@export var speaker_name: NodePath
+@export var next_indicator: NodePath
+
+
 ## Export variables to be accessed from the editor inspector.
 var export_properties := {
 	"using_quiz":
@@ -54,7 +61,7 @@ var export_properties := {
 		"type": TYPE_FLOAT,
 		"usage": _get_usage("allow_typing", true),
 		"editor_description": "How long to wait between displaying each individual character."
-	}
+	},
 }
 
 
@@ -85,7 +92,6 @@ func _get(property: StringName) -> Variant:
 
 func _set(property: StringName, value: Variant) -> bool:
 	if property in export_properties:
-		print("hello")
 		export_properties[property].value = value
 		notify_property_list_changed()
 		return true
@@ -112,17 +118,16 @@ func _get_property_list() -> Array[Dictionary]:
 
 
 var is_visible := false
-var next_indicator_init_pos: Vector2
 var indicator_tweener: Tween
 
 var dialog_sequence: Dialog.Sequence
 
-@onready var dialog_options := $OptionsContainer/Options
-@onready var dialog_container := $DialogContainer
-@onready var speaker_name := $DialogContainer/MarginContainer/VBoxContainer/SpeakerName
-@onready var dialogue := $DialogContainer/MarginContainer/VBoxContainer/HBoxContainer/Dialogue
-@onready
-var next_indicator := $DialogContainer/MarginContainer/VBoxContainer/HBoxContainer/NextIndicator
+
+@onready var _dialog_container := get_node(dialog_container)
+@onready var _dialog_options := get_node(dialog_options)
+@onready var _dialogue := get_node(dialogue)
+@onready var _speaker_name := get_node(speaker_name)
+@onready var _next_indicator := get_node(next_indicator)
 @onready var next_char_timer := $NextCharTimer
 @onready var next_phrase_timer := $NextPhraseTimer
 
@@ -143,27 +148,34 @@ func _ready() -> void:
 
 	dialog_sequence.allow_typing = __get("allow_typing")
 
-
-	next_indicator_init_pos = next_indicator.position
-	indicator_tweener = create_tween().set_loops()
-	indicator_tweener.tween_property(next_indicator, "position", Vector2(0, -5), 0.5).as_relative()
-	indicator_tweener.tween_property(next_indicator, "position", Vector2(0, 5), 0.5).as_relative()
+	if _next_indicator:
+		indicator_tweener = create_tween().set_loops()
+		indicator_tweener.tween_property(_next_indicator, "position", Vector2(0, -5), 0.5).as_relative()
+		indicator_tweener.tween_property(_next_indicator, "position", Vector2(0, 5), 0.5).as_relative()
+		dialog_sequence.on_before_each(_next_indicator.hide)
 
 	next_phrase_timer.one_shot = true
 	next_phrase_timer.wait_time = __get("progress_timer")
 
-	dialog_sequence.on_before_each(next_indicator.hide)
 	(
 		dialog_sequence
 		. on_after_each(func():
-			try_show_indicator()
+			if _next_indicator:
+				try_show_indicator()
 			if __get("auto_progress") and (dialog_sequence.still_talking() or (dialog_sequence.has_next() and not dialog_sequence.has_options())):
 				next_phrase_timer.start()
 			)
 	)
-	dialog_sequence.on_before_options(show_options)
-	dialog_sequence.on_after_options(dialog_options.hide)
-	dialog_sequence.on_before_all(func(): speaker_name.text = dialog_sequence.get_speaker())
+
+	_dialogue.connect("_on_dialogue_gui_input", _on_dialogue_gui_input)
+
+	if _dialog_options:
+		_dialog_options.connect("_on_options_item_clicked", _on_options_item_clicked)
+		dialog_sequence.on_before_options(show_options)
+		dialog_sequence.on_after_options(_dialog_options.hide)
+
+	if _speaker_name:
+		dialog_sequence.on_before_all(func(): _speaker_name.text = dialog_sequence.get_speaker())
 
 	hide_box()
 
@@ -174,7 +186,8 @@ func _input(event: InputEvent) -> void:
 
 	if event.is_action_pressed("test_restart"):
 		dialog_sequence.reset()
-		dialog_options.clear()
+		if _dialog_options:
+			_dialog_options.clear()
 		hide_box()
 
 	if event.is_pressed():
@@ -210,47 +223,49 @@ func _on_next_phrase_timer_timeout():
 
 
 func _on_next_char_timer_timeout():
-	dialogue.text += dialog_sequence.next(false)  #> shouldn't_skip_typing
+	_dialogue.text += dialog_sequence.next(false)  #> shouldn't_skip_typing
 
 
 func hide_box():
-	dialog_container.hide()
-	dialog_options.hide()
-	next_indicator.hide()
+	_dialog_container.hide()
+	if _dialog_options:
+		_dialog_options.hide()
+	if _next_indicator:
+		_next_indicator.hide()
 
 	is_visible = false
-	dialogue.text = ""
+	_dialogue.text = ""
 
 
 func show_box():
-	dialog_container.show()
+	_dialog_container.show()
 	is_visible = true
 
 	if dialog_sequence.cold:
 		next_char_timer.set_wait_time(__get("typing_timer"))
 		dialog_sequence.set_char_timer(next_char_timer)
 
-		dialogue.text = dialog_sequence.begin_dialog()
+		_dialogue.text = dialog_sequence.begin_dialog()
 
 
 func show_options():
-	if dialog_sequence.ready_for_options() and dialog_options.get_item_count() == 0:
+	if dialog_sequence.ready_for_options() and _dialog_options.get_item_count() == 0:
 		for option_name in dialog_sequence.get_option_names():
-			dialog_options.add_item(option_name)
+			_dialog_options.add_item(option_name)
 
-			dialog_options.show()
+			_dialog_options.show()
 
 
 func choose_option(idx: int):
-	dialog_options.clear()
+	_dialog_options.clear()
 	if not is_visible:
 		show_box()
-	dialogue.text = dialog_sequence.choose_option(idx)
+	_dialogue.text = dialog_sequence.choose_option(idx)
 
 
 func try_show_indicator():
 	if not dialog_sequence.ready_for_options():
-		next_indicator.show()
+		_next_indicator.show()
 
 
 func handle_next_phrase():
@@ -260,4 +275,4 @@ func handle_next_phrase():
 		hide_box()
 		dialog_sequence.reset()
 	else:
-		dialogue.text = active_text
+		_dialogue.text = active_text

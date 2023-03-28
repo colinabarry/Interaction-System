@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dp1cmjurpj3uk"]
+[gd_scene load_steps=8 format=3 uid="uid://dp1cmjurpj3uk"]
 
 [ext_resource type="Script" path="res://scenes/user_interfaces/dialog_box/dialog_box.gd" id="1_p8d2j"]
 
@@ -37,6 +37,9 @@ font_color = Color(0, 0, 0, 0.807843)
 outline_size = 1
 outline_color = Color(0, 0, 0, 1)
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_w128s"]
+viewport_path = NodePath("DialogContainer/MarginContainer/VBoxContainer/HBoxContainer/SubViewport")
+
 [sub_resource type="LabelSettings" id="LabelSettings_kmhg8"]
 font_size = 20
 font_color = Color(0, 0, 0, 1)
@@ -52,8 +55,11 @@ grow_vertical = 2
 script = ExtResource("1_p8d2j")
 using_quiz = false
 dialogue_resource = null
+head = ""
 auto_progress = false
+progress_timer = 2
 allow_typing = true
+typing_timer = 0.03
 
 [node name="OptionsContainer" type="MarginContainer" parent="."]
 custom_minimum_size = Vector2(200, 0)
@@ -135,10 +141,24 @@ autowrap_mode = 3
 clip_text = true
 text_overrun_behavior = 4
 
-[node name="NextIndicator" type="Label" parent="DialogContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="DialogContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 8
 size_flags_vertical = 8
+texture = SubResource("ViewportTexture_w128s")
+stretch_mode = 2
+
+[node name="SubViewport" type="SubViewport" parent="DialogContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+transparent_bg = true
+size = Vector2i(13, 31)
+
+[node name="NextIndicator" type="Label" parent="DialogContainer/MarginContainer/VBoxContainer/HBoxContainer/SubViewport"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 text = "V"
 label_settings = SubResource("LabelSettings_kmhg8")
 horizontal_alignment = 2
