@@ -5,7 +5,7 @@ var score = 0
 var _const_phrases = {
 	"start": ["Hello sweetie:)", "Time for a QUIZ!!!"],
 	"correct": ["WOOOOO THAT'S CORRECT!!"],
-	"wrong": ["LMFAO what an idiot"],
+	"wrong": ["I'm sorry, that's incorrect"],
 	"end": ["QUIZ OVER!", "You scored %s/%s!!!"],
 }
 

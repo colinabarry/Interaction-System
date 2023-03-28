@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="TrainerConfig" load_steps=2 format=3 uid="uid://bysum7aowwe2g"]
+
+[ext_resource type="Script" path="res://src/scripts/trainer_dialogue.gd" id="1_wnhk5"]
+
+[resource]
+script = ExtResource("1_wnhk5")

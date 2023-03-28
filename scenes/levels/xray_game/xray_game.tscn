@@ -168,9 +168,11 @@ offset_left = -200.0
 offset_top = -181.0
 grow_horizontal = 0
 grow_vertical = 0
+mouse_filter = 2
 theme_override_constants/margin_bottom = 150
 
 [node name="Options" type="ItemList" parent="DialogBox/OptionsContainer"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 8
 theme = SubResource("Theme_wak5k")
@@ -183,6 +185,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_ssrxi")
 auto_height = true
 
 [node name="DialogContainer" type="MarginContainer" parent="DialogBox"]
+visible = false
 layout_mode = 0
 offset_top = 215.0
 offset_right = 640.0
@@ -231,7 +234,6 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
 theme_override_colors/font_color = Color(0, 0, 0, 0.811765)
-text = "qwerqwerqwerqwerqwerqwerqwerqwerqwerqwerqwerqrqwerqwerqwerqwerqwerqwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwee"
 label_settings = SubResource("LabelSettings_8fbvf")
 autowrap_mode = 3
 clip_text = true
@@ -248,9 +250,12 @@ transparent_bg = true
 size = Vector2i(13, 31)
 
 [node name="NextIndicator" type="Label" parent="DialogBox/DialogContainer/MarginContainer/VBoxContainer/HBoxContainer/SubViewport"]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -4.79349
+offset_bottom = -4.79349
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
