@@ -4,5 +4,3 @@
 
 [node name="Cutscene" type="Node"]
 script = ExtResource("1_fa1bh")
-
-[node name="AnimPlayer" type="AnimationPlayer" parent="."]

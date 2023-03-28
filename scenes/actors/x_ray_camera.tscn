@@ -15,12 +15,12 @@ gradient = SubResource("Gradient_3hpsw")
 remote_path = NodePath("../SubViewport/Camera")
 
 [node name="XRaySprite" type="Sprite3D" parent="."]
-transform = Transform3D(0.139, 0, 0, 0, 0.139, 0, 0, 0, 0.139, 0, 0, 0.01)
+transform = Transform3D(0.278, 0, 0, 0, 0.278, 0, 0, 0, 0.278, 0, 0, 0.01)
 sorting_offset = 1.0
 texture = SubResource("ViewportTexture_7fkr1")
 
 [node name="BGSprite" type="Sprite3D" parent="."]
-transform = Transform3D(0.2, 0, 0, 0, 27.88, 0, 0, 0, 0.2, 0, 0, 0.009)
+transform = Transform3D(0.4, 0, 0, 0, 55.76, 0, 0, 0, 0.4, 0, 0, 0.009)
 texture = SubResource("GradientTexture1D_hguhn")
 
 [node name="SubViewport" type="SubViewport" parent="."]
@@ -30,5 +30,5 @@ size = Vector2i(320, 180)
 [node name="Camera" type="Camera3D" parent="SubViewport"]
 cull_mask = 1047556
 projection = 1
-size = 0.25
+size = 0.5
 far = 10.0

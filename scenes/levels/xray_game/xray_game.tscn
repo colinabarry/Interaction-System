@@ -1,0 +1,86 @@
+[gd_scene load_steps=11 format=3 uid="uid://b3td033keb4i0"]
+
+[ext_resource type="Script" path="res://scenes/levels/xray_game/xray_game.gd" id="1_g1w83"]
+[ext_resource type="PackedScene" uid="uid://rup5h2ulx734" path="res://scenes/actors/game_base/game_base.tscn" id="1_uo1eu"]
+[ext_resource type="PackedScene" uid="uid://badl76liavuak" path="res://scenes/actors/cutscene/cutscene.tscn" id="2_myibv"]
+[ext_resource type="Texture2D" uid="uid://cnofuvv78irl8" path="res://assets/materials/textures/Desktop - 3.png" id="3_hx8jg"]
+[ext_resource type="PackedScene" uid="uid://c257qcr1offo5" path="res://scenes/actors/characters/x_ray_bot.tscn" id="4_kok7v"]
+[ext_resource type="PackedScene" uid="uid://dyou2duiyc5l1" path="res://scenes/actors/x_ray_camera.tscn" id="5_3isgb"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_1oweg"]
+lightmap_size_hint = Vector2i(94, 126)
+flip_faces = true
+size = Vector3(10, 7, 5)
+
+[sub_resource type="Animation" id="Animation_sngvu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite3D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_x7sk7"]
+resource_name = "meet_doctor"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite3D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4, 5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_r3vff"]
+_data = {
+"RESET": SubResource("Animation_sngvu"),
+"meet_doctor": SubResource("Animation_x7sk7")
+}
+
+[node name="Node" type="Node"]
+script = ExtResource("1_g1w83")
+
+[node name="GameBase" parent="." instance=ExtResource("1_uo1eu")]
+end_state = 2
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.3, -2.6)
+cast_shadow = 2
+mesh = SubResource("BoxMesh_1oweg")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 4.6, -2.6)
+light_bake_mode = 1
+omni_range = 11.0983
+omni_attenuation = 0.5
+
+[node name="Cutscene" parent="." instance=ExtResource("2_myibv")]
+start_on_ready = true
+
+[node name="AnimPlayer" type="AnimationPlayer" parent="Cutscene"]
+libraries = {
+"": SubResource("AnimationLibrary_r3vff")
+}
+
+[node name="Sprite3D" type="Sprite3D" parent="Cutscene"]
+transform = Transform3D(0.615, 0, 0, 0, 0.615, 0, 0, 0, 0.615, 0, 2.417, -0.137222)
+visible = false
+texture = ExtResource("3_hx8jg")
+
+[node name="XRayBot" parent="." instance=ExtResource("4_kok7v")]
+transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, 0.2676, 0.583992, -1.34131)
+
+[node name="XRayCamera" parent="." instance=ExtResource("5_3isgb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.156626, 1.91787, -0.6027)

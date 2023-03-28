@@ -17,7 +17,7 @@ func _on_body_exited(body):
 
 func _process(_delta):
 	if entered:
-		if Global.progress_state >= Global.GYM_COMPLETED:
+		if Global.progress_state >= Global.PROGRESS_STATE.GYM_COMPLETED:
 			if Input.is_action_just_pressed("ui_accept"):
-				Global.advance_progress_state()
+				Global.set_progress_state(Global.PROGRESS_STATE.HOME_COMPLETED)
 				get_tree().change_scene_to_file("res://scenes/actors/game_base/game_base.tscn")

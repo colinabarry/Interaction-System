@@ -40,6 +40,7 @@ script = ExtResource("1_nl6hs")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0.477745, -0.569093, 0.669248, -0.147521, 0.699021, 0.699719, 0, 0, 8)
+visible = false
 shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]

@@ -2,13 +2,14 @@ extends Node
 
 signal paused
 signal unpaused
+signal progress_advanced(new_progress_state: int)
 
 # I'm debating on whether this should be named or not -
 # not is nicer, but less explicit:
 # if Global.progress_state >= Global.HOSPITAL_COMPLETED
 # vs
 # if Global.progress_state >= Global.PROGRESS_STATE.HOSPITAL_COMPLETED
-enum {
+enum PROGRESS_STATE {
 	GAME_STARTED,
 	HOSPITAL_ENTERED,
 	HOSPITAL_COMPLETED,
@@ -23,7 +24,7 @@ var is_paused := false
 var player_has_control := true:
 	set = _set_player_has_control,
 	get = _get_player_has_control
-var progress_state: int = GAME_STARTED
+var progress_state: int = PROGRESS_STATE.GAME_STARTED
 
 #jump minigame vars
 var is_in_minigame := false
@@ -51,9 +52,10 @@ func _ready() -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if event is InputEventMouseButton:
-		# click screen to capture mouse
-		capture_mouse()
+	# if event is InputEventMouseButton:
+	# 	# click screen to capture mouse
+	# 	if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED and not is_paused:
+	# 		capture_mouse()
 
 	if event.is_action_pressed("ui_cancel"):
 		_toggle_pause()
@@ -78,13 +80,24 @@ func set_is_in_minigame(in_mini: bool):
 	is_in_minigame = in_mini
 
 
-## Advances the current `progress_state` to the next state.
-## Returns false if `progress_state` == GAME_COMPLETED, true otherwise.
-func advance_progress_state() -> bool:
-	if progress_state < GAME_COMPLETED:
-		progress_state += 1
+# ## Advances the current `progress_state` to the next state.
+# ## Returns false if `progress_state` == GAME_COMPLETED, true otherwise.
+# func advance_progress_state() -> bool:
+# 	if progress_state < GAME_COMPLETED:
+# 		progress_state += 1
+# 		progress_advanced.emit(progress_state)
+# 		return true
+# 	return false
+
+
+## Set the progress_state. It can only be set forward, not backward.
+func set_progress_state(new_state: int) -> bool:
+	if progress_state < new_state:
+		progress_state = new_state
+		progress_advanced.emit(progress_state)
 		return true
-	return false
+	else:
+		return false
 
 
 ## Call this function to pause the game
@@ -115,6 +128,7 @@ func capture_mouse():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 
+# TODO: discuss explicit setter use vs using setters on variables and implicit setter use
 func _get_player_has_control():
 	return player_has_control
 

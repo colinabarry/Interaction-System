@@ -95,6 +95,7 @@ offset_right = 640.0
 offset_bottom = 360.0
 scale = Vector2(1.00231, 1)
 size_flags_vertical = 7
+mouse_filter = 2
 theme_override_constants/margin_left = 80
 theme_override_constants/margin_top = 11
 theme_override_constants/margin_right = 80
