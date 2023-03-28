@@ -49,11 +49,8 @@ func start():
 
 	var animations := animation_player.get_animation_list()
 
-	if animations.size() == 1:
-		animation_player.play(animations[0])
-	else:
-		for anim in animations:
-			animation_player.queue(anim)
+	for anim in animations:
+		animation_player.queue(anim)
 
 
 ## Called when the animation queue is finished.
