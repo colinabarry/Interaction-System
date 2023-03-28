@@ -23,10 +23,7 @@ var is_paused := false
 var player_has_control := true:
 	set = _set_player_has_control,
 	get = _get_player_has_control
-var progress_state: int = GAME_STARTED:
-	set(_new_val):
-		# don't let the progress_state be set manually
-		pass
+var progress_state: int = GAME_STARTED
 
 #jump minigame vars
 var is_in_minigame := false
@@ -60,6 +57,9 @@ func _input(event: InputEvent) -> void:
 
 	if event.is_action_pressed("ui_cancel"):
 		_toggle_pause()
+
+	if event.is_action_pressed("force_quit"):
+		get_tree().quit()
 
 
 func get_correct_input_jumpgame():
