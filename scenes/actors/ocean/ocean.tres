@@ -92,7 +92,7 @@ default_input_values = [0, Quaternion(0, 0, 0, 0), 1, Quaternion(0, 0, 0, 0)]
 op_type = 2
 
 [sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_sf3fw"]
-constant = 0.1
+constant = 0.05
 
 [sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_wbh5p"]
 input_name = "time"
@@ -124,7 +124,7 @@ default_input_values = [0, Vector3(0, 0, 0), 1, Vector3(0.2, 0.2, 0.2)]
 operator = 2
 
 [sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_m6xfs"]
-constant = 5.0
+constant = 4.0
 
 [resource]
 code = "shader_type spatial;
@@ -155,7 +155,7 @@ void vertex() {
 
 
 // FloatConstant:14
-	float n_out14p0 = 0.100000;
+	float n_out14p0 = 0.050000;
 
 
 // VectorOp:13
@@ -171,7 +171,7 @@ void vertex() {
 
 
 // FloatConstant:9
-	float n_out9p0 = 5.000000;
+	float n_out9p0 = 4.000000;
 
 
 // VectorOp:8
@@ -253,7 +253,7 @@ void fragment() {
 
 }
 "
-graph_offset = Vector2(-1005.33, 38)
+graph_offset = Vector2(-1163.33, 70.6667)
 nodes/vertex/0/position = Vector2(1400, 200)
 nodes/vertex/2/node = SubResource("VisualShaderNodeInput_wbh5p")
 nodes/vertex/2/position = Vector2(-1800, -400)

@@ -30,11 +30,11 @@ ambient_light_source = 3
 tonemap_mode = 2
 glow_enabled = true
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_e7n1h"]
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_b2eg2"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_h30vl"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_e7n1h"]
 
 [node name="Overworld" type="Node"]
 script = ExtResource("1_p8aow")
@@ -48,7 +48,7 @@ shadow_enabled = true
 script = ExtResource("2_7bfvv")
 
 [node name="Player" parent="." instance=ExtResource("3_hgl8u")]
-transform = Transform3D(-0.678224, 0, -0.734856, 0, 1, 0, 0.734856, 0, -0.678224, 14.752, 1.50312, 18.0302)
+transform = Transform3D(-0.678224, 0, -0.734856, 0, 1, 0, 0.734856, 0, -0.678224, 14.752, 0.920034, 18.0302)
 
 [node name="Terrain" parent="." instance=ExtResource("11_pw2io")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00807953, -0.0340605, 0.0390472)
@@ -56,41 +56,40 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00807953, -0.0340605, 0.03
 [node name="Buildings" type="Node" parent="."]
 
 [node name="Hospital" parent="Buildings" instance=ExtResource("7_m3eiq")]
-transform = Transform3D(0.615538, 0, 0.788107, 0, 1, 0, -0.788107, 0, 0.615538, -6.19224, 1.62737, 27.5098)
+transform = Transform3D(0.615538, 0, 0.788107, 0, 1, 0, -0.788107, 0, 0.615538, -6.19224, 1.2429, 27.5098)
+
+[node name="DoorHosp" type="Area3D" parent="Buildings/Hospital"]
+transform = Transform3D(1.99977, 0, 0.0302939, 0, 2, 0, -0.0302939, 0, 1.99977, 2.40402, 0.696978, 1.82559)
+script = ExtResource("10_cwth2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Buildings/Hospital/DoorHosp"]
+shape = SubResource("BoxShape3D_b2eg2")
 
 [node name="Home" parent="Buildings" instance=ExtResource("12_vqy45")]
-transform = Transform3D(0.707156, 0, -0.707057, 0, 1, 0, 0.707057, 0, 0.707156, -15.7217, 8.017, 9.80853)
+transform = Transform3D(0.707156, 0, -0.707057, 0, 1, 0, 0.707057, 0, 0.707156, -15.7217, 5.48341, 9.80853)
+
+[node name="DoorHome" type="Area3D" parent="Buildings/Home"]
+transform = Transform3D(1.41431, 0, 1.41412, 0, 2, 0, -1.41412, 0, 1.41431, 2.51292, 0.99435, 1.71404)
+script = ExtResource("11_v0imj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Buildings/Home/DoorHome"]
+transform = Transform3D(0.724328, 0, 0.689455, 0, 1, 0, -0.689455, 0, 0.724328, 0, 0, 0)
+shape = SubResource("BoxShape3D_h30vl")
 
 [node name="Gym" parent="Buildings" instance=ExtResource("13_rn54b")]
-transform = Transform3D(-0.422618, 0, -0.906308, 0, 1, 0, 0.906308, 0, -0.422618, 19.6, 1.56876, -4)
+transform = Transform3D(-0.422618, 0, -0.906308, 0, 1, 0, 0.906308, 0, -0.422618, 19.6, 1.25753, -4)
+
+[node name="DoorGym" type="Area3D" parent="Buildings/Gym"]
+transform = Transform3D(-0.0460367, 0, 1.99947, 0, 2, 0, -1.99947, 0, -0.0460367, 2.36812, 0.671893, 1.99798)
+script = ExtResource("10_osuv8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Buildings/Gym/DoorGym"]
+shape = SubResource("BoxShape3D_e7n1h")
 
 [node name="Ocean" parent="." instance=ExtResource("9_3jw8t")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0454607, 0)
 
-[node name="DoorGym" type="Area3D" parent="."]
-transform = Transform3D(1.83159, 0, -0.803288, 0, 2, 0, 0.803288, 0, 1.83159, 16.7884, 2.60088, -2.69813)
-script = ExtResource("10_osuv8")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="DoorGym"]
-shape = SubResource("BoxShape3D_e7n1h")
-
-[node name="DoorHosp" type="Area3D" parent="."]
-transform = Transform3D(1.20706, 0, 1.59468, 0, 2, 0, -1.59468, 0, 1.20706, -3.27371, 2.81632, 26.7389)
-script = ExtResource("10_cwth2")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="DoorHosp"]
-shape = SubResource("BoxShape3D_b2eg2")
-
-[node name="DoorHome" type="Area3D" parent="."]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -15.1566, 8.78266, 12.7974)
-script = ExtResource("11_v0imj")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="DoorHome"]
-transform = Transform3D(0.724328, 0, 0.689455, 0, 1, 0, -0.689455, 0, 0.724328, 0, 0, 0)
-shape = SubResource("BoxShape3D_h30vl")
-
 [node name="Cutscene" parent="." instance=ExtResource("12_vabny")]
-start_on_ready = true
 
 [node name="AnimPlayer" type="AnimationPlayer" parent="Cutscene"]
 libraries = {
@@ -100,12 +99,11 @@ libraries = {
 [node name="Camera" type="Camera3D" parent="Cutscene"]
 transform = Transform3D(-0.724172, 0.243763, -0.6451, 0, 0.935444, 0.353475, 0.689619, 0.255977, -0.677423, 26.8474, 1.906, 26.8475)
 cull_mask = 1048571
-current = true
 far = 1000.0
 
-[connection signal="body_entered" from="DoorGym" to="DoorGym" method="_on_body_entered"]
-[connection signal="body_exited" from="DoorGym" to="DoorGym" method="_on_body_exited"]
-[connection signal="body_entered" from="DoorHosp" to="DoorHosp" method="_on_body_entered"]
-[connection signal="body_exited" from="DoorHosp" to="DoorHosp" method="_on_body_exited"]
-[connection signal="body_entered" from="DoorHome" to="DoorHome" method="_on_body_entered"]
-[connection signal="body_exited" from="DoorHome" to="DoorHome" method="_on_body_exited"]
+[connection signal="body_entered" from="Buildings/Hospital/DoorHosp" to="Buildings/Hospital/DoorHosp" method="_on_body_entered"]
+[connection signal="body_exited" from="Buildings/Hospital/DoorHosp" to="Buildings/Hospital/DoorHosp" method="_on_body_exited"]
+[connection signal="body_entered" from="Buildings/Home/DoorHome" to="Buildings/Home/DoorHome" method="_on_body_entered"]
+[connection signal="body_exited" from="Buildings/Home/DoorHome" to="Buildings/Home/DoorHome" method="_on_body_exited"]
+[connection signal="body_entered" from="Buildings/Gym/DoorGym" to="Buildings/Gym/DoorGym" method="_on_body_entered"]
+[connection signal="body_exited" from="Buildings/Gym/DoorGym" to="Buildings/Gym/DoorGym" method="_on_body_exited"]

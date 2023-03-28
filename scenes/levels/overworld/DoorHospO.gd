@@ -17,6 +17,6 @@ func _on_body_exited(body):
 
 func _process(_delta):
 	if entered:
-		if Input.is_action_just_pressed("ui_accept"):
+		if Input.is_action_just_pressed("input_interact"):
 			Global.set_progress_state(Global.PROGRESS_STATE.HOSPITAL_COMPLETED)
-			get_tree().change_scene_to_file("res://scenes/actors/game_base/game_base.tscn")
+			get_tree().change_scene_to_file("res://scenes/levels/xray_game/xray_game.tscn")

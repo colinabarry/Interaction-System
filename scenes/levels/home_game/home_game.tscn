@@ -1,0 +1,217 @@
+[gd_scene load_steps=12 format=3 uid="uid://kgggvwa4wnkn"]
+
+[ext_resource type="PackedScene" uid="uid://rup5h2ulx734" path="res://scenes/actors/game_base/game_base.tscn" id="1_f4y2u"]
+[ext_resource type="Script" path="res://scenes/user_interfaces/dialog_box/dialog_box.gd" id="2_xmuph"]
+[ext_resource type="Script" uid="uid://dqbc7kknro2ku" path="res://assets/dialogues/quiz.tres" id="3_2rc6e"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_q4xu3"]
+lightmap_size_hint = Vector2i(94, 126)
+flip_faces = true
+size = Vector3(12, 6, 5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_su6v0"]
+albedo_color = Color(0.823529, 1, 0.760784, 1)
+
+[sub_resource type="Theme" id="Theme_wak5k"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ssrxi"]
+content_margin_left = 8.0
+content_margin_right = 8.0
+bg_color = Color(0.964706, 0.909804, 0.694118, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_bottom_left = 10
+corner_detail = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_guupc"]
+bg_color = Color(0.964706, 0.909804, 0.694118, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="LabelSettings" id="LabelSettings_8fbvf"]
+line_spacing = -3.0
+font_size = 13
+font_color = Color(0, 0, 0, 0.807843)
+outline_size = 1
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_w34bf"]
+viewport_path = NodePath("DialogContainer/MarginContainer/VBoxContainer/HBoxContainer/SubViewport")
+
+[sub_resource type="LabelSettings" id="LabelSettings_kmhg8"]
+font_size = 20
+font_color = Color(0, 0, 0, 1)
+outline_size = 1
+
+[node name="Node" type="Node"]
+
+[node name="GameBase" parent="." instance=ExtResource("1_f4y2u")]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.3, -2.6)
+cast_shadow = 2
+mesh = SubResource("BoxMesh_q4xu3")
+surface_material_override/0 = SubResource("StandardMaterial3D_su6v0")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1, 2.83822, -0.590923)
+light_energy = 0.418
+omni_range = 20.6255
+omni_attenuation = 0.258816
+
+[node name="DialogBox" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("2_xmuph")
+dialog_container = NodePath("DialogContainer")
+dialog_options = NodePath("OptionsContainer/Options")
+dialogue = NodePath("DialogContainer/MarginContainer/VBoxContainer/HBoxContainer/Dialogue")
+speaker_name = NodePath("DialogContainer/MarginContainer/VBoxContainer/SpeakerName")
+next_indicator = NodePath("DialogContainer/MarginContainer/VBoxContainer/HBoxContainer/SubViewport/NextIndicator")
+using_quiz = true
+dialogue_resource = ExtResource("3_2rc6e")
+head = ""
+auto_progress = false
+progress_timer = 2
+allow_typing = true
+typing_timer = 0.03
+
+[node name="OptionsContainer" type="MarginContainer" parent="DialogBox"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -200.0
+offset_top = -181.0
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 2
+theme_override_constants/margin_bottom = 150
+
+[node name="Options" type="ItemList" parent="DialogBox/OptionsContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 8
+theme = SubResource("Theme_wak5k")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/guide_color = Color(0.964706, 0.909804, 0.694118, 1)
+theme_override_constants/v_separation = 2
+theme_override_constants/line_separation = 10
+theme_override_font_sizes/font_size = 10
+theme_override_styles/panel = SubResource("StyleBoxFlat_ssrxi")
+auto_height = true
+
+[node name="DialogContainer" type="MarginContainer" parent="DialogBox"]
+visible = false
+layout_mode = 0
+offset_top = 215.0
+offset_right = 640.0
+offset_bottom = 360.0
+scale = Vector2(1.00231, 1)
+size_flags_vertical = 7
+mouse_filter = 2
+theme_override_constants/margin_left = 80
+theme_override_constants/margin_top = 11
+theme_override_constants/margin_right = 80
+theme_override_constants/margin_bottom = 32
+
+[node name="Panel" type="Panel" parent="DialogBox/DialogContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_guupc")
+
+[node name="MarginContainer" type="MarginContainer" parent="DialogBox/DialogContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 12
+
+[node name="VBoxContainer" type="VBoxContainer" parent="DialogBox/DialogContainer/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = -5
+
+[node name="SpeakerName" type="Label" parent="DialogBox/DialogContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = -1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/outline_size = 4
+text = "qwerqwe"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="DialogBox/DialogContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Dialogue" type="Label" parent="DialogBox/DialogContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0, 0, 0, 0.811765)
+label_settings = SubResource("LabelSettings_8fbvf")
+autowrap_mode = 3
+clip_text = true
+text_overrun_behavior = 4
+
+[node name="TextureRect" type="TextureRect" parent="DialogBox/DialogContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+texture = SubResource("ViewportTexture_w34bf")
+stretch_mode = 2
+
+[node name="SubViewport" type="SubViewport" parent="DialogBox/DialogContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+transparent_bg = true
+size = Vector2i(13, 31)
+
+[node name="NextIndicator" type="Label" parent="DialogBox/DialogContainer/MarginContainer/VBoxContainer/HBoxContainer/SubViewport"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -2.16667
+offset_bottom = -2.16667
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "V"
+label_settings = SubResource("LabelSettings_kmhg8")
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="NextCharTimer" type="Timer" parent="DialogBox"]
+
+[node name="NextPhraseTimer" type="Timer" parent="DialogBox"]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="item_clicked" from="DialogBox/OptionsContainer/Options" to="DialogBox" method="_on_options_item_clicked" flags=18]
+[connection signal="gui_input" from="DialogBox/DialogContainer/MarginContainer/VBoxContainer/HBoxContainer/Dialogue" to="DialogBox" method="_on_dialogue_gui_input" flags=18]
+[connection signal="timeout" from="DialogBox/NextCharTimer" to="DialogBox" method="_on_next_char_timer_timeout" flags=18]
+[connection signal="timeout" from="DialogBox/NextPhraseTimer" to="DialogBox" method="_on_next_phrase_timer_timeout" flags=18]

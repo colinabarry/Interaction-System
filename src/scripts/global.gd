@@ -52,10 +52,13 @@ func _ready() -> void:
 
 
 func _input(event: InputEvent) -> void:
-	# if event is InputEventMouseButton:
-	# 	# click screen to capture mouse
-	# 	if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED and not is_paused:
-	# 		capture_mouse()
+	if event is InputEventMouseButton:
+		# click screen to capture mouse
+		if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED and not is_paused:
+			capture_mouse()
+
+	if event.is_action_pressed("restart"):
+		get_tree().change_scene_to_file("res://scenes/levels/overworld/overworld.tscn")
 
 	if event.is_action_pressed("ui_cancel"):
 		_toggle_pause()

@@ -7,6 +7,7 @@ var move_at_all = true
 var difficulty
 var mini_in_prog
 
+
 func _ready():
 	Global.player_has_control = false
 	Global.set_is_in_minigame(true)
@@ -16,10 +17,11 @@ func _ready():
 	difficulty = 1
 	pass
 
+
 func _input(event):
 	if not mini_in_prog:
 		return
-	
+
 	if event.is_action_pressed("ui_select"):
 		#here determine whether you stopped it at a good position or not
 		if move_at_all:
@@ -42,6 +44,7 @@ func _input(event):
 			Global.set_correct_input_jumpgame(true)
 			move_at_all = true
 
+
 func change_difficulty():
 	match difficulty:
 		1:
@@ -51,14 +54,16 @@ func change_difficulty():
 			difficulty = 3
 			Global.set_jumpmini_global_diff(difficulty)
 		3:
-			end_mini()	
+			end_mini()
 	pass
+
 
 func end_mini():
 	mini_in_prog = false
 	# IT DID IT AGAIN, this is also inverse logic but it works. I'm floored idk what's wrong with Godot
 	Global.set_jumpmini_over(true)
 	pass
+
 
 func _process(delta):
 	var direction = 1
@@ -75,5 +80,5 @@ func _process(delta):
 			if position.y > 290 and position.y < 310:
 				move_up = true
 
-	print(position.y)
+	# print(position.y)
 	#rotation += angular_speed * direction * delta
