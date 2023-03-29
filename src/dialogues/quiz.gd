@@ -1,10 +1,4 @@
-@tool
-extends DialogueResource
-
-
-func _init():
-	super("quiz")
-
+extends Resource
 
 const config = {
 	"q1":

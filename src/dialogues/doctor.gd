@@ -1,12 +1,8 @@
-@tool
-class_name DoctorConfig extends DialogueResource
+extends Resource
 
+const config := [intro, outro]
 
-func _init():
-	super("doctor")
-
-
-const config = {
+const intro = {
 	"start":
 	{
 		"speaker": "Dr. Wu",
@@ -74,5 +70,13 @@ const config = {
 			"Feel free to explore and ask any questions you might have."
 		],
 		"next": ["options"]
+	}
+}
+
+const outro = {
+	"start": {
+		"speaker": "Dr. Wu",
+		"using_typing": true,
+		"phrases": ["This is the end of the x-ray game.", "Good job!"]
 	}
 }
