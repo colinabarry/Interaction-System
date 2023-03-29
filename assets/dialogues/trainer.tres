@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="TrainerConfig" load_steps=2 format=3 uid="uid://bysum7aowwe2g"]
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://c3bo85rrr7xcw"]
 
-[ext_resource type="Script" path="res://src/scripts/trainer_dialogue.gd" id="1_wnhk5"]
+[ext_resource type="Script" path="res://src/dialogues/trainer.gd" id="1_qtdyg"]
 
 [resource]
-script = ExtResource("1_wnhk5")
+resource_name = "trainer"
+script = ExtResource("1_qtdyg")
