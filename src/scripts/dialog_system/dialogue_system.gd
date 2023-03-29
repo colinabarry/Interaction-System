@@ -1,5 +1,5 @@
 @tool
-class_name DialogBox extends Control
+class_name DialogueSystem extends Control
 ## A convenience implementation for creating and handling custom dialogues.
 ##
 ## [DialogSystem] utilizes [Dialog.Sequence] to abstract away much of the boilerplate required to set up a
@@ -22,7 +22,6 @@ class_name DialogBox extends Control
 ## The node which will serve as a "ready-to-continue" indicator after each phrase is displayed (but not when selecting from options).
 ## [br][br] This node is optional.
 @export var next_indicator: NodePath
-# @export var please_mummy: Array[Resource]
 
 ## Custom export variables to be accessed from the editor inspector.
 var export_properties := {
@@ -50,21 +49,6 @@ var export_properties := {
 		"usage": _get_usage("using_quiz", false),
 		"editor_description": "The name of the starting [Dialog] in the provided config."
 	},
-	"auto_progress":
-	{
-		"value": false,
-		"type": TYPE_BOOL,
-		"usage": _get_usage(),
-		"editor_description": "Do you want the dialogue to progress without user input?"
-	},
-	"progress_timer":
-	{
-		"value": 2,
-		"type": TYPE_FLOAT,
-		"usage": _get_usage("auto_progress", true),
-		"editor_description":
-		"How long to wait after a phrase is displayed before progressing to the next phrase."
-	},
 	"allow_typing":
 	{
 		"value": true,
@@ -75,10 +59,40 @@ var export_properties := {
 	},
 	"typing_timer":
 	{
+		"value": null,
+		"type": TYPE_NODE_PATH,
+		"usage": _get_usage("allow_typing", true),
+		"editor_description": "A [Timer] which controls the interval for the next character in the dialogue getting displayed."
+	},
+	"typing_timeout":
+	{
 		"value": 0.03,
 		"type": TYPE_FLOAT,
 		"usage": _get_usage("allow_typing", true),
 		"editor_description": "How long to wait between displaying each individual character."
+	},
+	"auto_progress":
+	{
+		"value": false,
+		"type": TYPE_BOOL,
+		"usage": _get_usage(),
+		"editor_description": "Do you want the dialogue to progress without user input?"
+	},
+	"progress_timer":
+	{
+		"value": null,
+		"type": TYPE_NODE_PATH,
+		"usage": _get_usage("auto_progress", true),
+		"editor_description":
+		"A [Timer] which controls the amount of time before going to the next phrase in the [Dialog.Sequence] after the current phrase is fully displayed."
+	},
+	"progress_timeout":
+	{
+		"value": 2,
+		"type": TYPE_FLOAT,
+		"usage": _get_usage("auto_progress", true),
+		"editor_description":
+		"How long to wait after a phrase is displayed before progressing to the next phrase."
 	},
 }
 
@@ -173,12 +187,8 @@ var dialog_sequence: Dialog.Sequence
 @onready var _dialogue := get_node(dialogue)
 @onready var _speaker_name := get_node(speaker_name)
 @onready var _next_indicator := get_node(next_indicator)
-
-## A [Timer] which controls the interval for the next character in the dialogue getting displayed.
-@onready var next_char_timer := $NextCharTimer
-## A [Timer] which controls the amount of time before going to the next phrase in the [Dialog.Sequence] 
-## after the current phrase is fully displayed.
-@onready var next_phrase_timer := $NextPhraseTimer
+@onready var _next_char_timer: Timer
+@onready var _next_phrase_timer: Timer
 
 
 func _ready() -> void:
@@ -187,23 +197,17 @@ func _ready() -> void:
 		return
 
 	_setup_sequence(get_dialogue_config())
-	_setup_next_indicator()
-	_setup_phrase_timer()
+	_setup_speaker_name()
 	_setup_dialogue()
 	_setup_options()
-	_setup_speaker_name()
+	_setup_next_indicator()
+	_setup_char_timer()
+	_setup_phrase_timer()
 
-	(
-		dialog_sequence
-		. on_after_each(func():
-			if _next_indicator:
-				try_show_indicator()
-			if get_export("auto_progress") and (dialog_sequence.still_talking() or (dialog_sequence.has_next() and not dialog_sequence.has_options())):
-				next_phrase_timer.start()
-			)
-	)
+	_setup_misc_callbacks()
 
 	hide_children()
+	clear_children()
 
 
 # TEMPORARY FOR TESTING
@@ -264,6 +268,7 @@ func _setup_sequence(config: Dictionary) -> void:
 			if "options" in key:
 				temp.dialogs[key].on_before_all(func():
 					hide_children()
+					clear_children()
 					show_options()
 					)
 
@@ -279,8 +284,20 @@ func _setup_next_indicator() -> void:
 		dialog_sequence.on_before_each(_next_indicator.hide)
 
 
+func _setup_char_timer() -> void:
+	if get_export("allow_typing"):
+		_next_char_timer = get_node(get_export("typing_timer"))
+		_next_char_timer.set_wait_time(get_export("typing_timeout"))
+		_next_char_timer.timeout.connect(_on_next_char_timer_timeout)
+		dialog_sequence.set_char_timer(_next_char_timer)
+
+
 func _setup_phrase_timer() -> void:
-	next_phrase_timer.one_shot = true
+	if get_export("auto_progress"):
+		_next_phrase_timer = get_node(get_export("progress_timer"))
+		_next_phrase_timer.one_shot = true
+		_next_phrase_timer.set_wait_time(get_export("progress_timeout"))
+		_next_phrase_timer.timeout.connect(_on_next_phrase_timer_timeout)
 
 
 func _setup_dialogue() -> void:
@@ -299,6 +316,18 @@ func _setup_speaker_name() -> void:
 		dialog_sequence.on_before_all(func(): _speaker_name.text = dialog_sequence.get_speaker())
 
 
+func _setup_misc_callbacks() -> void:
+	(
+		dialog_sequence
+		. on_after_each(func():
+			if _next_indicator:
+				try_show_indicator()
+			if get_export("auto_progress") and (dialog_sequence.still_talking() or (dialog_sequence.has_next() and not dialog_sequence.has_options())):
+				_next_phrase_timer.start()
+			)
+	)
+
+
 # DIALOG SYSTEM "API" >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 ## Retrieve the configuration [Dictionary] at the specified [param idx] of the "config" member
@@ -306,17 +335,14 @@ func _setup_speaker_name() -> void:
 ## the config itself if it is not an Array.
 func get_dialogue_config(idx := 0) -> Dictionary:
 	var config = get_export("dialogue_resource").config
-	return config[idx if idx in config else 0] if config is Array else config
+	return config[idx] if config is Array else config
 
 
 ## Try to start the [Dialog.Sequence] if it hasn't been already.
 func try_begin_dialog() -> void:
 	if dialog_sequence.cold:
-		next_char_timer.set_wait_time(get_export("typing_timer"))
-		next_phrase_timer.wait_time = get_export("progress_timer")
-		dialog_sequence.set_char_timer(next_char_timer)
-
 		_dialogue.text = dialog_sequence.begin_dialog()
+		print("name: ", dialog_sequence.get_speaker())
 
 
 func handle_next_char() -> void:
@@ -328,6 +354,7 @@ func handle_next_phrase() -> void:
 
 	if dialog_sequence.dead:
 		hide_children()
+		clear_children()
 		dialog_sequence.reset()
 	else:
 		_dialogue.text = active_text
@@ -356,13 +383,27 @@ func change_sequence(config: Variant) -> void:
 		TYPE_DICTIONARY: _setup_sequence(config)
 		TYPE_INT: _setup_sequence(get_dialogue_config(config))
 
+	_setup_next_indicator()
+	_setup_char_timer()
+	_setup_options()
+	_setup_speaker_name()
+	_setup_misc_callbacks()
+
 
 func try_show_indicator() -> void:
 	if not dialog_sequence.ready_for_options():
 		_next_indicator.show()
 
 
-## Hide all children of the [DialogSystem] and clear the dialogue text.
+## Clear the contents of the dialogue and the options (if it exists).
+func clear_children() -> void:
+	if _dialog_options:
+		_dialog_options.clear()
+
+	_dialogue.text = ""
+
+
+## Hide all children of the [DialogSystem].
 func hide_children() -> void:
 	if _dialog_container:
 		_dialog_container.hide()
@@ -372,8 +413,6 @@ func hide_children() -> void:
 	if _next_indicator:
 		_next_indicator.hide()
 
-	_dialogue.text = ""
-
 
 ## Show the dialog_container and begin the [Dialog.Sequence] if it hasn't been already.
 func show_box() -> void:
@@ -382,6 +421,13 @@ func show_box() -> void:
 		is_visible = true
 
 	try_begin_dialog()
+
+
+## Clear and hide the options for the current [Dialog].
+func hide_options() -> void:
+	if _dialog_options:
+		_dialog_options.hide()
+		_dialog_options.clear()
 
 
 ## Populate and display the options for the current [Dialog].

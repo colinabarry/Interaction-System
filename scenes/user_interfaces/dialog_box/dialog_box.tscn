@@ -56,7 +56,7 @@ mouse_filter = 2
 script = ExtResource("1_p8d2j")
 using_quiz = false
 dialogue_resource = null
-head = ""
+head = "start"
 auto_progress = false
 progress_timer = 2
 allow_typing = true
@@ -172,6 +172,7 @@ vertical_alignment = 2
 wait_time = 2.0
 one_shot = true
 
+[connection signal="script_changed" from="." to="." method="_on_script_changed"]
 [connection signal="item_clicked" from="OptionsContainer/Options" to="." method="_on_options_item_clicked"]
 [connection signal="gui_input" from="DialogContainer/MarginContainer/VBoxContainer/HBoxContainer/Dialogue" to="." method="_on_dialogue_gui_input"]
 [connection signal="timeout" from="NextCharTimer" to="." method="_on_next_char_timer_timeout"]
