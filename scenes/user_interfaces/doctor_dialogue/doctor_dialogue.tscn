@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://b4clki5b1awao"]
 
 [ext_resource type="Script" path="res://scenes/user_interfaces/doctor_dialogue/doctor_dialogue.gd" id="1_n373k"]
-[ext_resource type="Resource" uid="uid://yvadforf7v4n" path="res://assets/dialogues/doctor.tres" id="2_6f6cn"]
+[ext_resource type="Resource" uid="uid://yvadforf7v4n" path="res://assets/dialogues/doctor.tres" id="2_a7jag"]
 
 [sub_resource type="Theme" id="Theme_ko4j0"]
 
@@ -61,7 +61,7 @@ dialogue = NodePath("DialogContainer/MarginContainer/VBoxContainer/HBoxContainer
 speaker_name = NodePath("DialogContainer/MarginContainer/VBoxContainer/SpeakerName")
 next_indicator = NodePath("DialogContainer/MarginContainer/VBoxContainer/HBoxContainer/SubViewport/NextIndicator")
 using_quiz = false
-dialogue_resource = ExtResource("2_6f6cn")
+dialogue_resource = ExtResource("2_a7jag")
 head = "start"
 allow_typing = true
 typing_timer = NodePath("NextCharTimer")
@@ -82,6 +82,7 @@ offset_left = -200.0
 offset_top = -181.0
 grow_horizontal = 0
 grow_vertical = 0
+mouse_filter = 2
 theme_override_constants/margin_bottom = 150
 
 [node name="Options" type="ItemList" parent="OptionsContainer"]

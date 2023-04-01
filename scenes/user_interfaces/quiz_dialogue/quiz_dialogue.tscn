@@ -1,7 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://bxe270n3nyi4u"]
+[gd_scene load_steps=8 format=3 uid="uid://bxe270n3nyi4u"]
 
 [ext_resource type="Script" path="res://scenes/user_interfaces/quiz_dialogue/quiz_dialogue.gd" id="1_2ro73"]
-[ext_resource type="Resource" uid="uid://dqbc7kknro2ku" path="res://assets/dialogues/quiz.tres" id="2_baxs6"]
 
 [sub_resource type="Theme" id="Theme_5jm3v"]
 
@@ -55,16 +54,16 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_2ro73")
-dialog_container = NodePath("DialogContainer")
-dialog_options = NodePath("OptionsContainer/Options")
-dialogue = NodePath("DialogContainer/MarginContainer/VBoxContainer/HBoxContainer/Dialogue")
-speaker_name = NodePath("DialogContainer/MarginContainer/VBoxContainer/SpeakerName")
-next_indicator = NodePath("DialogContainer/MarginContainer/VBoxContainer/HBoxContainer/SubViewport/NextIndicator")
-using_quiz = true
-dialogue_resource = ExtResource("2_baxs6")
+dialog_container = null
+dialog_options = null
+dialogue = null
+speaker_name = null
+next_indicator = null
+using_quiz = false
+dialogue_resource = null
 head = "start"
 allow_typing = true
-typing_timer = NodePath("NextCharTimer")
+typing_timer = null
 typing_timeout = 0.03
 auto_progress = false
 progress_timer = null

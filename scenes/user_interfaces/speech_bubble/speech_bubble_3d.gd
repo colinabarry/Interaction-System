@@ -30,7 +30,7 @@ func show_dialogue():
 
 	(
 		dialog_sequence
-		. on_after_each(func():
+		. after_each.connect(func():
 			if dialog_sequence.dialog == dialog_sequence._head and dialog_sequence.dialog.phrase_idx == 0:
 				next_phrase_timer.start(wait_time + tween_time)
 			elif dialog_sequence.still_talking():

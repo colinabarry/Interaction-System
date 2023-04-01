@@ -126,7 +126,7 @@ func _create_answer_dialog(answer: Variant, is_correct := false) -> Dialog:
 			dialog = Dialog.new(_const_phrases[key] + answer.phrases, answer.option)
 
 	assert(
-		dialog is Dialog,
+		dialog != null,
 		(
 			"No overload available for method _create_answer_dialog for the provided arguments. Argument `answer` is of type %s."
 			% typeof(answer)

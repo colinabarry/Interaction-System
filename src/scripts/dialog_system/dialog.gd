@@ -1,4 +1,4 @@
-class_name Dialog extends DialogueLifecycleEvents
+class_name Dialog extends EventManager
 ## Creates a node to store dialogue for a given entity.
 ##
 ## [Dialog] is a node intended to be used in a [Dialog.Sequence], not alone, to manage
@@ -7,8 +7,19 @@ class_name Dialog extends DialogueLifecycleEvents
 ## are not set and this [Dialog] was preceeded by another [Dialog] in a [Dialog.Sequence],
 ## then those properties will propagate to this one.
 ## You may optionally define lifecycle events.
-## [br]See: [DialogueLifecycleEvents]
+## [br]See: [DialogueEvents]
 
+## The names of the lifecycle events that [Dialog]s can emit.
+const SIGNALS := [
+	"before_each",
+	"after_each",
+	"before_all",
+	"after_all",
+	"before_next",
+	"after_next",
+	"before_options",
+	"after_options"
+]
 
 ## The name which denotes the entity "speaking" for this [Dialog].
 var speaker := ""
@@ -19,9 +30,9 @@ var phrase_idx := -1
 ## The index of the active character of the active phrase of [member phrases].
 var char_idx := -1
 ## The dialogues to be displayed. Each element represents one pane.
-var phrases := [] #[String]
+var phrases := []  #[String]
 ## The [Dialog]s which can come after this Dialog finishes iterating through its [member phrases].
-var next_dialogs := [] #[Dialog]
+var next_dialogs := []  #[Dialog]
 ## Should [member phrases] be displayed one character at a time (i.e., recieve 1ch per [method next] call)?
 var using_typing := false  # this will be passed to proceeding Dialogs
 
@@ -30,19 +41,21 @@ func _init(base = [], option = "") -> void:
 	phrases = base
 	option_name = option
 
+	super(SIGNALS, false, true)
+
 
 ## Run the after_each and attempt to run the after_all, before_next_dialog, and before_options lifecycle events.
-## [br]See: [DialogueLifecycleEvents]
+## [br]See: [DialogueEvents]
 func after():
-	after_each()
+	emit_once("after_each")
 
 	if not still_talking():
-		after_all()
+		emit_once("after_all")
 
 		if has_next():
-			before_next_dialog()
+			emit_once("before_next")
 		if has_options():
-			before_options()
+			emit_once("before_options")
 
 
 ## Retrive the next character or phrase, or the full active phrase if [param skip_typing] is [b]true[/b].
@@ -60,6 +73,7 @@ func next(skip_typing := false) -> String:
 
 
 # BOOL STUFF (DIALOG STATE) >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
 
 ## Is there at least one [Dialog] in [member next_dialogs]?
 func has_next() -> bool:
@@ -85,6 +99,7 @@ func still_typing() -> bool:
 # LINKED-LISTY STUFF >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 # CHANGING INDICES, CONSIDER AS HELPERS
 
+
 ## Set [member phrase_idx].
 ## [br][br]NOTE: This function applies a modulo to the provided idx using the length of [member phrases].
 func set_active_phrase(idx: int) -> void:
@@ -100,12 +115,12 @@ func set_active_char(idx: int) -> void:
 # Retrieves the next phrase in [member phrases], or the current phrase if still_talking() is false,
 # and calls any lifecycle events as appropriate.
 func _next_phrase() -> String:
-	reset_each()
+	reset_group("each")
 
 	if still_talking():
 		set_active_phrase(phrase_idx + 1)
 
-		before_each()
+		emit_once("before_each")
 		if not using_typing:
 			after()
 
@@ -131,7 +146,7 @@ func stop_typing() -> void:
 ## Set [member phrase_idx] to -1 (such that calling [method next] will return the first phrase).
 func reset_talking() -> void:
 	phrase_idx = -1
-	reset_all()
+	reset_group("all")
 
 
 ## Set [member char_idx] to -1 (such that calling [method next] will return the first character).
@@ -142,15 +157,16 @@ func reset_typing() -> void:
 ## Reset [member char_idx] and [member phrase_idx] to their default values.
 ## [br]See: [method reset_typing], [method reset_talking]
 ## [br][br] This will also reset all lifecycle events.
-## [br]See: [method DialogueLifecycleEvents.reset_events]
+## [br]See: [method DialogueEvents.reset_group]
 func reset() -> void:
 	reset_talking()
 	reset_typing()
 
-	reset_events()
+	reset_group("events")
 
 
 # GETTERS >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
 
 ## Get the phrase at [member phrase_index] of [member phrases].
 func get_active_phrase() -> String:
@@ -178,6 +194,7 @@ func get_option_names() -> Array:
 
 
 # BUILDERS >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
 
 ## Set [member speaker] and return self.
 func set_speaker(name: String) -> Dialog:
@@ -241,7 +258,24 @@ func build_sequence(options := {}) -> Sequence:
 ## The only exception to this is for setting lifecycle events on [Dialog]s if you created the
 ## [Dialog.Sequence] using [method build].
 class Sequence:
-	extends DialogueLifecycleEvents
+	extends EventManager
+	## The names of the lifecycle events which [Dialog.Sequence]s can emit.
+	## [br][Dialog.Sequence]s can also emit any of the events which [Dialog]s can emit.
+	## [br]See: [member Dialog.SIGNALS]
+	const SIGNALS = ["dirty", "cold", "hot", "dead", "revived"]
+	const DELEGATED_SIGNALS	= ["before_each", "after_each", "after_all", "before_next", "before_options"]
+	const PROPAGATED_PROPERTIES = ["speaker", "using_typing"]
+
+	## Are [Dialog]s within the [Dialog.Sequence] allowed to use the typing effect?
+	var allow_typing := true
+	## Should the [Dialog.Sequence] call [method reset] when it reaches a dead end?
+	var should_restart_on_dead := true
+	## Has the [Dialog.Sequence] ever began?
+	var pristine := true
+	## Has the [Dialog.Sequence] not been started?
+	var cold := true
+	## Has the [Dialog.Sequence] reached a dead end?
+	var dead := false
 
 	## Cache for the first [Dialog] in the [Dialog.Sequence].
 	var head: Dialog
@@ -250,22 +284,21 @@ class Sequence:
 	## A [Timer] which controls the retrieval of the next char in the [Dialog.Sequence].
 	var next_char_timer: Timer
 
-	## Are [Dialog]s within the [Dialog.Sequence] allowed to use the typing effect?
-	var allow_typing := true
-	## Has the [Dialog.Sequence] not began?
-	var cold := true
-	## Has the [Dialog.Sequence] reached a dead end?
-	var dead := false
-
 	func _init(_head: Dialog, options := {}) -> void:
 		head = _head
 
 		if "allow_typing" in options:
 			allow_typing = options.allow_typing
 
+		if "should_restart_on_dead" in options:
+			should_restart_on_dead = options.should_restart_on_dead
+
 		if "set_on_init" in options and options.set_on_init:
 			set_dialog(head)
 
+		super(SIGNALS + Dialog.SIGNALS, false)
+
+		connect("dead", func(): if should_restart_on_dead: reset())
 
 	## Build a [Dialog.Sequence] from a JSON-style config.
 	## [br]Usage:
@@ -317,9 +350,10 @@ class Sequence:
 		dialog_sequence.head = dialog_map[_head]
 
 		return (
-			{"dialogs": dialog_map, "sequence": dialog_sequence} if "return_objs" in options and options.return_objs else dialog_sequence
+			{"dialogs": dialog_map, "sequence": dialog_sequence}
+			if "return_objs" in options and options.return_objs
+			else dialog_sequence
 		)
-
 
 	# PROXY FUNCs FOR CURRENT DIALOG >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
@@ -358,7 +392,6 @@ class Sequence:
 	func get_speaker() -> String:
 		return dialog.speaker
 
-
 	# SEQUENCE API >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 	## Is the [Dialog.Sequence] ready for the user to choose the next [Dialog]?
@@ -366,89 +399,71 @@ class Sequence:
 	func ready_for_options() -> bool:
 		return not dialog.still_talking() and dialog.has_options()
 
-
 	## Reset the [Dialog.Sequence] at the provided [member head].
 	## [br]This will not begin the Sequence.
 	func reset() -> void:
-		dialog = null # to prevent any property propagation
+		dialog = null  # to prevent any property propagation
 		set_dialog(head)
 		cold = true
-
+		emit_signal("cold")
 
 	## Sets the [Timer] to be associated with typing individual characters.
 	## [br]Not calling this function when a [Dialog] in your [Dialog.Sequence] has [member Dialog.using_typing] set to [b]true[/b] will throw an error!
 	func set_char_timer(timer: Timer) -> void:
 		next_char_timer = timer
 
-
 	## Sets the active [Dialog] for the [Dialog.Sequence], reviving the Sequence if it was [member dead].
-	## [br]This will give the Dialog the Sequence's lifecycle callbacks, meaning if you set a Dialog's lifecycle callbacks [i]after[/i] it is set as active, then you will overwrite the Sequence callbacks!
+	## [br]This will delegate the [Dialog.Sequence]'s lifecycle events to the new [Dialog].
 	## [br](NOTE: this exludes before_all, after_next, and after_options)
-	## [br]See: [DialogueLifecycleEvents]
+	## [br]See: [DialogueEvents]
 	## [br][br]This will also propagate the previous Dialog's [member Dialog.using_typing] and [member Dialog.speaker] properties if the Dialog being set does not have them.
 	func set_dialog(new_dialog: Dialog) -> void:
-		var _using_typing = false
-		var _speaker = ""
+		var _propagated := {}
 		if dialog != null:
-			_using_typing = dialog.using_typing
-			_speaker = dialog.speaker
+			for event in DELEGATED_SIGNALS:
+				_disconnect_event(event)
 
-		# let the Dialog object manage calling the Sequence's lifecycle events
-		# except for before_all, after_options, and after_next_dialog as
-		# the Sequence will handle that for the Dialog
-		dialog = (
-			new_dialog
-			. on_before_each(func():
-				before_each(false)
-				new_dialog.before_each()
-				)
-			. on_after_each(func():
-				after_each(false)
-				new_dialog.after_each()
-				)
-			. on_after_all(func():
-				after_all(false)
-				new_dialog.after_all()
-				)
-			. on_before_options(func():
-				before_options(false)
-				new_dialog.before_options()
-				)
-			. on_before_next(func():
-				before_next_dialog(false)
-				new_dialog.before_next_dialog()
-				)
-		)
+			for property in PROPAGATED_PROPERTIES:
+				_propagated[property] = dialog[property]
+
+		dialog = new_dialog
+
+		_propagate_properties(_propagated, dialog)
+
+		# event delegation (seq -> dialog)
+		for event in DELEGATED_SIGNALS:
+			_delegate_event(event)
+
 		dialog.reset()
-		reset_events()
+		reset_group("events")
 
-		if _using_typing:
-			dialog.using_typing = _using_typing  # propagate using_typing (only if true tho)
-		if dialog.speaker == "":
-			dialog.set_speaker(_speaker) # propagate speaker if next_dialog does not have one
-
-		dead = false # revive the Sequence if dead
+		dead = false  # revive the Sequence if dead
+		emit_signal("revived")
 
 		if not allow_typing:
 			dialog.using_typing = false
 
-		before_all(false)
-		dialog.before_all()
-
+		emit_once("before_all")
+		dialog.emit_once("before_all")
 
 	## Begin the [Dialog.Sequence] starting at the provided [member head].
 	## If a [member next_char_timer] was provided to the Sequence, this will start the timer.
 	func begin_dialog() -> String:
 		set_dialog(head)
+
+		if pristine:
+			pristine = false
+			emit_signal("dirty")
+
 		cold = false
+		emit_signal("hot")
 
-		return next(!next_char_timer) # force resolve as bool whether it doesn't exist
-
+		return next(!next_char_timer)  # force resolve as bool whether it doesn't exist
 
 	## Retrieve the next character or phrase in the [Dialog.Sequence], the full active phrase if [param should_skip_typing] is [b]true[/b], or an empty string if setting the next phrase to prepare for typing.
 	## [br]Related: [method Dialog.next]
 	func next(should_skip_typing := true) -> String:
-		reset_events()
+		reset_group("events")
 
 		# special case: wait for options without any dialogue
 		if dialog.phrases.size() == 0:
@@ -462,7 +477,6 @@ class Sequence:
 
 		return _handle_not_talking()
 
-
 	## Choose a [Dialog] from the active Dialog's [member Dialog.next_dialogs] array.
 	## [br]If [member Dialog.using_typing] is [b]true[/b], this will start the [member next_char_timer] and return an empty string to prepare for typing.
 	func choose_option(idx: int) -> String:
@@ -472,7 +486,6 @@ class Sequence:
 			return ""  # clear the previous phrase to prep. for typing
 
 		return _next_dialog(idx)  # no more phrases, so start next Dialog and return the first phrase
-
 
 	# INTERNAL >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
@@ -485,7 +498,6 @@ class Sequence:
 
 		return _next
 
-
 	# Handle the case in next() when using_typing or still_typing are false and still_talking is true.
 	func _handle_still_talking() -> String:
 		if dialog.using_typing:
@@ -495,11 +507,11 @@ class Sequence:
 
 		return dialog.next()  # next_phrase
 
-
 	# Handle the case in next() when (using_typing or still_typing) and still_talking are false.
 	func _handle_not_talking() -> String:
 		if not dialog.has_next():  # i.e., no Dialogs next (end of sequence)
 			dead = true
+			emit_signal("dead")
 			return ""  # to avoid unnecessary Nil errors
 
 		if not dialog.has_options():  # i.e., only one Dialog next (no option)
@@ -507,22 +519,39 @@ class Sequence:
 
 		return dialog.get_active_phrase()  # resend curr_phrase (waiting for an option to be selected)
 
-
 	# Set the next dialog and call lifecycle events as appropriate.
 	func _next_dialog(idx := 0) -> String:
 		var _had_next = dialog.has_next()
-		var _after_next = dialog.after_next_dialog
+		var _after_next = dialog.emit_once.bind("after_next")
 		var _had_options = dialog.has_options()
-		var _after_options = dialog.after_options
+		var _after_options = dialog.emit_once.bind("after_options")
 
 		set_dialog(dialog.get_next_dialog(idx))
 
 		if _had_next:
-			after_next_dialog(false)
+			emit_once("after_next")
 			_after_next.call()
 		if _had_options:
-			after_options(false)
+			emit_once("after_options")
 			_after_options.call()
 
 		# sets first phrase of the new Dialog as active
 		return next()  # val returned is either the first phrase or the first char
+
+	func _disconnect_event(event_name: String):
+		dialog.disconnect(event_name, emit_once.bind(event_name))
+
+	# Delegates the emission of the [Signal] with the given [param event_name] to the active [Dialog].
+	func _delegate_event(event_name: String):
+		dialog.connect(event_name, emit_once.bind(event_name))
+
+	# Propagate properties from the old Dialog to the new one as appropriate.
+	func _propagate_properties(old: Dictionary, new: Dialog) -> void:
+		for property in old:
+			match property:
+				"using_typing":
+					if old.using_typing:
+						new.using_typing = true
+				"speaker":
+					if new.speaker == "":
+						new.speaker = old.speaker

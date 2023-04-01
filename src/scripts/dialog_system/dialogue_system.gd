@@ -7,24 +7,59 @@ class_name DialogueSystem extends Control
 ## listed in the export properties (editor inspector).
 
 
-## The parent-most node containing your dialogue. This is what will be shown/hidden during/outside-of dialogue.
-## [br][br] This node is optional.
-@export var dialog_container: NodePath
-## The [ItemList] that will display any options in your dialogue.
-## [br][br] This node is optional.
-@export var dialog_options: NodePath
-## The node which will contain the actual text of your dialogue. A normal [Label] is recommended.
-## [br][br] This node is [b]MANDATORY[/b].
-@export var dialogue: NodePath
-## The node which will contain the name of the entity speaking the active dialogue.
-## [br][br] This node is optional.
-@export var speaker_name: NodePath
-## The node which will serve as a "ready-to-continue" indicator after each phrase is displayed (but not when selecting from options).
-## [br][br] This node is optional.
-@export var next_indicator: NodePath
+# ## The parent-most node containing your dialogue. This is what will be shown/hidden during/outside-of dialogue.
+# ## [br][br] This node is optional.
+# @export var dialog_container: NodePath
+# ## The [ItemList] that will display any options in your dialogue.
+# ## [br][br] This node is optional.
+# @export var dialog_options: NodePath
+# ## The node which will contain the actual text of your dialogue. A normal [Label] is recommended.
+# ## [br][br] This node is [b]MANDATORY[/b].
+# @export var dialogue: NodePath
+# ## The node which will contain the name of the entity speaking the active dialogue.
+# ## [br][br] This node is optional.
+# @export var speaker_name: NodePath
+# ## The node which will serve as a "ready-to-continue" indicator after each phrase is displayed (but not when selecting from options).
+# ## [br][br] This node is optional.
+# @export var next_indicator: NodePath
 
 ## Custom export variables to be accessed from the editor inspector.
 var export_properties := {
+	"dialog_container":
+	{
+		"value": null,
+		"type": TYPE_NODE_PATH,
+		"usage": _get_usage(),
+		"editor_description": "The parent-most [Node] containing your dialogue. This is what will be shown/hidden during/outside-of dialogue.[br][br]This [Node] is optional."
+	},
+	"dialog_options":
+	{
+		"value": null,
+		"type": TYPE_NODE_PATH,
+		"usage": _get_usage(),
+		"editor_description": "The [ItemList] that will display any options in your dialogue.[br][br]This [Node] is optional."
+	},
+	"dialogue":
+	{
+		"value": null,
+		"type": TYPE_NODE_PATH,
+		"usage": _get_usage(),
+		"editor_description": "The [Node] which will contain the actual text of your dialogue. A normal [Label] is recommended.[br][br]This [Node] is [b]MANDATORY[/b]."
+	},
+	"speaker_name":
+	{
+		"value": null,
+		"type": TYPE_NODE_PATH,
+		"usage": _get_usage(),
+		"editor_description": "The [Node] which will contain the name of the entity speaking the active dialogue.[br][br]This [Node] is optional."
+	},
+	"next_indicator":
+	{
+		"value": null,
+		"type": TYPE_NODE_PATH,
+		"usage": _get_usage(),
+		"editor_description": "The [Node] which will serve as a \"ready-to-continue\" indicator after each phrase is displayed (but not when selecting from options).[br][br]This [Node] is optional."
+	},
 	"using_quiz":
 	{
 		"value": false,
@@ -145,7 +180,14 @@ func _get(property: StringName) -> Variant:
 # returning true tells the engine we set the property ourselves
 # returning false tells the engine to `set` normally
 func _set(property: StringName, value: Variant) -> bool:
-	return set_export(property, value)
+	var did_set := set_export(property, value)
+
+	var signal_name := "%s_changed" % property
+	print("signal_name: %s" % signal_name)
+	if signal_name in self:  # guard against export setting before _init runs
+		emit_signal(signal_name, value)
+
+	return did_set
 
 
 # script-wide `property_list` override
@@ -166,7 +208,6 @@ func _get_property_list() -> Array[Dictionary]:
 			"editor_description": export_properties[property].editor_description,
 		})
 
-
 	return property_list
 
 
@@ -180,15 +221,37 @@ var is_visible := false
 var indicator_tweener: Tween
 
 ## The [Dialog.Sequence] controlling the current dialogue.
-var dialog_sequence: Dialog.Sequence
+var dialog_sequence: Dialog.Sequence:
+	set(value):
+		dialog_sequence = value
+		emit_signal("dialog_sequence_changed")
 
-@onready var _dialog_container := get_node(dialog_container)
-@onready var _dialog_options := get_node(dialog_options)
-@onready var _dialogue := get_node(dialogue)
-@onready var _speaker_name := get_node(speaker_name)
-@onready var _next_indicator := get_node(next_indicator)
+@onready var _dialog_container: Node
+@onready var _dialog_options: ItemList
+@onready var _dialogue: Node
+@onready var _speaker_name: Node
+@onready var _next_indicator: Node
 @onready var _next_char_timer: Timer
 @onready var _next_phrase_timer: Timer
+
+
+func _init() -> void:
+	for property in get_property_list():
+		if property.name.begins_with("_"):  # "private"
+			continue
+
+		var signal_name = "%s_changed" % property.name
+		var listener_name = "_on_%s" % signal_name
+
+		if not signal_name in self:
+			add_user_signal(signal_name, [{
+				"name": "value",
+				"type": property.type,
+			}])
+
+		if listener_name in self:
+			print("Connecting %s to %s" % [signal_name, listener_name])
+			connect(signal_name, self[listener_name])
 
 
 func _ready() -> void:
@@ -197,14 +260,7 @@ func _ready() -> void:
 		return
 
 	_setup_sequence(get_dialogue_config())
-	_setup_speaker_name()
-	_setup_dialogue()
-	_setup_options()
-	_setup_next_indicator()
-	_setup_char_timer()
-	_setup_phrase_timer()
-
-	_setup_misc_callbacks()
+	_setup_nodes()
 
 	hide_children()
 	clear_children()
@@ -219,13 +275,42 @@ func _input(event: InputEvent) -> void:
 		match event.as_text():
 			"BracketLeft":
 				show_box()
+				try_begin_dialog()
+
 			_:
 				var temp = int(event.as_text())
 				if temp > 0 and temp < 6:
 					choose_option(temp - 1)
 
 
-# SIGNALS >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+# EXPORT PROPERTY SIGNALS >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+func _on_dialog_container_changed() -> void:
+	_setup_box()
+
+func _on_options_changed() -> void:
+	_setup_options()
+
+func _on_dialogue_changed() -> void:
+	_setup_dialogue()
+
+func _on_speaker_name_changed() -> void:
+	_setup_speaker_name()
+
+func _on_next_indicator_changed() -> void:
+	_setup_next_indicator()
+
+func _on_next_char_timer_changed() -> void:
+	_setup_char_timer()
+
+func _on_next_phrase_timer_changed() -> void:
+	_setup_phrase_timer()
+
+func _on_dialogue_resource_changed() -> void:
+	_setup_sequence(get_dialogue_config())
+
+
+# NODE SIGNALS >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 func _on_option_clicked(index: int, _at_position, mouse_button_index: MouseButton) -> void:
 	if mouse_button_index != MOUSE_BUTTON_LEFT:
@@ -253,6 +338,89 @@ func _on_next_char_timer_timeout() -> void:
 	handle_next_char()
 
 
+# DIALOG SIGNALS >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+func _on_before_all_options_only() -> void:
+	hide_children()
+	clear_children()
+	show_options()
+
+
+# SEQUENCE SIGNALS >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+func _on_dialog_sequence_changed() -> void:
+	dialog_sequence.allow_typing = get_export("allow_typing")
+
+	_setup_char_timer()  # dependent on the current Sequence
+	_setup_speaker_name()  # dependent on the current Sequence
+
+	for listener in get_method_list():
+		if listener.name.begins_with("_on_seq_"):
+			dialog_sequence.connect(listener.name.right(-8), self[listener.name])
+
+## Runs before the active phrase of [member Dialog.phrases] is updated.
+func _on_seq_before_each() -> void:
+	if _next_indicator:
+		_next_indicator.hide()
+
+## Runs after the active phrase of [member Dialog.phrases] is updated and the full text is displayed.
+func _on_seq_after_each() -> void:
+	if _next_indicator and not dialog_sequence.ready_for_options():
+		_next_indicator.show()
+
+	if get_export("auto_progress") and (dialog_sequence.still_talking() or (dialog_sequence.has_next() and not dialog_sequence.has_options())):
+		_next_phrase_timer.start()
+
+## Runs when a [Dialog] is set in a [Dialog.Sequence].
+func _on_seq_before_all() -> void:
+	_setup_nodes()
+
+## Runs after the last phrase in [member Dialog.phrases] is updated and the full text is displayed.
+func _on_seq_after_all() -> void:
+	pass
+
+## Runs before the [Dialog.Sequence] sets the next [Dialog].
+## [br]You must have at least one element in [member Dialog.next_dialogs] for this to run.
+func _on_seq_before_next() -> void:
+	pass
+
+## Runs after the [Dialog.Sequence] sets the next [Dialog].
+## [br]You must have at least one element in [member Dialog.next_dialogs] for this to run.
+func _on_seq_after_next() -> void:
+	pass
+
+## Runs when the set of options are ready to be displayed.
+## [br]You must have at least two elements in [member Dialog.next_dialogs] for this to run.
+func _on_seq_before_options() -> void:
+	show_options()
+
+## Runs after an option has been selected and the [Dialog.Sequence] sets the new [Dialog].
+## You must have at least two elements in [member Dialog.next_dialogs] for this to run.
+func _on_seq_after_options() -> void:
+	_dialog_options.hide()
+
+## Runs when the [Dialog.Sequence] is started for the first time ever.
+func _on_seq_dirty() -> void:
+	pass
+
+## Runs when the [Dialog.Sequence] is reset.
+func _on_seq_cold() -> void:
+	pass
+
+## Runs when the [Dialog.Sequence] is started.
+func _on_seq_hot() -> void:
+	pass
+
+## Runs when the [Dialog.Sequence] reaches a dead end.
+func _on_seq_dead() -> void:
+	hide_children()
+	clear_children()
+
+## Runs when the [Dialog.Sequence] is revived.
+func _on_seq_revived() -> void:
+	pass
+
+
 # INTERNAL >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 func _setup_sequence(config: Dictionary) -> void:
@@ -266,66 +434,86 @@ func _setup_sequence(config: Dictionary) -> void:
 			# having a key which includes "options" in your config denotes that the options should
 			# be displayed without the dialogue (i.e., the dialog_container will be hidden)
 			if "options" in key:
-				temp.dialogs[key].on_before_all(func():
-					hide_children()
-					clear_children()
-					show_options()
-					)
-
-	dialog_sequence.allow_typing = get_export("allow_typing")
+				temp.dialogs[key].connect("before_all", _on_before_all_options_only)
 
 
-func _setup_next_indicator() -> void:
-	if _next_indicator:
-		indicator_tweener = create_tween().set_loops()
-		indicator_tweener.tween_property(_next_indicator, "position", Vector2(0, -5), 0.5).as_relative()
-		indicator_tweener.tween_property(_next_indicator, "position", Vector2(0, 5), 0.5).as_relative()
+func _try_setup_export_node(node_name: String, export_name: String = "") -> bool:
+	var node_path: NodePath = get_export(export_name if export_name != "" else node_name)
+	if node_path == null or node_path.is_empty():
+		return false
 
-		dialog_sequence.on_before_each(_next_indicator.hide)
+	var node := get_node(node_path)
+	if not node:
+		return false
 
-
-func _setup_char_timer() -> void:
-	if get_export("allow_typing"):
-		_next_char_timer = get_node(get_export("typing_timer"))
-		_next_char_timer.set_wait_time(get_export("typing_timeout"))
-		_next_char_timer.timeout.connect(_on_next_char_timer_timeout)
-		dialog_sequence.set_char_timer(_next_char_timer)
+	self["_" + node_name] = node
+	return true
 
 
-func _setup_phrase_timer() -> void:
-	if get_export("auto_progress"):
-		_next_phrase_timer = get_node(get_export("progress_timer"))
-		_next_phrase_timer.one_shot = true
-		_next_phrase_timer.set_wait_time(get_export("progress_timeout"))
-		_next_phrase_timer.timeout.connect(_on_next_phrase_timer_timeout)
-
-
-func _setup_dialogue() -> void:
-	_dialogue.gui_input.connect(_on_dialogue_clicked)
+func _setup_box() -> void:
+	if not _try_setup_export_node("dialog_container"):
+		return
 
 
 func _setup_options() -> void:
-	if _dialog_options:
-		_dialog_options.item_clicked.connect(_on_option_clicked)
-		dialog_sequence.on_before_options(show_options)
-		dialog_sequence.on_after_options(_dialog_options.hide)
+	if not _try_setup_export_node("dialog_options"):
+		return
+
+	_dialog_options.item_clicked.connect(_on_option_clicked)
+
+
+func _setup_dialogue() -> void:
+	assert(_try_setup_export_node("dialogue"), "You must set the 'dialogue' export variable to the path of the Label node you want to use for displaying the dialogue.")
+
+	_dialogue.gui_input.connect(_on_dialogue_clicked)
 
 
 func _setup_speaker_name() -> void:
-	if _speaker_name:
-		dialog_sequence.on_before_all(func(): _speaker_name.text = dialog_sequence.get_speaker())
+	if not _try_setup_export_node("speaker_name"):
+		return
+
+	dialog_sequence.connect("before_all", func(): _speaker_name.text = dialog_sequence.get_speaker())
 
 
-func _setup_misc_callbacks() -> void:
-	(
-		dialog_sequence
-		. on_after_each(func():
-			if _next_indicator:
-				try_show_indicator()
-			if get_export("auto_progress") and (dialog_sequence.still_talking() or (dialog_sequence.has_next() and not dialog_sequence.has_options())):
-				_next_phrase_timer.start()
-			)
-	)
+func _setup_next_indicator() -> void:
+	if not _try_setup_export_node("next_indicator"):
+		return
+
+	indicator_tweener = create_tween().set_loops()
+	indicator_tweener.tween_property(_next_indicator, "position", Vector2(0, -5), 0.5).as_relative()
+	indicator_tweener.tween_property(_next_indicator, "position", Vector2(0, 5), 0.5).as_relative()
+
+
+func _setup_char_timer() -> void:
+	if not get_export("allow_typing"):
+		return
+
+	assert(_try_setup_export_node("next_char_timer", "typing_timer"), "You must set the 'typing_timer' export variable to the path of the Timer node you want to use for typing.")
+
+	_next_char_timer.set_wait_time(get_export("typing_timeout"))
+	_next_char_timer.timeout.connect(_on_next_char_timer_timeout)
+	dialog_sequence.set_char_timer(_next_char_timer)
+
+
+func _setup_phrase_timer() -> void:
+	if not get_export("auto_progress"):
+		return
+
+	assert(_try_setup_export_node("next_phrase_timer", "progress_timer"), "You must set the 'progress_timer' export variable to the path of the Timer node you want to use for auto-progressing.")
+
+	_next_phrase_timer.one_shot = true
+	_next_phrase_timer.set_wait_time(get_export("progress_timeout"))
+	_next_phrase_timer.timeout.connect(_on_next_phrase_timer_timeout)
+
+
+func _setup_nodes() -> void:
+	_setup_box()
+	_setup_options()
+	_setup_dialogue()
+	_setup_speaker_name()
+	_setup_next_indicator()
+	_setup_char_timer()
+	_setup_phrase_timer()
 
 
 # DIALOG SYSTEM "API" >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -340,9 +528,10 @@ func get_dialogue_config(idx := 0) -> Dictionary:
 
 ## Try to start the [Dialog.Sequence] if it hasn't been already.
 func try_begin_dialog() -> void:
-	if dialog_sequence.cold:
-		_dialogue.text = dialog_sequence.begin_dialog()
-		print("name: ", dialog_sequence.get_speaker())
+	if not dialog_sequence.cold:
+		return
+
+	_dialogue.text = dialog_sequence.begin_dialog()
 
 
 func handle_next_char() -> void:
@@ -353,21 +542,21 @@ func handle_next_phrase() -> void:
 	var active_text = dialog_sequence.next()
 
 	if dialog_sequence.dead:
-		hide_children()
-		clear_children()
-		dialog_sequence.reset()
-	else:
-		_dialogue.text = active_text
+		return
+
+	_dialogue.text = active_text
 
 
 ## Choose an option from the current set of options.
 func choose_option(idx: int) -> void:
-	if not dialog_sequence.ready_for_options():
+	if not _dialog_options or not dialog_sequence.ready_for_options():
 		return
 
 	_dialog_options.clear()
+
 	if not is_visible:
 		show_box()
+
 	_dialogue.text = dialog_sequence.choose_option(idx)
 
 
@@ -383,22 +572,13 @@ func change_sequence(config: Variant) -> void:
 		TYPE_DICTIONARY: _setup_sequence(config)
 		TYPE_INT: _setup_sequence(get_dialogue_config(config))
 
-	_setup_next_indicator()
-	_setup_char_timer()
-	_setup_options()
-	_setup_speaker_name()
-	_setup_misc_callbacks()
-
-
-func try_show_indicator() -> void:
-	if not dialog_sequence.ready_for_options():
-		_next_indicator.show()
-
 
 ## Clear the contents of the dialogue and the options (if it exists).
 func clear_children() -> void:
 	if _dialog_options:
 		_dialog_options.clear()
+	if _speaker_name:
+		_speaker_name.text = ""
 
 	_dialogue.text = ""
 
@@ -414,20 +594,22 @@ func hide_children() -> void:
 		_next_indicator.hide()
 
 
-## Show the dialog_container and begin the [Dialog.Sequence] if it hasn't been already.
+## Show the dialog_container.
 func show_box() -> void:
-	if _dialog_container:
-		_dialog_container.show()
-		is_visible = true
+	if not _dialog_container:
+		return
 
-	try_begin_dialog()
+	_dialog_container.show()
+	is_visible = true
 
 
 ## Clear and hide the options for the current [Dialog].
 func hide_options() -> void:
-	if _dialog_options:
-		_dialog_options.hide()
-		_dialog_options.clear()
+	if not _dialog_options:
+		return
+
+	_dialog_options.clear()
+	_dialog_options.hide()
 
 
 ## Populate and display the options for the current [Dialog].
@@ -438,3 +620,9 @@ func show_options() -> void:
 	for option_name in dialog_sequence.get_option_names():
 		_dialog_options.add_item(option_name)
 		_dialog_options.show()
+
+
+
+
+func __new_line_brackets_and_parens_is_super_not_aesthetic():
+	var so_this_is_to_break_the_formatter_for_this_file := "😎"
