@@ -19,5 +19,5 @@ func _process(_delta):
 	if entered:
 		if Global.progress_state >= Global.PROGRESS_STATE.GYM_COMPLETED:
 			if Input.is_action_just_pressed("input_interact"):
-				Global.set_progress_state(Global.PROGRESS_STATE.HOME_COMPLETED)
+				Global.set_progress_state(Global.PROGRESS_STATE.HOME_ENTERED)
 				get_tree().change_scene_to_file("res://scenes/levels/home_game/home_game.tscn")

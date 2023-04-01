@@ -30,6 +30,7 @@ gdscript/warnings/assert_always_false=0
 
 window/size/viewport_width=640
 window/size/viewport_height=360
+window/size/always_on_top=true
 window/size/window_width_override=1920
 window/size/window_height_override=1080
 window/stretch/mode="viewport"
@@ -95,3 +96,7 @@ input_interact={
 
 3d_render/layer_2="non_x_ray"
 3d_render/layer_3="x_ray"
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
