@@ -10,11 +10,11 @@ This project strictly follows [Godot's style guide][1]. The file structure is gr
 
 -   All folders and files are `snake_case`.
 -   All folders which categorize their contents should be plural.
-    -   `scenes, actors, characters`
+	-   `scenes, actors, characters`
 -   All files should be in the folder which categorizes them.
-    -   `scenes > actors > characters > x_bot.tscn`
+	-   `scenes > actors > characters > x_bot.tscn`
 -   If there are two or more directly related files, they should be placed in their own sub-folder.
-    -   `scenes > actors > characters > player > player.gd, player.tscn`
+	-   `scenes > actors > characters > player > player.gd, player.tscn`
 
 <!-- ? Is this useful at all? The subfolders seem pretty self explanatory -->
 
