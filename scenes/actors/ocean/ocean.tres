@@ -183,7 +183,7 @@ void vertex() {
 
 
 // MultiplyAdd:7
-	vec4 n_out7p0 = fma(n_out12p0, vec4(n_out8p0, 0.0), vec4(n_out6p0, 0.0));
+	vec4 n_out7p0 = (n_out12p0 * vec4(n_out8p0, 0.0)) + vec4(n_out6p0, 0.0);
 
 
 // Output:0
@@ -253,7 +253,7 @@ void fragment() {
 
 }
 "
-graph_offset = Vector2(-1163.33, 70.6667)
+graph_offset = Vector2(-757.62, -89.2688)
 nodes/vertex/0/position = Vector2(1400, 200)
 nodes/vertex/2/node = SubResource("VisualShaderNodeInput_wbh5p")
 nodes/vertex/2/position = Vector2(-1800, -400)
@@ -300,7 +300,7 @@ nodes/fragment/9/position = Vector2(-1600, 1000)
 nodes/fragment/10/node = SubResource("VisualShaderNodeVectorOp_ieqyk")
 nodes/fragment/10/position = Vector2(-200, 600)
 nodes/fragment/11/node = SubResource("VisualShaderNodeVectorOp_ud5mw")
-nodes/fragment/11/position = Vector2(320, 600)
+nodes/fragment/11/position = Vector2(200, 600)
 nodes/fragment/12/node = SubResource("VisualShaderNodeFloatConstant_4fvjf")
 nodes/fragment/12/position = Vector2(1200, 600)
 nodes/fragment/13/node = SubResource("VisualShaderNodeFloatConstant_kjplt")

@@ -11,7 +11,8 @@ func _ready():
 	Global.unpaused.connect(_on_unpaused)
 
 	if Global.progress_state == Global.PROGRESS_STATE.GAME_STARTED:
-		cutscene.start()
+		pass
+		# cutscene.start()
 
 
 func _on_unpaused():

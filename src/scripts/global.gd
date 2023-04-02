@@ -4,11 +4,8 @@ signal paused
 signal unpaused
 signal progress_advanced(new_progress_state: int)
 
-# I'm debating on whether this should be named or not -
-# not is nicer, but less explicit:
-# if Global.progress_state >= Global.HOSPITAL_COMPLETED
-# vs
-# if Global.progress_state >= Global.PROGRESS_STATE.HOSPITAL_COMPLETED
+## This enum is named so that it can be used to populate export variable dropdowns, ex:
+## @export var end_state := Global.PROGRESS_STATE.GAME_STARTED
 enum PROGRESS_STATE {
 	GAME_STARTED,
 	HOSPITAL_ENTERED,

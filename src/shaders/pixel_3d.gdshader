@@ -15,6 +15,8 @@ uniform float highlight_strength : hint_range(0.0, 1.0, 0.01) = 0.1;
 uniform vec3 highlight_color : source_color = vec3(1.);
 uniform vec3 shadow_color : source_color = vec3(0.0);
 
+uniform float is_ocean_shader : hint_range(0.0, 1.0) = 0.0;
+
 varying mat4 model_view_matrix;
 
 
@@ -46,30 +48,57 @@ void vertex(){
 }
 
 void fragment() {
+	
+		
 	vec2 e = vec2(1./VIEWPORT_SIZE.xy);
 	
 //	Shadows
-	float depth_diff = 0.0;
-	float neg_depth_diff = .5;
-	if (shadows_enabled) {
-		float depth = getDepth(SCREEN_UV, DEPTH_TEXTURE, INV_PROJECTION_MATRIX);
-		float du = getDepth(SCREEN_UV+vec2(0., -1.)*e, DEPTH_TEXTURE, INV_PROJECTION_MATRIX);
-		float dr = getDepth(SCREEN_UV+vec2(1., 0.)*e, DEPTH_TEXTURE, INV_PROJECTION_MATRIX);
-		float dd = getDepth(SCREEN_UV+vec2(0., 1.)*e, DEPTH_TEXTURE, INV_PROJECTION_MATRIX);
-		float dl = getDepth(SCREEN_UV+vec2(-1., 0.)*e, DEPTH_TEXTURE, INV_PROJECTION_MATRIX);
-		depth_diff += clamp(du - depth, 0., 1.);
-		depth_diff += clamp(dd - depth, 0., 1.);
-		depth_diff += clamp(dr - depth, 0., 1.);
-		depth_diff += clamp(dl - depth, 0., 1.);
-		neg_depth_diff += depth - du;
-		neg_depth_diff += depth - dd;
-		neg_depth_diff += depth - dr;
-		neg_depth_diff += depth - dl;
-		neg_depth_diff = clamp(neg_depth_diff, 0., 1.);
-		neg_depth_diff = clamp(smoothstep(0.5, 0.5, neg_depth_diff)*10., 0., 1.);
-		depth_diff = smoothstep(0.2, 0.3, depth_diff);
-//		ALBEDO = vec3(neg_depth_diff);
-	}
+// SECOND AI REVISION
+ 	float depth_diff = 0.0;
+    float neg_depth_diff = .5;
+    if (shadows_enabled) {
+        float depth = getDepth(SCREEN_UV, DEPTH_TEXTURE, INV_PROJECTION_MATRIX);
+        float du = getDepth(SCREEN_UV + vec2(0., -1.) * e, DEPTH_TEXTURE, INV_PROJECTION_MATRIX);
+        float dr = getDepth(SCREEN_UV + vec2(1., 0.) * e, DEPTH_TEXTURE, INV_PROJECTION_MATRIX);
+        float dd = getDepth(SCREEN_UV + vec2(0., 1.) * e, DEPTH_TEXTURE, INV_PROJECTION_MATRIX);
+        float dl = getDepth(SCREEN_UV + vec2(-1., 0.) * e, DEPTH_TEXTURE, INV_PROJECTION_MATRIX);
+
+        // Calculate the average depth of the neighboring pixels
+        float avg_depth = (du + dr + dd + dl) / 4.0;
+        depth_diff = abs(depth - avg_depth);
+        depth_diff = smoothstep(0.2, 0.3, depth_diff);
+
+        // Calculate neg_depth_diff
+        neg_depth_diff += depth - du;
+        neg_depth_diff += depth - dd;
+        neg_depth_diff += depth - dr;
+        neg_depth_diff += depth - dl;
+        neg_depth_diff = clamp(neg_depth_diff, 0., 1.);
+        neg_depth_diff = clamp(smoothstep(0.5, 0.5, neg_depth_diff) * 10., 0., 1.);
+    }
+//	Original
+//
+//	float depth_diff = 0.0;
+//	float neg_depth_diff = .5;
+//	if (shadows_enabled) {
+//		float depth = getDepth(SCREEN_UV, DEPTH_TEXTURE, INV_PROJECTION_MATRIX);
+//		float du = getDepth(SCREEN_UV+vec2(0., -1.)*e, DEPTH_TEXTURE, INV_PROJECTION_MATRIX);
+//		float dr = getDepth(SCREEN_UV+vec2(1., 0.)*e, DEPTH_TEXTURE, INV_PROJECTION_MATRIX);
+//		float dd = getDepth(SCREEN_UV+vec2(0., 1.)*e, DEPTH_TEXTURE, INV_PROJECTION_MATRIX);
+//		float dl = getDepth(SCREEN_UV+vec2(-1., 0.)*e, DEPTH_TEXTURE, INV_PROJECTION_MATRIX);
+//		depth_diff += clamp(du - depth, 0., 1.);
+//		depth_diff += clamp(dd - depth, 0., 1.);
+//		depth_diff += clamp(dr - depth, 0., 1.);
+//		depth_diff += clamp(dl - depth, 0., 1.);
+//		neg_depth_diff += depth - du;
+//		neg_depth_diff += depth - dd;
+//		neg_depth_diff += depth - dr;
+//		neg_depth_diff += depth - dl;
+//		neg_depth_diff = clamp(neg_depth_diff, 0., 1.);
+//		neg_depth_diff = clamp(smoothstep(0.5, 0.5, neg_depth_diff)*10., 0., 1.);
+//		depth_diff = smoothstep(0.2, 0.3, depth_diff);
+////		ALBEDO = vec3(neg_depth_diff);
+//	}
 	
 //	Highlights
 	float normal_diff = 0.;
@@ -104,4 +133,12 @@ void fragment() {
 
 	float alpha_mask = depth_diff * float(shadows_enabled) + normal_diff * float(highlights_enabled);
 	ALPHA = clamp((alpha_mask) * 5., 0., 1.);
+	
+//	// AI thing to fix ocean is transparent
+//	if (is_ocean_shader == 0.0) {
+//        float alpha_mask = depth_diff * float(shadows_enabled) + normal_diff * float(highlights_enabled);
+//        ALPHA = clamp((alpha_mask) * 5., 0., 1.);
+//    } else {
+//        ALPHA = 1.0;
+//    }
 }

@@ -3,7 +3,7 @@
 [ext_resource type="Shader" uid="uid://dqwa0riotberd" path="res://scenes/actors/ocean/ocean.tres" id="1_tb03d"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_anv7u"]
-render_priority = 0
+render_priority = -1
 shader = ExtResource("1_tb03d")
 shader_parameter/ColorParameter = Color(0, 0.266667, 0.533333, 1)
 

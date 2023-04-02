@@ -1,8 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://kgggvwa4wnkn"]
+[gd_scene load_steps=11 format=3 uid="uid://kgggvwa4wnkn"]
 
 [ext_resource type="PackedScene" uid="uid://rup5h2ulx734" path="res://scenes/actors/game_base/game_base.tscn" id="1_f4y2u"]
 [ext_resource type="Script" path="res://scenes/user_interfaces/dialog_box/dialog_box.gd" id="2_xmuph"]
-[ext_resource type="Script" uid="uid://dqbc7kknro2ku" path="res://assets/dialogues/quiz.tres" id="3_2rc6e"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_q4xu3"]
 lightmap_size_hint = Vector2i(94, 126)
@@ -58,6 +57,7 @@ outline_size = 1
 [node name="Node" type="Node"]
 
 [node name="GameBase" parent="." instance=ExtResource("1_f4y2u")]
+end_state = 6
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.3, -2.6)
@@ -80,18 +80,6 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("2_xmuph")
-dialog_container = NodePath("DialogContainer")
-dialog_options = NodePath("OptionsContainer/Options")
-dialogue = NodePath("DialogContainer/MarginContainer/VBoxContainer/HBoxContainer/Dialogue")
-speaker_name = NodePath("DialogContainer/MarginContainer/VBoxContainer/SpeakerName")
-next_indicator = NodePath("DialogContainer/MarginContainer/VBoxContainer/HBoxContainer/SubViewport/NextIndicator")
-using_quiz = true
-dialogue_resource = ExtResource("3_2rc6e")
-head = ""
-auto_progress = false
-progress_timer = 2
-allow_typing = true
-typing_timer = 0.03
 
 [node name="OptionsContainer" type="MarginContainer" parent="DialogBox"]
 custom_minimum_size = Vector2(200, 0)
