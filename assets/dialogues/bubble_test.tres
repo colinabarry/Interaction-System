@@ -1,0 +1,7 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://b31fux4tnarr8"]
+
+[ext_resource type="Script" path="res://src/dialogues/bubble_test.gd" id="1_1pmwo"]
+
+[resource]
+resource_name = "bubble_test"
+script = ExtResource("1_1pmwo")

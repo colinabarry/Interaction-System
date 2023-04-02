@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://dbymi8imp7gre"]
+[gd_scene load_steps=5 format=3 uid="uid://dbymi8imp7gre"]
 
 [ext_resource type="Script" path="res://scenes/user_interfaces/speech_bubble/speech_bubble_3d.gd" id="1_ehxoq"]
+[ext_resource type="Resource" uid="uid://b31fux4tnarr8" path="res://assets/dialogues/bubble_test.tres" id="2_aigv0"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_l74qi"]
 viewport_path = NodePath("Texture")
@@ -26,6 +27,20 @@ billboard = 1
 double_sided = false
 texture = SubResource("ViewportTexture_l74qi")
 script = ExtResource("1_ehxoq")
+dialog_container = NodePath("Texture/MarginContainer")
+dialog_options = null
+dialogue = NodePath("Texture/MarginContainer/Text")
+speaker_name = null
+next_indicator = null
+using_quiz = false
+dialogue_resource = ExtResource("2_aigv0")
+head = "start"
+allow_typing = false
+typing_timer = null
+typing_timeout = 0.03
+auto_progress = true
+progress_timer = NodePath("NextPhraseTimer")
+progress_timeout = 2
 
 [node name="Texture" type="SubViewport" parent="."]
 disable_3d = true
@@ -59,34 +74,6 @@ text = "The quick brown fox jumped over the lazy dog, eh?"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
-
-[node name="MarginContainer" type="MarginContainer" parent="Texture/MarginContainer"]
-visible = false
-layout_mode = 2
-size_flags_vertical = 4
-theme_override_constants/margin_left = 8
-theme_override_constants/margin_top = 8
-theme_override_constants/margin_right = 8
-theme_override_constants/margin_bottom = 8
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Texture/MarginContainer/MarginContainer"]
-visible = false
-clip_contents = true
-layout_mode = 2
-alignment = 1
-
-[node name="SpeechBubble" type="SubViewportContainer" parent="."]
-visible = false
-clip_contents = true
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -272.0
-offset_right = 272.0
-offset_bottom = 200.0
-grow_horizontal = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
 
 [node name="NextPhraseTimer" type="Timer" parent="."]
 

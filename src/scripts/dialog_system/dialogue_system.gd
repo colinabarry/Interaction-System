@@ -1,5 +1,5 @@
 @tool
-class_name DialogueSystem extends Control
+class_name DialogueSystem extends Node
 ## A convenience implementation for creating and handling custom dialogues.
 ##
 ## [DialogSystem] utilizes [Dialog.Sequence] to abstract away much of the boilerplate required to set up a
@@ -275,7 +275,7 @@ func _input(event: InputEvent) -> void:
 		match event.as_text():
 			"BracketLeft":
 				show_box()
-				try_begin_dialog()
+				try_begin_dialogue()
 
 			_:
 				var temp = int(event.as_text())
@@ -438,7 +438,7 @@ func _setup_sequence(config: Dictionary) -> void:
 
 
 func _try_setup_export_node(node_name: String, export_name: String = "") -> bool:
-	var node_path: NodePath = get_export(export_name if export_name != "" else node_name)
+	var node_path = get_export(export_name if export_name != "" else node_name)
 	if node_path == null or node_path.is_empty():
 		return false
 
@@ -527,7 +527,7 @@ func get_dialogue_config(idx := 0) -> Dictionary:
 
 
 ## Try to start the [Dialog.Sequence] if it hasn't been already.
-func try_begin_dialog() -> void:
+func try_begin_dialogue() -> void:
 	if not dialog_sequence.cold:
 		return
 
@@ -625,4 +625,4 @@ func show_options() -> void:
 
 
 func __new_line_brackets_and_parens_is_super_not_aesthetic():
-	var so_this_is_to_break_the_formatter_for_this_file := "😎"
+	var _so_this_is_to_break_the_formatter_for_this_file := "😎"
