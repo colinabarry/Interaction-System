@@ -33,6 +33,9 @@ var jump_mini_over = false
 var pause_menu: TextureRect = (
 	preload("res://scenes/user_interfaces/pause_menu/pause_menu.tscn").instantiate()
 )
+var transition_rect: ColorRect = (
+	preload("res://scenes/user_interfaces/transition_rect/transition_rect.tscn").instantiate()
+)
 # var dialog_box: Control = (
 # 	preload("res://scenes/user_interfaces/dialog_box/dialog_box.tscn").instantiate()
 # )
@@ -44,6 +47,7 @@ func _ready() -> void:
 
 	# add_child(dialog_box)
 	add_child(pause_menu)
+	add_child(transition_rect)
 	# make sure that the game starts unpaused
 	resume()
 
@@ -62,6 +66,12 @@ func _input(event: InputEvent) -> void:
 
 	if event.is_action_pressed("force_quit"):
 		get_tree().quit()
+
+	if event.is_action_pressed("ui_up"):
+		transition_rect.fade_out()
+
+	if event.is_action_pressed("ui_down"):
+		transition_rect.fade_in()
 
 
 func get_correct_input_jumpgame():
