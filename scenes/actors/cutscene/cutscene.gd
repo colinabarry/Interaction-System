@@ -15,10 +15,15 @@ const animation_player_name := "AnimPlayer"
 @export var dialog_boxes: Array[DialogueSystem] = []
 @export var remove_player_control := true
 @export var start_on_ready := false
+@export var using_camera := false
+@export var fade_out_in_when_finished := true
 @export var start_delay := 0.0  # TODO: implement this
 # @export var auto_queue_animations := true # TODO: Implement "false"
 
 var animation_player: AnimationPlayer
+var camera: Camera3D
+
+@onready var transition_rect := Global.transition_rect
 
 
 func _enter_tree() -> void:
@@ -45,6 +50,13 @@ func _ready():
 	if start_on_ready:
 		start()
 
+	if using_camera:
+		# @Alex: I made it general, yay :)
+		camera = get_children().filter(func(child): return child is Camera3D).front()
+		# camera = get_node_or_null("Camera")
+		# assert(camera != null, "When `using_camera` is true, the cutscene must have a Camera3D named 'Camera' as a direct child.")
+
+
 
 ## Starts the cutscene. Removes player control (if applicable) and plays animation queue.
 func start():
@@ -62,6 +74,18 @@ func end():
 	cutscene_ended.emit(name)
 	if remove_player_control:
 		Global.player_has_control = true
+
+	if fade_out_in_when_finished:
+		transition_rect.fade_out()
+
+		await transition_rect.faded_out
+		if using_camera:
+			camera.current = false
+		transition_rect.fade_in()
+
+	else:
+		if using_camera:
+			camera.current = false
 
 
 func _on_AnimPlayer_animation_finished(_anim_name: StringName) -> void:

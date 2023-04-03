@@ -33,7 +33,7 @@ var jump_mini_over = false
 var pause_menu: TextureRect = (
 	preload("res://scenes/user_interfaces/pause_menu/pause_menu.tscn").instantiate()
 )
-var transition_rect: ColorRect = (
+var transition_rect: TransitionRect = (
 	preload("res://scenes/user_interfaces/transition_rect/transition_rect.tscn").instantiate()
 )
 # var dialog_box: Control = (

@@ -1,5 +1,7 @@
-extends ColorRect
+class_name TransitionRect extends ColorRect
 
+signal faded_out
+signal faded_in
 
 ## Fade over specified time to specified color from transparent
 func fade_out(fade_time := 1.0, start_color := Color.BLACK, end_color := Color.BLACK) -> bool:
@@ -14,6 +16,9 @@ func fade_out(fade_time := 1.0, start_color := Color.BLACK, end_color := Color.B
 
 	if start_color != end_color:
 		fade_tween.tween_property(self, "color", end_color, fade_time)
+
+	await fade_tween.finished
+	faded_out.emit()
 
 	return true
 
@@ -30,6 +35,7 @@ func fade_in(fade_time := 1.0, end_color := Color.BLACK) -> bool:
 		fade_tween.tween_property(self, "color", end_color, fade_time)
 
 	await fade_tween.finished
+	faded_in.emit()
 	visible = false
 
 	return true

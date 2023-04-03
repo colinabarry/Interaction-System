@@ -97,6 +97,7 @@ shape = SubResource("BoxShape3D_e7n1h")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0454607, 0)
 
 [node name="Cutscene" parent="." instance=ExtResource("12_vabny")]
+using_camera = true
 
 [node name="AnimPlayer" type="AnimationPlayer" parent="Cutscene"]
 libraries = {
