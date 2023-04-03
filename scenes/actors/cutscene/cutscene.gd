@@ -12,6 +12,7 @@ signal cutscene_ended(cutscene_name: String)
 
 const animation_player_name := "AnimPlayer"
 
+@export var dialog_boxes: Array[DialogueSystem] = []
 @export var remove_player_control := true
 @export var start_on_ready := false
 @export var start_delay := 0.0  # TODO: implement this
@@ -21,10 +22,12 @@ var animation_player: AnimationPlayer
 
 
 func _enter_tree() -> void:
-	# FIXME: if you open the scene itself, this triggers - big no no
 	# don't create the anim player again when the game runs
 	animation_player = get_node_or_null(animation_player_name)
 	if animation_player != null:
+		return
+
+	if get_tree().get_edited_scene_root().is_in_group("cutscene"):
 		return
 
 	animation_player = AnimationPlayer.new()
@@ -33,6 +36,7 @@ func _enter_tree() -> void:
 	# this line is needed to make the node appear in the editor
 	animation_player.set_owner(get_tree().get_edited_scene_root())
 	# animation_player.animation_finished.connect(_on_AnimPlayer_animation_finished)
+	print(get_tree().get_edited_scene_root().name)
 
 
 func _ready():

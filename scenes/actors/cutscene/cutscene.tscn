@@ -2,5 +2,5 @@
 
 [ext_resource type="Script" path="res://scenes/actors/cutscene/cutscene.gd" id="1_fa1bh"]
 
-[node name="Cutscene" type="Node"]
+[node name="Cutscene" type="Node" groups=["cutscene"]]
 script = ExtResource("1_fa1bh")
