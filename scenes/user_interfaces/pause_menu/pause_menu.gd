@@ -28,9 +28,9 @@ func hide_menu() -> void:
 	tween.tween_property(self, "modulate", Color.TRANSPARENT, 0.25)
 	# un-blur bg
 	tween.tween_property(self.get_material(), "shader_parameter/amount", 0.0, 0.25)
-	tween.set_parallel(false)
-	tween.tween_property(self, "visible", false, 0)
-	# visible = false
+
+	await tween.finished
+	visible = false
 
 
 func _on_quit_pressed() -> void:
