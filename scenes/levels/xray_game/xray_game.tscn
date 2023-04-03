@@ -105,22 +105,23 @@ omni_attenuation = 0.258816
 
 [node name="DoctorDialogue" parent="." instance=ExtResource("7_rdaa4")]
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+[node name="Floor" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.5)
 mesh = SubResource("PlaneMesh_84ueq")
 
-[node name="MeshInstance3D6" type="MeshInstance3D" parent="."]
+[node name="Back" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.32181, -4.8171)
+layers = 5
 mesh = SubResource("PlaneMesh_5mcca")
 
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+[node name="Ceiling" type="MeshInstance3D" parent="."]
 transform = Transform3D(-1, 6.28631e-06, 0, -6.28631e-06, -1, 0, 0, 0, 1, 0, 4.49584, -2.5)
 mesh = SubResource("PlaneMesh_84ueq")
 
-[node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
+[node name="LeftWall" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.40789, 2.43741, -2.5)
 mesh = SubResource("PlaneMesh_q6ldp")
 
-[node name="MeshInstance3D5" type="MeshInstance3D" parent="."]
+[node name="RightWall" type="MeshInstance3D" parent="."]
 transform = Transform3D(-1, 0, -6.28631e-06, 0, 1, 0, 6.28631e-06, 0, -1, 4.68108, 2.33983, -2.5)
 mesh = SubResource("PlaneMesh_q6ldp")
