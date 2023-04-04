@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bn22rx33xdinv"]
+[gd_scene load_steps=17 format=3 uid="uid://bn22rx33xdinv"]
 
 [ext_resource type="PackedScene" uid="uid://di1py7rf3ddw1" path="res://assets/models/2Story_Wide_2Doors_Mat.glb" id="1_mfcsh"]
 [ext_resource type="ArrayMesh" uid="uid://b5qglmgn4t3b" path="res://assets/models/Hospital.obj" id="2_iw31h"]
@@ -10,6 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://b42wfh3b11sqo" path="res://assets/models/Ambulance.glb" id="8_0utrj"]
 [ext_resource type="PackedScene" uid="uid://cvanes1gsjn86" path="res://assets/models/Street_Straight.glb" id="9_yhlf3"]
 [ext_resource type="PackedScene" uid="uid://owt6qjes6c7a" path="res://assets/models/Street_Curve.glb" id="10_eph56"]
+[ext_resource type="PackedScene" uid="uid://w1ck53yjaw22" path="res://assets/models/BirchTree_1.glb" id="11_2284k"]
+[ext_resource type="PackedScene" uid="uid://c4y2wjb4xeb8a" path="res://assets/models/Bush_1.glb" id="12_bf6so"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_qd4no"]
 
@@ -23,6 +25,15 @@ albedo_texture = ExtResource("5_3nij3")
 albedo_texture = ExtResource("7_gri6m")
 
 [node name="SandboxOverworld" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-0.181463, 0, 0.983398, 0, 1, 0, -0.983398, 0, -0.181463, -1.5148, 0.955694, -6.22602)
+
+[node name="Camera3D2" type="Camera3D" parent="."]
+transform = Transform3D(-0.818651, 0, -0.574291, 0, 1, 0, 0.574291, 0, -0.818651, 3.38782, 0.955694, -6.22602)
+
+[node name="Camera3D3" type="Camera3D" parent="."]
+transform = Transform3D(-0.137976, -0.12613, 0.982372, 0.0125513, 0.991556, 0.129072, -0.990356, 0.0301389, -0.135228, 6.58993, 1.11557, 4.06642)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(12, 0, 0, 0, 12, 0, 0, 0, 12, 0, 0, 0)
@@ -71,9 +82,6 @@ transform = Transform3D(-0.999998, 0, -0.00181523, 0, 1, 0, 0.00181523, 0, -0.99
 mesh = ExtResource("6_evja7")
 surface_material_override/0 = SubResource("StandardMaterial3D_fjnce")
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-0.348294, 0, 0.937385, 0, 1, 0, -0.937385, 0, -0.348294, -2.55407, 0.955694, -6.22602)
-
 [node name="Ambulance" parent="." instance=ExtResource("8_0utrj")]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 5.45533, 0.183053, -3.79421)
 
@@ -91,3 +99,12 @@ transform = Transform3D(-0.0553413, 0, -2.99949, 0, 3, 0, 2.99949, 0, -0.0553413
 
 [node name="Street_Curve" parent="." instance=ExtResource("10_eph56")]
 transform = Transform3D(0.0270697, 0, -2.99988, 0, 3, 0, 2.99988, 0, 0.0270697, 4.88639, -0.243418, -6.50241)
+
+[node name="BirchTree_1" parent="." instance=ExtResource("11_2284k")]
+transform = Transform3D(-0.92556, 0, 0.3786, 0, 1, 0, -0.3786, 0, -0.92556, 1.24223, 0.0553751, 8.60525)
+
+[node name="BirchTree_2" parent="." instance=ExtResource("11_2284k")]
+transform = Transform3D(0.998313, 0, -0.0580693, 0, 1, 0, 0.0580693, 0, 0.998313, 2.24658, 0.0553751, 10.638)
+
+[node name="Bush_1" parent="." instance=ExtResource("12_bf6so")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.27797, 0, 9.27593)
