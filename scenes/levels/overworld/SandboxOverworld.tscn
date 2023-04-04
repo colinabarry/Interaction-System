@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bn22rx33xdinv"]
+[gd_scene load_steps=13 format=3 uid="uid://bn22rx33xdinv"]
 
 [ext_resource type="PackedScene" uid="uid://di1py7rf3ddw1" path="res://assets/models/2Story_Wide_2Doors_Mat.glb" id="1_mfcsh"]
 [ext_resource type="ArrayMesh" uid="uid://b5qglmgn4t3b" path="res://assets/models/Hospital.obj" id="2_iw31h"]
@@ -8,8 +8,6 @@
 [ext_resource type="ArrayMesh" uid="uid://d0fnm336bk82k" path="res://assets/models/House5.obj" id="6_evja7"]
 [ext_resource type="Texture2D" uid="uid://dtq8foo170btn" path="res://assets/materials/textures/HouseTexture4.png" id="7_gri6m"]
 [ext_resource type="PackedScene" uid="uid://b42wfh3b11sqo" path="res://assets/models/Ambulance.glb" id="8_0utrj"]
-[ext_resource type="PackedScene" uid="uid://cvanes1gsjn86" path="res://assets/models/Street_Straight.glb" id="9_yhlf3"]
-[ext_resource type="PackedScene" uid="uid://owt6qjes6c7a" path="res://assets/models/Street_Curve.glb" id="10_eph56"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_qd4no"]
 
@@ -25,49 +23,49 @@ albedo_texture = ExtResource("7_gri6m")
 [node name="SandboxOverworld" type="Node3D"]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(12, 0, 0, 0, 12, 0, 0, 0, 12, 0, 0, 0)
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
 mesh = SubResource("PlaneMesh_qd4no")
 
 [node name="2Story_Wide_2Doors_Mat" parent="." instance=ExtResource("1_mfcsh")]
-transform = Transform3D(0.0206632, 0, 0.999786, 0, 1, 0, -0.999786, 0, 0.0206632, 1.16597, 0.309065, 4.61147)
+transform = Transform3D(-0.00575961, 0, 0.999983, 0, 1, 0, -0.999983, 0, -0.00575961, -1.01034, 0, 4.61147)
 
 [node name="Hospital2" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.00244348, 0, -0.999997, 0, 1, 0, 0.999997, 0, 0.00244348, 9.16033, 0.233521, -1.99621)
+transform = Transform3D(0.00244348, 0, -0.999997, 0, 1, 0, 0.999997, 0, 0.00244348, 8.47936, 0, -1.99621)
 mesh = ExtResource("2_iw31h")
 surface_material_override/0 = SubResource("StandardMaterial3D_583iy")
 
 [node name="House2" type="MeshInstance3D" parent="."]
-transform = Transform3D(-0.999981, 0, -0.00617849, 0, 1, 0, 0.00617849, 0, -0.999981, -8.44732, 0.273861, -4.35881)
+transform = Transform3D(-0.999981, 0, -0.00617849, 0, 1, 0, 0.00617849, 0, -0.999981, -8.44732, 0, -4.35881)
 mesh = ExtResource("4_ydm22")
 surface_material_override/0 = SubResource("StandardMaterial3D_lhxsg")
 
 [node name="House3" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.45386, 0.273861, -8.33912)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.45386, 0, -8.33912)
 mesh = ExtResource("4_ydm22")
 surface_material_override/0 = SubResource("StandardMaterial3D_lhxsg")
 
 [node name="House4" type="MeshInstance3D" parent="."]
-transform = Transform3D(-0.999809, 0, -0.0195289, 0, 1, 0, 0.0195289, 0, -0.999809, -3.4586, 0.273861, -4.39831)
+transform = Transform3D(-0.999809, 0, -0.0195289, 0, 1, 0, 0.0195289, 0, -0.999809, -3.4586, 0, -4.39831)
 mesh = ExtResource("4_ydm22")
 surface_material_override/0 = SubResource("StandardMaterial3D_lhxsg")
 
 [node name="House6" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.43783, 0.273861, -8.34204)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.43783, 0, -8.34204)
 mesh = ExtResource("4_ydm22")
 surface_material_override/0 = SubResource("StandardMaterial3D_lhxsg")
 
 [node name="House7" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.46553, 0.273861, -8.36304)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.46553, 0, -8.36304)
 mesh = ExtResource("4_ydm22")
 surface_material_override/0 = SubResource("StandardMaterial3D_lhxsg")
 
 [node name="House8" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.44671, 0.273861, -8.3506)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.44671, 0, -8.3506)
 mesh = ExtResource("4_ydm22")
 surface_material_override/0 = SubResource("StandardMaterial3D_lhxsg")
 
 [node name="House5" type="MeshInstance3D" parent="."]
-transform = Transform3D(-0.999998, 0, -0.00181523, 0, 1, 0, 0.00181523, 0, -0.999998, -6.04403, 0.273861, -4.04767)
+transform = Transform3D(-0.999998, 0, -0.00181523, 0, 1, 0, 0.00181523, 0, -0.999998, -6.04403, 0, -4.04767)
 mesh = ExtResource("6_evja7")
 surface_material_override/0 = SubResource("StandardMaterial3D_fjnce")
 
@@ -75,19 +73,4 @@ surface_material_override/0 = SubResource("StandardMaterial3D_fjnce")
 transform = Transform3D(-0.348294, 0, 0.937385, 0, 1, 0, -0.937385, 0, -0.348294, -2.55407, 0.955694, -6.22602)
 
 [node name="Ambulance" parent="." instance=ExtResource("8_0utrj")]
-transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 5.45533, 0.183053, -3.79421)
-
-[node name="Street_Straight" parent="." instance=ExtResource("9_yhlf3")]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -7.0083, -0.245022, -6.47254)
-
-[node name="Street_Straight2" parent="." instance=ExtResource("9_yhlf3")]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -1.03902, -0.245022, -6.47254)
-
-[node name="Street_Straight3" parent="." instance=ExtResource("9_yhlf3")]
-transform = Transform3D(-0.0553413, 0, -2.99949, 0, 3, 0, 2.99949, 0, -0.0553413, 4.85978, -0.245022, -0.612928)
-
-[node name="Street_Straight4" parent="." instance=ExtResource("9_yhlf3")]
-transform = Transform3D(-0.0553413, 0, -2.99949, 0, 3, 0, 2.99949, 0, -0.0553413, 4.75704, -0.245022, 5.35777)
-
-[node name="Street_Curve" parent="." instance=ExtResource("10_eph56")]
-transform = Transform3D(0.0270697, 0, -2.99988, 0, 3, 0, 2.99988, 0, 0.0270697, 4.88639, -0.243418, -6.50241)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 6.00092, 0.183053, -4.58093)
