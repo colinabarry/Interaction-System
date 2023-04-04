@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://c15qtwqmcc05l"
-path="res://.godot/imported/Hospital.glb-dd0491dec92d2af1bbee615ba293d460.scn"
+uid="uid://jfsqn3bb8rdv"
+path="res://.godot/imported/Fence2.glb-c3d1b4e2f989032079abd093d333cd90.scn"
 
 [deps]
 
-source_file="res://assets/models/Hospital.glb"
-dest_files=["res://.godot/imported/Hospital.glb-dd0491dec92d2af1bbee615ba293d460.scn"]
+source_file="res://assets/models/Fence2.glb"
+dest_files=["res://.godot/imported/Fence2.glb-c3d1b4e2f989032079abd093d333cd90.scn"]
 
 [params]
 

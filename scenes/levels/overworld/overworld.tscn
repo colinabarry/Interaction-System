@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://83wccexl0opk"]
+[gd_scene load_steps=23 format=3 uid="uid://83wccexl0opk"]
 
 [ext_resource type="Script" path="res://scenes/levels/overworld/overworld.gd" id="1_p8aow"]
 [ext_resource type="Script" path="res://src/scripts/sun.gd" id="2_7bfvv"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://d2nw0hqf5njea" path="res://scenes/actors/buildings/home.tscn" id="12_vqy45"]
 [ext_resource type="AnimationLibrary" uid="uid://bt5xhc6bqtva7" path="res://scenes/levels/overworld/game_start_anim_library.tres" id="13_qmq81"]
 [ext_resource type="PackedScene" uid="uid://cleywp2ohgotd" path="res://scenes/actors/buildings/gym.tscn" id="13_rn54b"]
+[ext_resource type="PackedScene" uid="uid://di1py7rf3ddw1" path="res://assets/models/2Story_Wide_2Doors_Mat.glb" id="14_87i6s"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rn7lj"]
 sky_top_color = Color(0.196078, 0.384314, 0.945098, 1)
@@ -59,6 +60,7 @@ transform = Transform3D(0.688785, 0, 0.724966, 0, 1, 0, -0.724966, 0, 0.688785, 
 [node name="Terrain" parent="." instance=ExtResource("11_pw2io")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00807953, -0.0340605, 0.0390472)
 cast_shadow = 0
+height_multiplier = 7.95
 
 [node name="Buildings" type="Node" parent="."]
 
@@ -95,10 +97,10 @@ shape = SubResource("BoxShape3D_e7n1h")
 
 [node name="Ocean" parent="." instance=ExtResource("9_3jw8t")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0454607, 0)
+visible = false
 
 [node name="Cutscene" parent="." instance=ExtResource("12_vabny")]
 using_camera = true
-fade_out_in_when_finished = true
 
 [node name="AnimPlayer" type="AnimationPlayer" parent="Cutscene"]
 libraries = {
@@ -108,6 +110,7 @@ libraries = {
 [node name="Camera" type="Camera3D" parent="Cutscene"]
 transform = Transform3D(-0.724173, 0.243763, -0.6451, 0, 0.935444, 0.353475, 0.689619, 0.255977, -0.677423, 11.7358, 3.13046, 14.0026)
 cull_mask = 1048571
+current = true
 far = 1000.0
 
 [node name="OceanFloor" type="MeshInstance3D" parent="."]
@@ -117,6 +120,9 @@ mesh = SubResource("PlaneMesh_nxbhm")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="OceanFloor/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_w0dn3")
+
+[node name="2Story_Wide_2Doors_Mat" parent="." instance=ExtResource("14_87i6s")]
+transform = Transform3D(1.87015, 0, -0.708908, 0, 2, 0, 0.708908, 0, 1.87015, 18.2133, 0.824852, -1.08823)
 
 [connection signal="body_entered" from="Buildings/Hospital/DoorHosp" to="Buildings/Hospital/DoorHosp" method="_on_body_entered"]
 [connection signal="body_exited" from="Buildings/Hospital/DoorHosp" to="Buildings/Hospital/DoorHosp" method="_on_body_exited"]

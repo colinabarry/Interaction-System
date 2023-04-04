@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://c15qtwqmcc05l"
-path="res://.godot/imported/Hospital.glb-dd0491dec92d2af1bbee615ba293d460.scn"
+uid="uid://i5eh4pn1enqb"
+path="res://.godot/imported/Hospital.glb-5cec67ec3f8c054365757badba36b37c.scn"
 
 [deps]
 
-source_file="res://assets/models/Hospital.glb"
-dest_files=["res://.godot/imported/Hospital.glb-dd0491dec92d2af1bbee615ba293d460.scn"]
+source_file="res://scenes/actors/heightmap_terrain/Hospital.glb"
+dest_files=["res://.godot/imported/Hospital.glb-5cec67ec3f8c054365757badba36b37c.scn"]
 
 [params]
 
