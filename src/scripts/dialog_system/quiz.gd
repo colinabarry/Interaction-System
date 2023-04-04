@@ -62,7 +62,7 @@ var _const_phrases := {
 # the head of the quiz's Sequence
 var _start = Dialog.new()
 # the end of the quiz's Sequence
-var _end = Dialog.new().on_before_all(_setup_end)
+var _end = Dialog.new()
 
 ## The total number of questions answered correctly.
 var score := 0
@@ -93,6 +93,8 @@ func _set_or_do_nothing(target: Variant, from: Variant, property: Variant) -> vo
 
 
 func _init(quiz_config: Dictionary, default_phrases := {}) -> void:
+	_end.connect("before_all", _setup_end)
+
 	_set_or_do_nothing(_const_phrases, default_phrases, default_phrases.keys())
 
 	_generate_quiz(quiz_config)
@@ -147,10 +149,10 @@ func _generate_quiz(quiz_config: Dictionary) -> void:
 
 		dialogs[key].answers = []
 
-		dialogs[key].answers.push_back(
-			_create_answer_dialog(quiz_config[key].correct, true).on_before_all(func(): score += 1)
-		)
+		var correct = _create_answer_dialog(quiz_config[key].correct, true)
+		correct.connect("before_all", func(): score += 1)
 
+		dialogs[key].answers.push_back(correct)
 		for wrong_answer in quiz_config[key].wrong:
 			dialogs[key].answers.push_back(_create_answer_dialog(wrong_answer, false))
 

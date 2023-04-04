@@ -1,0 +1,179 @@
+[gd_scene load_steps=9 format=3 uid="uid://bs2io07ftkq6d"]
+
+[ext_resource type="Script" path="res://scenes/user_interfaces/quiz_dialogue/quiz_dialogue.gd" id="1_07hsk"]
+[ext_resource type="Resource" uid="uid://dqbc7kknro2ku" path="res://assets/dialogues/quiz.tres" id="2_l2ls2"]
+
+[sub_resource type="Theme" id="Theme_wnvie"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jfwq6"]
+content_margin_left = 8.0
+content_margin_right = 8.0
+bg_color = Color(0.964706, 0.909804, 0.694118, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_bottom_left = 10
+corner_detail = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sxjxd"]
+bg_color = Color(0.964706, 0.909804, 0.694118, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="LabelSettings" id="LabelSettings_5gtdn"]
+line_spacing = -3.0
+font_size = 13
+font_color = Color(0, 0, 0, 0.807843)
+outline_size = 1
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_vbdr1"]
+viewport_path = NodePath("DialogContainer/MarginContainer/VBoxContainer/HBoxContainer/SubViewport")
+
+[sub_resource type="LabelSettings" id="LabelSettings_esx4e"]
+font_size = 20
+font_color = Color(0, 0, 0, 1)
+outline_size = 1
+
+[node name="QuizDialogue" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_07hsk")
+dialog_container = NodePath("DialogContainer")
+dialog_options = NodePath("OptionsContainer/Options")
+dialogue = NodePath("DialogContainer/MarginContainer/VBoxContainer/HBoxContainer/Dialogue")
+speaker_name = NodePath("DialogContainer/MarginContainer/VBoxContainer/SpeakerName")
+next_indicator = NodePath("DialogContainer/MarginContainer/VBoxContainer/HBoxContainer/SubViewport/NextIndicator")
+using_quiz = true
+dialogue_resource = ExtResource("2_l2ls2")
+head = "start"
+allow_typing = true
+typing_timer = NodePath("NextCharTimer")
+typing_timeout = 0.03
+auto_progress = false
+progress_timer = null
+progress_timeout = 2
+
+[node name="OptionsContainer" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -200.0
+offset_top = -181.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/margin_bottom = 150
+
+[node name="Options" type="ItemList" parent="OptionsContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+theme = SubResource("Theme_wnvie")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/guide_color = Color(0.964706, 0.909804, 0.694118, 1)
+theme_override_constants/v_separation = 2
+theme_override_constants/line_separation = 10
+theme_override_font_sizes/font_size = 10
+theme_override_styles/panel = SubResource("StyleBoxFlat_jfwq6")
+auto_height = true
+
+[node name="DialogContainer" type="MarginContainer" parent="."]
+offset_top = 215.0
+offset_right = 640.0
+offset_bottom = 360.0
+scale = Vector2(1.00231, 1)
+size_flags_vertical = 7
+mouse_filter = 2
+theme_override_constants/margin_left = 80
+theme_override_constants/margin_top = 11
+theme_override_constants/margin_right = 80
+theme_override_constants/margin_bottom = 32
+
+[node name="Panel" type="Panel" parent="DialogContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_sxjxd")
+
+[node name="MarginContainer" type="MarginContainer" parent="DialogContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 12
+
+[node name="VBoxContainer" type="VBoxContainer" parent="DialogContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = -5
+
+[node name="SpeakerName" type="Label" parent="DialogContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = -1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/outline_size = 4
+text = "qwerqwe"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="DialogContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Dialogue" type="Label" parent="DialogContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0, 0, 0, 0.811765)
+text = "qwerqwerqwerqwerqwerqwerqwerqwerqwerqwerqwerqrqwerqwerqwerqwerqwerqwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwee"
+label_settings = SubResource("LabelSettings_5gtdn")
+autowrap_mode = 3
+clip_text = true
+text_overrun_behavior = 4
+
+[node name="TextureRect" type="TextureRect" parent="DialogContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+texture = SubResource("ViewportTexture_vbdr1")
+stretch_mode = 2
+
+[node name="SubViewport" type="SubViewport" parent="DialogContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+transparent_bg = true
+size = Vector2i(13, 31)
+
+[node name="NextIndicator" type="Label" parent="DialogContainer/MarginContainer/VBoxContainer/HBoxContainer/SubViewport"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "V"
+label_settings = SubResource("LabelSettings_esx4e")
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="NextCharTimer" type="Timer" parent="."]
+
+[node name="NextPhraseTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true

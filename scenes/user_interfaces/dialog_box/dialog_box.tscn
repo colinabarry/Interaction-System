@@ -54,13 +54,6 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_p8d2j")
-using_quiz = false
-dialogue_resource = null
-head = "start"
-auto_progress = false
-progress_timer = 2
-allow_typing = true
-typing_timer = 0.03
 
 [node name="OptionsContainer" type="MarginContainer" parent="."]
 custom_minimum_size = Vector2(200, 0)

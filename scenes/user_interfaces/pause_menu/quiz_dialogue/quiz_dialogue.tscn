@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3]
+[gd_scene load_steps=8 format=3 uid="uid://dycgin4gvc2ty"]
 
 [ext_resource type="Script" path="res://scenes/user_interfaces/pause_menu/quiz_dialogue/quiz_dialogue.gd" id="1_2ro73"]
 

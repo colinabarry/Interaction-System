@@ -54,7 +54,7 @@ shadow_enabled = true
 script = ExtResource("2_7bfvv")
 
 [node name="Player" parent="." instance=ExtResource("3_hgl8u")]
-transform = Transform3D(0.688785, 0, 0.724966, 0, 1, 0, -0.724966, 0, 0.688785, 14.2832, 0.920034, 16.8279)
+transform = Transform3D(-0.939207, 0, 0.343351, 0, 1, 0, -0.343351, 0, -0.939207, 19.4781, 0.700426, 7.52665)
 
 [node name="Terrain" parent="." instance=ExtResource("11_pw2io")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00807953, -0.0340605, 0.0390472)
@@ -106,7 +106,7 @@ libraries = {
 }
 
 [node name="Camera" type="Camera3D" parent="Cutscene"]
-transform = Transform3D(-0.724173, 0.243763, -0.6451, 0, 0.935444, 0.353475, 0.689619, 0.255977, -0.677423, 11.7358, 3.13046, 14.0026)
+transform = Transform3D(-0.300707, 0.0798049, -0.950372, 0, 0.996493, 0.0836779, 0.953717, 0.0251625, -0.299652, 25.3024, 2.814, 2.34775)
 cull_mask = 1048571
 far = 1000.0
 
