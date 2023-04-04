@@ -9,19 +9,19 @@ const config := {
 		[
 			"The player is enjoying a peaceful walk in the park, taking in the sights and sounds around them."
 		],
-		"next": "p-t-1"
+		"next": "p_t_1"
 	},
-	"p-t-1":
+	"p_t_1":
 	{
 		"speaker": "Player (thinking)",
 		"phrases": ["It's such a beautiful day! I'm glad I decided to go for a walk."],
-		"next": "p-d-1"
+		"next": "p_d_1"
 	},
-	"p-d-1":
+	"p_d_1":
 	{
 		"speaker": "Player (dialogue)",
 		"phrases": ["Ouch! My knee! What just happened?"],
-		"next": "n-post-tear"
+		"next": "n_post_tear"
 	},
 	"n-post-tear":
 	{
@@ -30,14 +30,14 @@ const config := {
 		[
 			"The player feels a sudden, sharp pain in their knee, which could be a sign of an ACL injury."
 		],
-		"next": "p-t-2"
+		"next": "p_t_2"
 	},
-	"p-t-2":
+	"p_t_2":
 	{
 		"speaker": "Player (thinking)",
 		"phrases": ["I can barely walk. I need to call for help."],
-		"next": "p-d-2"
+		"next": "p_d_2"
 	},
-	"p-d-2":
+	"p_d_2":
 	{"speaker": "Player (dialogue)", "phrases": ["I need to call my parents and get to a doctor."]},
 }
