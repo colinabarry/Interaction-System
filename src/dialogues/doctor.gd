@@ -9,14 +9,12 @@ const intro = {
 		"using_typing": true,
 		"phrases":
 		[
-			"Hello there! I'm Dr. Wu. I heard you injured you knee while jumping. I'm sorry to hear that, but you've come to the right place.",
-			"It sounds like you might have hurt your ACL, which stands for Anterior Cruciate Ligament. The ACL is one of the four main ligaments in your knee, and it helps to stabilize and support your knee joint.",
-			"Injuries to the ACL are pretty common, especially in sports that involve jumping, quick stops, and changes in direction. It's important to learn how to prevent these injuries and take care of your body.",
-			"The good news is that most ACL injuries can be treated, and we're going to figure out the best plan for you.",
-			"Now, lets take a closer look at your knee using our state-of-the-art x-ray machine. This machine will allow you to see your bones and ligaments, so you can better understand the structure of your knee and the location of your ACL.",
-			"When you're ready, please step up to the x-ray machine.",
-			"You'll be able to move the x-ray window over your body to examine different parts of your knee. When you find key features, like your ACL or other ligaments, click on them to learn more about their functions and important in preventing injuries.",
-			"Good luck, and if you have any questions, don't hesitate to ask!"
+			"Hi, I'm Dr. Wu. I heard you hurt your knee while walking (lol). Don't worry, you're in good hands! It seems you might have injured your ACL, which stands for Anterior Cruciate Ligament.",
+			"The ACL is one of four key ligaments in your knee and helps with stability. ACL injuries are common in sports involving jumping, quick stops, and sudden changes in direction.",
+			"Learning prevention techniques is crucial, and the bright side is that ACL injuries are treatable. We'll find the best plan for your recovery.",
+			"Now, let's examine your knee using our advanced x-ray machine. This will help you see your bones and ligaments and pinpoint your ACL's location.",
+			"When you're ready, step up to the x-ray machine. Move the x-ray window over your body to explore your knee.",
+			"Click on key features like the ACL or other ligaments to learn more about their roles and injury prevention. Good luck, and feel free to ask any questions!"
 		],
 		"next": ["options"]
 	},
@@ -74,7 +72,8 @@ const intro = {
 }
 
 const outro = {
-	"start": {
+	"start":
+	{
 		"speaker": "Dr. Wu",
 		"using_typing": true,
 		"phrases": ["This is the end of the x-ray game.", "Good job!"]

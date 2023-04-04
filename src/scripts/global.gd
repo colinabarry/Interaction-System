@@ -67,11 +67,11 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("force_quit"):
 		get_tree().quit()
 
-	if event.is_action_pressed("ui_up"):
-		transition_rect.fade_out()
+	# if event.is_action_pressed("ui_up"):
+	# 	transition_rect.fade_out()
 
-	if event.is_action_pressed("ui_down"):
-		transition_rect.fade_in()
+	# if event.is_action_pressed("ui_down"):
+	# 	transition_rect.fade_in()
 
 
 func get_correct_input_jumpgame():

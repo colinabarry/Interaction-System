@@ -1,0 +1,7 @@
+[gd_resource type="Resource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/dialogues/intro.gd" id="1_bpptd"]
+
+[resource]
+resource_name = "Intro"
+script = ExtResource("1_bpptd")

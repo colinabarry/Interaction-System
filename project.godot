@@ -22,6 +22,7 @@ Dialogues="*res://src/scripts/dialog_system/dialogues.gd"
 
 [debug]
 
+settings/stdout/print_fps=true
 gdscript/warnings/incompatible_ternary=0
 gdscript/warnings/integer_division=0
 gdscript/warnings/assert_always_false=0
@@ -33,6 +34,7 @@ window/size/viewport_height=360
 window/size/always_on_top=true
 window/size/window_width_override=1920
 window/size/window_height_override=1080
+window/vsync/vsync_mode=0
 window/stretch/mode="viewport"
 
 [editor_plugins]
@@ -96,7 +98,3 @@ input_interact={
 
 3d_render/layer_2="non_x_ray"
 3d_render/layer_3="x_ray"
-
-[rendering]
-
-renderer/rendering_method="gl_compatibility"

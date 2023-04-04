@@ -65,7 +65,7 @@ func end_mini():
 	pass
 
 
-func _process(delta):
+func _physics_process(delta):
 	var direction = 1
 
 	if move_at_all:
