@@ -53,16 +53,27 @@ const PROPAGATED_PROPERTIES = ["speaker", "using_typing"]
 # the default phrases for the `start` and `end` Dialogs, as well as the
 # "correct" and "wrong" answer cases
 var _const_phrases := {
-	"start": ["Hello sweetie:)", "Time for a QUIZ!!!"],
-	"correct": ["WOOOOO THAT'S CORRECT!!"],
-	"wrong": ["I'm sorry, that's incorrect"],
-	"end": ["QUIZ OVER!", "You scored %s/%s!!!"],
+	"start":
+	[
+		"Welcome back! We're so proud of your progress during rehab. It seems like you've learned a lot about the ACL and how to take care of your knee.",
+		"To see how much you've learned, we thought it would be fun to have a little quiz about the ACL. Don't worry, it's just a friendly way to test your knowledge.",
+		"Ready? Let's start the quiz!"
+	],
+	"correct": ["Nice job, that's correct! You're really getting the hang of this."],
+	"wrong": ["Oops, that's not quite right. But don't worry, everyone makes mistakes."],
+	"end":
+	[
+		"Great job on the quiz! You've really gained a lot of knowledge about the ACL and how to prevent future injuries.",
+		"You scored %s/%s!!!",
+		"Remember to keep practicing what you've learned and stay consistent with your exercises. Your dedication will help ensure a healthy and active lifestyle!",
+		"We're always here to support you. Keep up the fantastic work!"
+	],
 }
 
 # the head of the quiz's Sequence
 var _start = Dialog.new()
 # the end of the quiz's Sequence
-var _end = Dialog.new().on_before_all(_setup_end)
+var _end = Dialog.new()
 
 ## The total number of questions answered correctly.
 var score := 0
@@ -93,6 +104,8 @@ func _set_or_do_nothing(target: Variant, from: Variant, property: Variant) -> vo
 
 
 func _init(quiz_config: Dictionary, default_phrases := {}) -> void:
+	_end.connect("before_all", _setup_end)
+
 	_set_or_do_nothing(_const_phrases, default_phrases, default_phrases.keys())
 
 	_generate_quiz(quiz_config)
@@ -147,10 +160,10 @@ func _generate_quiz(quiz_config: Dictionary) -> void:
 
 		dialogs[key].answers = []
 
-		dialogs[key].answers.push_back(
-			_create_answer_dialog(quiz_config[key].correct, true).on_before_all(func(): score += 1)
-		)
+		var correct = _create_answer_dialog(quiz_config[key].correct, true)
+		correct.connect("before_all", func(): score += 1)
 
+		dialogs[key].answers.push_back(correct)
 		for wrong_answer in quiz_config[key].wrong:
 			dialogs[key].answers.push_back(_create_answer_dialog(wrong_answer, false))
 
