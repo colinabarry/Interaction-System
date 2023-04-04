@@ -1,6 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://bxe270n3nyi4u"]
+[gd_scene load_steps=8 format=3]
 
-[ext_resource type="Script" path="res://scenes/user_interfaces/quiz_dialogue/quiz_dialogue.gd" id="1_2ro73"]
+[ext_resource type="Script" path="res://scenes/user_interfaces/pause_menu/quiz_dialogue/quiz_dialogue.gd" id="1_2ro73"]
 
 [sub_resource type="Theme" id="Theme_5jm3v"]
 
