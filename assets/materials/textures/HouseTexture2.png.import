@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dvg3bgfvv5neg"
-path.s3tc="res://.godot/imported/Hotel.png-92d24b0ef49a22f1939c2d647ce5e8aa.s3tc.ctex"
+uid="uid://ds774c7lre5gk"
+path.s3tc="res://.godot/imported/HouseTexture2.png-958be66bc885c3300f4b1999c907b460.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/materials/textures/Hotel.png"
-dest_files=["res://.godot/imported/Hotel.png-92d24b0ef49a22f1939c2d647ce5e8aa.s3tc.ctex"]
+source_file="res://assets/materials/textures/HouseTexture2.png"
+dest_files=["res://.godot/imported/HouseTexture2.png-958be66bc885c3300f4b1999c907b460.s3tc.ctex"]
 
 [params]
 
