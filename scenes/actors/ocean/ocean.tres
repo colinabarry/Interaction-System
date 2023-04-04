@@ -71,7 +71,7 @@ input_name = "time"
 
 [sub_resource type="Gradient" id="Gradient_hel2d"]
 interpolation_mode = 2
-offsets = PackedFloat32Array(0, 0.215232)
+offsets = PackedFloat32Array(0, 0.293501)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_3mqcs"]
 gradient = SubResource("Gradient_hel2d")
@@ -92,7 +92,6 @@ default_input_values = [0, Quaternion(0, 0, 0, 0), 1, Quaternion(0, 0, 0, 0)]
 op_type = 2
 
 [sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_sf3fw"]
-constant = 0.05
 
 [sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_wbh5p"]
 input_name = "time"
@@ -155,7 +154,7 @@ void vertex() {
 
 
 // FloatConstant:14
-	float n_out14p0 = 0.050000;
+	float n_out14p0 = 0.000000;
 
 
 // VectorOp:13
@@ -253,7 +252,7 @@ void fragment() {
 
 }
 "
-graph_offset = Vector2(-757.62, -89.2688)
+graph_offset = Vector2(-1112.67, -28.6667)
 nodes/vertex/0/position = Vector2(1400, 200)
 nodes/vertex/2/node = SubResource("VisualShaderNodeInput_wbh5p")
 nodes/vertex/2/position = Vector2(-1800, -400)
