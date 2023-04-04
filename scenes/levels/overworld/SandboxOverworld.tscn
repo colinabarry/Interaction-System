@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bn22rx33xdinv"]
+[gd_scene load_steps=12 format=3 uid="uid://bn22rx33xdinv"]
 
 [ext_resource type="PackedScene" uid="uid://di1py7rf3ddw1" path="res://assets/models/2Story_Wide_2Doors_Mat.glb" id="1_mfcsh"]
 [ext_resource type="ArrayMesh" uid="uid://b5qglmgn4t3b" path="res://assets/models/Hospital.obj" id="2_iw31h"]
@@ -7,7 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://4506edpblb0v" path="res://assets/materials/textures/HouseTexture3.png" id="5_3nij3"]
 [ext_resource type="ArrayMesh" uid="uid://d0fnm336bk82k" path="res://assets/models/House5.obj" id="6_evja7"]
 [ext_resource type="Texture2D" uid="uid://dtq8foo170btn" path="res://assets/materials/textures/HouseTexture4.png" id="7_gri6m"]
-[ext_resource type="PackedScene" uid="uid://b42wfh3b11sqo" path="res://assets/models/Ambulance.glb" id="8_0utrj"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_qd4no"]
 
@@ -30,7 +29,7 @@ mesh = SubResource("PlaneMesh_qd4no")
 transform = Transform3D(-0.00575961, 0, 0.999983, 0, 1, 0, -0.999983, 0, -0.00575961, -1.01034, 0, 4.61147)
 
 [node name="Hospital2" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.00244348, 0, -0.999997, 0, 1, 0, 0.999997, 0, 0.00244348, 8.47936, 0, -1.99621)
+transform = Transform3D(0.00244348, 0, -0.999997, 0, 1, 0, 0.999997, 0, 0.00244348, 8.47936, 0, -0.657177)
 mesh = ExtResource("2_iw31h")
 surface_material_override/0 = SubResource("StandardMaterial3D_583iy")
 
@@ -68,9 +67,3 @@ surface_material_override/0 = SubResource("StandardMaterial3D_lhxsg")
 transform = Transform3D(-0.999998, 0, -0.00181523, 0, 1, 0, 0.00181523, 0, -0.999998, -6.04403, 0, -4.04767)
 mesh = ExtResource("6_evja7")
 surface_material_override/0 = SubResource("StandardMaterial3D_fjnce")
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-0.348294, 0, 0.937385, 0, 1, 0, -0.937385, 0, -0.348294, -2.55407, 0.955694, -6.22602)
-
-[node name="Ambulance" parent="." instance=ExtResource("8_0utrj")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 6.00092, 0.183053, -4.58093)
