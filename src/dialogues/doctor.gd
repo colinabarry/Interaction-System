@@ -9,7 +9,7 @@ const intro = {
 		"using_typing": true,
 		"phrases":
 		[
-			"Hi, I'm Dr. Wu. I heard you hurt your knee while jumping. Don't worry, you're in good hands! It seems you might have injured your ACL, which stands for Anterior Cruciate Ligament.",
+			"Hi, I'm Dr. Wu. I heard you hurt your knee while walking (lol). Don't worry, you're in good hands! It seems you might have injured your ACL, which stands for Anterior Cruciate Ligament.",
 			"The ACL is one of four key ligaments in your knee and helps with stability. ACL injuries are common in sports involving jumping, quick stops, and sudden changes in direction.",
 			"Learning prevention techniques is crucial, and the bright side is that ACL injuries are treatable. We'll find the best plan for your recovery.",
 			"Now, let's examine your knee using our advanced x-ray machine. This will help you see your bones and ligaments and pinpoint your ACL's location.",

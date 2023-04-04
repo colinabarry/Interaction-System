@@ -96,6 +96,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_5d22s")
 auto_height = true
 
 [node name="DialogContainer" type="MarginContainer" parent="."]
+layout_mode = 0
 offset_top = 215.0
 offset_right = 640.0
 offset_bottom = 360.0
