@@ -1,11 +1,10 @@
-[gd_scene load_steps=16 format=3 uid="uid://b3td033keb4i0"]
+[gd_scene load_steps=19 format=3 uid="uid://b3td033keb4i0"]
 
 [ext_resource type="Script" path="res://scenes/levels/xray_game/xray_game.gd" id="1_g1w83"]
 [ext_resource type="PackedScene" uid="uid://rup5h2ulx734" path="res://scenes/actors/game_base/game_base.tscn" id="1_uo1eu"]
 [ext_resource type="PackedScene" uid="uid://badl76liavuak" path="res://scenes/actors/cutscene/cutscene.tscn" id="2_myibv"]
 [ext_resource type="Texture2D" uid="uid://cnofuvv78irl8" path="res://assets/materials/textures/Desktop - 3.png" id="3_hx8jg"]
 [ext_resource type="PackedScene" uid="uid://c257qcr1offo5" path="res://scenes/actors/characters/x_ray_bot.tscn" id="4_kok7v"]
-[ext_resource type="PackedScene" uid="uid://dyou2duiyc5l1" path="res://scenes/actors/x_ray_camera.tscn" id="5_3isgb"]
 [ext_resource type="PackedScene" uid="uid://b4clki5b1awao" path="res://scenes/user_interfaces/doctor_dialogue/doctor_dialogue.tscn" id="7_rdaa4"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_1oweg"]
@@ -53,6 +52,18 @@ _data = {
 "meet_doctor": SubResource("Animation_x7sk7")
 }
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_cjtcv"]
+viewport_path = NodePath("XRayCamera/SubViewport")
+
+[sub_resource type="Gradient" id="Gradient_3hpsw"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_hguhn"]
+gradient = SubResource("Gradient_3hpsw")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_v2y3q"]
+viewport_path = NodePath("XRayCamera2/SubViewport")
+
 [sub_resource type="PlaneMesh" id="PlaneMesh_84ueq"]
 size = Vector2(10, 5)
 
@@ -94,8 +105,59 @@ texture = ExtResource("3_hx8jg")
 [node name="XRayBot" parent="." instance=ExtResource("4_kok7v")]
 transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, 0.2676, -0.0215179, -1.34131)
 
-[node name="XRayCamera" parent="." instance=ExtResource("5_3isgb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0125923, 2.30874, -0.413185)
+[node name="XRayCamera" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.245685, 2.30237, -0.00935507)
+
+[node name="RemoteTransform" type="RemoteTransform3D" parent="XRayCamera"]
+remote_path = NodePath("../SubViewport/Camera")
+
+[node name="XRaySprite" type="Sprite3D" parent="XRayCamera"]
+transform = Transform3D(0.278, 0, 0, 0, 0.278, 0, 0, 0, 0.278, 0, 0, 0.01)
+sorting_offset = 1.0
+texture = SubResource("ViewportTexture_cjtcv")
+
+[node name="BGSprite" type="Sprite3D" parent="XRayCamera"]
+transform = Transform3D(0.4, 0, 0, 0, 55.76, 0, 0, 0, 0.4, 0, 0, 0.009)
+visible = false
+texture = SubResource("GradientTexture1D_hguhn")
+
+[node name="SubViewport" type="SubViewport" parent="XRayCamera"]
+transparent_bg = true
+size = Vector2i(320, 180)
+
+[node name="Camera" type="Camera3D" parent="XRayCamera/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.245685, 2.30237, -0.00935507)
+cull_mask = 1047556
+projection = 1
+size = 0.5
+far = 10.0
+
+[node name="XRayCamera2" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0125923, 2.30874, -0.00935507)
+metadata/_edit_group_ = true
+
+[node name="RemoteTransform" type="RemoteTransform3D" parent="XRayCamera2"]
+remote_path = NodePath("../SubViewport/Camera")
+
+[node name="XRaySprite" type="Sprite3D" parent="XRayCamera2"]
+transform = Transform3D(0.615, 0, 0, 0, 0.615, 0, 0, 0, 0.615, 0, 0, 0.00317079)
+sorting_offset = -1.0
+texture = SubResource("ViewportTexture_v2y3q")
+
+[node name="BGSprite" type="Sprite3D" parent="XRayCamera2"]
+transform = Transform3D(0.4, 0, 0, 0, 55.76, 0, 0, 0, 0.4, 0, 0, 0.009)
+visible = false
+texture = SubResource("GradientTexture1D_hguhn")
+
+[node name="SubViewport" type="SubViewport" parent="XRayCamera2"]
+size = Vector2i(1280, 720)
+
+[node name="Camera" type="Camera3D" parent="XRayCamera2/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0125923, 2.30874, -0.00935507)
+cull_mask = 1047554
+projection = 1
+size = 4.386
+far = 10.0
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1, 2.83822, -0.590923)

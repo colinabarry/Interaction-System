@@ -16,7 +16,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _physics_process(_delta):
 	if Global.get_jumpmini_over():
 		you_win.visible = true
 		pass

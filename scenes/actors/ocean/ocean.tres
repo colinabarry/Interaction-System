@@ -182,7 +182,7 @@ void vertex() {
 
 
 // MultiplyAdd:7
-	vec4 n_out7p0 = (n_out12p0 * vec4(n_out8p0, 0.0)) + vec4(n_out6p0, 0.0);
+	vec4 n_out7p0 = fma(n_out12p0, vec4(n_out8p0, 0.0), vec4(n_out6p0, 0.0));
 
 
 // Output:0

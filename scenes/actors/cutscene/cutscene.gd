@@ -55,9 +55,9 @@ func _ready():
 		camera = get_children().filter(func(child): return child is Camera3D).front()
 		if Global.progress_state == Global.PROGRESS_STATE.GAME_STARTED:
 			camera.current = true
+			pass
 		# camera = get_node_or_null("Camera")
 		# assert(camera != null, "When `using_camera` is true, the cutscene must have a Camera3D named 'Camera' as a direct child.")
-
 
 
 ## Starts the cutscene. Removes player control (if applicable) and plays animation queue.
@@ -88,6 +88,22 @@ func end():
 	else:
 		if using_camera:
 			camera.current = false
+
+
+func pause_animation():
+	animation_player.pause()
+
+
+func resume_animation():
+	animation_player.play()
+
+
+func fade_out():
+	transition_rect.fade_out(0.1)
+
+
+func fade_in():
+	transition_rect.fade_in()
 
 
 func _on_AnimPlayer_animation_finished(_anim_name: StringName) -> void:

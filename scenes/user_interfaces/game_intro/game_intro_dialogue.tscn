@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://cbn3fyccvvow3"]
+[gd_scene load_steps=9 format=3 uid="uid://cbn3fyccvvow3"]
 
-[ext_resource type="Script" path="res://src/scripts/dialog_system/dialogue_system.gd" id="1_4bwsg"]
+[ext_resource type="Script" path="res://scenes/user_interfaces/game_intro/game_intro.gd" id="1_j5qsv"]
+[ext_resource type="Resource" path="res://assets/dialogues/intro.tres" id="2_ay7ij"]
 
 [sub_resource type="Theme" id="Theme_wak5k"]
 
@@ -45,7 +46,7 @@ font_size = 20
 font_color = Color(0, 0, 0, 1)
 outline_size = 1
 
-[node name="DialogBox" type="Control"]
+[node name="GameIntroDialogue" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -53,20 +54,20 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-script = ExtResource("1_4bwsg")
+script = ExtResource("1_j5qsv")
 dialog_container = NodePath("DialogContainer")
 dialog_options = NodePath("OptionsContainer/Options")
 dialogue = NodePath("DialogContainer/MarginContainer/VBoxContainer/HBoxContainer/Dialogue")
 speaker_name = NodePath("DialogContainer/MarginContainer/VBoxContainer/SpeakerName")
 next_indicator = NodePath("DialogContainer/MarginContainer/VBoxContainer/HBoxContainer/SubViewport/NextIndicator")
 using_quiz = false
-dialogue_resource = null
+dialogue_resource = ExtResource("2_ay7ij")
 head = "start"
 allow_typing = true
-typing_timer = null
+typing_timer = NodePath("NextCharTimer")
 typing_timeout = 0.03
-auto_progress = false
-progress_timer = null
+auto_progress = true
+progress_timer = NodePath("NextPhraseTimer")
 progress_timeout = 2
 
 [node name="OptionsContainer" type="MarginContainer" parent="."]
@@ -110,10 +111,12 @@ theme_override_constants/margin_bottom = 32
 
 [node name="Panel" type="Panel" parent="DialogContainer"]
 layout_mode = 2
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_guupc")
 
 [node name="MarginContainer" type="MarginContainer" parent="DialogContainer"]
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 6
 theme_override_constants/margin_right = 16
