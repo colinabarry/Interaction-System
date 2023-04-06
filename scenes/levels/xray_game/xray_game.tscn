@@ -1,11 +1,45 @@
-[gd_scene load_steps=19 format=3 uid="uid://b3td033keb4i0"]
+[gd_scene load_steps=30 format=3 uid="uid://b3td033keb4i0"]
 
 [ext_resource type="Script" path="res://scenes/levels/xray_game/xray_game.gd" id="1_g1w83"]
-[ext_resource type="PackedScene" uid="uid://rup5h2ulx734" path="res://scenes/actors/game_base/game_base.tscn" id="1_uo1eu"]
 [ext_resource type="PackedScene" uid="uid://badl76liavuak" path="res://scenes/actors/cutscene/cutscene.tscn" id="2_myibv"]
+[ext_resource type="Script" path="res://scenes/actors/game_base/game_base.gd" id="2_o3wj0"]
+[ext_resource type="Script" path="res://scenes/actors/game_base/camera.gd" id="3_cq1jb"]
 [ext_resource type="Texture2D" uid="uid://cnofuvv78irl8" path="res://assets/materials/textures/Desktop - 3.png" id="3_hx8jg"]
 [ext_resource type="PackedScene" uid="uid://c257qcr1offo5" path="res://scenes/actors/characters/x_ray_bot.tscn" id="4_kok7v"]
+[ext_resource type="Script" path="res://scenes/levels/xray_game/x_ray_camera.gd" id="6_xe0we"]
 [ext_resource type="PackedScene" uid="uid://b4clki5b1awao" path="res://scenes/user_interfaces/doctor_dialogue/doctor_dialogue.tscn" id="7_rdaa4"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yvtuv"]
+sky_top_color = Color(0.196078, 0.384314, 0.945098, 1)
+sky_horizon_color = Color(0.573529, 0.646078, 0.770588, 1)
+ground_bottom_color = Color(0.0980392, 0.2, 0.137255, 1)
+ground_horizon_color = Color(0.573529, 0.646078, 0.770588, 1)
+
+[sub_resource type="Sky" id="Sky_gvdm1"]
+sky_material = SubResource("ProceduralSkyMaterial_yvtuv")
+
+[sub_resource type="Environment" id="Environment_lv6h8"]
+background_mode = 2
+sky = SubResource("Sky_gvdm1")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_m4np0"]
+size = Vector3(8, 0.25, 0.25)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gpfgj"]
+albedo_color = Color(0, 0.168627, 0.160784, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_lvycm"]
+size = Vector3(0.25, 4.5, 0.25)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_nyl1h"]
+size = Vector2(18, 5)
+orientation = 2
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_8dpne"]
+size = Vector2(5, 4.5)
+orientation = 2
 
 [sub_resource type="BoxMesh" id="BoxMesh_1oweg"]
 lightmap_size_hint = Vector2i(94, 126)
@@ -52,7 +86,7 @@ _data = {
 "meet_doctor": SubResource("Animation_x7sk7")
 }
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_cjtcv"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_xy2qj"]
 viewport_path = NodePath("XRayCamera/SubViewport")
 
 [sub_resource type="Gradient" id="Gradient_3hpsw"]
@@ -61,7 +95,10 @@ colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_hguhn"]
 gradient = SubResource("Gradient_3hpsw")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_v2y3q"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_h8yco"]
+size = Vector3(1.07036, 0.663206, 0.0283006)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_0tcad"]
 viewport_path = NodePath("XRayCamera2/SubViewport")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_84ueq"]
@@ -78,8 +115,101 @@ orientation = 0
 [node name="Node" type="Node"]
 script = ExtResource("1_g1w83")
 
-[node name="GameBase" parent="." instance=ExtResource("1_uo1eu")]
+[node name="GameBase" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.25, 0)
+script = ExtResource("2_o3wj0")
 end_state = 2
+metadata/_edit_group_ = true
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="GameBase"]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0.477745, -0.569093, 0.669248, -0.147521, 0.699021, 0.699719, 0, 0, 8)
+visible = false
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="GameBase"]
+environment = SubResource("Environment_lv6h8")
+
+[node name="Camera" type="Camera3D" parent="GameBase"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.25, 3)
+current = true
+script = ExtResource("3_cq1jb")
+
+[node name="Frame" type="Node3D" parent="GameBase"]
+
+[node name="Bottom" type="MeshInstance3D" parent="GameBase/Frame"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, 0)
+mesh = SubResource("BoxMesh_m4np0")
+surface_material_override/0 = SubResource("StandardMaterial3D_gpfgj")
+
+[node name="Top" type="MeshInstance3D" parent="GameBase/Frame"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.375, 0)
+mesh = SubResource("BoxMesh_m4np0")
+surface_material_override/0 = SubResource("StandardMaterial3D_gpfgj")
+
+[node name="Left" type="MeshInstance3D" parent="GameBase/Frame"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.875, 2.25, 0)
+mesh = SubResource("BoxMesh_lvycm")
+surface_material_override/0 = SubResource("StandardMaterial3D_gpfgj")
+
+[node name="Right" type="MeshInstance3D" parent="GameBase/Frame"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.875, 2.25, 0)
+mesh = SubResource("BoxMesh_lvycm")
+surface_material_override/0 = SubResource("StandardMaterial3D_gpfgj")
+
+[node name="Planes" type="Node3D" parent="GameBase/Frame"]
+
+[node name="BottomPlane" type="MeshInstance3D" parent="GameBase/Frame/Planes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.5, 0.125)
+mesh = SubResource("PlaneMesh_nyl1h")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_gpfgj")
+
+[node name="TopPlane" type="MeshInstance3D" parent="GameBase/Frame/Planes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7, 0.125)
+mesh = SubResource("PlaneMesh_nyl1h")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_gpfgj")
+
+[node name="LeftPlane" type="MeshInstance3D" parent="GameBase/Frame/Planes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, 2.25, 0.125)
+mesh = SubResource("PlaneMesh_8dpne")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_gpfgj")
+
+[node name="RightPlane" type="MeshInstance3D" parent="GameBase/Frame/Planes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5, 2.25, 0.125)
+mesh = SubResource("PlaneMesh_8dpne")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_gpfgj")
+
+[node name="Control" type="Control" parent="GameBase"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="GameBase/Control"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -90.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Button" type="Button" parent="GameBase/Control/MarginContainer"]
+layout_mode = 2
+text = "Overworld"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.3, -2.6)
@@ -103,22 +233,24 @@ sorting_offset = 2.0
 texture = ExtResource("3_hx8jg")
 
 [node name="XRayBot" parent="." instance=ExtResource("4_kok7v")]
-transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, 0.2676, -0.0215179, -1.34131)
+transform = Transform3D(-1.31134e-07, 0, -3, 0, 3, 0, 3, 0, -1.31134e-07, 1.66177, -1.60305, -1.34131)
 
-[node name="XRayCamera" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.245685, 2.30237, -0.00935507)
+[node name="XRayCamera" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0709728, 0.125519, 0)
+script = ExtResource("6_xe0we")
+metadata/_edit_group_ = true
 
 [node name="RemoteTransform" type="RemoteTransform3D" parent="XRayCamera"]
 remote_path = NodePath("../SubViewport/Camera")
 
 [node name="XRaySprite" type="Sprite3D" parent="XRayCamera"]
 transform = Transform3D(0.278, 0, 0, 0, 0.278, 0, 0, 0, 0.278, 0, 0, 0.01)
-sorting_offset = 1.0
-texture = SubResource("ViewportTexture_cjtcv")
+sorting_offset = 2.0
+texture = SubResource("ViewportTexture_xy2qj")
 
 [node name="BGSprite" type="Sprite3D" parent="XRayCamera"]
 transform = Transform3D(0.4, 0, 0, 0, 55.76, 0, 0, 0, 0.4, 0, 0, 0.009)
-visible = false
+sorting_offset = 1.0
 texture = SubResource("GradientTexture1D_hguhn")
 
 [node name="SubViewport" type="SubViewport" parent="XRayCamera"]
@@ -126,14 +258,17 @@ transparent_bg = true
 size = Vector2i(320, 180)
 
 [node name="Camera" type="Camera3D" parent="XRayCamera/SubViewport"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.245685, 2.30237, -0.00935507)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0709728, 0.125519, 0)
 cull_mask = 1047556
 projection = 1
 size = 0.5
 far = 10.0
 
+[node name="CollisionShape3D" type="CollisionShape3D" parent="XRayCamera"]
+shape = SubResource("BoxShape3D_h8yco")
+
 [node name="XRayCamera2" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0125923, 2.30874, -0.00935507)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0125923, 0.0587399, -0.00935507)
 metadata/_edit_group_ = true
 
 [node name="RemoteTransform" type="RemoteTransform3D" parent="XRayCamera2"]
@@ -142,7 +277,7 @@ remote_path = NodePath("../SubViewport/Camera")
 [node name="XRaySprite" type="Sprite3D" parent="XRayCamera2"]
 transform = Transform3D(0.615, 0, 0, 0, 0.615, 0, 0, 0, 0.615, 0, 0, 0.00317079)
 sorting_offset = -1.0
-texture = SubResource("ViewportTexture_v2y3q")
+texture = SubResource("ViewportTexture_0tcad")
 
 [node name="BGSprite" type="Sprite3D" parent="XRayCamera2"]
 transform = Transform3D(0.4, 0, 0, 0, 55.76, 0, 0, 0, 0.4, 0, 0, 0.009)
@@ -153,14 +288,14 @@ texture = SubResource("GradientTexture1D_hguhn")
 size = Vector2i(1280, 720)
 
 [node name="Camera" type="Camera3D" parent="XRayCamera2/SubViewport"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0125923, 2.30874, -0.00935507)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0125923, 0.0587399, -0.00935507)
 cull_mask = 1047554
 projection = 1
 size = 4.386
 far = 10.0
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1, 2.83822, -0.590923)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1, 0.58822, -0.590923)
 light_energy = 0.418
 omni_range = 20.6255
 omni_attenuation = 0.258816
@@ -168,22 +303,26 @@ omni_attenuation = 0.258816
 [node name="DoctorDialogue" parent="." instance=ExtResource("7_rdaa4")]
 
 [node name="Floor" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.25, -2.5)
 mesh = SubResource("PlaneMesh_84ueq")
 
 [node name="Back" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.32181, -4.8171)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.07181, -4.8171)
 layers = 5
 mesh = SubResource("PlaneMesh_5mcca")
 
 [node name="Ceiling" type="MeshInstance3D" parent="."]
-transform = Transform3D(-1, 6.28631e-06, 0, -6.28631e-06, -1, 0, 0, 0, 1, 0, 4.49584, -2.5)
+transform = Transform3D(-1, 6.28631e-06, 0, -6.28631e-06, -1, 0, 0, 0, 1, 0, 2.24584, -2.5)
 mesh = SubResource("PlaneMesh_84ueq")
 
 [node name="LeftWall" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.40789, 2.43741, -2.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.40789, 0.18741, -2.5)
 mesh = SubResource("PlaneMesh_q6ldp")
 
 [node name="RightWall" type="MeshInstance3D" parent="."]
-transform = Transform3D(-1, 0, -6.28631e-06, 0, 1, 0, 6.28631e-06, 0, -1, 4.68108, 2.33983, -2.5)
+transform = Transform3D(-1, 0, -6.28631e-06, 0, 1, 0, 6.28631e-06, 0, -1, 4.68108, 0.0898299, -2.5)
 mesh = SubResource("PlaneMesh_q6ldp")
+
+[connection signal="pressed" from="GameBase/Control/MarginContainer/Button" to="GameBase" method="_on_button_pressed" flags=18]
+[connection signal="mouse_entered" from="XRayCamera" to="XRayCamera" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="XRayCamera" to="XRayCamera" method="_on_mouse_exited"]
