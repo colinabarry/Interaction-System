@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cv5cd7ud7cpbi"
+path="res://.godot/imported/DeadTree_1.obj-2bd94c3b940a7d3fbb54e3e26d97b07f.mesh"
+
+[deps]
+
+files=["res://.godot/imported/DeadTree_1.obj-2bd94c3b940a7d3fbb54e3e26d97b07f.mesh"]
+
+source_file="res://assets/materials/Ultimate Stylized Nature - May 2022-20230404T003603Z-001/Ultimate Stylized Nature - May 2022/OBJ/DeadTree_1.obj"
+dest_files=["res://.godot/imported/DeadTree_1.obj-2bd94c3b940a7d3fbb54e3e26d97b07f.mesh", "res://.godot/imported/DeadTree_1.obj-2bd94c3b940a7d3fbb54e3e26d97b07f.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

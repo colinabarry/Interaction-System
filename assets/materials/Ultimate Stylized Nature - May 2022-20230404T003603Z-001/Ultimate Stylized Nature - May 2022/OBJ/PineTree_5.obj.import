@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://c4gd15yig1up1"
+path="res://.godot/imported/PineTree_5.obj-bdcd659fab980fefe8f5bdcc46e38f3b.mesh"
+
+[deps]
+
+files=["res://.godot/imported/PineTree_5.obj-bdcd659fab980fefe8f5bdcc46e38f3b.mesh"]
+
+source_file="res://assets/materials/Ultimate Stylized Nature - May 2022-20230404T003603Z-001/Ultimate Stylized Nature - May 2022/OBJ/PineTree_5.obj"
+dest_files=["res://.godot/imported/PineTree_5.obj-bdcd659fab980fefe8f5bdcc46e38f3b.mesh", "res://.godot/imported/PineTree_5.obj-bdcd659fab980fefe8f5bdcc46e38f3b.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

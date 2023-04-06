@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dw2c3rmaogb1"
+path="res://.godot/imported/Light_Chandelier.obj-9ca86f0ec071dc1725fb5a8a8b13d728.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Light_Chandelier.obj-9ca86f0ec071dc1725fb5a8a8b13d728.mesh"]
+
+source_file="res://assets/materials/Ultimate House Interior Pack - June 2020-20230403T230228Z-001/Ultimate House Interior Pack - June 2020/OBJ/Light_Chandelier.obj"
+dest_files=["res://.godot/imported/Light_Chandelier.obj-9ca86f0ec071dc1725fb5a8a8b13d728.mesh", "res://.godot/imported/Light_Chandelier.obj-9ca86f0ec071dc1725fb5a8a8b13d728.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

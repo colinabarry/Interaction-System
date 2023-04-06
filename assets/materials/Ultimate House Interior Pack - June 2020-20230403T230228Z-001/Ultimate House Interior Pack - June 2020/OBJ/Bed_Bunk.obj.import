@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://58tii12l0vbc"
+path="res://.godot/imported/Bed_Bunk.obj-0ab129b28132847e63b93f4facb58676.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Bed_Bunk.obj-0ab129b28132847e63b93f4facb58676.mesh"]
+
+source_file="res://assets/materials/Ultimate House Interior Pack - June 2020-20230403T230228Z-001/Ultimate House Interior Pack - June 2020/OBJ/Bed_Bunk.obj"
+dest_files=["res://.godot/imported/Bed_Bunk.obj-0ab129b28132847e63b93f4facb58676.mesh", "res://.godot/imported/Bed_Bunk.obj-0ab129b28132847e63b93f4facb58676.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

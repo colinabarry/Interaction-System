@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://bj410y0fkmt4v"
+path="res://.godot/imported/MapleTree_2.obj-a506ac228ac8f8c58d7b1ad63d731378.mesh"
+
+[deps]
+
+files=["res://.godot/imported/MapleTree_2.obj-a506ac228ac8f8c58d7b1ad63d731378.mesh"]
+
+source_file="res://assets/materials/Ultimate Stylized Nature - May 2022-20230404T003603Z-001/Ultimate Stylized Nature - May 2022/OBJ/MapleTree_2.obj"
+dest_files=["res://.godot/imported/MapleTree_2.obj-a506ac228ac8f8c58d7b1ad63d731378.mesh", "res://.godot/imported/MapleTree_2.obj-a506ac228ac8f8c58d7b1ad63d731378.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

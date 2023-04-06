@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://c3p2hovmq00bb"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_32wnq"]
+
+[node name="Grass" type="Node3D"]
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("WorldBoundaryShape3D_32wnq")

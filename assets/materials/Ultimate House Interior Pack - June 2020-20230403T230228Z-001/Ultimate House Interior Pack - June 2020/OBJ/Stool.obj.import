@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://c5yptjgv7sqtw"
+path="res://.godot/imported/Stool.obj-0c2d5baa0b62ba551e368cd470f1c4a8.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Stool.obj-0c2d5baa0b62ba551e368cd470f1c4a8.mesh"]
+
+source_file="res://assets/materials/Ultimate House Interior Pack - June 2020-20230403T230228Z-001/Ultimate House Interior Pack - June 2020/OBJ/Stool.obj"
+dest_files=["res://.godot/imported/Stool.obj-0c2d5baa0b62ba551e368cd470f1c4a8.mesh", "res://.godot/imported/Stool.obj-0c2d5baa0b62ba551e368cd470f1c4a8.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

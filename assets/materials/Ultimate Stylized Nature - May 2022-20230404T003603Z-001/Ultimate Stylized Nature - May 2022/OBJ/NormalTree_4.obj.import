@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://02103p2cn5sn"
+path="res://.godot/imported/NormalTree_4.obj-abd01700a55660171fc45be9f305b900.mesh"
+
+[deps]
+
+files=["res://.godot/imported/NormalTree_4.obj-abd01700a55660171fc45be9f305b900.mesh"]
+
+source_file="res://assets/materials/Ultimate Stylized Nature - May 2022-20230404T003603Z-001/Ultimate Stylized Nature - May 2022/OBJ/NormalTree_4.obj"
+dest_files=["res://.godot/imported/NormalTree_4.obj-abd01700a55660171fc45be9f305b900.mesh", "res://.godot/imported/NormalTree_4.obj-abd01700a55660171fc45be9f305b900.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

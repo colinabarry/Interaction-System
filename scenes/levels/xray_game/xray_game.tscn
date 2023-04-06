@@ -1,4 +1,8 @@
+<<<<<<< Updated upstream
 [gd_scene load_steps=19 format=3 uid="uid://b3td033keb4i0"]
+=======
+[gd_scene load_steps=20 format=3 uid="uid://b3td033keb4i0"]
+>>>>>>> Stashed changes
 
 [ext_resource type="Script" path="res://scenes/levels/xray_game/xray_game.gd" id="1_g1w83"]
 [ext_resource type="PackedScene" uid="uid://rup5h2ulx734" path="res://scenes/actors/game_base/game_base.tscn" id="1_uo1eu"]
@@ -6,6 +10,10 @@
 [ext_resource type="Texture2D" uid="uid://cnofuvv78irl8" path="res://assets/materials/textures/Desktop - 3.png" id="3_hx8jg"]
 [ext_resource type="PackedScene" uid="uid://c257qcr1offo5" path="res://scenes/actors/characters/x_ray_bot.tscn" id="4_kok7v"]
 [ext_resource type="PackedScene" uid="uid://b4clki5b1awao" path="res://scenes/user_interfaces/doctor_dialogue/doctor_dialogue.tscn" id="7_rdaa4"]
+[ext_resource type="ArrayMesh" uid="uid://ddey8rf1srj53" path="res://assets/materials/Ultimate House Interior Pack - June 2020-20230403T230228Z-001/Ultimate House Interior Pack - June 2020/OBJ/Carpet_1.obj" id="8_b0sg5"]
+[ext_resource type="ArrayMesh" uid="uid://bj6jo8he83tfg" path="res://assets/materials/Furniture Pack - Oct 2017-20230403T230116Z-001/Furniture Pack - Oct 2017/OBJ/ChairCushioned.obj" id="9_uebhq"]
+[ext_resource type="ArrayMesh" uid="uid://4042elh61gm4" path="res://assets/materials/Ultimate House Interior Pack - June 2020-20230403T230228Z-001/Ultimate House Interior Pack - June 2020/OBJ/Bookshelf.obj" id="10_ik1us"]
+[ext_resource type="ArrayMesh" uid="uid://beywp7hmc1k15" path="res://assets/materials/Ultimate House Interior Pack - June 2020-20230403T230228Z-001/Ultimate House Interior Pack - June 2020/OBJ/Houseplant_6.obj" id="11_b0a2a"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_1oweg"]
 lightmap_size_hint = Vector2i(94, 126)
@@ -171,12 +179,36 @@ omni_attenuation = 0.258816
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.5)
 mesh = SubResource("PlaneMesh_84ueq")
 
+<<<<<<< Updated upstream
 [node name="Back" type="MeshInstance3D" parent="."]
+=======
+[node name="Carpet" type="MeshInstance3D" parent="MeshInstance3D2"]
+transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, 0, 0.00864613, 0.113823)
+mesh = ExtResource("8_b0sg5")
+
+[node name="Chair" type="MeshInstance3D" parent="MeshInstance3D2"]
+transform = Transform3D(-1.39875, 0, -1.42951, 0, 2, 0, 1.42951, 0, -1.39875, 3.757, 0.036058, -1.134)
+mesh = ExtResource("9_uebhq")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="."]
+>>>>>>> Stashed changes
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.32181, -4.8171)
 layers = 5
 mesh = SubResource("PlaneMesh_5mcca")
 
+<<<<<<< Updated upstream
 [node name="Ceiling" type="MeshInstance3D" parent="."]
+=======
+[node name="EmptyBookshelf" type="MeshInstance3D" parent="MeshInstance3D6"]
+transform = Transform3D(0.95, 0, 0, 0, 0.95, 0, 0, 0, 0.95, -2.74869, -2.27117, 0.390968)
+mesh = ExtResource("10_ik1us")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.42785, -2.32182, 3.59097)
+mesh = ExtResource("11_b0a2a")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+>>>>>>> Stashed changes
 transform = Transform3D(-1, 6.28631e-06, 0, -6.28631e-06, -1, 0, 0, 0, 1, 0, 4.49584, -2.5)
 mesh = SubResource("PlaneMesh_84ueq")
 

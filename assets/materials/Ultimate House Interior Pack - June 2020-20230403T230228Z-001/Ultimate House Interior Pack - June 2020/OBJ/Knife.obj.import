@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cbupn77d28mt4"
+path="res://.godot/imported/Knife.obj-e5f96e255dd2c74916fc8ac0763a3183.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Knife.obj-e5f96e255dd2c74916fc8ac0763a3183.mesh"]
+
+source_file="res://assets/materials/Ultimate House Interior Pack - June 2020-20230403T230228Z-001/Ultimate House Interior Pack - June 2020/OBJ/Knife.obj"
+dest_files=["res://.godot/imported/Knife.obj-e5f96e255dd2c74916fc8ac0763a3183.mesh", "res://.godot/imported/Knife.obj-e5f96e255dd2c74916fc8ac0763a3183.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://d14hnygtv5lre"
+path="res://.godot/imported/Kitchen_1Drawers.obj-00c8a3f5e7cfceb8b2147f2efbc66831.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Kitchen_1Drawers.obj-00c8a3f5e7cfceb8b2147f2efbc66831.mesh"]
+
+source_file="res://assets/materials/Ultimate House Interior Pack - June 2020-20230403T230228Z-001/Ultimate House Interior Pack - June 2020/OBJ/Kitchen_1Drawers.obj"
+dest_files=["res://.godot/imported/Kitchen_1Drawers.obj-00c8a3f5e7cfceb8b2147f2efbc66831.mesh", "res://.godot/imported/Kitchen_1Drawers.obj-00c8a3f5e7cfceb8b2147f2efbc66831.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

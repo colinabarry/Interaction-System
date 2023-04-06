@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://d0uy2nmrs5p0f"
+path="res://.godot/imported/PalmTree_2.obj-330e66091fbf17c6e942f78417937e19.mesh"
+
+[deps]
+
+files=["res://.godot/imported/PalmTree_2.obj-330e66091fbf17c6e942f78417937e19.mesh"]
+
+source_file="res://assets/materials/Ultimate Stylized Nature - May 2022-20230404T003603Z-001/Ultimate Stylized Nature - May 2022/OBJ/PalmTree_2.obj"
+dest_files=["res://.godot/imported/PalmTree_2.obj-330e66091fbf17c6e942f78417937e19.mesh", "res://.godot/imported/PalmTree_2.obj-330e66091fbf17c6e942f78417937e19.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://6ishvhcbuhoy"
+path="res://.godot/imported/Bathroom_Towel.obj-b1aec2c77dcb9a0192c011e4c3200ed0.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Bathroom_Towel.obj-b1aec2c77dcb9a0192c011e4c3200ed0.mesh"]
+
+source_file="res://assets/materials/Ultimate House Interior Pack - June 2020-20230403T230228Z-001/Ultimate House Interior Pack - June 2020/OBJ/Bathroom_Towel.obj"
+dest_files=["res://.godot/imported/Bathroom_Towel.obj-b1aec2c77dcb9a0192c011e4c3200ed0.mesh", "res://.godot/imported/Bathroom_Towel.obj-b1aec2c77dcb9a0192c011e4c3200ed0.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

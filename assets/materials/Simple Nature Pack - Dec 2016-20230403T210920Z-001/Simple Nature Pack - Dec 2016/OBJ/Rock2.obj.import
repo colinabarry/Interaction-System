@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://3rug46euotf"
+path="res://.godot/imported/Rock2.obj-f0ed12cbbaaa9db95d9f1c9b2a496963.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Rock2.obj-f0ed12cbbaaa9db95d9f1c9b2a496963.mesh"]
+
+source_file="res://assets/materials/Simple Nature Pack - Dec 2016-20230403T210920Z-001/Simple Nature Pack - Dec 2016/OBJ/Rock2.obj"
+dest_files=["res://.godot/imported/Rock2.obj-f0ed12cbbaaa9db95d9f1c9b2a496963.mesh", "res://.godot/imported/Rock2.obj-f0ed12cbbaaa9db95d9f1c9b2a496963.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
