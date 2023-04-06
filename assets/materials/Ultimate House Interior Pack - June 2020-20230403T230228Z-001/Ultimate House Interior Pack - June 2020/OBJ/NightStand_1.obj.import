@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dprggubtb8dm5"
+path="res://.godot/imported/NightStand_1.obj-0629cf2cfa401d64e0da41dcad901ba1.mesh"
+
+[deps]
+
+files=["res://.godot/imported/NightStand_1.obj-0629cf2cfa401d64e0da41dcad901ba1.mesh"]
+
+source_file="res://assets/materials/Ultimate House Interior Pack - June 2020-20230403T230228Z-001/Ultimate House Interior Pack - June 2020/OBJ/NightStand_1.obj"
+dest_files=["res://.godot/imported/NightStand_1.obj-0629cf2cfa401d64e0da41dcad901ba1.mesh", "res://.godot/imported/NightStand_1.obj-0629cf2cfa401d64e0da41dcad901ba1.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

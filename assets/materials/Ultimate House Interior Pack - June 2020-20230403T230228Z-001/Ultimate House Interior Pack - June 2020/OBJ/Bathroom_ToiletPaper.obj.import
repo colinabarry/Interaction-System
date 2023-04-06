@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cccjjs7g82wwm"
+path="res://.godot/imported/Bathroom_ToiletPaper.obj-793e5f30651c2d9c83402dc11c5cd719.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Bathroom_ToiletPaper.obj-793e5f30651c2d9c83402dc11c5cd719.mesh"]
+
+source_file="res://assets/materials/Ultimate House Interior Pack - June 2020-20230403T230228Z-001/Ultimate House Interior Pack - June 2020/OBJ/Bathroom_ToiletPaper.obj"
+dest_files=["res://.godot/imported/Bathroom_ToiletPaper.obj-793e5f30651c2d9c83402dc11c5cd719.mesh", "res://.godot/imported/Bathroom_ToiletPaper.obj-793e5f30651c2d9c83402dc11c5cd719.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

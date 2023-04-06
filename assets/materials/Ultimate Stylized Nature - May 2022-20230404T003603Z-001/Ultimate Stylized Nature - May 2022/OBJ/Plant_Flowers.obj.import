@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dy3c551ofyn7n"
+path="res://.godot/imported/Plant_Flowers.obj-b2f8f3e5c09d697ba055474f5a51ab1a.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Plant_Flowers.obj-b2f8f3e5c09d697ba055474f5a51ab1a.mesh"]
+
+source_file="res://assets/materials/Ultimate Stylized Nature - May 2022-20230404T003603Z-001/Ultimate Stylized Nature - May 2022/OBJ/Plant_Flowers.obj"
+dest_files=["res://.godot/imported/Plant_Flowers.obj-b2f8f3e5c09d697ba055474f5a51ab1a.mesh", "res://.godot/imported/Plant_Flowers.obj-b2f8f3e5c09d697ba055474f5a51ab1a.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

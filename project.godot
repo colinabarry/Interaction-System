@@ -39,7 +39,7 @@ window/stretch/mode="viewport"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/gut/plugin.cfg", "res://addons/Todo_Manager/plugin.cfg")
+enabled=PackedStringArray("res://addons/gut/plugin.cfg", "res://addons/Todo_Manager/plugin.cfg", "res://addons/multimesh_scatter/plugin.cfg")
 
 [input]
 

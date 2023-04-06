@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://btk376lg7vbb7"
+path="res://.godot/imported/Column_Round2.obj-084d610b849baf14deb6d935ac5b2db3.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Column_Round2.obj-084d610b849baf14deb6d935ac5b2db3.mesh"]
+
+source_file="res://assets/materials/Ultimate House Interior Pack - June 2020-20230403T230228Z-001/Ultimate House Interior Pack - June 2020/OBJ/Column_Round2.obj"
+dest_files=["res://.godot/imported/Column_Round2.obj-084d610b849baf14deb6d935ac5b2db3.mesh", "res://.godot/imported/Column_Round2.obj-084d610b849baf14deb6d935ac5b2db3.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

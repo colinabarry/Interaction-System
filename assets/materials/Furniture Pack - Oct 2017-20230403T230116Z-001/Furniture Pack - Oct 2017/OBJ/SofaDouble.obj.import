@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dg1n0yeokojdj"
+path="res://.godot/imported/SofaDouble.obj-0a51e60173b6102ee3c26ad6fafbde54.mesh"
+
+[deps]
+
+files=["res://.godot/imported/SofaDouble.obj-0a51e60173b6102ee3c26ad6fafbde54.mesh"]
+
+source_file="res://assets/materials/Furniture Pack - Oct 2017-20230403T230116Z-001/Furniture Pack - Oct 2017/OBJ/SofaDouble.obj"
+dest_files=["res://.godot/imported/SofaDouble.obj-0a51e60173b6102ee3c26ad6fafbde54.mesh", "res://.godot/imported/SofaDouble.obj-0a51e60173b6102ee3c26ad6fafbde54.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

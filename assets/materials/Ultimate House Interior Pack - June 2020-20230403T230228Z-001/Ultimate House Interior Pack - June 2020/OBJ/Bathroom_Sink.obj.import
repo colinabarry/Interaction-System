@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://bmo7mxldow8e1"
+path="res://.godot/imported/Bathroom_Sink.obj-dc72de8c16b7e8130005937313e8eef7.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Bathroom_Sink.obj-dc72de8c16b7e8130005937313e8eef7.mesh"]
+
+source_file="res://assets/materials/Ultimate House Interior Pack - June 2020-20230403T230228Z-001/Ultimate House Interior Pack - June 2020/OBJ/Bathroom_Sink.obj"
+dest_files=["res://.godot/imported/Bathroom_Sink.obj-dc72de8c16b7e8130005937313e8eef7.mesh", "res://.godot/imported/Bathroom_Sink.obj-dc72de8c16b7e8130005937313e8eef7.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

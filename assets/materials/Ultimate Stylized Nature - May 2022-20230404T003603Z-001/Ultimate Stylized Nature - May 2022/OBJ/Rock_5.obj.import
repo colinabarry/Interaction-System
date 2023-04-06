@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://bka02txtglhwk"
+path="res://.godot/imported/Rock_5.obj-7fadaaf852a57bb14a1cd56492af5f34.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Rock_5.obj-7fadaaf852a57bb14a1cd56492af5f34.mesh"]
+
+source_file="res://assets/materials/Ultimate Stylized Nature - May 2022-20230404T003603Z-001/Ultimate Stylized Nature - May 2022/OBJ/Rock_5.obj"
+dest_files=["res://.godot/imported/Rock_5.obj-7fadaaf852a57bb14a1cd56492af5f34.mesh", "res://.godot/imported/Rock_5.obj-7fadaaf852a57bb14a1cd56492af5f34.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

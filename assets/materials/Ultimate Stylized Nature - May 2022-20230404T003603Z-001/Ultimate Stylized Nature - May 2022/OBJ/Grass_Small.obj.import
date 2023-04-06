@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://i6fage1kpt72"
+path="res://.godot/imported/Grass_Small.obj-3563ca7c7ab6deeb7d6a6a4e838a631b.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Grass_Small.obj-3563ca7c7ab6deeb7d6a6a4e838a631b.mesh"]
+
+source_file="res://assets/materials/Ultimate Stylized Nature - May 2022-20230404T003603Z-001/Ultimate Stylized Nature - May 2022/OBJ/Grass_Small.obj"
+dest_files=["res://.godot/imported/Grass_Small.obj-3563ca7c7ab6deeb7d6a6a4e838a631b.mesh", "res://.godot/imported/Grass_Small.obj-3563ca7c7ab6deeb7d6a6a4e838a631b.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

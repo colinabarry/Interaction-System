@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://bvw4dcjgk2sl3"
+path="res://.godot/imported/Window_Small1.obj-bdfda04b84435cc68b2ff56450f59846.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Window_Small1.obj-bdfda04b84435cc68b2ff56450f59846.mesh"]
+
+source_file="res://assets/materials/Ultimate House Interior Pack - June 2020-20230403T230228Z-001/Ultimate House Interior Pack - June 2020/OBJ/Window_Small1.obj"
+dest_files=["res://.godot/imported/Window_Small1.obj-bdfda04b84435cc68b2ff56450f59846.mesh", "res://.godot/imported/Window_Small1.obj-bdfda04b84435cc68b2ff56450f59846.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

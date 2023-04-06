@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://bk32lnp1fcbuc"
+path="res://.godot/imported/Flower_4_Clump.obj-685e75828bf5c30eee1bba81d71ebf8c.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Flower_4_Clump.obj-685e75828bf5c30eee1bba81d71ebf8c.mesh"]
+
+source_file="res://assets/materials/Ultimate Stylized Nature - May 2022-20230404T003603Z-001/Ultimate Stylized Nature - May 2022/OBJ/Flower_4_Clump.obj"
+dest_files=["res://.godot/imported/Flower_4_Clump.obj-685e75828bf5c30eee1bba81d71ebf8c.mesh", "res://.godot/imported/Flower_4_Clump.obj-685e75828bf5c30eee1bba81d71ebf8c.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

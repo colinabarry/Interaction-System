@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://d0bepra802ret"
+path="res://.godot/imported/Bush1.obj-6a333bab23c79ecde9abe490bd463f29.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Bush1.obj-6a333bab23c79ecde9abe490bd463f29.mesh"]
+
+source_file="res://assets/materials/Simple Nature Pack - Dec 2016-20230403T210920Z-001/Simple Nature Pack - Dec 2016/OBJ/Bush1.obj"
+dest_files=["res://.godot/imported/Bush1.obj-6a333bab23c79ecde9abe490bd463f29.mesh", "res://.godot/imported/Bush1.obj-6a333bab23c79ecde9abe490bd463f29.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

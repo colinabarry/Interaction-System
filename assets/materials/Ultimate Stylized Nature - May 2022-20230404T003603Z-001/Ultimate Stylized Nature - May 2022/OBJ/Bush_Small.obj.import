@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://rlncv8ssbcrm"
+path="res://.godot/imported/Bush_Small.obj-1bc30065748e03422571ab8b2a815d5d.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Bush_Small.obj-1bc30065748e03422571ab8b2a815d5d.mesh"]
+
+source_file="res://assets/materials/Ultimate Stylized Nature - May 2022-20230404T003603Z-001/Ultimate Stylized Nature - May 2022/OBJ/Bush_Small.obj"
+dest_files=["res://.godot/imported/Bush_Small.obj-1bc30065748e03422571ab8b2a815d5d.mesh", "res://.godot/imported/Bush_Small.obj-1bc30065748e03422571ab8b2a815d5d.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
