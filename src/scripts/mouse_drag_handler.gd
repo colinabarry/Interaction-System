@@ -5,10 +5,11 @@ var is_dragging := false
 var mouse_motion: InputEventMouseMotion
 
 
+# TODO: make the thing only trigger on mouse down so you don't get overlapping mouse drag events
 func _process(_delta: float) -> void:
 	if can_drag and Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 		is_dragging = true
-	if not Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+	else:  # TODO: go back to the better version of this
 		is_dragging = false
 
 
