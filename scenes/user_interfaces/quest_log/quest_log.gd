@@ -1,8 +1,8 @@
-extends Node
+extends Control
 
-@onready var quest_log = $Log
+@onready var quest_log := $Log
 
-var log_texts = {
+var log_texts := {
 	Global.PROGRESS_STATE.GAME_STARTED: "",
 	Global.PROGRESS_STATE.HOSPITAL_ENTERED: "",
 	Global.PROGRESS_STATE.HOSPITAL_COMPLETED: "Make your way over to the gym",
@@ -14,12 +14,12 @@ var log_texts = {
 }
 
 
-func _ready():
+func _ready() -> void:
 	quest_log.text = log_texts[Global.progress_state]
 	quest_log["hide" if quest_log.text == "" else "show"].call()
 	Global.progress_advanced.connect(on_progress_advanced)
 
 
-func on_progress_advanced(state: Global.PROGRESS_STATE):
+func on_progress_advanced(state: Global.PROGRESS_STATE) -> void:
 	quest_log.text = log_texts[state]
 	quest_log["hide" if quest_log.text == "" else "show"].call()
