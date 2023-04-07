@@ -1,6 +1,6 @@
 extends Control
 
-@export var hint_time := 3.0
+@export var hint_time := 0.0
 @export var hint_text := "Press 'E' to interact"
 
 @onready var hint := $HintText
