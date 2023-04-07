@@ -38,17 +38,16 @@ func _init(signal_names: Array, store_signal_name_without_groups := true, log_em
 			"emitted": false,
 			"emit": func():
 				if _signals[name].emitted:
-					return
+					return false
 
 				if log_emits:
 					print("EMIT> %s" % name)
 
 				emit_signal(name)
 				_signals[name].emitted = true
-		}
 
-		if group_names.size() == 0:
-			continue
+				return true
+		}
 
 		for group_name in group_names:
 			if group_name in _group_map:
@@ -63,8 +62,7 @@ func _init(signal_names: Array, store_signal_name_without_groups := true, log_em
 ## [br]Call [method reset] with the same [param signal_name] to allow the signal to be emitted again.
 func emit_once(signal_name: String) -> bool:
 	if signal_name in _signals:
-		_signals[signal_name].emit.call()
-		return true
+		return _signals[signal_name].emit.call()
 
 	return false
 
