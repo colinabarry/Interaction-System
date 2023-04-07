@@ -92,6 +92,12 @@ var export_properties := {
 		"editor_description":
 		"Do you want [Dialog]s in the [Dialog.Sequence] to be capable of using a 'typing' animation?"
 	},
+	"tween_visibility": {
+		"value": false,
+		"type": TYPE_BOOL,
+		"usage": _get_usage("allow_typing", true),
+		"editor_description": "Do you want to have the typing effect be done by tweening character visibility instead?"
+	},
 	"typing_timer":
 	{
 		"value": null,
@@ -219,6 +225,7 @@ func _get_property_list() -> Array[Dictionary]:
 var is_visible := false
 ## A [Tween] for animating the [Node] assigned to [member next_indicator] up and down.
 var indicator_tweener: Tween
+var text_visibility_tweener: Tween
 
 var dialogs: Dictionary
 ## The [Dialog.Sequence] controlling the current dialogue.
@@ -350,7 +357,7 @@ func _on_before_all_options_only() -> void:
 # SEQUENCE SIGNALS >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 func _on_dialog_sequence_changed() -> void:
-	dialog_sequence.allow_typing = get_export("allow_typing")
+	dialog_sequence.allow_typing = get_export("allow_typing") and not get_export("tween_visibility")
 
 	_setup_char_timer()  # dependent on the current Sequence
 	_setup_speaker_name()  # dependent on the current Sequence
@@ -364,9 +371,9 @@ func _on_seq_before_each() -> void:
 	if _next_indicator:
 		_next_indicator.hide()
 
-## Runs after the active phrase of [member Dialog.phrases] is updated and the full text is displayed.
+## Runs after the active phrase of [member Dialog.phrases] is updated, but before the text is set to the dialogue.
 func _on_seq_after_each() -> void:
-	if _next_indicator and not dialog_sequence.ready_for_options():
+	if _next_indicator and not dialog_sequence.ready_for_options() and not get_export("tween_visibility"):
 		_next_indicator.show()
 
 	if get_export("auto_progress") and (dialog_sequence.still_talking() or (dialog_sequence.has_next() and not dialog_sequence.has_options())):
@@ -471,6 +478,9 @@ func _setup_dialogue() -> void:
 
 	_dialogue.gui_input.connect(_on_dialogue_clicked)
 
+	if get_export("tween_visibility"):
+		_dialogue.visible_characters_behavior = TextServer.VC_CHARS_AFTER_SHAPING
+
 
 func _setup_speaker_name() -> void:
 	if not _try_setup_export_node("speaker_name"):
@@ -483,13 +493,16 @@ func _setup_next_indicator() -> void:
 	if not _try_setup_export_node("next_indicator"):
 		return
 
+	if indicator_tweener:
+		return
+
 	indicator_tweener = create_tween().set_loops()
 	indicator_tweener.tween_property(_next_indicator, "position", Vector2(0, -5), 0.5).as_relative()
 	indicator_tweener.tween_property(_next_indicator, "position", Vector2(0, 5), 0.5).as_relative()
 
 
 func _setup_char_timer() -> void:
-	if not get_export("allow_typing"):
+	if not get_export("allow_typing") or get_export("tween_visibility"):
 		return
 
 	assert(_try_setup_export_node("next_char_timer", "typing_timer"), "You must set the 'typing_timer' export variable to the path of the Timer node you want to use for typing.")
@@ -536,6 +549,7 @@ func try_begin_dialogue() -> void:
 		return
 
 	_dialogue.text = dialog_sequence.begin_dialog()
+	_try_tween_dialogue_visibility()
 
 
 func handle_next_char() -> void:
@@ -543,12 +557,20 @@ func handle_next_char() -> void:
 
 
 func handle_next_phrase() -> void:
+	if get_export("tween_visibility") and text_visibility_tweener and text_visibility_tweener.is_running():
+		text_visibility_tweener.stop()
+		_dialogue.visible_characters = -1
+		text_visibility_tweener.emit_signal("finished")
+		return
+
 	var active_text = dialog_sequence.next()
 
 	if dialog_sequence.dead:
 		return
 
 	_dialogue.text = active_text
+
+	_try_tween_dialogue_visibility()
 
 
 ## Choose an option from the current set of options.
@@ -562,6 +584,7 @@ func choose_option(idx: int) -> void:
 		show_box()
 
 	_dialogue.text = dialog_sequence.choose_option(idx)
+	_try_tween_dialogue_visibility()
 
 
 ## Change the active [Dialog.Sequence] to a new one.
@@ -624,6 +647,19 @@ func show_options() -> void:
 	for option_name in dialog_sequence.get_option_names():
 		_dialog_options.add_item(option_name)
 		_dialog_options.show()
+
+
+func _try_tween_dialogue_visibility():
+	if get_export("tween_visibility"):
+		var tween_time: float = _dialogue.text.length() * get_export("typing_timeout")
+		_dialogue.visible_ratio = 0
+		print("tween_time: %s" % tween_time)
+		text_visibility_tweener = create_tween()
+		text_visibility_tweener.tween_property(_dialogue, "visible_ratio", 1.0, tween_time)
+		text_visibility_tweener.finished.connect(func():
+			if _next_indicator and not dialog_sequence.ready_for_options():
+				_next_indicator.show()
+			)
 
 
 

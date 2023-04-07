@@ -64,6 +64,7 @@ using_quiz = false
 dialogue_resource = ExtResource("2_a7jag")
 head = "start"
 allow_typing = true
+tween_visibility = false
 typing_timer = NodePath("NextCharTimer")
 typing_timeout = 0.03
 auto_progress = false
