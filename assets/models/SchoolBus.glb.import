@@ -28,5 +28,32 @@ animation/fps=30
 animation/trimming=false
 animation/remove_immutable_tracks=true
 import_script/path=""
-_subresources={}
+_subresources={
+"materials": {
+"Bumper": {
+"use_external/enabled": true,
+"use_external/path": "res://assets/materials/textures/Bumper.tres"
+},
+"Details": {
+"use_external/enabled": true,
+"use_external/path": "res://assets/materials/textures/Grey.tres"
+},
+"Lights": {
+"use_external/enabled": true,
+"use_external/path": "res://assets/materials/textures/Lights.tres"
+},
+"Wheel": {
+"use_external/enabled": true,
+"use_external/path": "res://assets/materials/textures/Material.tres"
+},
+"Windows": {
+"use_external/enabled": true,
+"use_external/path": "res://assets/materials/textures/Windows.tres"
+},
+"Yellow": {
+"use_external/enabled": true,
+"use_external/path": "res://assets/materials/textures/Yellow.tres"
+}
+}
+}
 gltf/embedded_image_handling=1
