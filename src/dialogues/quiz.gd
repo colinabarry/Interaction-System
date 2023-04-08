@@ -8,7 +8,7 @@ const config := {
 		"question": "What does ACL stand for?",
 		"correct": "Anterior Cruciate Ligament",
 		"wrong":
-		["Automatic Control Ligament", "Acute Collateral Ligament", "Active Condyle Ligament"]  #@ghgsrt BALL
+		["Automatic Control Ligament", "Acute Collateral Ligament", "Active Condyle Ligament"]
 	},
 	"q2":
 	{
@@ -37,7 +37,7 @@ const config := {
 	},
 	"q5":
 	{
-		"question": "How many main ligaments are there in the knee, including the ACL?",
+		"question": "How many main ligaments are there in the knee, including the ACL?",  # chopin bloc
 		"correct": "Four",
 		"wrong": ["Two", "Three", "Five"]
 	},
