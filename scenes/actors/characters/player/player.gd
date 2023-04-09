@@ -7,13 +7,15 @@ extends CharacterBody3D
 ##
 ## @tutorial: google.com
 
-const WALK_SPEED := 2.0
-const SPRINT_SPEED := 15.0
+const WALK_SPEED := 0.3
+const SPRINT_SPEED := 1
 const JUMP_VELOCITY := 4.5
 const MOUSE_SENSITIVITY := 0.3
 
-@export var min_camera_pitch := -40.0
-@export var max_camera_pitch := 20.0
+# @export var min_camera_pitch := -40.0
+# @export var max_camera_pitch := 20.0
+@export var min_camera_pitch := -50.0
+@export var max_camera_pitch := 30.0
 
 var current_speed: float
 var input_dir: Vector2
@@ -107,7 +109,7 @@ func _physics_process(delta: float) -> void:
 		velocity.z = move_toward(velocity.z, 0, current_speed)
 
 	# camera_origin is "top level" in order to rotate independently, so the position must be updated manually
-	camera_origin.position = lerp(camera_origin.position, position + Vector3(0, 1.6, 0), 0.5)
+	camera_origin.position = lerp(camera_origin.position, position + Vector3(0, 0.25, 0), 0.5)
 
 	# move - this uses `velocity`, which is built-in to CharacterBody3D
 	move_and_slide()
