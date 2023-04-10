@@ -1,10 +1,9 @@
 @tool
-class_name Cutscene
-extends Node
+class_name Cutscene extends Node
 
 ## A node to create cutscenes
 ##
-## Drag-and-drop to instance this node in the editor. It will create an
+## Instance this node in the editor. It will create an
 ## AnimationPlayer as a child of itself. Use the AnimationPlayer to create as
 ## many animations as desired, which will be played in sequence.
 
@@ -17,7 +16,7 @@ const animation_player_name := "AnimPlayer"
 @export var start_on_ready := false
 @export var using_camera := false
 @export var fade_out_in_when_finished := false
-@export var start_delay := 0.0  # TODO: implement this
+# @export var start_delay := 0.0  # TODO: implement this
 # @export var auto_queue_animations := true # TODO: Implement "false"
 
 var animation_player: AnimationPlayer
@@ -32,16 +31,11 @@ func _enter_tree() -> void:
 	if animation_player != null:
 		return
 
+	# don't create the anim player inside the cutscene scene
 	if get_tree().get_edited_scene_root().is_in_group("cutscene"):
 		return
 
-	animation_player = AnimationPlayer.new()
-	animation_player.name = animation_player_name
-	add_child(animation_player)
-	# this line is needed to make the node appear in the editor
-	animation_player.set_owner(get_tree().get_edited_scene_root())
-	# animation_player.animation_finished.connect(_on_AnimPlayer_animation_finished)
-	print(get_tree().get_edited_scene_root().name)
+	_create_anim_player()
 
 
 func _ready():
@@ -101,6 +95,14 @@ func fade_out():
 
 func fade_in():
 	transition_rect.fade_in()
+
+
+func _create_anim_player() -> void:
+	animation_player = AnimationPlayer.new()
+	animation_player.name = animation_player_name
+	add_child(animation_player)
+	# this line is needed to make the node appear in the editor
+	animation_player.set_owner(get_tree().get_edited_scene_root())
 
 
 func _on_AnimPlayer_animation_finished(_anim_name: StringName) -> void:

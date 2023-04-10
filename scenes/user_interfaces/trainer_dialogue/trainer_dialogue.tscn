@@ -53,6 +53,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("1_ija2y")
 dialog_container = NodePath("DialogContainer")
 dialog_options = NodePath("OptionsContainer/Options")
@@ -63,6 +64,7 @@ using_quiz = false
 dialogue_resource = ExtResource("2_3quc0")
 head = "start"
 allow_typing = true
+tween_visibility = false
 typing_timer = NodePath("NextCharTimer")
 typing_timeout = 0.03
 auto_progress = false
@@ -81,6 +83,7 @@ offset_left = -200.0
 offset_top = -181.0
 grow_horizontal = 0
 grow_vertical = 0
+mouse_filter = 2
 theme_override_constants/margin_bottom = 150
 
 [node name="Options" type="ItemList" parent="OptionsContainer"]
@@ -110,10 +113,12 @@ theme_override_constants/margin_bottom = 32
 
 [node name="Panel" type="Panel" parent="DialogContainer"]
 layout_mode = 2
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_dvk03")
 
 [node name="MarginContainer" type="MarginContainer" parent="DialogContainer"]
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 6
 theme_override_constants/margin_right = 16
@@ -121,6 +126,7 @@ theme_override_constants/margin_bottom = 12
 
 [node name="VBoxContainer" type="VBoxContainer" parent="DialogContainer/MarginContainer"]
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/separation = -5
 
 [node name="SpeakerName" type="Label" parent="DialogContainer/MarginContainer/VBoxContainer"]
@@ -137,6 +143,7 @@ horizontal_alignment = 1
 [node name="HBoxContainer" type="HBoxContainer" parent="DialogContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+mouse_filter = 2
 alignment = 1
 
 [node name="Dialogue" type="Label" parent="DialogContainer/MarginContainer/VBoxContainer/HBoxContainer"]
