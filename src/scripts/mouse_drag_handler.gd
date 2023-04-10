@@ -8,7 +8,7 @@ var mouse_motion: InputEventMouseMotion
 func _process(_delta: float) -> void:
 	if can_drag and Input.is_action_just_pressed("left_click"):
 		is_dragging = true
-	if not Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+	if not Input.is_action_pressed("left_click"):
 		is_dragging = false
 
 

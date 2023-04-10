@@ -3,6 +3,10 @@ class_name HoverBodyPart extends MouseDragHandler
 @onready var mesh: MeshInstance3D = $Mesh
 
 
+func _ready() -> void:
+	mesh.mesh.material.albedo_color.a = 0.39
+
+
 func _mouse_enter():
 	super()
 	mesh.mesh.material.albedo_color.a = 1

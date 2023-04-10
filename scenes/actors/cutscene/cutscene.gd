@@ -51,13 +51,10 @@ func _ready():
 		start()
 
 	if using_camera:
-		# @Alex: I made it general, yay :)
 		camera = get_children().filter(func(child): return child is Camera3D).front()
 		if Global.progress_state == Global.PROGRESS_STATE.GAME_STARTED:
 			camera.current = true
 			pass
-		# camera = get_node_or_null("Camera")
-		# assert(camera != null, "When `using_camera` is true, the cutscene must have a Camera3D named 'Camera' as a direct child.")
 
 
 ## Starts the cutscene. Removes player control (if applicable) and plays animation queue.
