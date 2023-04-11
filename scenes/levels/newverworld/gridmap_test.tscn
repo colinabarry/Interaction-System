@@ -28,6 +28,6 @@ item/2/navigation_layers = 1
 [node name="GridMap" type="GridMap" parent="."]
 mesh_library = SubResource("MeshLibrary_1ij74")
 data = {
-"cells": PackedInt32Array(-1, 65535, 1441792, -1, 65534, 1441792, -1, 65533, 1441792, -1, 65532, 1, -65536, 65532, 0, -1, 0, 1441794)
+"cells": PackedInt32Array(-1, 65535, 1441792, -1, 65534, 1441792, -1, 65533, 1441792, -1, 65532, 1, -65536, 65532, 0, -1, 0, 1441794, -65535, 65532, 655360, -65534, 65532, 1441793)
 }
-metadata/_editor_floor_ = Vector3(0, -1, 0)
+metadata/_editor_floor_ = Vector3(0, 0, 0)
