@@ -40,12 +40,6 @@ func _ready():
 
 
 func _process(_delta):
-	if Global.get_is_in_minigame():
-		if Global.get_correct_input_jumpgame():
-			# jump
-			animation_tree["parameters/OneShot/request"] = true
-		return
-
 	if Input.is_action_pressed("move_sprint", true):
 		current_speed = SPRINT_SPEED
 	else:
@@ -55,7 +49,7 @@ func _process(_delta):
 func _input(event: InputEvent) -> void:
 	if not Global.player_has_control:
 		return
-
+	print("HHUUUHHH")
 	# turn camera with mouse
 	var camera_rotation: Vector3 = camera_origin.rotation_degrees
 	# casting with `as` for precision and to get autocomplete
@@ -113,3 +107,11 @@ func _physics_process(delta: float) -> void:
 
 	# move - this uses `velocity`, which is built-in to CharacterBody3D
 	move_and_slide()
+
+
+func perform_action(action: String):
+	match action:
+		"jump":
+			animation_tree["parameters/OneShot/request"] = true
+		_:
+			assert(false, "Unknown action: " + action)

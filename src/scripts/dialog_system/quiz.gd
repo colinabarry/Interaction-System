@@ -55,7 +55,7 @@ const PROPAGATED_PROPERTIES = ["speaker", "using_typing"]
 var _const_phrases := {
 	"start":
 	[  # TODO: "progress during rehab" maybe could be worded differently
-		"Welcome back! We're so proud of your progress during rehab. It seems like you've learned a lot about the ACL and how to take care of your knee.",
+		"Welcome back! We're so proud of the progress you've made recovering. It seems like you've learned a lot about the ACL and how to take care of your knee.",
 		"To see how much you've learned, we thought it would be fun to have a little quiz about the ACL. Don't worry, it's just a friendly way to test your knowledge.",
 		"Ready? Let's start the quiz!"
 	],
@@ -172,7 +172,7 @@ func _generate_quiz(quiz_config: Dictionary) -> void:
 func _map_next() -> void:
 	for key in dialogs:
 		for answer in dialogs[key].answers:
-			var next_key = "q%s" % (int(key[1]) + 1)
+			var next_key = "q%s" % (int(key.substr(1)) + 1)
 
 			answer.add_next(dialogs[next_key].question if next_key in dialogs else _end)
 
