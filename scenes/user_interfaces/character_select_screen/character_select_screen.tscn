@@ -1,0 +1,56 @@
+[gd_scene load_steps=4 format=3 uid="uid://5053e45fyg87"]
+
+[ext_resource type="PackedScene" uid="uid://chycjl6spchnk" path="res://scenes/user_interfaces/character_select/character_select.tscn" id="1_ubmsb"]
+[ext_resource type="PackedScene" uid="uid://dmt8oyuqsq8t6" path="res://scenes/user_interfaces/character_select_screen/characters/xbot.tscn" id="3_r0nbc"]
+[ext_resource type="PackedScene" uid="uid://uudfdb51fhkm" path="res://scenes/user_interfaces/character_select_screen/characters/Megan.tscn" id="8_mvxl8"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_bottom = 11
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 13
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 29
+text = "Choose Your Character!"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 129
+alignment = 1
+
+[node name="CharacterSelect" parent="MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("1_ubmsb")]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="Megan" parent="MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("8_mvxl8")]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="XBot" parent="MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("3_r0nbc")]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(100, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Start Game"
