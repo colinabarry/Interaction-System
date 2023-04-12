@@ -106,3 +106,4 @@ right_click={
 
 3d_render/layer_2="non_x_ray"
 3d_render/layer_3="x_ray"
+3d_physics/layer_4="body_parts"
