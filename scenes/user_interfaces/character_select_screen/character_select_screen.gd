@@ -21,14 +21,6 @@ func _ready():
 	Global.tween_cubic_modulate(self, _modulate)
 
 	for character in character_container.get_children():
-		characters[character.name] = {"base": character, "button": character.get_node(BUTTON_PATH)}
-
-		character.connect("character_selected", _on_character_selected)
-		character.connect("character_hovered", _on_character_hovered)
-		character.connect("character_unhovered", _on_character_unhovered)
-
-		characters[character.name].button.disabled = true
-
 		var char_scene_path: NodePath = (
 			"MarginContainer/VBoxContainer/SubViewportContainer/SubViewport/CharacterAnchor/"
 			+ character.name
@@ -37,11 +29,26 @@ func _ready():
 		var character_animation_player: AnimationPlayer = character_scene.get_node(
 			"AnimationPlayer"
 		)
-		character_animation_player.play("NEW_locomotion_library/turn_left")
+
+		var select_button: Button = character.get_node(BUTTON_PATH)
+
+		characters[character.name] = {
+			"base": character,
+			"button": select_button,
+			"animation_player": character_animation_player
+		}
+
+		character.connect("character_selected", _on_character_selected)
+		character.connect("character_hovered", _on_character_hovered)
+		character.connect("character_unhovered", _on_character_unhovered)
+
+		characters[character.name].button.disabled = true
+
+		character_animation_player.play("NEW_locomotion_library/idle")
 
 
 func _on_character_selected(character: String):
-	if selected_character != "":
+	if selected_character != "" and selected_character != character:
 		characters[selected_character].button.disabled = true
 	else:
 		start_game_button.disabled = false
@@ -51,6 +58,9 @@ func _on_character_selected(character: String):
 
 func _on_character_hovered(character: String):
 	characters[character].button.disabled = false
+	characters[character].animation_player.play("NEW_locomotion_library/wave")
+	characters[character].animation_player.seek(1)
+	characters[character].animation_player.queue("NEW_locomotion_library/idle")
 
 
 func _on_character_unhovered(character: String):

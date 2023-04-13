@@ -1,5 +1,7 @@
 class_name JumpMinigame extends Node2D
 
+signal minigame_completed
+
 @onready var player: Player = $"../Player"
 @onready var lil_dude: Area2D = $LilDude
 @onready var bar: Sprite2D = $Bar
@@ -94,5 +96,6 @@ func setup_and_start_level():
 
 
 func win_game():
+	emit_signal("minigame_completed")
 	minigame_complete = true
 	you_win.visible = true

@@ -5,6 +5,7 @@ extends DialogueSystem
 
 
 func _init() -> void:
+	super()
 	Global.player_has_control = false
 
 
