@@ -10,6 +10,8 @@ const DECAY_FACTOR = 0.3
 const MAX_DIFFICULTY = 2
 const SPEED = 300
 
+var rng := RandomNumberGenerator.new()
+
 var top_bound: float
 var bottom_bound: float
 
@@ -78,7 +80,9 @@ func setup_level():
 	lil_dude.position = bar.position
 	# determine size of target
 	target.scale.y *= (1 - DECAY_FACTOR) ** difficulty  # exponential decay
-	# TODO: determine placement of target within bounds of the bar
+	# determine placement of target within bounds of the bar
+	rng.randomize()
+	target.position.y = rng.randf_range(top_bound, bottom_bound - target.get_children()[0].shape.size.y * target.scale.y)  # probably fine idk
 
 	target.visible = true
 	lil_dude.visible = true
