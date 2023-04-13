@@ -49,7 +49,7 @@ func _process(_delta):
 func _input(event: InputEvent) -> void:
 	if not Global.player_has_control:
 		return
-	print("HHUUUHHH")
+
 	# turn camera with mouse
 	var camera_rotation: Vector3 = camera_origin.rotation_degrees
 	# casting with `as` for precision and to get autocomplete
