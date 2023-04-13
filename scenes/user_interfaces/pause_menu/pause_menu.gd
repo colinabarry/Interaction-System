@@ -39,3 +39,8 @@ func _on_quit_pressed() -> void:
 
 func _on_resume_pressed() -> void:
 	Global.resume()
+
+
+func _on_menu_pressed():
+	get_tree().change_scene_to_file("res://scenes/user_interfaces/start_menu/start_menu.tscn")
+	Global.resume() # TODO: GIVE MOUSE CONTROL BACK

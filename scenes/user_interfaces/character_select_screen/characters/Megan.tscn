@@ -1,0 +1,77 @@
+[gd_scene load_steps=5 format=3 uid="uid://uudfdb51fhkm"]
+
+[ext_resource type="Script" path="res://scenes/user_interfaces/character_select/character_select.gd" id="1_fyhuc"]
+[ext_resource type="PackedScene" uid="uid://drnovys8ofm47" path="res://scenes/actors/characters/megan.tscn" id="2_00f7x"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_veo7a"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="World3D" id="World3D_l3786"]
+
+[node name="Megan" type="Control"]
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("1_fyhuc")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -50.0
+offset_top = -298.0
+offset_right = 50.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_top = 33
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_veo7a")
+text = "dfghdfghfgh"
+horizontal_alignment = 1
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(100, 200)
+layout_mode = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="MarginContainer/VBoxContainer/SubViewportContainer"]
+own_world_3d = true
+world_3d = SubResource("World3D_l3786")
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(100, 200)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="MarginContainer/VBoxContainer/SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 0.990149, 0.14002, 0, -0.14002, 0.990149, -0.000574112, 1.08315, 1.34025)
+
+[node name="CharacterAnchor" type="Node3D" parent="MarginContainer/VBoxContainer/SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000574112, 0, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="MarginContainer/VBoxContainer/SubViewportContainer/SubViewport/CharacterAnchor"]
+transform = Transform3D(1, 0, 0, 0, 0.917637, 0.39742, 0, -0.39742, 0.917637, 0, 2.39158, 1.90659)
+shadow_enabled = true
+
+[node name="megan" parent="MarginContainer/VBoxContainer/SubViewportContainer/SubViewport/CharacterAnchor" instance=ExtResource("2_00f7x")]
+
+[node name="SelectCharacter" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Pick me!"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/SelectCharacter" to="." method="_on_select_character_pressed"]

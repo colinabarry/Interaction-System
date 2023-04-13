@@ -1,0 +1,61 @@
+[gd_scene load_steps=3 format=3 uid="uid://dis6jkmt8spvr"]
+
+[ext_resource type="Script" path="res://scenes/user_interfaces/start_menu/start_menu.gd" id="1_yfrx7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hd0jk"]
+content_margin_top = 1.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[node name="StartMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yfrx7")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -50.5
+offset_right = 50.5
+offset_bottom = 111.0
+grow_horizontal = 2
+theme_override_constants/separation = 50
+
+[node name="Label" type="Label" parent="VBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.690196, 0, 0.0431373, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 8
+theme_override_constants/shadow_offset_y = 9
+theme_override_constants/outline_size = 7
+theme_override_constants/shadow_outline_size = 13
+theme_override_font_sizes/font_size = 88
+theme_override_styles/normal = SubResource("StyleBoxFlat_hd0jk")
+text = "ACL ACADEMY"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer2"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer2/CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Start" type="Button" parent="VBoxContainer2/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Start"
+
+[node name="Quit" type="Button" parent="VBoxContainer2/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Quit"
+
+[connection signal="pressed" from="VBoxContainer2/CenterContainer/VBoxContainer/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="VBoxContainer2/CenterContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
