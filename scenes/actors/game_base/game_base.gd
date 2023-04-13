@@ -15,4 +15,5 @@ func _ready():
 
 func _on_button_pressed() -> void:
 	Global.set_progress_state(end_state)
+	Global.player_has_control = true
 	get_tree().change_scene_to_packed(overworld)
