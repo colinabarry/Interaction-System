@@ -41,22 +41,18 @@ alignment = 1
 [node name="Megan" parent="MarginContainer/VBoxContainer/CharacterContainer" instance=ExtResource("8_mvxl8")]
 layout_mode = 2
 size_flags_vertical = 8
-character_name = "Megan"
 
-[node name="XBot" parent="MarginContainer/VBoxContainer/CharacterContainer" instance=ExtResource("3_r0nbc")]
+[node name="Deez" parent="MarginContainer/VBoxContainer/CharacterContainer" instance=ExtResource("3_r0nbc")]
 layout_mode = 2
 size_flags_vertical = 8
-character_name = "Deez"
 
-[node name="XBot2" parent="MarginContainer/VBoxContainer/CharacterContainer" instance=ExtResource("3_r0nbc")]
+[node name="Nutz" parent="MarginContainer/VBoxContainer/CharacterContainer" instance=ExtResource("3_r0nbc")]
 layout_mode = 2
 size_flags_vertical = 8
-character_name = "Nutz"
 
-[node name="Megan2" parent="MarginContainer/VBoxContainer/CharacterContainer" instance=ExtResource("8_mvxl8")]
+[node name="Miguel" parent="MarginContainer/VBoxContainer/CharacterContainer" instance=ExtResource("8_mvxl8")]
 layout_mode = 2
 size_flags_vertical = 8
-character_name = "Miguel"
 
 [node name="StartGame" type="Button" parent="MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(100, 30)

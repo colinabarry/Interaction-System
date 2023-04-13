@@ -1,10 +1,14 @@
-extends Node
+extends Control
 
 @onready var character_container: Node = $MarginContainer/VBoxContainer/CharacterContainer
+@onready var start_game_button: Button = $MarginContainer/VBoxContainer/StartGame
 
-var selected_character := ""
+const BUTTON_PATH = "MarginContainer/VBoxContainer/SelectCharacter"
 
-var _modulate
+var characters = {}  # DO NOT TYPE THIS; GDSCRIPT IS VERY NOT SMART
+var selected_character: String
+
+var _modulate: Color
 
 
 func _init():
@@ -13,12 +17,35 @@ func _init():
 
 
 func _ready():
+	start_game_button.disabled = true
 	Global.tween_cubic_modulate(self, _modulate)
 
 	for character in character_container.get_children():
-		character.connect(
-			"character_selected", func(_character: String): selected_character = _character
-		)
+		characters[character.name] = {"base": character, "button": character.get_node(BUTTON_PATH)}
+
+		character.connect("character_selected", _on_character_selected)
+		character.connect("character_hovered", _on_character_hovered)
+		character.connect("character_unhovered", _on_character_unhovered)
+
+		characters[character.name].button.disabled = true
+
+
+func _on_character_selected(character: String):
+	if selected_character != "":
+		characters[selected_character].button.disabled = true
+	else:
+		start_game_button.disabled = false
+
+	selected_character = character
+
+
+func _on_character_hovered(character: String):
+	characters[character].button.disabled = false
+
+
+func _on_character_unhovered(character: String):
+	if character != selected_character:
+		characters[character].button.disabled = true
 
 
 func _on_start_game_pressed():

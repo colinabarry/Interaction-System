@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://dmt8oyuqsq8t6"]
+[gd_scene load_steps=6 format=3 uid="uid://dmt8oyuqsq8t6"]
 
 [ext_resource type="Script" path="res://scenes/user_interfaces/character_select/character_select.gd" id="1_8b1bt"]
 [ext_resource type="PackedScene" uid="uid://dmep4i1ayahoy" path="res://scenes/actors/characters/xbot_animated.tscn" id="2_jsk5p"]
@@ -7,6 +7,9 @@
 bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [sub_resource type="World3D" id="World3D_l3786"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hu7hl"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [node name="XBot" type="Control"]
 layout_mode = 3
@@ -72,6 +75,11 @@ shadow_enabled = true
 
 [node name="SelectCharacter" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
+mouse_filter = 1
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 0)
+theme_override_styles/disabled = SubResource("StyleBoxFlat_hu7hl")
 text = "Pick me!"
 
+[connection signal="mouse_entered" from="MarginContainer/VBoxContainer" to="." method="_on_v_box_container_mouse_entered"]
+[connection signal="mouse_exited" from="MarginContainer/VBoxContainer" to="." method="_on_v_box_container_mouse_exited"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/SelectCharacter" to="." method="_on_select_character_pressed"]
