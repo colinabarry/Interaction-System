@@ -54,7 +54,11 @@ const PROPAGATED_PROPERTIES = ["speaker", "using_typing"]
 # "correct" and "wrong" answer cases
 var _const_phrases := {
 	"start":
+<<<<<<< Updated upstream
 	[
+=======
+	[  # TODO: "progress during rehab" maybe could be worded differently
+>>>>>>> Stashed changes
 		"Welcome back! We're so proud of your progress during rehab. It seems like you've learned a lot about the ACL and how to take care of your knee.",
 		"To see how much you've learned, we thought it would be fun to have a little quiz about the ACL. Don't worry, it's just a friendly way to test your knowledge.",
 		"Ready? Let's start the quiz!"

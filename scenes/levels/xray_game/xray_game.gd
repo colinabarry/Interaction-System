@@ -1,4 +1,5 @@
 extends Node
+<<<<<<< Updated upstream
 
 @export var max_camera_position_x := 5.0
 @export var max_camera_position_y := 3.0
@@ -31,3 +32,5 @@ func _input(event):
 			max_camera_position_y + starting_position.y,
 			-max_camera_position_y + starting_position.y
 		)
+=======
+>>>>>>> Stashed changes

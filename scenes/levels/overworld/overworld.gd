@@ -12,7 +12,11 @@ func _ready():
 
 	if Global.progress_state == Global.PROGRESS_STATE.GAME_STARTED:
 		cutscene.start()
+<<<<<<< Updated upstream
 		pass
+=======
+		# pass
+>>>>>>> Stashed changes
 
 
 func _on_unpaused():
