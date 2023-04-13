@@ -39,7 +39,7 @@ func _input(event):
 
 			try_increase_difficulty()
 			if not minigame_complete:
-				create_tween().tween_callback(setup_and_start_level).set_delay(2)
+				create_tween().tween_callback(setup_and_start_level).set_delay(2.5)
 
 
 func _physics_process(delta):
@@ -54,6 +54,7 @@ func _physics_process(delta):
 		lil_dude.position.y += SPEED * delta
 		if lil_dude.position.y >= bottom_bound:
 			moving_up = not moving_up
+
 
 func _on_target_area_entered(_area: Area2D):
 	colliding = true
