@@ -1,4 +1,4 @@
-class_name MouseDragHandler extends StaticBody3D
+class_name MouseDragHandler extends PhysicsBody3D
 
 var can_drag := false
 var is_dragging := false
