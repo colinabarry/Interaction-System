@@ -1,6 +1,5 @@
 extends Node
 
-var tween_time := 1
 var _modulate
 
 
@@ -10,16 +9,16 @@ func _init():
 
 
 func _ready():
-	tween_cubic_modulate(_modulate, tween_time)
+	Global.tween_cubic_modulate(self, _modulate)
 
 
 func _on_start_pressed():
-	pass  # Replace with function body.
+	await Global.tween_cubic_modulate(self).finished
+
+	get_tree().change_scene_to_file(
+		"res://scenes/user_interfaces/character_select_screen/character_select_screen.tscn"
+	)
 
 
 func _on_quit_pressed():
 	get_tree().quit()
-
-
-func tween_cubic_modulate(color: Color, time: int) -> PropertyTweener:
-	return create_tween().set_trans(Tween.TRANS_CUBIC).tween_property(self, "modulate", color, time)

@@ -23,8 +23,6 @@ var player_has_control := true:
 	get = _get_player_has_control
 var progress_state: int = PROGRESS_STATE.GAME_STARTED
 
-
-
 var pause_menu: TextureRect = (
 	preload("res://scenes/user_interfaces/pause_menu/pause_menu.tscn").instantiate()
 )
@@ -126,26 +124,14 @@ func _set_player_has_control(has_control: bool):
 	player_has_control = has_control
 
 
-# func set_jumpmini_over(is_over: bool):
-# 	jump_mini_over = is_over
-
-
-# func get_jumpmini_over():
-# 	return jump_mini_over
-
-
-# func set_jumpmini_global_diff(difficulty: int):
-# 	diff_progression = difficulty
-# 	minigame_progressed = true
-
-
-# func get_jumpmini_global_diff():
-# 	minigame_progressed = false
-# 	return diff_progression
-
-
 func _toggle_pause() -> void:
 	if is_paused:
 		resume()
 	else:
 		pause()
+
+
+func tween_cubic_modulate(_self, color: Color = Color.TRANSPARENT, time := 1) -> PropertyTweener:
+	return create_tween().set_trans(Tween.TRANS_CUBIC).tween_property(
+		_self, "modulate", color, time
+	)
