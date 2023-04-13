@@ -71,7 +71,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000574112, 0, 0)
 transform = Transform3D(1, 0, 0, 0, 0.917637, 0.39742, 0, -0.39742, 0.917637, 0, 2.39158, 1.90659)
 shadow_enabled = true
 
-[node name="megan" parent="MarginContainer/VBoxContainer/SubViewportContainer/SubViewport/CharacterAnchor" instance=ExtResource("2_00f7x")]
+[node name="Megan" parent="MarginContainer/VBoxContainer/SubViewportContainer/SubViewport/CharacterAnchor" instance=ExtResource("2_00f7x")]
 
 [node name="SelectCharacter" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2

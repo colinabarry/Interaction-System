@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://5053e45fyg87"]
+[gd_scene load_steps=3 format=3 uid="uid://5053e45fyg87"]
 
 [ext_resource type="Script" path="res://scenes/user_interfaces/character_select_screen/character_select_screen.gd" id="1_1kq6c"]
-[ext_resource type="PackedScene" uid="uid://dmt8oyuqsq8t6" path="res://scenes/user_interfaces/character_select_screen/characters/xbot.tscn" id="3_r0nbc"]
 [ext_resource type="PackedScene" uid="uid://uudfdb51fhkm" path="res://scenes/user_interfaces/character_select_screen/characters/Megan.tscn" id="8_mvxl8"]
 
 [node name="CharacterSelectScreen" type="Control"]
@@ -39,18 +38,6 @@ theme_override_constants/separation = 129
 alignment = 1
 
 [node name="Megan" parent="MarginContainer/VBoxContainer/CharacterContainer" instance=ExtResource("8_mvxl8")]
-layout_mode = 2
-size_flags_vertical = 8
-
-[node name="Deez" parent="MarginContainer/VBoxContainer/CharacterContainer" instance=ExtResource("3_r0nbc")]
-layout_mode = 2
-size_flags_vertical = 8
-
-[node name="Nutz" parent="MarginContainer/VBoxContainer/CharacterContainer" instance=ExtResource("3_r0nbc")]
-layout_mode = 2
-size_flags_vertical = 8
-
-[node name="Miguel" parent="MarginContainer/VBoxContainer/CharacterContainer" instance=ExtResource("8_mvxl8")]
 layout_mode = 2
 size_flags_vertical = 8
 
