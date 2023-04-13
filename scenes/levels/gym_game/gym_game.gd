@@ -3,11 +3,20 @@ extends Node3D
 @onready var trainer_dialogue: DialogueSystem = $TrainerDialogue
 @onready var jump_minigame: JumpMinigame = $JumpMinigame
 
-var dialog_sequence_idx = 0
+var dialog_sequence_idx := 0
 
 
 func _ready():
+	jump_minigame.minigame_completed.connect(
+		func(): create_tween().tween_callback(show_outro).set_delay(1.5)
+	)
 	trainer_dialogue.connect("dialog_sequence_changed", increment_seq_idx)
+
+
+func show_outro():
+	trainer_dialogue.change_sequence(2)
+	trainer_dialogue.show_box()
+	trainer_dialogue.try_begin_dialogue()
 
 
 # super scuffed but whatever

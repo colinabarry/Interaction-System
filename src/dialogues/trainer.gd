@@ -1,6 +1,6 @@
 extends Resource
 
-const config = [intro, jump]
+const config = [intro, jump, outro]
 
 const intro = {
 	"start":
@@ -30,6 +30,19 @@ const jump = {
 			"This little bar on the side will show you when to jump.",
 			"You must do your best to maintain an appropriate posture and only jump when you're putting the least strain on your body.",
 			"Of course, jumping isn't the concern. How you land from your jump is what causes injury, which is why we want to make sure you're always prepared with proper posture."
+		]
+	}
+}
+
+const outro = {
+	"start":
+	{
+		"speaker": "Trainer Berry",
+		"using_typing": true,
+		"phrases":
+		[
+			"Great job today! You've made a lot of progress, and I'm proud of you.",
+			"Remember to keep up the good work and stay consistent with your rehab. I'll see you next time!"
 		]
 	}
 }
