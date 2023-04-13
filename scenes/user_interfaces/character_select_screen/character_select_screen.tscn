@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://5053e45fyg87"]
+[gd_scene load_steps=4 format=3 uid="uid://5053e45fyg87"]
 
 [ext_resource type="Script" path="res://scenes/user_interfaces/character_select_screen/character_select_screen.gd" id="1_1kq6c"]
+[ext_resource type="PackedScene" uid="uid://dkv4ilgrbdl2a" path="res://scenes/user_interfaces/character_select_screen/characters/David.tscn" id="3_06drf"]
 [ext_resource type="PackedScene" uid="uid://uudfdb51fhkm" path="res://scenes/user_interfaces/character_select_screen/characters/Megan.tscn" id="8_mvxl8"]
 
 [node name="CharacterSelectScreen" type="Control"]
@@ -40,6 +41,9 @@ alignment = 1
 [node name="Megan" parent="MarginContainer/VBoxContainer/CharacterContainer" instance=ExtResource("8_mvxl8")]
 layout_mode = 2
 size_flags_vertical = 8
+
+[node name="David" parent="MarginContainer/VBoxContainer/CharacterContainer" instance=ExtResource("3_06drf")]
+layout_mode = 2
 
 [node name="StartGame" type="Button" parent="MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(100, 30)
