@@ -29,6 +29,16 @@ func _ready():
 
 		characters[character.name].button.disabled = true
 
+		var char_scene_path: NodePath = (
+			"MarginContainer/VBoxContainer/SubViewportContainer/SubViewport/CharacterAnchor/"
+			+ character.name
+		)
+		var character_scene: Node3D = character.get_node(char_scene_path)
+		var character_animation_player: AnimationPlayer = character_scene.get_node(
+			"AnimationPlayer"
+		)
+		character_animation_player.play("NEW_locomotion_library/turn_left")
+
 
 func _on_character_selected(character: String):
 	if selected_character != "":
