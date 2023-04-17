@@ -14,8 +14,10 @@ const MOUSE_SENSITIVITY := 0.3
 
 @export var min_camera_pitch := -50.0
 @export var max_camera_pitch := 30.0
-@export var max_step_height := 0.3
-@export var step_check_distance := 0.3
+@export var max_step_height := 0.4
+@export var num_step_raycasts := 3
+@export var step_raycast_spread := 0.5
+@export var step_check_distance := 0.4
 
 var current_speed: float
 var input_dir := Vector2.ZERO
@@ -29,7 +31,8 @@ var speech_bubble = (
 @onready var camera_origin: Marker3D = $CameraOrigin
 @onready var armature: Node3D = $Armature
 @onready var animation_tree: AnimationTree = $AnimationTree
-@onready var raycast: RayCast3D = $RayCast
+# @onready var raycast: RayCast3D = $RayCast
+@onready var step_raycasts: Array[RayCast3D]
 
 @onready var speech_bubble_anchor: Node3D = $SpeechBubbleAnchor
 
@@ -40,8 +43,7 @@ var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 func _ready():
 	animation_tree.active = true
 
-	raycast.position = Vector3(0, max_step_height + raycast_y_offset, -step_check_distance)
-	raycast.target_position.y = -max_step_height
+	setup_raycasts()
 	# armature.rotation.y = rotation.y
 
 
@@ -81,10 +83,11 @@ func _process(_delta):
 		current_speed = WALK_SPEED
 		is_sprinting = false
 
-	var step_height := raycast.get_collision_point().y - position.y
+	for raycast in step_raycasts:
+		var step_height := raycast.get_collision_point().y - position.y
 
-	if step_height > 0 and input_dir.length() > 0 and raycast.is_colliding():
-		position.y = lerp(position.y, position.y + step_height, 0.5)
+		if step_height > 0 and input_dir.length() > 0 and raycast.is_colliding():
+			position.y = lerp(position.y, position.y + step_height, 0.5)
 
 
 func _physics_process(delta: float) -> void:
@@ -118,8 +121,10 @@ func _physics_process(delta: float) -> void:
 		var camera_basis := camera_origin.basis
 		var input_dir_3d := Vector3(-input_dir.x, 0, input_dir.y)
 		var rotated_input_dir := camera_basis * input_dir_3d
-		var target_rotation := atan2(rotated_input_dir.x, rotated_input_dir.z)
-		rotation.y = lerp(rotation.y, target_rotation, 0.1)
+		var target_rotation := Vector3.ZERO
+		target_rotation.y = atan2(rotated_input_dir.x, rotated_input_dir.z)
+		rotation = rotation.slerp(target_rotation, 0.1)
+		print(target_rotation.y)
 		# rotation.y = lerp_angle(rotation.y, camera_origin.rotation.y * input_dir.y, 0.1)
 	else:
 		# slow down and stop if no input
@@ -131,6 +136,26 @@ func _physics_process(delta: float) -> void:
 
 	# move - this uses `velocity`, which is built-in to CharacterBody3D
 	move_and_slide()
+
+
+func setup_raycasts() -> void:
+	var raycasts := Node3D.new()
+	raycasts.rotate_y(-(step_raycast_spread * (num_step_raycasts - 1)) / 2)
+	raycasts.name = "RayCasts"
+	add_child(raycasts)
+
+	for i in num_step_raycasts:
+		var new_raycast_origin := Marker3D.new()
+		new_raycast_origin.name = "StepRayCastOrigin" + str(i)
+		new_raycast_origin.rotate_y(step_raycast_spread * i)
+		raycasts.add_child(new_raycast_origin)
+
+		var new_raycast := RayCast3D.new()
+		new_raycast.name = "StepRayCast" + str(i)
+		new_raycast.position = Vector3(0, max_step_height + raycast_y_offset, -step_check_distance)
+		new_raycast.target_position.y = -max_step_height
+		new_raycast_origin.add_child(new_raycast)
+		step_raycasts.append(new_raycast)
 
 
 func perform_action(action: String):
