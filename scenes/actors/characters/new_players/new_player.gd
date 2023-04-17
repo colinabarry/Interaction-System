@@ -24,9 +24,9 @@ var input_dir := Vector2.ZERO
 var is_sprinting := false
 var raycast_y_offset := 0.01
 
-var speech_bubble = (
-	preload("res://scenes/user_interfaces/speech_bubble/speech_bubble_3d.tscn").instantiate()
-)
+# var speech_bubble = (
+# 	preload("res://scenes/user_interfaces/speech_bubble/speech_bubble_3d.tscn").instantiate()
+# )
 
 @onready var camera_origin: Marker3D = $CameraOrigin
 @onready var armature: Node3D = $Armature
@@ -34,7 +34,7 @@ var speech_bubble = (
 # @onready var raycast: RayCast3D = $RayCast
 @onready var step_raycasts: Array[RayCast3D]
 
-@onready var speech_bubble_anchor: Node3D = $SpeechBubbleAnchor
+# @onready var speech_bubble_anchor: Node3D = $SpeechBubbleAnchor
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -69,9 +69,9 @@ func _input(event: InputEvent) -> void:
 		create_tween().tween_callback(func(): velocity.y = 1.25).set_delay(0.2)
 		# velocity.y = 1.25
 
-	if event.is_action_pressed("test_restart"):
-		speech_bubble_anchor.add_child(speech_bubble)
-		speech_bubble.show_dialogue()
+	# if event.is_action_pressed("test_restart"):
+	# 	speech_bubble_anchor.add_child(speech_bubble)
+	# 	speech_bubble.show_dialogue()
 
 
 func _process(_delta):
@@ -142,19 +142,19 @@ func setup_raycasts() -> void:
 	var raycasts := Node3D.new()
 	raycasts.rotate_y(-(step_raycast_spread * (num_step_raycasts - 1)) / 2)
 	raycasts.name = "RayCasts"
-	add_child(raycasts)
+	add_child.call_deferred(raycasts)
 
 	for i in num_step_raycasts:
 		var new_raycast_origin := Marker3D.new()
 		new_raycast_origin.name = "StepRayCastOrigin" + str(i)
 		new_raycast_origin.rotate_y(step_raycast_spread * i)
-		raycasts.add_child(new_raycast_origin)
+		raycasts.add_child.call_deferred(new_raycast_origin)
 
 		var new_raycast := RayCast3D.new()
 		new_raycast.name = "StepRayCast" + str(i)
 		new_raycast.position = Vector3(0, max_step_height + raycast_y_offset, -step_check_distance)
 		new_raycast.target_position.y = -max_step_height
-		new_raycast_origin.add_child(new_raycast)
+		new_raycast_origin.add_child.call_deferred(new_raycast)
 		step_raycasts.append(new_raycast)
 
 
