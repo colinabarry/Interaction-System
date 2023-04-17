@@ -34,7 +34,7 @@
 [ext_resource type="PackedScene" uid="uid://dhaasvvncautl" path="res://assets/models/MetalFence.gltf" id="33_3d3qb"]
 [ext_resource type="Texture2D" uid="uid://c5tcfg1yyf8ya" path="res://assets/models/MetalFence_Fence.png" id="34_6xv8d"]
 [ext_resource type="PackedScene" uid="uid://doqep3e4dcbaw" path="res://scenes/actors/heightmap_terrain/heightmap_terrain2.tscn" id="34_e5wy1"]
-[ext_resource type="PackedScene" uid="uid://df2elvkmujboy" path="res://scenes/actors/characters/player_megan/player_megan.tscn" id="37_rxmg6"]
+[ext_resource type="PackedScene" uid="uid://0xnlc6ykb34b" path="res://scenes/actors/characters/new_players/player_david.tscn" id="37_2r217"]
 [ext_resource type="Script" path="res://src/scripts/sun.gd" id="42_e1tb5"]
 [ext_resource type="MeshLibrary" uid="uid://enmdrfcnq77v" path="res://assets/mesh_libraries/streets_mesh_library_v2.tres" id="53_yim12"]
 
@@ -990,7 +990,5 @@ data = {
 }
 metadata/_editor_floor_ = Vector3(0, 1, 0)
 
-[node name="Megan" parent="." instance=ExtResource("37_rxmg6")]
-transform = Transform3D(0.0120298, 0, -0.149517, 0, 0.15, 0, 0.149517, 0, 0.0120298, -9.13454, 1.15, -6.30341)
-max_step_height = 0.35
-step_check_distance = 0.35
+[node name="David" parent="." instance=ExtResource("37_2r217")]
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, -9.10089, 1.15, -6.15517)
