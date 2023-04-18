@@ -29,7 +29,8 @@ func _on_area_entered(area: Area3D) -> void:
 
 
 func _on_area_exited(area: Area3D) -> void:
-	if area == collided_area:
+	# if area == collided_area:
+	if area is HoverBodyPart:
 		is_colliding = false
 		collided_area = null
 		area.unhover()

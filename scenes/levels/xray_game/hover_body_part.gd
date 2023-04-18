@@ -11,6 +11,7 @@ var selected := false
 
 func _ready() -> void:
 	mesh.mesh.surface_get_material(0).albedo_color.a = 0.39
+	create_tween().tween_callback(func(): hint.start_hint_timer(0, "")).set_delay(0.5)
 
 
 func _physics_process(_delta: float) -> void:
@@ -21,7 +22,8 @@ func _physics_process(_delta: float) -> void:
 		else:
 			selected = true
 			mesh.mesh.surface_get_material(0).albedo_color.a = 1
-			hint.hint_text = "You found the " + name + "!"
+			hint.start_hint_timer(0, "You found the " + name + "!")
+			# hint.hint_text = "You found the " + name + "!"
 
 
 func hover() -> void:
