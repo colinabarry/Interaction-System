@@ -71,7 +71,7 @@ input_name = "time"
 
 [sub_resource type="Gradient" id="Gradient_hel2d"]
 interpolation_mode = 2
-offsets = PackedFloat32Array(0, 0.293501)
+offsets = PackedFloat32Array(0, 0.215232)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_3mqcs"]
 gradient = SubResource("Gradient_hel2d")
@@ -92,6 +92,7 @@ default_input_values = [0, Quaternion(0, 0, 0, 0), 1, Quaternion(0, 0, 0, 0)]
 op_type = 2
 
 [sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_sf3fw"]
+constant = 0.05
 
 [sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_wbh5p"]
 input_name = "time"
@@ -154,7 +155,7 @@ void vertex() {
 
 
 // FloatConstant:14
-	float n_out14p0 = 0.000000;
+	float n_out14p0 = 0.050000;
 
 
 // VectorOp:13

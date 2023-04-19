@@ -1,0 +1,59 @@
+[gd_scene load_steps=7 format=3 uid="uid://cace1qk422q2"]
+
+[ext_resource type="Script" path="res://scenes/levels/gym_game/jump_minigame/jump_minigame.gd" id="3_u6ebw"]
+[ext_resource type="Texture2D" uid="uid://b1wo8w1fl4irr" path="res://scenes/levels/gym_game/gym_assets/purplerect.png" id="6_80xwd"]
+[ext_resource type="Texture2D" uid="uid://df8n8ogujkvch" path="res://scenes/levels/gym_game/gym_assets/icon_color.png" id="7_ph4o1"]
+[ext_resource type="PackedScene" uid="uid://bbrprk72a3bod" path="res://scenes/levels/gym_game/ui_overlay.tscn" id="8_crvj0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w12w4"]
+size = Vector2(6, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7re2s"]
+
+[node name="JumpMinigame" type="Node2D"]
+position = Vector2(-800, 4)
+script = ExtResource("3_u6ebw")
+
+[node name="Bar" type="Sprite2D" parent="."]
+modulate = Color(0.176471, 0.690196, 0.32549, 1)
+self_modulate = Color(0.415686, 0.635294, 0.909804, 1)
+position = Vector2(310, 173.417)
+scale = Vector2(0.313103, 1.34136)
+texture = ExtResource("6_80xwd")
+
+[node name="UI_overlay" parent="." instance=ExtResource("8_crvj0")]
+offset_left = 136.0
+offset_right = 136.0
+
+[node name="YouWinButton" type="Button" parent="."]
+offset_left = 384.0
+offset_top = 128.0
+offset_right = 512.0
+offset_bottom = 191.0
+text = "You Win!"
+
+[node name="Target" type="Area2D" parent="."]
+position = Vector2(310, 172)
+
+[node name="TargetCollider" type="CollisionShape2D" parent="Target"]
+position = Vector2(0, -1.52588e-05)
+shape = SubResource("RectangleShape2D_w12w4")
+
+[node name="Texture" type="Sprite2D" parent="Target"]
+scale = Vector2(0.313103, 0.342246)
+texture = ExtResource("6_80xwd")
+
+[node name="LilDude" type="Area2D" parent="."]
+position = Vector2(310, 189)
+
+[node name="LilDudeCollider" type="CollisionShape2D" parent="LilDude"]
+scale = Vector2(-0.68, -0.68)
+shape = SubResource("RectangleShape2D_7re2s")
+
+[node name="Texture" type="Sprite2D" parent="LilDude"]
+rotation = 3.14159
+scale = Vector2(-0.015, -0.015)
+texture = ExtResource("7_ph4o1")
+
+[connection signal="area_entered" from="Target" to="." method="_on_target_area_entered"]
+[connection signal="area_exited" from="Target" to="." method="_on_target_area_exited"]

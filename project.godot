@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Interaction System"
-run/main_scene="res://scenes/levels/overworld/overworld.tscn"
+run/main_scene="res://scenes/levels/overworld/SandboxOverworld.tscn"
 config/features=PackedStringArray("4.0", "Forward Plus")
 config/icon="res://assets/materials/textures/icon.svg"
 
@@ -22,16 +22,14 @@ Dialogues="*res://src/scripts/dialog_system/dialogues.gd"
 
 [debug]
 
-settings/stdout/print_fps=true
 gdscript/warnings/incompatible_ternary=0
 gdscript/warnings/integer_division=0
 gdscript/warnings/assert_always_false=0
 
 [display]
 
-window/size/viewport_width=640
-window/size/viewport_height=360
-window/size/always_on_top=true
+window/size/viewport_width=1280
+window/size/viewport_height=720
 window/size/window_width_override=1920
 window/size/window_height_override=1080
 window/vsync/vsync_mode=0
@@ -93,8 +91,24 @@ input_interact={
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":69,"key_label":0,"unicode":101,"echo":false,"script":null)
 ]
 }
+left_click={
+"deadzone": 0.5,
+"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":1,"position":Vector2(145, 22),"global_position":Vector2(151, 85),"factor":1.0,"button_index":1,"pressed":true,"double_click":false,"script":null)
+]
+}
+right_click={
+"deadzone": 0.5,
+"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":2,"position":Vector2(133, 22),"global_position":Vector2(139, 85),"factor":1.0,"button_index":2,"pressed":true,"double_click":false,"script":null)
+]
+}
 
 [layer_names]
 
 3d_render/layer_2="non_x_ray"
 3d_render/layer_3="x_ray"
+3d_physics/layer_4="body_parts"
+
+[physics]
+
+3d/run_on_separate_thread=true
+3d/default_gravity=4.0

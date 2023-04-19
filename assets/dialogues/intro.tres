@@ -1,4 +1,4 @@
-[gd_resource type="Resource" load_steps=2 format=3]
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://vn1ranvlcy5k"]
 
 [ext_resource type="Script" path="res://src/dialogues/intro.gd" id="1_bpptd"]
 

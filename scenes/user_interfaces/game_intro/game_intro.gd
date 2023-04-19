@@ -1,7 +1,7 @@
 @tool
 extends DialogueSystem
 
-@onready var cutscene := get_tree().current_scene.get_node_or_null("Cutscene")
+@onready var cutscene: Cutscene = get_tree().current_scene.get_node_or_null("Cutscene")
 
 
 func _ready():

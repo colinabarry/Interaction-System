@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://c6amsg6iw1pn0"]
+
+[resource]
+resource_name = "Windows"
+cull_mode = 2
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.247059, 0.52549, 0.8, 1)
+metallic = 1.0

@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://b3nw7scf6hx5k"]
+
+[ext_resource type="Script" path="res://scenes/user_interfaces/hint/hint.gd" id="1_ckc3f"]
+
+[node name="Hint" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_ckc3f")
+
+[node name="HintText" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+autowrap_mode = 3
+
+[node name="HintTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="HintTimer" to="." method="_on_hint_timer_timeout"]

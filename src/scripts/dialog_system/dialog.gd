@@ -259,11 +259,14 @@ func build_sequence(options := {}) -> Sequence:
 ## [Dialog.Sequence] using [method build].
 class Sequence:
 	extends EventManager
+
 	## The names of the lifecycle events which [Dialog.Sequence]s can emit.
 	## [br][Dialog.Sequence]s can also emit any of the events which [Dialog]s can emit.
 	## [br]See: [member Dialog.SIGNALS]
 	const SIGNALS = ["dirty", "cold", "hot", "dead", "revived"]
+	## The names of the lifecycle events which [Dialog.Sequence]s will delegate to the active [Dialog].
 	const DELEGATED_SIGNALS	= ["before_each", "after_each", "after_all", "before_next", "before_options"]
+	## The names of the properties which [Dialog.Sequence]s will propagate from the previous [Dialog] to the active [Dialog].
 	const PROPAGATED_PROPERTIES = ["speaker", "using_typing"]
 
 	## Are [Dialog]s within the [Dialog.Sequence] allowed to use the typing effect?
@@ -293,10 +296,10 @@ class Sequence:
 		if "should_restart_on_dead" in options:
 			should_restart_on_dead = options.should_restart_on_dead
 
+		super(SIGNALS + Dialog.SIGNALS, false)
+
 		if "set_on_init" in options and options.set_on_init:
 			set_dialog(head)
-
-		super(SIGNALS + Dialog.SIGNALS, false)
 
 		connect("dead", func(): if should_restart_on_dead: reset())
 
@@ -437,8 +440,9 @@ class Sequence:
 		dialog.reset()
 		reset_group("events")
 
-		dead = false  # revive the Sequence if dead
-		emit_signal("revived")
+		if dead:
+			dead = false
+			emit_signal("revived")
 
 		if not allow_typing:
 			dialog.using_typing = false

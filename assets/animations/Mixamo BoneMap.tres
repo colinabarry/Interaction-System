@@ -1,9 +1,9 @@
 [gd_resource type="BoneMap" load_steps=2 format=3 uid="uid://jsmvf7l3e2tg"]
 
-[sub_resource type="SkeletonProfileHumanoid" id="SkeletonProfileHumanoid_eq0yh"]
+[sub_resource type="SkeletonProfileHumanoid" id="SkeletonProfileHumanoid_rqf5n"]
 
 [resource]
-profile = SubResource("SkeletonProfileHumanoid_eq0yh")
+profile = SubResource("SkeletonProfileHumanoid_rqf5n")
 bonemap = null
 bone_map/Root = &""
 bone_map/Hips = &"mixamorig_Hips"
