@@ -22,6 +22,7 @@ const MOUSE_SENSITIVITY := 0.3
 var current_speed: float
 var input_dir := Vector2.ZERO
 var is_sprinting := false
+var can_jump := true
 var raycast_y_offset := 0.01
 
 # var speech_bubble = (
@@ -64,9 +65,13 @@ func _input(event: InputEvent) -> void:
 	camera_origin.rotation_degrees = camera_rotation
 
 	# jump
-	if event.is_action_pressed("move_jump"):
+	if event.is_action_pressed("move_jump") and velocity.y == 0 and can_jump:
+		can_jump = false
 		animation_tree["parameters/JumpOnly/request"] = true
-		create_tween().tween_callback(func(): velocity.y = 1.25).set_delay(0.2)
+		create_tween().tween_callback(func():
+			velocity.y = 1.25
+			can_jump = true
+			).set_delay(0.2)
 		# velocity.y = 1.25
 
 	# if event.is_action_pressed("test_restart"):
