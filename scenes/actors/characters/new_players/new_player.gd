@@ -129,8 +129,9 @@ func _physics_process(delta: float) -> void:
 		var target_rotation := Vector3.ZERO
 		target_rotation.y = atan2(rotated_input_dir.x, rotated_input_dir.z)
 
-		var target_prox_to_pi = PI - abs(target_rotation.y)
-		var rotation_speed = 0.25 if target_prox_to_pi > 0.1 else 1
+		var target_prox_to_pi : float= PI - abs(target_rotation.y)
+		var spin_prevention_margin := 0.2
+		var rotation_speed = 0.25 if target_prox_to_pi > spin_prevention_margin else 1
 		rotation = rotation.slerp(target_rotation, rotation_speed)
 		# print("target: ", rad_to_deg(target_rotation.y), " rotation: ", rad_to_deg(rotation.y), " prox: ", target_prox_to_pi, " speed: ", rotation_speed)
 		# rotation.y = lerp_angle(rotation.y, camera_origin.rotation.y * input_dir.y, 0.1)
