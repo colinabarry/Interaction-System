@@ -8,6 +8,9 @@ class_name Hint extends Control
 
 var _hint_text: String
 
+var text: String = "":
+	set(_text): 
+		hint.text = _text
 
 func _ready() -> void:
 	_hint_text = hint_text
