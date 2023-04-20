@@ -2,7 +2,7 @@ class_name JumpMinigame extends Node2D
 
 signal minigame_completed
 
-@onready var player: Player = $"../Player"
+@onready var player: NewPlayer = $"../Player"
 @onready var lil_dude: Area2D = $LilDude
 @onready var bar: Sprite2D = $Bar
 @onready var target: Area2D = $Target
