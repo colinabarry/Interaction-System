@@ -2,6 +2,7 @@ extends Node
 
 @onready var cutscene: Cutscene = $Cutscene
 @onready var player: NewPlayer = $Megan
+@onready var leave_gym_anchor := $Foliage/Bush_15
 
 
 func _ready():
@@ -16,9 +17,7 @@ func _ready():
 		pass
 	# 	cutscene.start()
 	elif Global.progress_state == Global.PROGRESS_STATE.GYM_COMPLETED:
-		player.position = Vector3(-8.375, 0.066, 8.935)
-		print(player.position)
-		print(player.global_position)
+		player.position = leave_gym_anchor.position
 
 
 func _on_unpaused():
