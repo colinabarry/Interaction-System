@@ -14,11 +14,14 @@ func _ready():
 	Global.unpaused.connect(_on_unpaused)
 	Global.transition_rect.fade_in()
 
+	print(Global.progress_state)
+
 	if Global.progress_state == Global.PROGRESS_STATE.GAME_STARTED:
 		# pass
 		cutscene.start()
 	elif Global.progress_state == Global.PROGRESS_STATE.GYM_COMPLETED:
-		player.position = leave_gym_anchor.position
+		player.position = Vector3(-8.994, 1.15, -6.16)
+		player.rotation.y = PI
 
 
 func _on_unpaused():
