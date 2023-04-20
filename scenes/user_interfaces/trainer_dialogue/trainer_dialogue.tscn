@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://b7qbfgcg3f8i5"]
 
-[ext_resource type="Script" path="res://scenes/user_interfaces/doctor_dialogue/doctor_dialogue.gd" id="1_pn3il"]
+[ext_resource type="Script" path="res://scenes/user_interfaces/trainer_dialogue/trainer_dialogue.gd" id="1_nxx3g"]
 [ext_resource type="Resource" uid="uid://c3bo85rrr7xcw" path="res://assets/dialogues/trainer.tres" id="2_3quc0"]
 
 [sub_resource type="Theme" id="Theme_ko4j0"]
@@ -59,7 +59,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-script = ExtResource("1_pn3il")
+script = ExtResource("1_nxx3g")
 dialog_container = NodePath("DialogContainer")
 dialog_options = NodePath("OptionsContainer/Options")
 dialogue = NodePath("DialogContainer/MarginContainer/VBoxContainer/HBoxContainer/Dialogue")
@@ -70,7 +70,7 @@ dialogue_resource = ExtResource("2_3quc0")
 head = "start"
 allow_typing = true
 tween_visibility = true
-typing_timer = NodePath("")
+typing_timer = null
 typing_timeout = 0.03
 auto_progress = false
 progress_timer = null

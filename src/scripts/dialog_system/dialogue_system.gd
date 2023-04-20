@@ -276,7 +276,7 @@ func _ready() -> void:
 
 # TEMPORARY FOR TESTING
 func _input(event: InputEvent) -> void:
-	if is_visible and event.is_pressed() and event.as_text() == "BracketRight":
+	if is_visible and event.is_pressed() and event.as_text() == "Space":
 		handle_next_phrase()
 
 	if event.is_pressed():

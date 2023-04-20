@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://bs2io07ftkq6d"]
 
-[ext_resource type="Script" path="res://scenes/user_interfaces/doctor_dialogue/doctor_dialogue.gd" id="1_ryirg"]
+[ext_resource type="Script" path="res://scenes/user_interfaces/quiz_dialogue/quiz_dialogue.gd" id="1_jcqsr"]
 [ext_resource type="Resource" uid="uid://dqbc7kknro2ku" path="res://assets/dialogues/quiz.tres" id="2_bwkm7"]
 
 [sub_resource type="Theme" id="Theme_ko4j0"]
@@ -57,7 +57,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-script = ExtResource("1_ryirg")
+script = ExtResource("1_jcqsr")
 dialog_container = NodePath("DialogContainer")
 dialog_options = NodePath("OptionsContainer/Options")
 dialogue = NodePath("DialogContainer/MarginContainer/VBoxContainer/HBoxContainer/Dialogue")
@@ -68,7 +68,7 @@ dialogue_resource = ExtResource("2_bwkm7")
 head = "start"
 allow_typing = true
 tween_visibility = true
-typing_timer = NodePath("")
+typing_timer = null
 typing_timeout = 0.03
 auto_progress = false
 progress_timer = null
