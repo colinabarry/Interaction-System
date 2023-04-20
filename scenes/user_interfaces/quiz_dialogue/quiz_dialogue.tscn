@@ -1,25 +1,50 @@
-[gd_scene load_steps=9 format=3 uid="uid://bs2io07ftkq6d"]
+[gd_scene load_steps=10 format=3 uid="uid://bs2io07ftkq6d"]
 
-[ext_resource type="Script" path="res://scenes/user_interfaces/quiz_dialogue/quiz_dialogue.gd" id="1_07hsk"]
+[ext_resource type="Script" path="res://scenes/user_interfaces/doctor_dialogue/doctor_dialogue.gd" id="1_ryirg"]
 [ext_resource type="Resource" uid="uid://dqbc7kknro2ku" path="res://assets/dialogues/quiz.tres" id="2_bwkm7"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w7xvq"]
-content_margin_left = 60.0
-content_margin_right = 60.0
+[sub_resource type="Theme" id="Theme_ko4j0"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3lc4m"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_smnj2"]
+content_margin_left = 8.0
+content_margin_right = 8.0
+bg_color = Color(0.964706, 0.909804, 0.694118, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_detail = 16
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p0afr"]
-content_margin_left = 60.0
-content_margin_top = 10.0
-content_margin_bottom = 10.0
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mjwe8"]
+resource_local_to_scene = true
+bg_color = Color(0.964706, 0.909804, 0.694118, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
 
-[sub_resource type="LabelSettings" id="LabelSettings_1tbcy"]
+[sub_resource type="LabelSettings" id="LabelSettings_t6tfh"]
+font_size = 30
+font_color = Color(0, 0, 0, 1)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_3rfjj"]
-viewport_path = NodePath("DialogContainer/MarginContainer/HBoxContainer/SubViewport")
+[sub_resource type="LabelSettings" id="LabelSettings_mly6m"]
+line_spacing = -3.0
+font_size = 24
+font_color = Color(0, 0, 0, 0.807843)
+outline_size = 1
+outline_color = Color(0, 0, 0, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_o1wdp"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_seir3"]
+viewport_path = NodePath("DialogContainer/MarginContainer/VBoxContainer/HBoxContainer/SubViewport")
+
+[sub_resource type="LabelSettings" id="LabelSettings_455eh"]
 font_size = 20
 font_color = Color(0, 0, 0, 1)
 outline_size = 1
@@ -29,98 +54,142 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 233.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-script = ExtResource("1_07hsk")
+script = ExtResource("1_ryirg")
 dialog_container = NodePath("DialogContainer")
-dialog_options = NodePath("DialogContainer/Options")
-dialogue = NodePath("DialogContainer/MarginContainer/HBoxContainer/Dialogue")
-speaker_name = NodePath("DialogContainer/SpeakerName")
-next_indicator = NodePath("DialogContainer/MarginContainer/HBoxContainer/SubViewport/NextIndicator")
+dialog_options = NodePath("OptionsContainer/Options")
+dialogue = NodePath("DialogContainer/MarginContainer/VBoxContainer/HBoxContainer/Dialogue")
+speaker_name = NodePath("DialogContainer/MarginContainer/VBoxContainer/SpeakerName")
+next_indicator = NodePath("DialogContainer/MarginContainer/VBoxContainer/HBoxContainer/SubViewport/NextIndicator")
 using_quiz = true
 dialogue_resource = ExtResource("2_bwkm7")
 head = "start"
 allow_typing = true
 tween_visibility = true
-typing_timer = null
+typing_timer = NodePath("NextCharTimer")
 typing_timeout = 0.03
 auto_progress = false
 progress_timer = null
 progress_timeout = 2
 
-[node name="DialogContainer" type="VBoxContainer" parent="."]
+[node name="OptionsContainer" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -27.0
+offset_top = -86.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_constants/separation = 0
+mouse_filter = 2
+theme_override_constants/margin_left = 80
+theme_override_constants/margin_right = 80
+theme_override_constants/margin_bottom = 190
 
-[node name="Options" type="ItemList" parent="DialogContainer"]
+[node name="Options" type="ItemList" parent="OptionsContainer"]
 layout_mode = 2
+size_flags_vertical = 8
+theme = SubResource("Theme_ko4j0")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_styles/panel = SubResource("StyleBoxFlat_w7xvq")
+theme_override_colors/guide_color = Color(0.964706, 0.909804, 0.694118, 1)
+theme_override_constants/v_separation = 2
+theme_override_constants/line_separation = 10
+theme_override_font_sizes/font_size = 27
+theme_override_styles/panel = SubResource("StyleBoxFlat_smnj2")
 auto_height = true
-text_overrun_behavior = 4
-item_count = 4
-item_0/text = "asddfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffasdf"
-item_1/text = "asdfasdf"
-item_2/text = "asdsdf"
-item_3/text = "asfsdf"
+item_count = 3
+item_0/text = "asdfasdf"
+item_1/text = "sadfasdf"
+item_2/text = "WOOOO"
 
-[node name="SpeakerName" type="Label" parent="DialogContainer"]
+[node name="DialogContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -228.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(1.00231, 1)
+size_flags_vertical = 7
+mouse_filter = 2
+theme_override_constants/margin_left = 80
+theme_override_constants/margin_top = 42
+theme_override_constants/margin_right = 80
+theme_override_constants/margin_bottom = 32
+
+[node name="Panel" type="Panel" parent="DialogContainer"]
 layout_mode = 2
-text = "asdfasdf"
-horizontal_alignment = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_mjwe8")
 
 [node name="MarginContainer" type="MarginContainer" parent="DialogContainer"]
 layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 12
 
-[node name="Panel" type="Panel" parent="DialogContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="DialogContainer/MarginContainer"]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_3lc4m")
+theme_override_constants/separation = -5
 
-[node name="HBoxContainer" type="HBoxContainer" parent="DialogContainer/MarginContainer"]
+[node name="SpeakerName" type="Label" parent="DialogContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 8
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = -1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/outline_size = 4
+text = "qwerqwe"
+label_settings = SubResource("LabelSettings_t6tfh")
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="DialogContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
 alignment = 1
 
-[node name="Dialogue" type="Label" parent="DialogContainer/MarginContainer/HBoxContainer"]
+[node name="Dialogue" type="Label" parent="DialogContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 8
-theme_override_styles/normal = SubResource("StyleBoxFlat_p0afr")
-text = "asdfasdfasdf"
-label_settings = SubResource("LabelSettings_1tbcy")
-vertical_alignment = 1
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0, 0, 0, 0.811765)
+text = "qwerqwerqwe rqwerqwerqwerqw erqwerqwe rqwerqwerqrq werqwe rqwerqwerqwerqwwwwwwwwwwwwwwwwww www wwwwwwwwwwwwwww www wwwwwwwwww wwwwwwwwwww wwwwwwww wwwww wwwwwww wwwwwwww wwwwwwwww wwwwwwwwwwwwwwwwwwwwwwwwwee"
+label_settings = SubResource("LabelSettings_mly6m")
 autowrap_mode = 3
+clip_text = true
+text_overrun_behavior = 4
 
-[node name="TextureRect" type="TextureRect" parent="DialogContainer/MarginContainer/HBoxContainer"]
-custom_minimum_size = Vector2(73, 45)
+[node name="TextureRect" type="TextureRect" parent="DialogContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 8
-texture = SubResource("ViewportTexture_3rfjj")
-stretch_mode = 3
+texture = SubResource("ViewportTexture_seir3")
+stretch_mode = 2
 
-[node name="SubViewport" type="SubViewport" parent="DialogContainer/MarginContainer/HBoxContainer"]
+[node name="SubViewport" type="SubViewport" parent="DialogContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 transparent_bg = true
 size = Vector2i(13, 31)
 
-[node name="NextIndicator" type="Label" parent="DialogContainer/MarginContainer/HBoxContainer/SubViewport"]
-custom_minimum_size = Vector2(13, 0)
+[node name="NextIndicator" type="Label" parent="DialogContainer/MarginContainer/VBoxContainer/HBoxContainer/SubViewport"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
-size_flags_vertical = 6
+size_flags_vertical = 3
 text = "V"
-label_settings = SubResource("LabelSettings_o1wdp")
+label_settings = SubResource("LabelSettings_455eh")
 horizontal_alignment = 2
 vertical_alignment = 2
+
+[node name="NextCharTimer" type="Timer" parent="."]
+
+[node name="NextPhraseTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true

@@ -1,11 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://cbn3fyccvvow3"]
+[gd_scene load_steps=10 format=3 uid="uid://cbn3fyccvvow3"]
 
 [ext_resource type="Script" path="res://scenes/user_interfaces/game_intro/game_intro.gd" id="1_j5qsv"]
-[ext_resource type="Resource" path="res://assets/dialogues/intro.tres" id="2_ay7ij"]
+[ext_resource type="Resource" uid="uid://vn1ranvlcy5k" path="res://assets/dialogues/intro.tres" id="2_ay7ij"]
 
-[sub_resource type="Theme" id="Theme_wak5k"]
+[sub_resource type="Theme" id="Theme_ko4j0"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ssrxi"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_smnj2"]
 content_margin_left = 8.0
 content_margin_right = 8.0
 bg_color = Color(0.964706, 0.909804, 0.694118, 1)
@@ -15,10 +15,11 @@ border_width_bottom = 2
 border_color = Color(0, 0, 0, 1)
 border_blend = true
 corner_radius_top_left = 10
-corner_radius_bottom_left = 10
+corner_radius_top_right = 10
 corner_detail = 16
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_guupc"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mjwe8"]
+resource_local_to_scene = true
 bg_color = Color(0.964706, 0.909804, 0.694118, 1)
 border_width_left = 2
 border_width_top = 2
@@ -26,22 +27,24 @@ border_width_right = 2
 border_width_bottom = 2
 border_color = Color(0, 0, 0, 1)
 border_blend = true
-corner_radius_top_left = 20
-corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 
-[sub_resource type="LabelSettings" id="LabelSettings_8fbvf"]
+[sub_resource type="LabelSettings" id="LabelSettings_t6tfh"]
+font_size = 30
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_mly6m"]
 line_spacing = -3.0
-font_size = 13
+font_size = 24
 font_color = Color(0, 0, 0, 0.807843)
 outline_size = 1
 outline_color = Color(0, 0, 0, 1)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_tnqon"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_seir3"]
 viewport_path = NodePath("DialogContainer/MarginContainer/VBoxContainer/HBoxContainer/SubViewport")
 
-[sub_resource type="LabelSettings" id="LabelSettings_kmhg8"]
+[sub_resource type="LabelSettings" id="LabelSettings_455eh"]
 font_size = 20
 font_color = Color(0, 0, 0, 1)
 outline_size = 1
@@ -64,7 +67,8 @@ using_quiz = false
 dialogue_resource = ExtResource("2_ay7ij")
 head = "start"
 allow_typing = true
-typing_timer = NodePath("NextCharTimer")
+tween_visibility = true
+typing_timer = null
 typing_timeout = 0.03
 auto_progress = true
 progress_timer = NodePath("NextPhraseTimer")
@@ -73,34 +77,39 @@ progress_timeout = 2
 [node name="OptionsContainer" type="MarginContainer" parent="."]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 1
-anchors_preset = 3
+anchors_preset = 6
 anchor_left = 1.0
-anchor_top = 1.0
+anchor_top = 0.5
 anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -200.0
-offset_top = -181.0
+anchor_bottom = 0.5
+offset_left = -322.0
+offset_top = -153.0
+offset_bottom = 93.0
 grow_horizontal = 0
-grow_vertical = 0
-theme_override_constants/margin_bottom = 150
+grow_vertical = 2
+mouse_filter = 2
 
 [node name="Options" type="ItemList" parent="OptionsContainer"]
 layout_mode = 2
 size_flags_vertical = 8
-theme = SubResource("Theme_wak5k")
+theme = SubResource("Theme_ko4j0")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/guide_color = Color(0.964706, 0.909804, 0.694118, 1)
 theme_override_constants/v_separation = 2
 theme_override_constants/line_separation = 10
-theme_override_font_sizes/font_size = 10
-theme_override_styles/panel = SubResource("StyleBoxFlat_ssrxi")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/panel = SubResource("StyleBoxFlat_smnj2")
 auto_height = true
 
 [node name="DialogContainer" type="MarginContainer" parent="."]
-layout_mode = 0
-offset_top = 215.0
-offset_right = 640.0
-offset_bottom = 360.0
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -228.0
+grow_horizontal = 2
+grow_vertical = 0
 scale = Vector2(1.00231, 1)
 size_flags_vertical = 7
 mouse_filter = 2
@@ -111,12 +120,10 @@ theme_override_constants/margin_bottom = 32
 
 [node name="Panel" type="Panel" parent="DialogContainer"]
 layout_mode = 2
-mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_guupc")
+theme_override_styles/panel = SubResource("StyleBoxFlat_mjwe8")
 
 [node name="MarginContainer" type="MarginContainer" parent="DialogContainer"]
 layout_mode = 2
-mouse_filter = 2
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 6
 theme_override_constants/margin_right = 16
@@ -135,6 +142,7 @@ theme_override_constants/shadow_offset_x = -1
 theme_override_constants/shadow_offset_y = 1
 theme_override_constants/outline_size = 4
 text = "qwerqwe"
+label_settings = SubResource("LabelSettings_t6tfh")
 horizontal_alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="DialogContainer/MarginContainer/VBoxContainer"]
@@ -148,7 +156,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 1
 theme_override_colors/font_color = Color(0, 0, 0, 0.811765)
 text = "qwerqwerqwerqwerqwerqwerqwerqwerqwerqwerqwerqrqwerqwerqwerqwerqwerqwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwee"
-label_settings = SubResource("LabelSettings_8fbvf")
+label_settings = SubResource("LabelSettings_mly6m")
 autowrap_mode = 3
 clip_text = true
 text_overrun_behavior = 4
@@ -156,7 +164,7 @@ text_overrun_behavior = 4
 [node name="TextureRect" type="TextureRect" parent="DialogContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 8
-texture = SubResource("ViewportTexture_tnqon")
+texture = SubResource("ViewportTexture_seir3")
 stretch_mode = 2
 
 [node name="SubViewport" type="SubViewport" parent="DialogContainer/MarginContainer/VBoxContainer/HBoxContainer"]
@@ -172,7 +180,7 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "V"
-label_settings = SubResource("LabelSettings_kmhg8")
+label_settings = SubResource("LabelSettings_455eh")
 horizontal_alignment = 2
 vertical_alignment = 2
 
@@ -181,9 +189,3 @@ vertical_alignment = 2
 [node name="NextPhraseTimer" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
-
-[connection signal="script_changed" from="." to="." method="_on_script_changed" flags=18]
-[connection signal="item_clicked" from="OptionsContainer/Options" to="." method="_on_options_item_clicked" flags=18]
-[connection signal="gui_input" from="DialogContainer/MarginContainer/VBoxContainer/HBoxContainer/Dialogue" to="." method="_on_dialogue_gui_input" flags=18]
-[connection signal="timeout" from="NextCharTimer" to="." method="_on_next_char_timer_timeout" flags=18]
-[connection signal="timeout" from="NextPhraseTimer" to="." method="_on_next_phrase_timer_timeout" flags=18]

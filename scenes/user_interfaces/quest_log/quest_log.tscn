@@ -6,12 +6,18 @@
 content_margin_top = 5.0
 content_margin_right = 15.0
 content_margin_bottom = 5.0
+bg_color = Color(0.964706, 0.909804, 0.694118, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
 corner_radius_top_left = 30
 corner_radius_bottom_left = 30
 
 [sub_resource type="LabelSettings" id="LabelSettings_gvnrf"]
-font_size = 14
-font_color = Color(0, 0, 1, 1)
+font_size = 23
+font_color = Color(0, 0, 0, 1)
+outline_color = Color(0, 0, 0, 1)
 
 [node name="QuestLog" type="Control"]
 layout_mode = 3
@@ -24,6 +30,7 @@ mouse_filter = 2
 script = ExtResource("1_45g07")
 
 [node name="Log" type="Label" parent="."]
+custom_minimum_size = Vector2(300, 50)
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0

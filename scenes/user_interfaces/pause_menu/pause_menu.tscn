@@ -30,31 +30,26 @@ grow_vertical = 2
 layout_mode = 2
 
 [node name="Resume" type="Button" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 100)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 24
 text = "Resume"
 
-[node name="Options" type="Button" parent="CenterContainer/VBoxContainer"]
+[node name="Menu" type="Button" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
-size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 24
-disabled = true
-text = "Options"
-
-[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Menu" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
+size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 24
 text = "Menu"
 
-[node name="Quit" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer"]
+[node name="Quit" type="Button" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
+size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 24
 text = "Quit"
 
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
-[connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/Menu" to="." method="_on_menu_pressed"]
-[connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Menu" to="." method="_on_menu_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
