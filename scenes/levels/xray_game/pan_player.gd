@@ -1,6 +1,9 @@
 extends MouseDragHandler
 
-@onready var xray_bot: StaticBody3D = get_tree().current_scene.get_node_or_null("XRayBot")
+var current_player := "Megan"
+
+@onready
+var xray_bot: StaticBody3D = get_tree().current_scene.get_node_or_null("XRay" + current_player)
 
 # TODO: Uhhhhh this is basically copy+pasted from x_ray_camera.gd
 # TODO: Make this not (somewhat) arbitrary

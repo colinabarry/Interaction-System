@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://cbenv74wgaehx"]
+
+[ext_resource type="MeshLibrary" uid="uid://enmdrfcnq77v" path="res://assets/mesh_libraries/streets_mesh_library_v2.tres" id="1_apl4n"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="GridMap" type="GridMap" parent="."]
+mesh_library = ExtResource("1_apl4n")
+data = {
+"cells": PackedInt32Array(65535, 65534, 1048582, 65535, 65535, 1048580, 65535, 0, 1048580, 0, 0, 1179653, 0, 65535, 1179653, 65534, 65535, 1179653, 65534, 0, 1179653, 65535, 1, 1048579, 0, 1, 1048576)
+}
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.843391, -0.200406, 0.498526, 0, 0.927836, 0.372988, -0.5373, -0.314575, 0.782529, 2.075, 2.534, 4.024)
+current = true

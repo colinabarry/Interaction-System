@@ -1,5 +1,7 @@
 class_name JumpMinigame extends Node2D
 
+signal minigame_completed
+
 @onready var player: Player = $"../Player"
 @onready var lil_dude: Area2D = $LilDude
 @onready var bar: Sprite2D = $Bar
@@ -9,6 +11,8 @@ class_name JumpMinigame extends Node2D
 const DECAY_FACTOR = 0.3
 const MAX_DIFFICULTY = 2
 const SPEED = 300
+
+var rng := RandomNumberGenerator.new()
 
 var top_bound: float
 var bottom_bound: float
@@ -39,7 +43,7 @@ func _input(event):
 
 			try_increase_difficulty()
 			if not minigame_complete:
-				create_tween().tween_callback(setup_and_start_level).set_delay(2)
+				create_tween().tween_callback(setup_and_start_level).set_delay(2.5)
 
 
 func _physics_process(delta):
@@ -54,6 +58,7 @@ func _physics_process(delta):
 		lil_dude.position.y += SPEED * delta
 		if lil_dude.position.y >= bottom_bound:
 			moving_up = not moving_up
+
 
 func _on_target_area_entered(_area: Area2D):
 	colliding = true
@@ -77,7 +82,9 @@ func setup_level():
 	lil_dude.position = bar.position
 	# determine size of target
 	target.scale.y *= (1 - DECAY_FACTOR) ** difficulty  # exponential decay
-	# TODO: determine placement of target within bounds of the bar
+	# determine placement of target within bounds of the bar
+	rng.randomize()
+	target.position.y = rng.randf_range(top_bound, bottom_bound - target.get_children()[0].shape.size.y * target.scale.y)  # probably fine idk
 
 	target.visible = true
 	lil_dude.visible = true
@@ -89,5 +96,6 @@ func setup_and_start_level():
 
 
 func win_game():
+	emit_signal("minigame_completed")
 	minigame_complete = true
 	you_win.visible = true

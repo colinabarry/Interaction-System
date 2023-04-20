@@ -1,4 +1,4 @@
-extends Control
+class_name Hint extends Control
 
 @export var hint_time := 0.0
 @export var hint_text := "Press 'E' to interact"
@@ -8,6 +8,9 @@ extends Control
 
 var _hint_text: String
 
+var text: String = "":
+	set(_text): 
+		hint.text = _text
 
 func _ready() -> void:
 	_hint_text = hint_text

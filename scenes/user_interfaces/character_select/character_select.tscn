@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://chycjl6spchnk"]
+[gd_scene load_steps=5 format=3 uid="uid://chycjl6spchnk"]
 
 [ext_resource type="Script" path="res://scenes/user_interfaces/character_select/character_select.gd" id="1_f4wop"]
 
@@ -6,6 +6,9 @@
 bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [sub_resource type="World3D" id="World3D_l3786"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_htykl"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [node name="CharacterSelect" type="Control"]
 layout_mode = 3
@@ -69,6 +72,11 @@ shadow_enabled = true
 
 [node name="SelectCharacter" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
+mouse_filter = 1
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 0)
+theme_override_styles/disabled = SubResource("StyleBoxFlat_htykl")
 text = "Pick me!"
 
+[connection signal="mouse_entered" from="MarginContainer/VBoxContainer" to="." method="_on_v_box_container_mouse_entered"]
+[connection signal="mouse_exited" from="MarginContainer/VBoxContainer" to="." method="_on_v_box_container_mouse_exited"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/SelectCharacter" to="." method="_on_select_character_pressed"]

@@ -20,8 +20,8 @@ func _input(event):
 		var mouse_x := mouse_motion.position.x
 		var mouse_y := mouse_motion.position.y
 
-		rotation.y = remap(mouse_x, 0, render_width, max_camera_rotation_x, -max_camera_rotation_x)
-		rotation.x = remap(mouse_y, 0, render_height, max_camera_rotation_y, -max_camera_rotation_y)
+		# rotation.y = remap(mouse_x, 0, render_width, max_camera_rotation_x, -max_camera_rotation_x)
+		# rotation.x = remap(mouse_y, 0, render_height, max_camera_rotation_y, -max_camera_rotation_y)
 
 		position.x = remap(
 			mouse_x,

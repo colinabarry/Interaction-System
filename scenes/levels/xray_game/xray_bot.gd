@@ -4,7 +4,7 @@ extends MouseDragHandler
 @export var max_camera_position_x := 4.0
 @export var max_camera_position_y := 2.3
 @export var min_player_size := 0.5 * Vector3.ONE
-@export var max_player_size := 10 * Vector3.ONE
+@export var max_player_size := 15 * Vector3.ONE
 @export var player_size_increment := 0.5 * Vector3.ONE
 
 @onready var render_width: int = ProjectSettings.get_setting("display/window/size/viewport_width")
