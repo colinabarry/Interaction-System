@@ -502,10 +502,11 @@ func _setup_next_indicator() -> void:
 
 
 func _setup_char_timer() -> void:
-	if not get_export("allow_typing") or get_export("tween_visibility"):
+	if get_export("tween_visibility") or not get_export("allow_typing"):
 		return
 
-	assert(_try_setup_export_node("next_char_timer", "typing_timer"), "You must set the 'typing_timer' export variable to the path of the Timer node you want to use for typing.")
+	if not _try_setup_export_node("next_char_timer", "typing_timer"): #"You must set the 'typing_timer' export variable to the path of the Timer node you want to use for typing.")
+		return
 
 	_next_char_timer.set_wait_time(get_export("typing_timeout"))
 	_next_char_timer.timeout.connect(_on_next_char_timer_timeout)
