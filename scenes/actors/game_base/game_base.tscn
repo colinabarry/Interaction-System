@@ -124,6 +124,7 @@ theme_override_constants/margin_bottom = 10
 
 [node name="Button" type="Button" parent="Control/MarginContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 44
 text = "Overworld"
 
 [connection signal="pressed" from="Control/MarginContainer/Button" to="." method="_on_button_pressed"]
