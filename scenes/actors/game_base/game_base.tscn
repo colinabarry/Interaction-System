@@ -1,5 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://rup5h2ulx734"]
+[gd_scene load_steps=11 format=3 uid="uid://rup5h2ulx734"]
 
+[ext_resource type="Script" path="res://scenes/actors/game_base/game_base.gd" id="1_a6fwh"]
 [ext_resource type="Script" path="res://scenes/actors/game_base/camera.gd" id="1_enuaq"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yvtuv"]
@@ -35,6 +36,7 @@ size = Vector2(5, 4.5)
 orientation = 2
 
 [node name="GameBase" type="Node"]
+script = ExtResource("1_a6fwh")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0.477745, -0.569093, 0.669248, -0.147521, 0.699021, 0.699719, 0, 0, 8)
@@ -126,5 +128,25 @@ theme_override_constants/margin_bottom = 10
 layout_mode = 2
 theme_override_font_sizes/font_size = 44
 text = "Overworld"
+
+[node name="TimeSkip" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="TimeSkip"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 100
+text = "3 Months Later"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="pressed" from="Control/MarginContainer/Button" to="." method="_on_button_pressed"]

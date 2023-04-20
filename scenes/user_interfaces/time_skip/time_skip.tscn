@@ -1,12 +1,13 @@
 [gd_scene format=3 uid="uid://casan20l7jwgy"]
 
-[node name="time_skip" type="Control"]
+[node name="TimeSkip" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
