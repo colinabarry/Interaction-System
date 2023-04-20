@@ -20,7 +20,7 @@ func _input(event: InputEvent) -> void:
 
 
 func sort_by_world_z(a: HoverBodyPart, b: HoverBodyPart) -> bool:
-	var a_mesh = a.get_children().filter(func(child): return child is MeshInstance3D).front()
+	var a_mesh = a.get_children().filter(func(child): return child is MeshInstance3D).front()  # TODO: Make this monstrosity a global func
 	var b_mesh = b.get_children().filter(func(child): return child is MeshInstance3D).front()
 	return a_mesh.global_position.z > b_mesh.global_position.z
 
