@@ -90,7 +90,7 @@ func resume_animation():
 
 
 func fade_out():
-	transition_rect.fade_out(0.1)
+	transition_rect.fade_out(0)
 
 
 func fade_in():
