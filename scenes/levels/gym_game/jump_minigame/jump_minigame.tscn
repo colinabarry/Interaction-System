@@ -11,7 +11,8 @@ size = Vector2(6, 64)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7re2s"]
 
 [node name="JumpMinigame" type="Node2D"]
-position = Vector2(-800, 4)
+position = Vector2(-1600, 4)
+scale = Vector2(2, 2)
 script = ExtResource("3_u6ebw")
 
 [node name="Bar" type="Sprite2D" parent="."]

@@ -15,9 +15,7 @@ func _ready():
 func _on_start_pressed():
 	await Global.tween_cubic_modulate(self).finished
 
-	get_tree().change_scene_to_file(
-		"res://scenes/user_interfaces/character_select_screen/character_select_screen.tscn"
-	)
+	get_tree().change_scene_to_file("res://scenes/levels/overworld/SandboxOverworld.tscn")
 
 
 func _on_quit_pressed():

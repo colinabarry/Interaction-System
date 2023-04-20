@@ -24,7 +24,7 @@ offset_left = -50.5
 offset_right = 50.5
 offset_bottom = 111.0
 grow_horizontal = 2
-theme_override_constants/separation = 50
+theme_override_constants/separation = 103
 
 [node name="Label" type="Label" parent="VBoxContainer2"]
 layout_mode = 2
@@ -34,7 +34,7 @@ theme_override_constants/shadow_offset_x = 8
 theme_override_constants/shadow_offset_y = 9
 theme_override_constants/outline_size = 7
 theme_override_constants/shadow_outline_size = 13
-theme_override_font_sizes/font_size = 88
+theme_override_font_sizes/font_size = 154
 theme_override_styles/normal = SubResource("StyleBoxFlat_hd0jk")
 text = "ACL ACADEMY"
 horizontal_alignment = 1
@@ -48,13 +48,15 @@ layout_mode = 2
 theme_override_constants/separation = 10
 
 [node name="Start" type="Button" parent="VBoxContainer2/CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(250, 85)
 layout_mode = 2
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 45
 text = "Start"
 
 [node name="Quit" type="Button" parent="VBoxContainer2/CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 85)
 layout_mode = 2
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 45
 text = "Quit"
 
 [connection signal="pressed" from="VBoxContainer2/CenterContainer/VBoxContainer/Start" to="." method="_on_start_pressed"]

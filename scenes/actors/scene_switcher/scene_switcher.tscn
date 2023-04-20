@@ -1,13 +1,23 @@
-[gd_scene load_steps=3 format=3 uid="uid://dq1rx8wwuu0pe"]
+[gd_scene load_steps=4 format=3 uid="uid://dq1rx8wwuu0pe"]
 
-[ext_resource type="Script" path="res://scenes/actors/scene_switcher/scene_switcher.gd" id="1_ns65c"]
+[ext_resource type="Script" path="res://scenes/actors/scene_switcher/scene_switcher.gd" id="1_vp1c5"]
+[ext_resource type="PackedScene" uid="uid://b3nw7scf6hx5k" path="res://scenes/user_interfaces/hint/hint.tscn" id="2_b60sp"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_ha1yp"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_hu0do"]
+size = Vector3(1, 1, 0.8)
 
 [node name="SceneSwitcher" type="Area3D"]
-script = ExtResource("1_ns65c")
+script = ExtResource("1_vp1c5")
 
-[node name="CollisionShape" type="CollisionShape3D" parent="."]
-shape = SubResource("BoxShape3D_ha1yp")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_hu0do")
 
-[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[node name="Hint" parent="." instance=ExtResource("2_b60sp")]
+offset_left = 383.0
+offset_top = 79.0
+offset_right = 383.0
+offset_bottom = 79.0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

@@ -32,8 +32,8 @@ func _enter_tree() -> void:
 		return
 
 	# don't create the anim player inside the cutscene scene
-	if get_tree().get_edited_scene_root().is_in_group("cutscene"):
-		return
+	# if get_tree().get_edited_scene_root().is_in_group("cutscene"):
+	# 	return
 
 	_create_anim_player()
 
@@ -89,8 +89,8 @@ func resume_animation():
 	animation_player.play()
 
 
-func fade_out():
-	transition_rect.fade_out(0.1)
+func fade_out(time := 0.0):
+	transition_rect.fade_out(time)
 
 
 func fade_in():

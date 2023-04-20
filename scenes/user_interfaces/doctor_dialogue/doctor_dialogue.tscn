@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://b4clki5b1awao"]
+[gd_scene load_steps=10 format=3 uid="uid://b4clki5b1awao"]
 
 [ext_resource type="Script" path="res://scenes/user_interfaces/doctor_dialogue/doctor_dialogue.gd" id="1_n373k"]
 [ext_resource type="Resource" uid="uid://yvadforf7v4n" path="res://assets/dialogues/doctor.tres" id="2_a7jag"]
@@ -15,10 +15,11 @@ border_width_bottom = 2
 border_color = Color(0, 0, 0, 1)
 border_blend = true
 corner_radius_top_left = 10
-corner_radius_bottom_left = 10
+corner_radius_top_right = 10
 corner_detail = 16
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mjwe8"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6qsaw"]
+resource_local_to_scene = true
 bg_color = Color(0.964706, 0.909804, 0.694118, 1)
 border_width_left = 2
 border_width_top = 2
@@ -31,9 +32,13 @@ corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 
+[sub_resource type="LabelSettings" id="LabelSettings_t6tfh"]
+font_size = 30
+font_color = Color(0, 0, 0, 1)
+
 [sub_resource type="LabelSettings" id="LabelSettings_mly6m"]
 line_spacing = -3.0
-font_size = 13
+font_size = 24
 font_color = Color(0, 0, 0, 0.807843)
 outline_size = 1
 outline_color = Color(0, 0, 0, 1)
@@ -64,8 +69,8 @@ using_quiz = false
 dialogue_resource = ExtResource("2_a7jag")
 head = "start"
 allow_typing = true
-tween_visibility = false
-typing_timer = NodePath("NextCharTimer")
+tween_visibility = true
+typing_timer = NodePath("")
 typing_timeout = 0.03
 auto_progress = false
 progress_timer = null
@@ -74,17 +79,17 @@ progress_timeout = 2
 [node name="OptionsContainer" type="MarginContainer" parent="."]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 1
-anchors_preset = 3
+anchors_preset = 6
 anchor_left = 1.0
-anchor_top = 1.0
+anchor_top = 0.5
 anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -200.0
-offset_top = -181.0
+anchor_bottom = 0.5
+offset_left = -322.0
+offset_top = -153.0
+offset_bottom = 93.0
 grow_horizontal = 0
-grow_vertical = 0
+grow_vertical = 2
 mouse_filter = 2
-theme_override_constants/margin_bottom = 150
 
 [node name="Options" type="ItemList" parent="OptionsContainer"]
 layout_mode = 2
@@ -94,15 +99,19 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/guide_color = Color(0.964706, 0.909804, 0.694118, 1)
 theme_override_constants/v_separation = 2
 theme_override_constants/line_separation = 10
-theme_override_font_sizes/font_size = 10
+theme_override_font_sizes/font_size = 20
 theme_override_styles/panel = SubResource("StyleBoxFlat_smnj2")
 auto_height = true
 
 [node name="DialogContainer" type="MarginContainer" parent="."]
-layout_mode = 0
-offset_top = 215.0
-offset_right = 640.0
-offset_bottom = 360.0
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -228.0
+grow_horizontal = 2
+grow_vertical = 0
 scale = Vector2(1.00231, 1)
 size_flags_vertical = 7
 mouse_filter = 2
@@ -113,7 +122,7 @@ theme_override_constants/margin_bottom = 32
 
 [node name="Panel" type="Panel" parent="DialogContainer"]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_mjwe8")
+theme_override_styles/panel = SubResource("StyleBoxFlat_6qsaw")
 
 [node name="MarginContainer" type="MarginContainer" parent="DialogContainer"]
 layout_mode = 2
@@ -135,6 +144,7 @@ theme_override_constants/shadow_offset_x = -1
 theme_override_constants/shadow_offset_y = 1
 theme_override_constants/outline_size = 4
 text = "qwerqwe"
+label_settings = SubResource("LabelSettings_t6tfh")
 horizontal_alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="DialogContainer/MarginContainer/VBoxContainer"]
