@@ -1,7 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://rup5h2ulx734"]
+[gd_scene load_steps=10 format=3 uid="uid://rup5h2ulx734"]
 
 [ext_resource type="Script" path="res://scenes/actors/game_base/camera.gd" id="1_enuaq"]
-[ext_resource type="Script" path="res://scenes/actors/game_base/game_base.gd" id="1_nl6hs"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yvtuv"]
 sky_top_color = Color(0.196078, 0.384314, 0.945098, 1)
@@ -36,7 +35,6 @@ size = Vector2(5, 4.5)
 orientation = 2
 
 [node name="GameBase" type="Node"]
-script = ExtResource("1_nl6hs")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0.477745, -0.569093, 0.669248, -0.147521, 0.699021, 0.699719, 0, 0, 8)

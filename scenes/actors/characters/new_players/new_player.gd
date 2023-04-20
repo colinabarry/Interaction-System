@@ -43,6 +43,7 @@ var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 func _ready():
 	animation_tree.active = true
+	add_to_group("player")
 
 	setup_raycasts()
 	# armature.rotation.y = rotation.y
