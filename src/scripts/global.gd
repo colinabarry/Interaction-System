@@ -29,16 +29,12 @@ var pause_menu: TextureRect = (
 var transition_rect: TransitionRect = (
 	preload("res://scenes/user_interfaces/transition_rect/transition_rect.tscn").instantiate()
 )
-# var dialog_box: Control = (
-# 	preload("res://scenes/user_interfaces/dialog_box/dialog_box.tscn").instantiate()
-# )
+var overworld := preload("res://scenes/levels/overworld/SandboxOverworld.tscn")
 
 
 func _ready() -> void:
-	#
 	process_mode = Node.PROCESS_MODE_ALWAYS
 
-	# add_child(dialog_box)
 	add_child(pause_menu)
 	add_child(transition_rect)
 	# make sure that the game starts unpaused
@@ -59,22 +55,6 @@ func _input(event: InputEvent) -> void:
 
 	if event.is_action_pressed("force_quit"):
 		get_tree().quit()
-
-	# if event.is_action_pressed("ui_up"):
-	# 	transition_rect.fade_out()
-
-	# if event.is_action_pressed("ui_down"):
-	# 	transition_rect.fade_in()
-
-
-# ## Advances the current `progress_state` to the next state.
-# ## Returns false if `progress_state` == GAME_COMPLETED, true otherwise.
-# func advance_progress_state() -> bool:
-# 	if progress_state < GAME_COMPLETED:
-# 		progress_state += 1
-# 		progress_advanced.emit(progress_state)
-# 		return true
-# 	return false
 
 
 ## Set the progress_state. It can only be set forward, not backward.
