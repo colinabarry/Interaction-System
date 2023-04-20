@@ -4,7 +4,6 @@ extends Node
 @export var end_state := Global.PROGRESS_STATE.GAME_STARTED
 
 @onready var frame: Node3D = $Frame
-# @onready var overworld := preload("res://scenes/levels/overworld/SandboxOverworld.tscn")
 
 
 func _ready():
@@ -19,5 +18,4 @@ func _on_button_pressed() -> void:
 	Global.transition_rect.fade_out()
 
 	await Global.transition_rect.faded_out
-	# print("faded")
 	print(get_tree().change_scene_to_packed(Global.overworld))
