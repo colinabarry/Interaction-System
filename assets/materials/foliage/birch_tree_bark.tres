@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://ctwj4y1fmxl2q"]
+
+[ext_resource type="Texture2D" uid="uid://dsgf4wuxpfboh" path="res://assets/materials/textures/foliage/BirchTree_Bark.png" id="1_dxbd2"]
+
+[resource]
+resource_name = "BirchTree_Bark"
+cull_mode = 2
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_dxbd2")
+metallic = 1.0

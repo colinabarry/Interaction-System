@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://dsg0u70gmkiq5"]
+[gd_scene load_steps=35 format=3]
 
 [ext_resource type="Material" uid="uid://bog4f6vfo35c7" path="res://assets/materials/textures/SidewalkTan.tres" id="1_obhu0"]
 [ext_resource type="ArrayMesh" uid="uid://r4mdsjil227x" path="res://assets/models/streets/street_curve.res" id="2_y123i"]

@@ -39,6 +39,10 @@ window/stretch/mode="viewport"
 
 enabled=PackedStringArray("res://addons/gut/plugin.cfg", "res://addons/Todo_Manager/plugin.cfg", "res://addons/multimesh_scatter/plugin.cfg")
 
+[filesystem]
+
+import/fbx/enabled=false
+
 [input]
 
 move_left={
@@ -110,5 +114,4 @@ right_click={
 
 [physics]
 
-3d/run_on_separate_thread=true
 3d/default_gravity=4.0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://doqep3e4dcbaw"]
+[gd_scene load_steps=8 format=3]
 
 [ext_resource type="Shader" path="res://scenes/actors/heightmap_terrain/heightmap_terrain.gdshader" id="1_3cb47"]
 [ext_resource type="Texture2D" uid="uid://da4v4opgioa8f" path="res://assets/materials/textures/dark-grass.png" id="2_g30j8"]

@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://d3ghu3by7nha3"]
+
+[ext_resource type="ArrayMesh" uid="uid://h7vwv6mnah77" path="res://assets/models/street_meshes/street_light.res" id="1_3b4p4"]
+[ext_resource type="Script" path="res://scenes/actors/decorations/street_light.gd" id="1_v4v53"]
+
+[node name="StreetLight" type="Node3D"]
+script = ExtResource("1_v4v53")
+
+[node name="StreetLight" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+mesh = ExtResource("1_3b4p4")
+
+[node name="Light1" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.431765, 0.0509451)
+visible = false
+
+[node name="Light2" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.431765, -0.0514237)
+visible = false

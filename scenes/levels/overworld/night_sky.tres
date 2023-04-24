@@ -1,0 +1,11 @@
+[gd_resource type="ProceduralSkyMaterial" load_steps=2 format=3 uid="uid://d4afexcj73kgs"]
+
+[ext_resource type="Texture2D" uid="uid://bwh4ibbhr5ack" path="res://assets/materials/textures/starmap_4k.jpg" id="1_i2jab"]
+
+[resource]
+sky_top_color = Color(0, 0, 0, 1)
+sky_horizon_color = Color(0.054902, 0.0745098, 0.113725, 1)
+sky_cover = ExtResource("1_i2jab")
+sky_cover_modulate = Color(0.447059, 0.447059, 0.447059, 1)
+ground_bottom_color = Color(0, 0, 0, 1)
+ground_horizon_color = Color(0.044225, 0.0655332, 0.100564, 1)

@@ -7,7 +7,6 @@ extends Node
 
 
 func _ready():
-	print("overworld")
 	Global.capture_mouse()
 	Global.player_has_control = true
 

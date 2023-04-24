@@ -10,12 +10,12 @@ var _modulate
 
 
 func _ready():
-	
-	_modulate = time_skip.modulate
-	time_skip.modulate = Color.TRANSPARENT
-	
+	# if Global.progress_state >= Global.PROGRESS_STATE.HOSPITAL_ENTERED:
+	# 	_modulate = time_skip.modulate
+	# 	time_skip.modulate = Color.TRANSPARENT
+
 	Global.show_mouse()
-	
+
 	frame.visible = show_frame
 
 
@@ -24,11 +24,11 @@ func _on_button_pressed() -> void:
 	Global.player_has_control = true
 	Global.transition_rect.fade_out()
 	await Global.transition_rect.faded_out
-	
-	print(Global.progress_state)
-	if Global.progress_state == Global.PROGRESS_STATE.HOSPITAL_COMPLETED:
-		await Global.tween_cubic_modulate(time_skip, _modulate).finished
-		await create_tween().tween_callback(func(): return false).set_delay(1.5).finished
-		await Global.tween_cubic_modulate(time_skip).finished
-	print("hi")
+
+	# print(Global.progress_state)
+	# if Global.progress_state == Global.PROGRESS_STATE.HOSPITAL_COMPLETED:
+	# 	await Global.tween_cubic_modulate(time_skip, _modulate).finished
+	# 	await create_tween().tween_callback(func(): return false).set_delay(1.5).finished
+	# 	await Global.tween_cubic_modulate(time_skip).finished
+	# print("hi")
 	print(get_tree().change_scene_to_packed(Global.overworld))
