@@ -28,11 +28,13 @@ func _update() -> void:
 	match time_of_day:
 		TOD.MORNING:
 			sun.visible = true
+			sun.light_color = Color("ff9b5a")
 			environment_sky.sky_material = morning_sky
 			sun.rotation_degrees.x = -167
 			street_light_controller.all_lit = false
 		TOD.NOON:
 			sun.visible = true
+			sun.light_color = Color.WHITE
 			environment_sky.sky_material = noon_sky
 			sun.rotation_degrees.x = -110
 			street_light_controller.all_lit = false
