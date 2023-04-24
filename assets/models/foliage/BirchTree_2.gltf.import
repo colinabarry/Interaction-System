@@ -28,5 +28,16 @@ animation/fps=30
 animation/trimming=false
 animation/remove_immutable_tracks=true
 import_script/path=""
-_subresources={}
+_subresources={
+"materials": {
+"BirchTree_Bark": {
+"use_external/enabled": true,
+"use_external/path": "res://assets/materials/foliage/birch_tree_bark.tres"
+},
+"BirchTree_Leaves": {
+"use_external/enabled": true,
+"use_external/path": "res://assets/materials/foliage/birch_tree_leaves.tres"
+}
+}
+}
 gltf/embedded_image_handling=1

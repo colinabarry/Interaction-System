@@ -1,0 +1,12 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://d27cmhigli1fm"]
+
+[ext_resource type="Texture2D" uid="uid://bk8sk7hxus3ye" path="res://assets/materials/textures/foliage/MapleTree_Leaves.png" id="1_htk6h"]
+
+[resource]
+resource_name = "MapleTree_Leaves"
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_htk6h")
+metallic = 1.0

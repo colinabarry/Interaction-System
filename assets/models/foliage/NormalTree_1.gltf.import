@@ -28,5 +28,16 @@ animation/fps=30
 animation/trimming=false
 animation/remove_immutable_tracks=true
 import_script/path=""
-_subresources={}
+_subresources={
+"materials": {
+"NormalTree_Bark": {
+"use_external/enabled": true,
+"use_external/path": "res://assets/materials/foliage/normal_bark.tres"
+},
+"NormalTree_Leaves": {
+"use_external/enabled": true,
+"use_external/path": "res://assets/materials/foliage/normal_leaves.tres"
+}
+}
+}
 gltf/embedded_image_handling=1

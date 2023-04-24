@@ -4,8 +4,9 @@
 
 [resource]
 resource_name = "BirchTree_Leaves"
-transparency = 1
-cull_mode = 2
+transparency = 2
+alpha_scissor_threshold = 0.44
+alpha_antialiasing_mode = 0
 vertex_color_use_as_albedo = true
 albedo_texture = ExtResource("1_sw2ct")
 metallic = 1.0
