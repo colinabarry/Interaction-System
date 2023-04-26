@@ -1,9 +1,9 @@
 [gd_resource type="Environment" load_steps=3 format=3 uid="uid://c7dcvdx6nxwu7"]
 
-[ext_resource type="Material" uid="uid://d28aviuwfgxci" path="res://scenes/levels/overworld/noon_sky.tres" id="1_n84fr"]
+[ext_resource type="Material" uid="uid://brfo1axwla8u3" path="res://scenes/levels/overworld/morning_sky.tres" id="1_lypju"]
 
 [sub_resource type="Sky" id="Sky_fap36"]
-sky_material = ExtResource("1_n84fr")
+sky_material = ExtResource("1_lypju")
 
 [resource]
 background_mode = 2
