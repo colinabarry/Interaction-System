@@ -7,7 +7,7 @@ var selected := false
 	get_children().filter(func(child): return child is MeshInstance3D).front()
 )
 @onready var hint: Hint = get_tree().current_scene.get_node("Hint")
-
+@onready var body_part_hints := load("res://scenes/levels/xray_game/body_part_hints.gd")
 
 func _ready() -> void:
 	mesh.mesh.surface_get_material(0).albedo_color.a = 0.39
@@ -22,7 +22,7 @@ func _physics_process(_delta: float) -> void:
 		else:
 			selected = true
 			mesh.mesh.surface_get_material(0).albedo_color.a = 1
-			hint.start_hint_timer(0, "You found the " + name + "!")
+			hint.start_hint_timer(0, body_part_hints.hints[name])
 			# hint.hint_text = "You found the " + name + "!"
 
 
