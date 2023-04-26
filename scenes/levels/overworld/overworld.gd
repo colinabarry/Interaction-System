@@ -4,6 +4,7 @@ extends Node
 @onready var player: NewPlayer = $Megan
 @onready var leave_gym_anchor := $Foliage/Bush_15
 @onready var xray_game := preload("res://scenes/levels/xray_game/xray_game.tscn")
+@onready var tod := $TimeOfDay
 
 
 func _ready():
@@ -16,9 +17,13 @@ func _ready():
 	print(Global.progress_state)
 
 	if Global.progress_state == Global.PROGRESS_STATE.GAME_STARTED:
-		# pass
+		tod.time_of_day = tod.TOD.NOON
 		cutscene.start()
+		Global.pause()
+	elif Global.progress_state == Global.PROGRESS_STATE.HOSPITAL_COMPLETED:
+		tod.time_of_day = tod.TOD.EVENING
 	elif Global.progress_state == Global.PROGRESS_STATE.GYM_COMPLETED:
+		tod.time_of_day = tod.TOD.NIGHT
 		player.position = Vector3(-8.994, 1.15, -6.16)
 		player.rotation.y = PI
 
