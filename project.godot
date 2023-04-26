@@ -28,12 +28,12 @@ gdscript/warnings/assert_always_false=0
 
 [display]
 
-window/size/viewport_width=1280
-window/size/viewport_height=720
+window/size/viewport_width=1920
+window/size/viewport_height=1080
 window/size/window_width_override=1920
 window/size/window_height_override=1080
-window/vsync/vsync_mode=0
 window/stretch/mode="viewport"
+window/vsync/vsync_mode=0
 
 [editor_plugins]
 
@@ -113,6 +113,7 @@ right_click={
 3d_physics/layer_4="body_parts"
 3d_physics/layer_5="trees"
 3d_physics/layer_6="grass"
+3d_physics/layer_7="bg_trees"
 
 [physics]
 
