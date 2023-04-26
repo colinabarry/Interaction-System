@@ -24,7 +24,7 @@ extends MultiMeshInstance3D
 enum PlacementType { BOX, SPHERE }
 
 ## The number of instances to generate.
-@export_range(0, 10000, 1) var count := 100:
+@export_range(0, 100000, 1) var count := 100:
 	get:
 		return count
 	set(value):
@@ -51,7 +51,7 @@ enum PlacementType { BOX, SPHERE }
 	get:
 		return placement_size
 	set(value):
-		placement_size = value.clamp(Vector3.ONE * 0.01, Vector3.ONE * 100.0)
+		placement_size = value.clamp(Vector3.ONE * 0.01, Vector3.ONE * 150.0)
 		_update()
 
 ## The physics collision mask that the instances should collide with.
