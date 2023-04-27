@@ -57,7 +57,16 @@ func _input(event: InputEvent) -> void:
 		get_tree().quit()
 
 
-## Set the progress_state. It can only be set forward, not backward.
+## Reset the progress_state. Returns true if progress_state is not PROGRESS_STATE.GAME_STARTED, false otherwise.
+func reset_progress_state() -> bool:
+	if progress_state == PROGRESS_STATE.GAME_STARTED:
+		return false
+
+	progress_state = PROGRESS_STATE.GAME_STARTED
+	return true
+
+
+## Set the progress_state. It can only be set forward, not backward. Returns true if new_state is after the current state, false otherwise.
 func set_progress_state(new_state: int) -> bool:
 	if progress_state < new_state:
 		progress_state = new_state

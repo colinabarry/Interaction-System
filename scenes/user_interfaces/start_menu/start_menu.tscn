@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://dis6jkmt8spvr"]
+[gd_scene load_steps=4 format=3 uid="uid://dis6jkmt8spvr"]
 
 [ext_resource type="Script" path="res://scenes/user_interfaces/start_menu/start_menu.gd" id="1_yfrx7"]
+[ext_resource type="Texture2D" uid="uid://yuamxc7hyboi" path="res://assets/materials/textures/image.png" id="2_iksgx"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hd0jk"]
 content_margin_top = 1.0
@@ -14,6 +15,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_yfrx7")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_top = -47.0
+offset_right = 1928.0
+offset_bottom = 1163.0
+texture = ExtResource("2_iksgx")
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="."]
 layout_mode = 1

@@ -28,14 +28,13 @@ func _input(event: InputEvent) -> void:
 			if scale < max_player_size:
 				scale += player_size_increment
 
-
-func _drag():
-	rotate_y(
-		remap(
-			mouse_motion.relative.x,
-			-render_width / 2,
-			render_width / 2,
-			-max_camera_position_x,
-			max_camera_position_x
-		)
-	)
+# func _drag():
+# 	rotate_y(
+# 		remap(
+# 			mouse_motion.relative.x,
+# 			-render_width / 2,
+# 			render_width / 2,
+# 			-max_camera_position_x,
+# 			max_camera_position_x
+# 		)
+# 	)

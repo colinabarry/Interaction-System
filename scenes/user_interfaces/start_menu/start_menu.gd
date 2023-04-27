@@ -10,6 +10,7 @@ func _init():
 
 func _ready():
 	Global.tween_cubic_modulate(self, _modulate)
+	Global.reset_progress_state()
 
 
 func _on_start_pressed():

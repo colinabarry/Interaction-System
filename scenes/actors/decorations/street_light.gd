@@ -14,14 +14,6 @@ func _ready() -> void:
 	_update()
 
 
-# func _process(_delta: float) -> void:
-# 	if Engine.is_editor_hint():
-# 		if get_parent() is StreetLightController:
-# 			print("really")
-# 			lit = get_parent().all_lit
-# 			_update()
-
-
 func _update() -> void:
 	light1.visible = lit
 	light2.visible = lit
