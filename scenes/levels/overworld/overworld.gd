@@ -1,6 +1,7 @@
 extends Node
 
 @onready var cutscene: Cutscene = $Cutscene
+@onready var cutscene_player = cutscene.get_node("Megan")
 @onready var player: NewPlayer = $Megan
 @onready var leave_gym_anchor := $Foliage/Bush_15
 @onready var xray_game := preload("res://scenes/levels/xray_game/xray_game.tscn")
@@ -14,15 +15,17 @@ func _ready():
 	Global.unpaused.connect(_on_unpaused)
 	Global.transition_rect.fade_in()
 
-	print(Global.progress_state)
-
+	# I dislike this whole chain here but I mean it works
 	if Global.progress_state == Global.PROGRESS_STATE.GAME_STARTED:
+		cutscene_player.visible = true
 		tod.time_of_day = tod.TOD.NOON
 		cutscene.start()
-		Global.pause()
-	elif Global.progress_state == Global.PROGRESS_STATE.HOSPITAL_COMPLETED:
+	else:
+		cutscene_player.visible = false
+
+	if Global.progress_state == Global.PROGRESS_STATE.HOSPITAL_COMPLETED:
 		tod.time_of_day = tod.TOD.EVENING
-	elif Global.progress_state == Global.PROGRESS_STATE.GYM_COMPLETED:
+	if Global.progress_state == Global.PROGRESS_STATE.GYM_COMPLETED:
 		tod.time_of_day = tod.TOD.NIGHT
 		player.position = Vector3(-8.994, 1.15, -6.16)
 		player.rotation.y = PI
