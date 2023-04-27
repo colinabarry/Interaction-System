@@ -27,7 +27,7 @@ func _ready():
 		tod.time_of_day = tod.TOD.EVENING
 	if Global.progress_state == Global.PROGRESS_STATE.GYM_COMPLETED:
 		tod.time_of_day = tod.TOD.NIGHT
-		player.position = Vector3(-8.994, 1.15, -6.16)
+		player.position = Vector3(-2.597, 1.151, 12.884)
 		player.rotation.y = PI
 
 
