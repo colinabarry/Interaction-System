@@ -35,7 +35,7 @@ font_color = Color(0, 0, 0, 1)
 content_margin_top = 8.0
 bg_color = Color(0.6, 0.6, 0.6, 0)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_j1is2"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_3fx0l"]
 viewport_path = NodePath("DialogContainer/MarginContainer/VBoxContainer/HBoxContainer/NextIndicatorContainer/SubViewport")
 
 [sub_resource type="LabelSettings" id="LabelSettings_455eh"]
@@ -170,7 +170,7 @@ vertical_alignment = 2
 
 [node name="TextureRect" type="TextureRect" parent="DialogContainer/MarginContainer/VBoxContainer/HBoxContainer/NextIndicatorContainer"]
 layout_mode = 2
-texture = SubResource("ViewportTexture_j1is2")
+texture = SubResource("ViewportTexture_3fx0l")
 stretch_mode = 2
 
 [node name="SubViewport" type="SubViewport" parent="DialogContainer/MarginContainer/VBoxContainer/HBoxContainer/NextIndicatorContainer"]

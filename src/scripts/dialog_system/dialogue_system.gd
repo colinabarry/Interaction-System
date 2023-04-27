@@ -250,19 +250,21 @@ var dialog_sequence: Dialog.Sequence:
 	set(value):
 		dialog_sequence = value
 
-		options_length = 0
-		options_idx = 0
-		var curr_dialog = dialog_sequence.head
-		while curr_dialog.has_next():
-			if curr_dialog.has_options():
-				options_length += 1
-			curr_dialog = curr_dialog.next_dialogs[0]
+		if get_export("counter") != null:
+			options_length = 0
+			options_idx = 0
+			var curr_dialog = dialog_sequence.head
+			while curr_dialog.has_next():
+				if curr_dialog.has_options():
+					options_length += 1
+				curr_dialog = curr_dialog.next_dialogs[0]
 
-		dialog_sequence.connect("before_options", func():
-			options_idx += 1
-			if _counter:
-				_counter.text = "%s/%s" % [options_idx, options_length]
-			)
+			dialog_sequence.connect("before_options", func():
+				options_idx += 1
+				if _counter:
+					_counter.text = "%s/%s" % [options_idx, options_length]
+				)
+
 		emit_signal("dialog_sequence_changed")
 
 
