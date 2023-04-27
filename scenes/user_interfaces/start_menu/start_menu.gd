@@ -14,6 +14,7 @@ func _ready():
 
 
 func _on_start_pressed():
+	Global.transition_rect.fade_out(1)
 	await Global.tween_cubic_modulate(self).finished
 
 	get_tree().change_scene_to_file("res://scenes/levels/overworld/SandboxOverworld.tscn")
