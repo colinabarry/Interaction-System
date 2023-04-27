@@ -43,13 +43,13 @@ font_color = Color(0, 0, 0, 0.807843)
 outline_size = 1
 outline_color = Color(0, 0, 0, 1)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_seir3"]
-viewport_path = NodePath("DialogContainer/MarginContainer/VBoxContainer/HBoxContainer/SubViewport")
-
 [sub_resource type="LabelSettings" id="LabelSettings_455eh"]
 font_size = 20
 font_color = Color(0, 0, 0, 1)
 outline_size = 1
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_seir3"]
+viewport_path = NodePath("DialogContainer/MarginContainer/VBoxContainer/HBoxContainer/SubViewport")
 
 [node name="DoctorDialogue" type="Control"]
 layout_mode = 3
@@ -163,12 +163,6 @@ autowrap_mode = 3
 clip_text = true
 text_overrun_behavior = 4
 
-[node name="TextureRect" type="TextureRect" parent="DialogContainer/MarginContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 8
-texture = SubResource("ViewportTexture_seir3")
-stretch_mode = 2
-
 [node name="SubViewport" type="SubViewport" parent="DialogContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 transparent_bg = true
 size = Vector2i(13, 31)
@@ -185,6 +179,12 @@ text = "V"
 label_settings = SubResource("LabelSettings_455eh")
 horizontal_alignment = 2
 vertical_alignment = 2
+
+[node name="TextureRect" type="TextureRect" parent="DialogContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+texture = SubResource("ViewportTexture_seir3")
+stretch_mode = 2
 
 [node name="NextCharTimer" type="Timer" parent="."]
 
