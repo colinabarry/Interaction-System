@@ -7,10 +7,9 @@
 script = ExtResource("1_y6uv7")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 0.153843, 0)
 cast_shadow = 0
-pixel_size = 0.001
+pixel_size = 0.015
 billboard = 2
-fixed_size = true
 alpha_cut = 1
 texture = ExtResource("2_l8lyw")
