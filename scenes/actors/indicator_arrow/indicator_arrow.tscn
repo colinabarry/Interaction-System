@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://7hrqd5ju7uvw"]
+
+[ext_resource type="Script" path="res://scenes/levels/overworld/indicator_arrow.gd" id="1_y6uv7"]
+[ext_resource type="Texture2D" uid="uid://lj8x3pmi8agc" path="res://assets/materials/textures/red_arrow.png" id="2_l8lyw"]
+
+[node name="Arrow" type="Node3D"]
+script = ExtResource("1_y6uv7")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+cast_shadow = 0
+pixel_size = 0.001
+billboard = 2
+fixed_size = true
+alpha_cut = 1
+texture = ExtResource("2_l8lyw")
