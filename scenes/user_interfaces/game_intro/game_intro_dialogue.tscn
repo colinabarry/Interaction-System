@@ -65,15 +65,16 @@ dialog_options = NodePath("OptionsContainer/Options")
 dialogue = NodePath("DialogContainer/MarginContainer/VBoxContainer/HBoxContainer/Dialogue")
 speaker_name = NodePath("DialogContainer/MarginContainer/VBoxContainer/SpeakerName")
 next_indicator = NodePath("DialogContainer/MarginContainer/VBoxContainer/HBoxContainer/SubViewport/NextIndicator")
+next_indicator_container = null
 using_quiz = false
 dialogue_resource = ExtResource("2_ay7ij")
 head = "start"
 allow_typing = true
-tween_visibility = true
+tween_visibility = false
 typing_timer = null
 typing_timeout = 0.03
 auto_progress = true
-progress_timer = NodePath("NextPhraseTimer")
+progress_timer = null
 progress_timeout = 2
 
 [node name="OptionsContainer" type="MarginContainer" parent="."]

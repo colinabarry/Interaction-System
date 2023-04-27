@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://dvbxwbtv5reu3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qwpp3"]
+content_margin_left = 20.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_bottom = 3
+border_color = Color(0.298039, 0.117647, 0.309804, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g4x43"]
+content_margin_left = 20.0
+bg_color = Color(0.207843, 0.321569, 0.290196, 0.219608)
+border_width_bottom = 3
+border_color = Color(0.298039, 0.117647, 0.309804, 1)
+
+[node name="OptionButton" type="Button"]
+mouse_filter = 1
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_qwpp3")
+theme_override_styles/hover = SubResource("StyleBoxFlat_g4x43")
+text = "asdf"
+alignment = 0

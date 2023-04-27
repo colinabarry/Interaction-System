@@ -37,7 +37,7 @@ var export_properties := {
 		"value": null,
 		"type": TYPE_NODE_PATH,
 		"usage": _get_usage(),
-		"editor_description": "The [ItemList] that will display any options in your dialogue.[br][br]This [Node] is optional."
+		"editor_description": "The [Node] that will display any options in your dialogue.[br][br]This [Node] is optional."
 	},
 	"dialogue":
 	{
@@ -59,6 +59,20 @@ var export_properties := {
 		"type": TYPE_NODE_PATH,
 		"usage": _get_usage(),
 		"editor_description": "The [Node] which will serve as a \"ready-to-continue\" indicator after each phrase is displayed (but not when selecting from options).[br][br]This [Node] is optional."
+	},
+	"next_indicator_container":
+	{
+		"value": null,
+		"type": TYPE_NODE_PATH,
+		"usage": _get_usage(),
+		"editor_description": "The [Node] which will contain the next indicator as well as any other nodes which should be hidden/shown with the next indicator. [br][br]This [Node] is optional."
+	},
+	"counter":
+	{
+		"value": null,
+		"type": TYPE_NODE_PATH,
+		"usage": _get_usage(),
+		"editor_description": "A [Label] representing a counter for what [Dialog] you are on out of the current [Dialog.Sequence]. [br][br]This [Node] is optional."
 	},
 	"using_quiz":
 	{
@@ -227,18 +241,38 @@ var is_visible := false
 var indicator_tweener: Tween
 var text_visibility_tweener: Tween
 
+var options_length: int
+var options_idx: int
+
 var dialogs: Dictionary
 ## The [Dialog.Sequence] controlling the current dialogue.
 var dialog_sequence: Dialog.Sequence:
 	set(value):
 		dialog_sequence = value
+
+		options_length = 0
+		options_idx = 0
+		var curr_dialog = dialog_sequence.head
+		while curr_dialog.has_next():
+			if curr_dialog.has_options():
+				options_length += 1
+			curr_dialog = curr_dialog.next_dialogs[0]
+
+		dialog_sequence.connect("before_options", func():
+			options_idx += 1
+			if _counter:
+				_counter.text = "%s/%s" % [options_idx, options_length]
+			)
 		emit_signal("dialog_sequence_changed")
 
+
 @onready var _dialog_container: Node
-@onready var _dialog_options: ItemList
+@onready var _dialog_options: Node
 @onready var _dialogue: Node
 @onready var _speaker_name: Node
 @onready var _next_indicator: Node
+@onready var _next_indicator_container: Node
+@onready var _counter: Node
 @onready var _next_char_timer: Timer
 @onready var _next_phrase_timer: Timer
 
@@ -308,6 +342,9 @@ func _on_speaker_name_changed() -> void:
 func _on_next_indicator_changed() -> void:
 	_setup_next_indicator()
 
+func _on_counter_changed() -> void:
+	_setup_counter()
+
 func _on_next_char_timer_changed() -> void:
 	_setup_char_timer()
 
@@ -324,6 +361,11 @@ func _on_option_clicked(index: int, _at_position, mouse_button_index: MouseButto
 	if mouse_button_index != MOUSE_BUTTON_LEFT:
 		return
 
+	choose_option(index)
+
+
+func _on_option_button_clicked(index: int) -> void:
+	print("hello there")
 	choose_option(index)
 
 
@@ -361,6 +403,7 @@ func _on_dialog_sequence_changed() -> void:
 
 	_setup_char_timer()  # dependent on the current Sequence
 	_setup_speaker_name()  # dependent on the current Sequence
+	_setup_counter()  # dependent on the current Sequence
 
 	for listener in get_method_list():
 		if listener.name.begins_with("_on_seq_"):
@@ -370,11 +413,13 @@ func _on_dialog_sequence_changed() -> void:
 func _on_seq_before_each() -> void:
 	if _next_indicator:
 		_next_indicator.hide()
+		_next_indicator_container.get_node("Space").hide()
 
 ## Runs after the active phrase of [member Dialog.phrases] is updated, but before the text is set to the dialogue.
 func _on_seq_after_each() -> void:
 	if _next_indicator and not dialog_sequence.ready_for_options() and not get_export("tween_visibility"):
 		_next_indicator.show()
+		_next_indicator_container.get_node("Space").show()
 
 	if get_export("auto_progress") and (dialog_sequence.still_talking() or (dialog_sequence.has_next() and not dialog_sequence.has_options())):
 		_next_phrase_timer.start()
@@ -470,7 +515,7 @@ func _setup_options() -> void:
 	if not _try_setup_export_node("dialog_options"):
 		return
 
-	_dialog_options.item_clicked.connect(_on_option_clicked)
+	# _dialog_options.item_clicked.connect(_on_option_clicked)
 
 
 func _setup_dialogue() -> void:
@@ -490,7 +535,7 @@ func _setup_speaker_name() -> void:
 
 
 func _setup_next_indicator() -> void:
-	if not _try_setup_export_node("next_indicator"):
+	if not _try_setup_export_node("next_indicator") or not _try_setup_export_node("next_indicator_container"):
 		return
 
 	if indicator_tweener:
@@ -499,6 +544,13 @@ func _setup_next_indicator() -> void:
 	indicator_tweener = create_tween().set_loops()
 	indicator_tweener.tween_property(_next_indicator, "position", Vector2(0, -5), 0.5).as_relative()
 	indicator_tweener.tween_property(_next_indicator, "position", Vector2(0, 5), 0.5).as_relative()
+
+
+func _setup_counter() -> void:
+	if not _try_setup_export_node("counter"):
+		return
+
+	_counter.text = ""
 
 
 func _setup_char_timer() -> void:
@@ -530,6 +582,7 @@ func _setup_nodes() -> void:
 	_setup_dialogue()
 	_setup_speaker_name()
 	_setup_next_indicator()
+	_setup_counter()
 	_setup_char_timer()
 	_setup_phrase_timer()
 
@@ -579,7 +632,7 @@ func choose_option(idx: int) -> void:
 	if not _dialog_options or not dialog_sequence.ready_for_options():
 		return
 
-	_dialog_options.clear()
+	clear_options()
 
 	if not is_visible:
 		show_box()
@@ -601,10 +654,19 @@ func change_sequence(config: Variant) -> void:
 		TYPE_INT: _setup_sequence(get_dialogue_config(config))
 
 
+func toggle_box_theme(value: bool) -> void:
+	if not _dialog_container:
+		return
+
+	var panel = _dialog_container.get_node("Panel")
+	var stylebox = panel.get_theme_stylebox("panel")
+	stylebox.corner_radius_top_left = 0 if value else 20
+	stylebox.corner_radius_top_right = 0 if value else 20
+
 ## Clear the contents of the dialogue and the options (if it exists).
 func clear_children() -> void:
 	if _dialog_options:
-		_dialog_options.clear()
+		clear_options()
 	if _speaker_name:
 		_speaker_name.text = ""
 
@@ -620,6 +682,7 @@ func hide_children() -> void:
 		_dialog_options.hide()
 	if _next_indicator:
 		_next_indicator.hide()
+		_next_indicator_container.get_node("Space").hide()
 
 
 ## Show the dialog_container.
@@ -627,8 +690,20 @@ func show_box() -> void:
 	if not _dialog_container:
 		return
 
+	toggle_box_theme(false)
 	_dialog_container.show()
 	is_visible = true
+
+
+## Clear the options for the current [Dialog].
+func clear_options() -> void:
+	if not _dialog_options:
+		return
+
+	for child in _dialog_options.get_children():
+		child.queue_free()
+
+	toggle_box_theme(false)
 
 
 ## Clear and hide the options for the current [Dialog].
@@ -636,18 +711,27 @@ func hide_options() -> void:
 	if not _dialog_options:
 		return
 
-	_dialog_options.clear()
+	clear_options()
 	_dialog_options.hide()
+	toggle_box_theme(false)
 
 
 ## Populate and display the options for the current [Dialog].
 func show_options() -> void:
-	if not dialog_sequence.ready_for_options() or _dialog_options.get_item_count() != 0:
+	if not dialog_sequence.ready_for_options() or _dialog_options.get_child_count() != 0:
 		return
 
+	var idx = 0
 	for option_name in dialog_sequence.get_option_names():
-		_dialog_options.add_item(option_name)
-		_dialog_options.show()
+		var temp_btn = load("res://scenes/user_interfaces/option_button.tscn").instantiate()
+		temp_btn.text = "%s. %s" % [idx + 1, option_name]
+		# _dialog_options.add_item(option_name)
+		temp_btn.connect("pressed", func(): _on_option_button_clicked(idx))
+		_dialog_options.add_child(temp_btn)
+		idx += 1
+
+	toggle_box_theme(true)
+	_dialog_options.show()
 
 
 func _try_tween_dialogue_visibility():
@@ -660,6 +744,7 @@ func _try_tween_dialogue_visibility():
 		text_visibility_tweener.finished.connect(func():
 			if _next_indicator and not dialog_sequence.ready_for_options():
 				_next_indicator.show()
+				_next_indicator_container.get_node("Space").show()
 			)
 
 
