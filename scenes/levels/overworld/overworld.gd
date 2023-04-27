@@ -28,7 +28,8 @@ func _ready():
 	if Global.progress_state == Global.PROGRESS_STATE.GYM_COMPLETED:
 		tod.time_of_day = tod.TOD.NIGHT
 		player.position = Vector3(-2.597, 1.151, 12.884)
-		player.rotation.y = PI
+		player.rotation.y = 2 * PI
+		player.camera_origin.rotation_degrees = Vector3(9, 369, 0)
 
 
 func _on_unpaused():
