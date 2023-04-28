@@ -29,6 +29,6 @@ func increment_seq_idx():
 			func(): (
 				create_tween()
 				. tween_callback(func(): jump_minigame.level_in_progress = true)
-				. set_delay(1)
+				. set_delay(0.75)
 			)
 		)
