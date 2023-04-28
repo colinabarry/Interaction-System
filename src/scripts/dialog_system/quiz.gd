@@ -52,6 +52,7 @@ const PROPAGATED_PROPERTIES = ["speaker", "using_typing"]
 
 # the default phrases for the `start` and `end` Dialogs, as well as the
 # "correct" and "wrong" answer cases
+# implementation around this is jank; not enough time or necessity to care
 var _const_phrases := {
 	"start":
 	[  # TODO: "progress during rehab" maybe could be worded differently
@@ -86,6 +87,7 @@ var score := 0
 ##		        "answers": Array[Dialog]
 ##		    }
 ##		}
+##      [/codeblock]
 var dialogs := {}
 ## The final [Dialog.Sequence] representing the quiz.
 var sequence: Dialog.Sequence
