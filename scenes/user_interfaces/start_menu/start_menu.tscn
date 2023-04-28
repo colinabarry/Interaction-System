@@ -36,12 +36,12 @@ theme_override_constants/separation = 103
 
 [node name="Label" type="Label" parent="VBoxContainer2"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.298039, 0.117647, 0.309804, 1)
+theme_override_colors/font_color = Color(0.701961, 0.760784, 0.94902, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(0.701961, 0.760784, 0.94902, 1)
+theme_override_colors/font_outline_color = Color(0.298039, 0.117647, 0.309804, 1)
 theme_override_constants/shadow_offset_x = 8
 theme_override_constants/shadow_offset_y = 9
-theme_override_constants/outline_size = 7
+theme_override_constants/outline_size = 15
 theme_override_constants/shadow_outline_size = 13
 theme_override_font_sizes/font_size = 154
 theme_override_styles/normal = SubResource("StyleBoxFlat_hd0jk")
