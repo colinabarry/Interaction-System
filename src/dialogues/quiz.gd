@@ -55,9 +55,10 @@ const config := {
 	"q7":
 	{
 		"question": "Which of these is a common symptom of an ACL injury?",
-		"correct": "Popping sound at the time of injury",
+		"correct": "All of the these",
 		"wrong":
 		[
+			"Popping sound at the time of injury",
 			"Gradual pain in the knee over several days",
 			"Numbness in the foot",
 			"Inability to move the ankle"
@@ -75,7 +76,7 @@ const config := {
 		"speaker": "Father",
 		"question":
 		"What is the primary reason why female athletes have a higher risk of ACL injuries compared to male athletes?",
-		"correct": "All of the above",
+		"correct": "All of the these",
 		"wrong":
 		["Hormonal differences", "Anatomical differences", "Differences in muscle strength"]  # TODO: 3rd option is redundant, could be replaced
 	},
