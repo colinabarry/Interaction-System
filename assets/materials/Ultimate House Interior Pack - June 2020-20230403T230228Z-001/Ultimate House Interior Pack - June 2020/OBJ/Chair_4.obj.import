@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://c6u7namx5saus"
+path="res://.godot/imported/Chair_4.obj-dda4d59ce9347cc887b2e46d485d70f9.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Chair_4.obj-dda4d59ce9347cc887b2e46d485d70f9.mesh"]
+
+source_file="res://assets/materials/Ultimate House Interior Pack - June 2020-20230403T230228Z-001/Ultimate House Interior Pack - June 2020/OBJ/Chair_4.obj"
+dest_files=["res://.godot/imported/Chair_4.obj-dda4d59ce9347cc887b2e46d485d70f9.mesh", "res://.godot/imported/Chair_4.obj-dda4d59ce9347cc887b2e46d485d70f9.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

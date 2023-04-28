@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://drqdvmww0pbyl"
+path="res://.godot/imported/Vase.obj-2b8406f793c397e0c0ec88e925ebcecc.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Vase.obj-2b8406f793c397e0c0ec88e925ebcecc.mesh"]
+
+source_file="res://assets/materials/Furniture Pack - Oct 2017-20230403T230116Z-001/Furniture Pack - Oct 2017/OBJ/Vase.obj"
+dest_files=["res://.godot/imported/Vase.obj-2b8406f793c397e0c0ec88e925ebcecc.mesh", "res://.godot/imported/Vase.obj-2b8406f793c397e0c0ec88e925ebcecc.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dvyiofr6jobq6"
+path="res://.godot/imported/Shelf_Large.obj-e799a608cdb8594a27c414ea2fcbadbe.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Shelf_Large.obj-e799a608cdb8594a27c414ea2fcbadbe.mesh"]
+
+source_file="res://assets/materials/Ultimate House Interior Pack - June 2020-20230403T230228Z-001/Ultimate House Interior Pack - June 2020/OBJ/Shelf_Large.obj"
+dest_files=["res://.godot/imported/Shelf_Large.obj-e799a608cdb8594a27c414ea2fcbadbe.mesh", "res://.godot/imported/Shelf_Large.obj-e799a608cdb8594a27c414ea2fcbadbe.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

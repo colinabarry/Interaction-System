@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://bh8wgt1ig2a18"
+path="res://.godot/imported/Bathroom_Mirror2.obj-3ca0447cf3e0414d15a3030ab726507b.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Bathroom_Mirror2.obj-3ca0447cf3e0414d15a3030ab726507b.mesh"]
+
+source_file="res://assets/materials/Ultimate House Interior Pack - June 2020-20230403T230228Z-001/Ultimate House Interior Pack - June 2020/OBJ/Bathroom_Mirror2.obj"
+dest_files=["res://.godot/imported/Bathroom_Mirror2.obj-3ca0447cf3e0414d15a3030ab726507b.mesh", "res://.godot/imported/Bathroom_Mirror2.obj-3ca0447cf3e0414d15a3030ab726507b.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
