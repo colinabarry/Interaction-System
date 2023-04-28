@@ -71,7 +71,7 @@ const options = {
 		"option_name": "How to use the X-ray",
 		"phrases":
 		[
-			"You can move the x-ray window over your body to explore different areas of your knee. When you find key features, like your ACL or other ligaments, click on them to learn more about their functions and important in preventing injuries.",
+			"You can move the x-ray window over your body to explore different areas of your knee. When you find key features, like your ACL or other ligaments, click on them to learn more about their functions.",
 			"Feel free to explore and ask any questions you might have."
 		],
 		"next": ["start_options"]
