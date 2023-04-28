@@ -86,6 +86,7 @@ const outro = {
 		"phrases":
 		[
 			"Great job locating your ACL! Unfortunately, based on our examination, it appears that your ACL is torn.",
+			"Injuries to the ACL are significantly more likely to occur in individuals assigned female at birth, so it's particularly important for you to be mindful of this to mitigate your risk moving forward.",
 			"For the next 2 to 4 weeks, our main focus will be on controlling pain and swelling, and protecting your injured knee. We'll be providing you with a knee brace, crutches, and anti-inflammatory medication to help with this.",
 			"During this time, it's crucial to follow our guidance and avoid putting too much strain on the injured knee. Rest, ice, compression, and elevation will be important aspects of your initial treatment.",
 			"Once we see improvement in your symptoms, you'll begin a comprehensive rehabilitation program with a physical therapist. This process will usually take 6-9 months, and your progress will be closely monitored to ensure a successful recovery.",
