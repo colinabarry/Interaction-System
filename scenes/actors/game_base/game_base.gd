@@ -6,13 +6,13 @@ extends Node
 @onready var frame: Node3D = $Frame
 @onready var time_skip: Label = $TimeSkip/Label
 
-var _modulate
+var _modulate: Color
 
 
 func _ready():
-	# if Global.progress_state >= Global.PROGRESS_STATE.HOSPITAL_ENTERED:
-	# 	_modulate = time_skip.modulate
-	# 	time_skip.modulate = Color.TRANSPARENT
+	print(Global.progress_state)
+	_modulate = time_skip.modulate
+	time_skip.modulate = Color.TRANSPARENT
 
 	Global.show_mouse()
 
@@ -22,13 +22,16 @@ func _ready():
 func _on_button_pressed() -> void:
 	Global.set_progress_state(end_state)
 	Global.player_has_control = true
+	Global.tween_cubic_modulate(get_parent().get_node("DoctorDialogue"), Color.TRANSPARENT, 0.4)
+	Global.tween_cubic_modulate(get_node("Control"), Color.TRANSPARENT, 0.4)
 	Global.transition_rect.fade_out()
 	await Global.transition_rect.faded_out
 
-	# print(Global.progress_state)
-	# if Global.progress_state == Global.PROGRESS_STATE.HOSPITAL_COMPLETED:
-	# 	await Global.tween_cubic_modulate(time_skip, _modulate).finished
-	# 	await create_tween().tween_callback(func(): return false).set_delay(1.5).finished
-	# 	await Global.tween_cubic_modulate(time_skip).finished
+	print(Global.progress_state)
+	print(_modulate)
+	if Global.progress_state == Global.PROGRESS_STATE.HOSPITAL_COMPLETED:
+		await Global.tween_cubic_modulate(time_skip, _modulate).finished
+		await create_tween().tween_callback(func(): return false).set_delay(1.5).finished
+		await Global.tween_cubic_modulate(time_skip).finished
 	# print("hi")
 	print(get_tree().change_scene_to_packed(Global.overworld))
