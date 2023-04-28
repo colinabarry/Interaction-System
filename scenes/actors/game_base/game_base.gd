@@ -4,7 +4,7 @@ extends Node
 @export var end_state := Global.PROGRESS_STATE.GAME_STARTED
 
 @onready var frame: Node3D = $Frame
-@onready var time_skip: Label = $TimeSkip/Label
+# @onready var time_skip: Label = $TimeSkip/Label
 
 var _modulate: Color
 

@@ -2,6 +2,9 @@ extends TextureRect
 
 var blur_amount := 2.0
 
+@onready var pause_options := $CenterContainer/PauseOptions
+@onready var graphics_options := $CenterContainer/GraphicsOptions
+
 
 func _ready():
 	process_mode = Node.PROCESS_MODE_ALWAYS
@@ -33,14 +36,48 @@ func hide_menu() -> void:
 	visible = false
 
 
-func _on_quit_pressed() -> void:
-	get_tree().quit()
-
-
 func _on_resume_pressed() -> void:
 	Global.resume()
 
 
+func _on_options_pressed():
+	graphics_options.visible = true
+	pause_options.visible = false
+
+
 func _on_menu_pressed():
 	get_tree().change_scene_to_file("res://scenes/user_interfaces/start_menu/start_menu.tscn")
-	Global.resume() # TODO: GIVE MOUSE CONTROL BACK
+	Global.resume()  # TODO: GIVE MOUSE CONTROL BACK
+
+
+func _on_quit_pressed() -> void:
+	get_tree().quit()
+
+
+func _on_global_illumination_toggled(button_pressed: bool):
+	Settings.global_illumination_enabled = button_pressed
+
+
+func _on_ambient_occlusion_toggled(button_pressed: bool) -> void:
+	Settings.ambient_occlusion_enabled = button_pressed
+
+
+func _on_fog_toggled(button_pressed: bool) -> void:
+	Settings.fog_enabled = button_pressed
+
+
+func _on_sun_shadows_toggled(button_pressed: bool):
+	Settings.sun_shadows_enabled = button_pressed
+
+
+func _on_high_fidelity_shadows_toggled(button_pressed: bool):
+	Settings.high_fidelity_shadows_enabled = button_pressed
+
+
+func _on_high_fidelity_trees_toggled(button_pressed: bool):
+	Settings.high_fidelity_trees_enabled = button_pressed
+
+
+func _on_back_pressed():
+	graphics_options.visible = false
+	pause_options.visible = true
