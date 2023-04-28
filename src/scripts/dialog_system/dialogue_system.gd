@@ -482,12 +482,12 @@ func _on_seq_revived() -> void:
 func _setup_sequence(config: Dictionary) -> void:
 	if get_export("using_quiz"):
 		var temp = Quiz.new(config)
-		dialog_sequence = temp.sequence
 		dialogs = temp.dialogs
+		dialog_sequence = temp.sequence
 	else:
 		var temp = Dialog.Sequence.build(config, get_export("head"), {"return_objs": true})
-		dialog_sequence = temp.sequence
 		dialogs = temp.dialogs
+		dialog_sequence = temp.sequence
 
 		for key in temp.dialogs:
 			# having a key which includes "options" in your config denotes that the options should
