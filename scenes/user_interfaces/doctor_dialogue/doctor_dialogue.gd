@@ -23,6 +23,11 @@ func found_acl() -> void:
 	print("changing sequence")
 	hide_options()
 	change_sequence(2)
-	dialog_sequence.connect("dead", leave_button.show)
+	dialog_sequence.connect("dead", func():
+		leave_button.show()
+		change_sequence(1)
+		show_box()
+		try_begin_dialogue()
+		)
 	show_box()
 	try_begin_dialogue()

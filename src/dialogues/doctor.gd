@@ -14,7 +14,7 @@ const intro = {
 			"Learning prevention techniques is crucial, and the bright side is that ACL injuries are treatable. We'll find the best plan for your recovery.",
 			"Now, let's examine your knee using our advanced x-ray machine. This will help you see your bones and ligaments and pinpoint your ACL's location.",
 			"When you're ready, step up to the x-ray machine. Move the x-ray window over your body to explore your knee.",
-			"Click on key features like the ACL or other ligaments to learn more about their roles and injury prevention. Good luck, and feel free to ask any questions!"
+			"Click on key features like the ACL or other ligaments to learn more about their roles. Good luck, and feel free to ask any questions!"
 		],
 	},
 }
