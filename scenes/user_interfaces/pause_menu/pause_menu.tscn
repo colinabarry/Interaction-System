@@ -27,7 +27,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="PauseOptions" type="VBoxContainer" parent="CenterContainer"]
-visible = false
 layout_mode = 2
 
 [node name="Resume" type="Button" parent="CenterContainer/PauseOptions"]
@@ -59,6 +58,7 @@ theme_override_font_sizes/font_size = 45
 text = "Quit"
 
 [node name="GraphicsOptions" type="VBoxContainer" parent="CenterContainer"]
+visible = false
 layout_mode = 2
 
 [node name="GlobalIllumination" type="CheckButton" parent="CenterContainer/GraphicsOptions"]
