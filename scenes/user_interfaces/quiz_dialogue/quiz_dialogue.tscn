@@ -35,13 +35,13 @@ font_color = Color(0, 0, 0, 1)
 content_margin_top = 8.0
 bg_color = Color(0.6, 0.6, 0.6, 0)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_onmel"]
-viewport_path = NodePath("DialogContainer/MarginContainer/VBoxContainer/HBoxContainer/NextIndicatorContainer/SubViewport")
-
 [sub_resource type="LabelSettings" id="LabelSettings_455eh"]
 font_size = 20
 font_color = Color(0, 0, 0, 1)
 outline_size = 1
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_onmel"]
+viewport_path = NodePath("DialogContainer/MarginContainer/VBoxContainer/HBoxContainer/NextIndicatorContainer/SubViewport")
 
 [sub_resource type="LabelSettings" id="LabelSettings_mly6m"]
 line_spacing = -3.0
@@ -168,11 +168,6 @@ label_settings = SubResource("LabelSettings_1ajfp")
 horizontal_alignment = 2
 vertical_alignment = 2
 
-[node name="TextureRect" type="TextureRect" parent="DialogContainer/MarginContainer/VBoxContainer/HBoxContainer/NextIndicatorContainer"]
-layout_mode = 2
-texture = SubResource("ViewportTexture_onmel")
-stretch_mode = 2
-
 [node name="SubViewport" type="SubViewport" parent="DialogContainer/MarginContainer/VBoxContainer/HBoxContainer/NextIndicatorContainer"]
 transparent_bg = true
 size = Vector2i(15, 33)
@@ -189,6 +184,11 @@ text = "␣"
 label_settings = SubResource("LabelSettings_455eh")
 horizontal_alignment = 2
 vertical_alignment = 2
+
+[node name="TextureRect" type="TextureRect" parent="DialogContainer/MarginContainer/VBoxContainer/HBoxContainer/NextIndicatorContainer"]
+layout_mode = 2
+texture = SubResource("ViewportTexture_onmel")
+stretch_mode = 2
 
 [node name="Dialogue" type="Label" parent="DialogContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
