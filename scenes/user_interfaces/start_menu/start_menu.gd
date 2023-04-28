@@ -11,6 +11,7 @@ func _init():
 func _ready():
 	Global.tween_cubic_modulate(self, _modulate)
 	Global.reset_progress_state()
+	Global.transition_rect.fade_in()
 
 
 func _on_start_pressed():
