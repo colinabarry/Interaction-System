@@ -19,6 +19,7 @@ config/icon="res://assets/materials/textures/icon.svg"
 
 Global="*res://src/scripts/global.gd"
 Dialogues="*res://src/scripts/dialog_system/dialogues.gd"
+Settings="*res://scenes/user_interfaces/pause_menu/settings.gd"
 
 [debug]
 
