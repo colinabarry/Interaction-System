@@ -59,6 +59,7 @@ text = "Quit"
 
 [node name="GraphicsOptions" type="VBoxContainer" parent="CenterContainer"]
 visible = false
+modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 
 [node name="GlobalIllumination" type="CheckButton" parent="CenterContainer/GraphicsOptions"]

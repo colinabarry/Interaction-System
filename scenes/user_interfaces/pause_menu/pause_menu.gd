@@ -1,6 +1,7 @@
 extends TextureRect
 
 var blur_amount := 2.0
+var options_fade_time := 0.1
 
 @onready var pause_options := $CenterContainer/PauseOptions
 @onready var graphics_options := $CenterContainer/GraphicsOptions
@@ -15,6 +16,8 @@ func show_menu() -> void:
 
 	graphics_options.visible = false
 	pause_options.visible = true
+	graphics_options.modulate = Color.TRANSPARENT
+	pause_options.modulate = Color.WHITE
 
 	var tween := create_tween().set_parallel(true).set_trans(Tween.TRANS_CUBIC)
 	tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
@@ -44,7 +47,10 @@ func _on_resume_pressed() -> void:
 
 
 func _on_options_pressed():
+	graphics_options.modulate = Color.TRANSPARENT
 	graphics_options.visible = true
+	await Global.tween_cubic_modulate(pause_options, Color.TRANSPARENT, options_fade_time).finished
+	await Global.tween_cubic_modulate(graphics_options, Color.WHITE, options_fade_time).finished
 	pause_options.visible = false
 
 
@@ -82,5 +88,10 @@ func _on_high_fidelity_trees_toggled(button_pressed: bool):
 
 
 func _on_back_pressed():
-	graphics_options.visible = false
+	pause_options.modulate = Color.TRANSPARENT
 	pause_options.visible = true
+	await (
+		Global.tween_cubic_modulate(graphics_options, Color.TRANSPARENT, options_fade_time).finished
+	)
+	await Global.tween_cubic_modulate(pause_options, Color.WHITE, options_fade_time).finished
+	graphics_options.visible = false
