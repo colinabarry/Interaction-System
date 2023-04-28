@@ -5,6 +5,7 @@ extends Node
 
 @onready var frame: Node3D = $Frame
 @onready var time_skip: Label = $TimeSkip/Label
+@onready var leave_button := $Control/MarginContainer/Button
 
 var _modulate: Color
 
@@ -18,8 +19,10 @@ func _ready():
 
 	frame.visible = show_frame
 
+	leave_button.pressed.connect(leave_scene)
 
-func _on_button_pressed() -> void:
+
+func leave_scene() -> void:
 	Global.set_progress_state(end_state)
 	Global.player_has_control = true
 	Global.tween_cubic_modulate(
