@@ -27,7 +27,7 @@ func show_outro():
 func increment_seq_idx():
 	dialog_sequence_idx += 1
 
-	if dialog_sequence_idx == 2:
+	if dialog_sequence_idx == 1:
 		trainer_dialogue.dialog_sequence.connect(
 			"dead",
 			func(): (
