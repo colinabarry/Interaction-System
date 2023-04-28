@@ -12,12 +12,17 @@ func _ready() -> void:
 	options_font_size = 20
 
 	dialogs["start"].connect("after_all", cutscene.resume_animation)
+	dialog_sequence.connect("dead", func():
+		change_sequence(1)
+		show_box()
+		try_begin_dialogue()
+		)
 
 
 func found_acl() -> void:
 	print("changing sequence")
 	hide_options()
-	change_sequence(1)
+	change_sequence(2)
 	dialog_sequence.connect("dead", leave_button.show)
 	show_box()
 	try_begin_dialogue()

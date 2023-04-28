@@ -1,6 +1,6 @@
 extends Resource
 
-const config := [intro, outro]
+const config := [intro, options, outro]
 
 const intro = {
 	"start":
@@ -16,9 +16,16 @@ const intro = {
 			"When you're ready, step up to the x-ray machine. Move the x-ray window over your body to explore your knee.",
 			"Click on key features like the ACL or other ligaments to learn more about their roles and injury prevention. Good luck, and feel free to ask any questions!"
 		],
-		"next": ["options"]
 	},
-	"options": {"next": ["overview", "importance", "treatment", "examining", "how-to"]},
+}
+
+const options = {
+	"start_options":
+	{
+		"speaker": "Dr. Wu",
+		"using_typing": true,
+		"next": ["overview", "importance", "treatment", "examining", "how-to"]
+	},
 	"overview":
 	{
 		"option_name": "Overview of the ACL",
@@ -27,7 +34,7 @@ const intro = {
 			"The ACL, or Anterior Cruciate Ligament, is one of the four main ligaments in your knee. It plays a crucial role in stabilizing and supporting your knee joint.",
 			"Injuries to the ACL can happen in various situations, especially during sports activities that involve jumping, sudden stops, or changes in direction."
 		],
-		"next": ["options"]
+		"next": ["start_options"]
 	},
 	"importance":
 	{
@@ -37,7 +44,7 @@ const intro = {
 			"It's essential to learn how to prevent ACL injuries and take care of your body. Proper warm-ups, muscle strengthening, and practicing safe jumping and landing techniques can reduce the risk of injuring your ACL.",
 			"Remember, prevention is always better than dealing with an injury!"
 		],
-		"next": ["options"]
+		"next": ["start_options"]
 	},
 	"treatment":
 	{
@@ -47,7 +54,7 @@ const intro = {
 			"Most ACL injuries can be treated through a combination of rest, rehabilitation, and sometimes surgery. The treatment plan depends on the severity of the injury and your personal goals.",
 			"It's important to work with a medical professional to devlop the best plan for your recovery."
 		],
-		"next": ["options"]
+		"next": ["start_options"]
 	},
 	"examining":
 	{
@@ -57,7 +64,7 @@ const intro = {
 			"The x-ray machine helps us visualize the bones and ligaments in your knee. By examining different parts of your knee, you can better understand the structure and the location of important components like the ACL.",
 			"This knowledge can be helpful in preventing future injuries and maintaining a healthy knee."
 		],
-		"next": ["options"]
+		"next": ["start_options"]
 	},
 	"how-to":
 	{
@@ -67,7 +74,7 @@ const intro = {
 			"You can move the x-ray window over your body to explore different areas of your knee. When you find key features, like your ACL or other ligaments, click on them to learn more about their functions and important in preventing injuries.",
 			"Feel free to explore and ask any questions you might have."
 		],
-		"next": ["options"]
+		"next": ["start_options"]
 	}
 }
 
