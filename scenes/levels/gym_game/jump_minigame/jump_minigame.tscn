@@ -24,14 +24,16 @@ texture = ExtResource("6_80xwd")
 
 [node name="UI_overlay" parent="." instance=ExtResource("8_crvj0")]
 offset_left = 136.0
+offset_top = 30.492
 offset_right = 136.0
+offset_bottom = 30.492
 
 [node name="YouWinButton" type="Button" parent="."]
 offset_left = 384.0
 offset_top = 128.0
 offset_right = 512.0
 offset_bottom = 191.0
-text = "You Win!"
+text = "Done!"
 
 [node name="Target" type="Area2D" parent="."]
 position = Vector2(310, 172)

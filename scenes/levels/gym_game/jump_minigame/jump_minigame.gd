@@ -6,11 +6,14 @@ signal minigame_completed
 @onready var lil_dude: Area2D = $LilDude
 @onready var bar: Sprite2D = $Bar
 @onready var target: Area2D = $Target
+@onready var ui_hint: Control = $UI_overlay
 @onready var you_win: Button = $YouWinButton
 
 const DECAY_FACTOR = 0.3
 const MAX_DIFFICULTY = 2
 const SPEED = 300
+
+var speed: float = SPEED
 
 var rng := RandomNumberGenerator.new()
 
@@ -38,6 +41,8 @@ func _ready():
 func _input(event):
 	if level_in_progress and event.is_action_pressed("ui_select"):
 		if colliding:
+			Global.tween_cubic_modulate(ui_hint).finished.connect(ui_hint.hide)
+
 			level_in_progress = false
 			player.perform_action("jump")
 
@@ -51,11 +56,11 @@ func _physics_process(delta):
 		return
 
 	if moving_up:
-		lil_dude.position.y -= SPEED * delta
+		lil_dude.position.y -= speed * delta
 		if lil_dude.position.y <= top_bound:
 			moving_up = not moving_up
 	else:
-		lil_dude.position.y += SPEED * delta
+		lil_dude.position.y += speed * delta
 		if lil_dude.position.y >= bottom_bound:
 			moving_up = not moving_up
 
@@ -86,6 +91,8 @@ func setup_level():
 	rng.randomize()
 	target.position.y = rng.randf_range(top_bound, bottom_bound - target.get_children()[0].shape.size.y * target.scale.y)  # probably fine idk
 
+	speed *= 1 + (DECAY_FACTOR / 2) * difficulty  # arbitrary speed increase
+
 	target.visible = true
 	lil_dude.visible = true
 
@@ -99,3 +106,4 @@ func win_game():
 	emit_signal("minigame_completed")
 	minigame_complete = true
 	you_win.visible = true
+	create_tween().tween_callback(func(): Global.tween_cubic_modulate(you_win)).set_delay(1.5)
