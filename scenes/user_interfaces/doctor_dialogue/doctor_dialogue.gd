@@ -15,8 +15,9 @@ func _ready() -> void:
 
 
 func found_acl() -> void:
-	if dialog_sequence.cold:
-		print("changing sequence")
-		hide_options()
-		change_sequence(1)
-		dialog_sequence.connect("dead", leave_button.show)
+	print("changing sequence")
+	hide_options()
+	change_sequence(1)
+	dialog_sequence.connect("dead", leave_button.show)
+	show_box()
+	try_begin_dialogue()
