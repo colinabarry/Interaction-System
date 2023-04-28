@@ -18,7 +18,11 @@ func _ready() -> void:
 
 
 func skip_time() -> void:
+	Global.transition_rect.fade_out()
+	await Global.transition_rect.faded_out
 	await game_base.skip_time("5-7 Months Later")
+	Global.transition_rect.fade_in()
+	await Global.transition_rect.faded_in
 
 	change_sequence(1)
 	dialog_sequence.connect("dead", cutscene.resume_animation)

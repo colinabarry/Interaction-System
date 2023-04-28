@@ -38,15 +38,15 @@ const intro = {
 }
 
 const jump_intro = {
-    "start":
-    {
-        "speaker": "Trainer Berry",
-        "using_typing": true,
-        "phrases":
-        [
-            "You've been making some great progress so far! I think we're ready to move on to the next stage of your rehab.",
-        ]
-    }
+	"start":
+	{
+		"speaker": "Trainer Berry",
+		"using_typing": true,
+		"phrases":
+		[
+			"You've been making some great progress so far! I think we're ready to move on to the next stage of your rehab.",
+		]
+	}
 }
 
 const jump = {
@@ -71,8 +71,10 @@ const outro = {
 		"using_typing": true,
 		"phrases":
 		[
-			"Great job today! You've made a lot of progress, and I'm proud of you.",
-			"Remember to keep up the good work and stay consistent with your rehab. I'll see you next time!"
+			"You did it! You've completed the rehab program, and I couldn't be more proud of the progress you've made. Your hard work and commitment have truly made a difference.",
+			"Your knee is now strong, stable, and ready to take on your day-to-day activities once again. However, it's essential to keep practicing the exercises and techniques we've worked on to maintain your progress and prevent future injuries.",
+			"As you ease back into your normal routine, pay attention to how your body feels. If you notice any discomfort or pain, please reach out to me for guidance.",
+			"It's been a pleasure to be a part of your recovery journey. Keep up the fantastic work and take good care of yourself!"
 		]
 	}
 }
