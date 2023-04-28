@@ -1,16 +1,16 @@
 [gd_scene load_steps=11 format=3 uid="uid://b4clki5b1awao"]
 
 [ext_resource type="Script" path="res://scenes/user_interfaces/doctor_dialogue/doctor_dialogue.gd" id="1_n373k"]
-[ext_resource type="Resource" uid="uid://yvadforf7v4n" path="res://assets/dialogues/doctor.tres" id="2_a7jag"]
+[ext_resource type="Resource" uid="uid://yvadforf7v4n" path="res://assets/dialogues/doctor.tres" id="2_02ys8"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3k8lg"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4iiny"]
 resource_local_to_scene = true
 bg_color = Color(0.701961, 0.760784, 0.94902, 1)
 border_width_left = 3
 border_width_top = 3
 border_width_right = 3
+border_width_bottom = 3
 border_color = Color(0.298039, 0.117647, 0.309804, 1)
-corner_radius_top_left = 20
 corner_radius_top_right = 20
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mjwe8"]
@@ -67,7 +67,7 @@ next_indicator = NodePath("DialogContainer/MarginContainer/VBoxContainer/HBoxCon
 next_indicator_container = NodePath("DialogContainer/MarginContainer/VBoxContainer/HBoxContainer/NextIndicatorContainer")
 counter = null
 using_quiz = false
-dialogue_resource = ExtResource("2_a7jag")
+dialogue_resource = ExtResource("2_02ys8")
 head = "start"
 allow_typing = true
 tween_visibility = true
@@ -80,21 +80,20 @@ progress_timeout = 2
 [node name="OptionsContainer" type="MarginContainer" parent="."]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 1
-anchors_preset = 12
+anchors_preset = 2
 anchor_top = 1.0
-anchor_right = 1.0
 anchor_bottom = 1.0
 offset_top = -168.0
-grow_horizontal = 2
+offset_right = 397.0
 grow_vertical = 0
 mouse_filter = 2
-theme_override_constants/margin_left = 200
+theme_override_constants/margin_top = 136
 theme_override_constants/margin_right = 197
-theme_override_constants/margin_bottom = 168
+theme_override_constants/margin_bottom = 32
 
 [node name="Panel" type="Panel" parent="OptionsContainer"]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_3k8lg")
+theme_override_styles/panel = SubResource("StyleBoxFlat_4iiny")
 
 [node name="Options" type="VBoxContainer" parent="OptionsContainer"]
 layout_mode = 2

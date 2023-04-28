@@ -7,6 +7,8 @@ extends DialogueSystem
 func _ready() -> void:
 	super()
 
+	options_font_size = 20
+
 	dialogs["start"].connect("after_all", cutscene.resume_animation)
 
 

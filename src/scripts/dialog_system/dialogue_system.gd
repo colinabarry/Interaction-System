@@ -241,6 +241,7 @@ var is_visible := false
 var indicator_tweener: Tween
 var text_visibility_tweener: Tween
 
+var options_font_size: int
 var options_length: int
 var options_idx: int
 
@@ -724,11 +725,14 @@ func show_options() -> void:
 		return
 
 	var idx = 0
+	var using_quiz = get_export("using_quiz")
 	for option_name in dialog_sequence.get_option_names():
 		var temp_btn = load("res://scenes/user_interfaces/option_button.tscn").instantiate()
-		temp_btn.text = "%s. %s" % [idx + 1, option_name]
-		# _dialog_options.add_item(option_name)
+		temp_btn.text = "%s. %s " % [idx + 1, option_name] if using_quiz else (option_name + " ")
 		temp_btn.connect("pressed", func(): _on_option_button_clicked(idx))
+		if options_font_size:
+			temp_btn.add_theme_constant_override("font_size", options_font_size)
+
 		_dialog_options.add_child(temp_btn)
 		idx += 1
 
