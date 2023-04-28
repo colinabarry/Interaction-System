@@ -1,6 +1,8 @@
 @tool
 extends DialogueSystem
 
+@onready var game_base := $"../GameBase"
+
 var active_sequence := 0
 
 
@@ -20,4 +22,8 @@ func _ready() -> void:
 
 func _on_seq_dead():
 	super()
+	Global.transition_rect.fade_out()
+	await Global.transition_rect.faded_out
+	await game_base.skip_time("FIN")
+
 	get_tree().change_scene_to_file("res://scenes/user_interfaces/start_menu/start_menu.tscn")
