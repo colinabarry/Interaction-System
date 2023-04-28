@@ -25,5 +25,10 @@ func increment_seq_idx():
 
 	if dialog_sequence_idx == 2:
 		trainer_dialogue.dialog_sequence.connect(
-			"dead", func(): jump_minigame.level_in_progress = true
+			"dead",
+			func(): (
+				create_tween()
+				. tween_callback(func(): jump_minigame.level_in_progress = true)
+				. set_delay(1)
+			)
 		)

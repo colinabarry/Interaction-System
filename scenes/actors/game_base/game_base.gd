@@ -22,7 +22,7 @@ func _ready():
 func _on_button_pressed() -> void:
 	Global.set_progress_state(end_state)
 	Global.player_has_control = true
-	Global.tween_cubic_modulate(get_parent().get_node("DoctorDialogue"), Color.TRANSPARENT, 0.4)
+	Global.tween_cubic_modulate(get_parent().get_node_or_null("DoctorDialogue"), Color.TRANSPARENT, 0.4)
 	Global.tween_cubic_modulate(get_node("Control"), Color.TRANSPARENT, 0.4)
 	Global.transition_rect.fade_out()
 	await Global.transition_rect.faded_out
