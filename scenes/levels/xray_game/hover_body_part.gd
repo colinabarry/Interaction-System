@@ -9,7 +9,7 @@ var selectable := false
 )
 @onready var body_part_hints := load("res://scenes/levels/xray_game/body_part_hints.gd")
 @onready var hint: Hint = get_tree().current_scene.get_node("Hint")
-@onready var doctor_dialogue: DialogueSystem = get_tree().current_scene.get_node("DoctorDialogue")
+@onready var doctor_dialogue = get_tree().current_scene.get_node("DoctorDialogue")
 
 
 func _ready() -> void:

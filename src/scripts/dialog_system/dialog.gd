@@ -349,8 +349,16 @@ class Sequence:
 				for next_dialog in config[name].next:
 					dialog_map[name].add_next(dialog_map[next_dialog])
 
-		var dialog_sequence = dialog_map[_head].build_sequence(options)
-		dialog_sequence.head = dialog_map[_head]
+		var dialog_sequence
+		if not _head in dialog_map:
+			for name in dialog_map:
+				if name.split("_")[0] == _head:
+					dialog_sequence = dialog_map[name].build_sequence(options)
+					dialog_sequence.head = dialog_map[name]
+					break
+		else:
+			dialog_sequence = dialog_map[_head].build_sequence(options)
+			dialog_sequence.head = dialog_map[_head]
 
 		return (
 			{"dialogs": dialog_map, "sequence": dialog_sequence}
