@@ -14,6 +14,7 @@ config/name="Interaction System"
 run/main_scene="res://scenes/user_interfaces/start_menu/start_menu.tscn"
 config/features=PackedStringArray("4.0", "Forward Plus")
 config/icon="res://assets/materials/textures/icon.svg"
+boot_splash/max_fps=0
 
 [autoload]
 

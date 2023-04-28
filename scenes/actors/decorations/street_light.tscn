@@ -19,11 +19,11 @@ mesh = ExtResource("1_3b4p4")
 shape = SubResource("ConcavePolygonShape3D_p457y")
 
 [node name="Light1" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.431765, 0.0509451)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.474597, 0.0509451)
 visible = false
 light_color = Color(1, 1, 0.835294, 1)
 
 [node name="Light2" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.431765, -0.0514237)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.474597, -0.0514237)
 visible = false
 light_color = Color(1, 1, 0.835294, 1)

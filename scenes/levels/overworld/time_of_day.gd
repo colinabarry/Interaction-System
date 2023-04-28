@@ -29,7 +29,7 @@ func _update() -> void:
 			moon.visible = false
 			sun.light_color = Color.WHITE
 			environment_sky.sky_material = noon_sky
-			sun.rotation_degrees.x = -110
+			sun.rotation_degrees.x = -80
 			street_light_controller.all_lit = false
 		TOD.EVENING:
 			sun.visible = true
