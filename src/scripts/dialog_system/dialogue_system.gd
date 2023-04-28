@@ -521,7 +521,8 @@ func _setup_options() -> void:
 
 
 func _setup_dialogue() -> void:
-	assert(_try_setup_export_node("dialogue"), "You must set the 'dialogue' export variable to the path of the Label node you want to use for displaying the dialogue.")
+	# assert(_try_setup_export_node("dialogue"), "You must set the 'dialogue' export variable to the path of the Label node you want to use for displaying the dialogue.")
+	_try_setup_export_node("dialogue")
 
 	_dialogue.gui_input.connect(_on_dialogue_clicked)
 

@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://cbn3fyccvvow3"]
 
 [ext_resource type="Script" path="res://scenes/user_interfaces/game_intro/game_intro_dialogue.gd" id="1_2pvdw"]
-[ext_resource type="Resource" uid="uid://vn1ranvlcy5k" path="res://assets/dialogues/intro.tres" id="2_qthx2"]
+[ext_resource type="Resource" uid="uid://vn1ranvlcy5k" path="res://assets/dialogues/intro.tres" id="2_eoyjd"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4iiny"]
 resource_local_to_scene = true
@@ -65,9 +65,9 @@ dialogue = NodePath("DialogContainer/MarginContainer/VBoxContainer/Dialogue")
 speaker_name = NodePath("DialogContainer/MarginContainer/VBoxContainer/HBoxContainer/SpeakerName")
 next_indicator = NodePath("DialogContainer/MarginContainer/VBoxContainer/HBoxContainer/NextIndicatorContainer/SubViewport/NextIndicator")
 next_indicator_container = NodePath("DialogContainer/MarginContainer/VBoxContainer/HBoxContainer/NextIndicatorContainer")
-counter = null
+counter = NodePath("")
 using_quiz = false
-dialogue_resource = ExtResource("2_qthx2")
+dialogue_resource = ExtResource("2_eoyjd")
 head = "start"
 allow_typing = true
 tween_visibility = true
