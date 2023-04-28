@@ -14,7 +14,7 @@ func _ready():
 
 
 func show_outro():
-	trainer_dialogue.change_sequence(2)
+	trainer_dialogue.change_sequence(3)
 	trainer_dialogue.show_box()
 	trainer_dialogue.try_begin_dialogue()
 

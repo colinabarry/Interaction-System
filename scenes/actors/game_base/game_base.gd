@@ -30,8 +30,13 @@ func _on_button_pressed() -> void:
 	print(Global.progress_state)
 	print(_modulate)
 	if Global.progress_state == Global.PROGRESS_STATE.HOSPITAL_COMPLETED:
-		await Global.tween_cubic_modulate(time_skip, _modulate).finished
-		await create_tween().tween_callback(func(): return false).set_delay(1.5).finished
-		await Global.tween_cubic_modulate(time_skip).finished
+		skip_time("2-4 Weeks Later")
 	# print("hi")
 	print(get_tree().change_scene_to_packed(Global.overworld))
+
+
+func skip_time(text: String) -> void:
+	time_skip.text = text
+	await Global.tween_cubic_modulate(time_skip, _modulate).finished
+	await create_tween().tween_callback(func(): return false).set_delay(1.5).finished
+	await Global.tween_cubic_modulate(time_skip).finished
