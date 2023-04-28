@@ -514,11 +514,10 @@ func _setup_box() -> void:
 		return
 
 
+
 func _setup_options() -> void:
 	if not _try_setup_export_node("dialog_options"):
 		return
-
-	# _dialog_options.item_clicked.connect(_on_option_clicked)
 
 
 func _setup_dialogue() -> void:
@@ -714,8 +713,9 @@ func hide_options() -> void:
 	if not _dialog_options:
 		return
 
-	clear_options()
 	_dialog_options.hide()
+	clear_options()
+
 	toggle_box_theme(false)
 
 
