@@ -120,7 +120,7 @@ func _toggle_pause() -> void:
 		pause()
 
 
-func tween_cubic_modulate(_self, color: Color = Color.TRANSPARENT, time := 1) -> PropertyTweener:
+func tween_cubic_modulate(_self, color: Color = Color.TRANSPARENT, time := 1.0) -> PropertyTweener:
 	return create_tween().set_trans(Tween.TRANS_CUBIC).tween_property(
 		_self, "modulate", color, time
 	)
