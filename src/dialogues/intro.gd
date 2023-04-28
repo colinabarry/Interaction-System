@@ -33,7 +33,7 @@ const second := {
 		"speaker": "Narrator",
 		"phrases":
 		[
-			"The player feels a sudden, sharp pain in their knee, which could be a sign of an ACL injury."
+			"The player hears a loud popping sound accompanied by a sudden, sharp pain in their knee, which could be a sign of an ACL injury."
 		],
 		"next": ["p_t_2"]
 	},
