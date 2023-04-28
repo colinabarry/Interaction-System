@@ -14,6 +14,7 @@ var acl_be_founded := false
 
 
 func _ready() -> void:
+	mesh.mesh.surface_get_material(0).albedo_color = Color.WHITE
 	mesh.mesh.surface_get_material(0).albedo_color.a = 0.39
 	create_tween().tween_callback(func(): hint.start_hint_timer(0.001, "")).set_delay(0.5)
 
