@@ -7,7 +7,7 @@ const config := {
 		"using_typing": true,
 		"phrases":
 		[
-			"The player is enjoying a peaceful walk in the park, taking in the sights and sounds around them."
+			"The player is enjoying a peaceful jog in the park, taking in the sights and sounds around them."
 		],
 		"next": ["p_t_1"]
 	},
