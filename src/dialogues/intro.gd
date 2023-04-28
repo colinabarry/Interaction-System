@@ -1,6 +1,8 @@
 extends Resource
 
-const config := {
+const config = [first, second]
+
+const first := {
 	"start":
 	{
 		"speaker": "Narrator",
@@ -15,9 +17,12 @@ const config := {
 	{
 		"speaker": "Player (thinking)",
 		"phrases": ["It's such a beautiful day! I'm glad I decided to go for a walk."],
-		"next": ["p_d_1"]
+		"next": []
 	},
-	"p_d_1":
+}
+
+const second := {
+	"start":
 	{
 		"speaker": "Player (dialogue)",
 		"phrases": ["Ouch! My knee! What just happened?"],
