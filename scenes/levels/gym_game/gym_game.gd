@@ -2,11 +2,14 @@ extends Node3D
 
 @onready var trainer_dialogue: DialogueSystem = $TrainerDialogue
 @onready var jump_minigame: JumpMinigame = $JumpMinigame
+@onready var leave_button := $GameBase/Control
 
 var dialog_sequence_idx := 0
 
 
 func _ready():
+	leave_button.hide()
+
 	jump_minigame.minigame_completed.connect(
 		func(): create_tween().tween_callback(show_outro).set_delay(1.5)
 	)
@@ -15,6 +18,7 @@ func _ready():
 
 func show_outro():
 	trainer_dialogue.change_sequence(3)
+	trainer_dialogue.dialog_sequence.connect("dead", leave_button.show)
 	trainer_dialogue.show_box()
 	trainer_dialogue.try_begin_dialogue()
 
