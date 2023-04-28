@@ -19,8 +19,9 @@ script = ExtResource("1_yfrx7")
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 0
 offset_top = -47.0
-offset_right = 1928.0
-offset_bottom = 1163.0
+offset_right = 1807.0
+offset_bottom = 1087.0
+scale = Vector2(0.835608, 0.835608)
 texture = ExtResource("2_iksgx")
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="."]
