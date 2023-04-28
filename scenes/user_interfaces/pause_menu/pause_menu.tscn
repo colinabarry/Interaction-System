@@ -26,30 +26,110 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+[node name="PauseOptions" type="VBoxContainer" parent="CenterContainer"]
+visible = false
 layout_mode = 2
 
-[node name="Resume" type="Button" parent="CenterContainer/VBoxContainer"]
+[node name="Resume" type="Button" parent="CenterContainer/PauseOptions"]
 custom_minimum_size = Vector2(200, 100)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 45
 text = "Resume"
 
-[node name="Menu" type="Button" parent="CenterContainer/VBoxContainer"]
+[node name="Options" type="Button" parent="CenterContainer/PauseOptions"]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 45
+text = "Options"
+
+[node name="Menu" type="Button" parent="CenterContainer/PauseOptions"]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 45
 text = "Menu"
 
-[node name="Quit" type="Button" parent="CenterContainer/VBoxContainer"]
+[node name="Quit" type="Button" parent="CenterContainer/PauseOptions"]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 45
 text = "Quit"
 
-[connection signal="pressed" from="CenterContainer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
-[connection signal="pressed" from="CenterContainer/VBoxContainer/Menu" to="." method="_on_menu_pressed"]
-[connection signal="pressed" from="CenterContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
+[node name="GraphicsOptions" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="GlobalIllumination" type="CheckButton" parent="CenterContainer/GraphicsOptions"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/h_separation = 20
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 24
+button_pressed = true
+text = "Global Illumination"
+
+[node name="Ambient Occlusion" type="CheckButton" parent="CenterContainer/GraphicsOptions"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/h_separation = 20
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 24
+button_pressed = true
+text = "Ambient Occlusion"
+
+[node name="Fog" type="CheckButton" parent="CenterContainer/GraphicsOptions"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/h_separation = 20
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 24
+button_pressed = true
+text = "Fog"
+
+[node name="SunShadows" type="CheckButton" parent="CenterContainer/GraphicsOptions"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/h_separation = 20
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 24
+button_pressed = true
+text = "Sun Shadows"
+
+[node name="HighFidelityShadows" type="CheckButton" parent="CenterContainer/GraphicsOptions"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/h_separation = 20
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 24
+button_pressed = true
+text = "High Fidelity Shadows"
+
+[node name="HighFidelityTrees" type="CheckButton" parent="CenterContainer/GraphicsOptions"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/h_separation = 20
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 24
+button_pressed = true
+text = "High Fidelity Trees"
+
+[node name="Back" type="Button" parent="CenterContainer/GraphicsOptions"]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 45
+text = "Back"
+
+[connection signal="pressed" from="CenterContainer/PauseOptions/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="CenterContainer/PauseOptions/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="CenterContainer/PauseOptions/Menu" to="." method="_on_menu_pressed"]
+[connection signal="pressed" from="CenterContainer/PauseOptions/Quit" to="." method="_on_quit_pressed"]
+[connection signal="toggled" from="CenterContainer/GraphicsOptions/GlobalIllumination" to="." method="_on_global_illumination_toggled"]
+[connection signal="toggled" from="CenterContainer/GraphicsOptions/Ambient Occlusion" to="." method="_on_ambient_occlusion_toggled"]
+[connection signal="toggled" from="CenterContainer/GraphicsOptions/Fog" to="." method="_on_fog_toggled"]
+[connection signal="toggled" from="CenterContainer/GraphicsOptions/SunShadows" to="." method="_on_sun_shadows_toggled"]
+[connection signal="toggled" from="CenterContainer/GraphicsOptions/HighFidelityShadows" to="." method="_on_high_fidelity_shadows_toggled"]
+[connection signal="toggled" from="CenterContainer/GraphicsOptions/HighFidelityTrees" to="." method="_on_high_fidelity_trees_toggled"]
+[connection signal="pressed" from="CenterContainer/GraphicsOptions/Back" to="." method="_on_back_pressed"]

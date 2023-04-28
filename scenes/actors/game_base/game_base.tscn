@@ -1,6 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://rup5h2ulx734"]
+[gd_scene load_steps=11 format=3 uid="uid://rup5h2ulx734"]
 
 [ext_resource type="Script" path="res://scenes/actors/game_base/camera.gd" id="1_enuaq"]
+[ext_resource type="PackedScene" uid="uid://casan20l7jwgy" path="res://scenes/user_interfaces/time_skip/time_skip.tscn" id="2_hctbo"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yvtuv"]
 sky_top_color = Color(0.196078, 0.384314, 0.945098, 1)
@@ -126,5 +127,7 @@ theme_override_constants/margin_bottom = 10
 layout_mode = 2
 theme_override_font_sizes/font_size = 44
 text = "Overworld"
+
+[node name="TimeSkip" parent="." instance=ExtResource("2_hctbo")]
 
 [connection signal="pressed" from="Control/MarginContainer/Button" to="." method="_on_button_pressed"]
