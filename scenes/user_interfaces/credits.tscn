@@ -1,0 +1,179 @@
+[gd_scene load_steps=3 format=3 uid="uid://dsiay6fh4pwwk"]
+
+[ext_resource type="FontFile" uid="uid://biqhg2snjum07" path="res://assets/BebasNeue-Regular.ttf" id="1_a62yv"]
+[ext_resource type="Script" path="res://scenes/user_interfaces/back_button.gd" id="2_qdgy8"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ColorRect/CenterContainer"]
+custom_minimum_size = Vector2(1280, 0)
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="LeftVBox" type="VBoxContainer" parent="ColorRect/CenterContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="ColorRect/CenterContainer/HBoxContainer/LeftVBox"]
+modulate = Color(10, 10, 10, 1)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_a62yv")
+theme_override_font_sizes/font_size = 26
+text = "Developed by
+
+
+
+"
+horizontal_alignment = 2
+
+[node name="Label2" type="Label" parent="ColorRect/CenterContainer/HBoxContainer/LeftVBox"]
+modulate = Color(10, 10, 10, 1)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_a62yv")
+theme_override_font_sizes/font_size = 26
+text = "Sponsored by"
+horizontal_alignment = 2
+
+[node name="Label4" type="Label" parent="ColorRect/CenterContainer/HBoxContainer/LeftVBox"]
+modulate = Color(10, 10, 10, 1)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_a62yv")
+theme_override_font_sizes/font_size = 26
+text = "Industry mentor"
+horizontal_alignment = 2
+
+[node name="Label5" type="Label" parent="ColorRect/CenterContainer/HBoxContainer/LeftVBox"]
+modulate = Color(10, 10, 10, 1)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_a62yv")
+theme_override_font_sizes/font_size = 26
+text = "Faculty advisor"
+horizontal_alignment = 2
+
+[node name="Label6" type="Label" parent="ColorRect/CenterContainer/HBoxContainer/LeftVBox"]
+modulate = Color(10, 10, 10, 1)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_a62yv")
+theme_override_font_sizes/font_size = 26
+text = "
+Models from"
+horizontal_alignment = 2
+
+[node name="Label7" type="Label" parent="ColorRect/CenterContainer/HBoxContainer/LeftVBox"]
+modulate = Color(10, 10, 10, 1)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_a62yv")
+theme_override_font_sizes/font_size = 26
+text = "Character models and animations from"
+horizontal_alignment = 2
+
+[node name="Label8" type="Label" parent="ColorRect/CenterContainer/HBoxContainer/LeftVBox"]
+modulate = Color(10, 10, 10, 1)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_a62yv")
+theme_override_font_sizes/font_size = 26
+text = "Additional models from"
+horizontal_alignment = 2
+
+[node name="RightVBox" type="VBoxContainer" parent="ColorRect/CenterContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 20
+
+[node name="Label2" type="Label" parent="ColorRect/CenterContainer/HBoxContainer/RightVBox"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_a62yv")
+theme_override_font_sizes/font_size = 26
+text = "Colin Barry
+Alex Bosco
+Bryonna Crowley
+Sherman Brizzi"
+
+[node name="Label3" type="Label" parent="ColorRect/CenterContainer/HBoxContainer/RightVBox"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_a62yv")
+theme_override_font_sizes/font_size = 26
+text = "Penn State Behrend"
+
+[node name="Label5" type="Label" parent="ColorRect/CenterContainer/HBoxContainer/RightVBox"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_a62yv")
+theme_override_font_sizes/font_size = 26
+text = "Dr. Elisa (Yi) Wu"
+
+[node name="Label6" type="Label" parent="ColorRect/CenterContainer/HBoxContainer/RightVBox"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_a62yv")
+theme_override_font_sizes/font_size = 26
+text = "Melanie Ford"
+
+[node name="Label7" type="Label" parent="ColorRect/CenterContainer/HBoxContainer/RightVBox"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_a62yv")
+theme_override_font_sizes/font_size = 26
+text = "
+Quaternius"
+
+[node name="Label8" type="Label" parent="ColorRect/CenterContainer/HBoxContainer/RightVBox"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_a62yv")
+theme_override_font_sizes/font_size = 26
+text = "Mixamo"
+
+[node name="Label9" type="Label" parent="ColorRect/CenterContainer/HBoxContainer/RightVBox"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_a62yv")
+theme_override_font_sizes/font_size = 26
+text = "draakon_4d and nourelshaer on Sketchfab"
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -48.5
+offset_top = -60.0
+offset_right = 48.5
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 24
+
+[node name="Button" type="Button" parent="MarginContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.411765, 0.411765, 0.411765, 1)
+theme_override_colors/font_hover_color = Color(0.776471, 0.776471, 0.776471, 1)
+theme_override_fonts/font = ExtResource("1_a62yv")
+theme_override_font_sizes/font_size = 36
+text = "  Back  "
+script = ExtResource("2_qdgy8")
+
+[connection signal="pressed" from="MarginContainer/Button" to="MarginContainer/Button" method="_on_pressed"]
