@@ -39,8 +39,6 @@
  "should_maximize": false,
  "show_help": false,
  "suffix": ".test.gd",
- "tests": [
-
- ],
+ "tests": [],
  "unit_test_name": null
 }
