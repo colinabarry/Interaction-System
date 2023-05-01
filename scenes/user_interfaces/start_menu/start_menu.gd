@@ -23,3 +23,9 @@ func _on_start_pressed():
 
 func _on_quit_pressed():
 	get_tree().quit()
+
+
+func _on_start_2_pressed() -> void:
+	Global.transition_rect.fade_out()
+	await Global.transition_rect.faded_out
+	get_tree().change_scene_to_file("scenes/user_interfaces/credits.tscn")

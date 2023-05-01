@@ -63,6 +63,12 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 45
 text = "Start"
 
+[node name="Start2" type="Button" parent="VBoxContainer2/CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(250, 85)
+layout_mode = 2
+theme_override_font_sizes/font_size = 45
+text = "Credits"
+
 [node name="Quit" type="Button" parent="VBoxContainer2/CenterContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 85)
 layout_mode = 2
@@ -70,4 +76,5 @@ theme_override_font_sizes/font_size = 45
 text = "Quit"
 
 [connection signal="pressed" from="VBoxContainer2/CenterContainer/VBoxContainer/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="VBoxContainer2/CenterContainer/VBoxContainer/Start2" to="." method="_on_start_2_pressed"]
 [connection signal="pressed" from="VBoxContainer2/CenterContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

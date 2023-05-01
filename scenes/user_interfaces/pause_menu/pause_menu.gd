@@ -6,9 +6,20 @@ var options_fade_time := 0.1
 @onready var pause_options := $CenterContainer/PauseOptions
 @onready var graphics_options := $CenterContainer/GraphicsOptions
 
+@onready var graphics_options_buttons := graphics_options.get_children().filter(
+	func(child): return child is CheckButton
+)
+
 
 func _ready():
 	process_mode = Node.PROCESS_MODE_ALWAYS
+
+	Settings.global_illumination_enabled = graphics_options_buttons[0].button_pressed
+	Settings.ambient_occlusion_enabled = graphics_options_buttons[1].button_pressed
+	Settings.fog_enabled = graphics_options_buttons[2].button_pressed
+	Settings.sun_shadows_enabled = graphics_options_buttons[3].button_pressed
+	Settings.high_fidelity_shadows_enabled = graphics_options_buttons[4].button_pressed
+	Settings.high_fidelity_trees_enabled = graphics_options_buttons[5].button_pressed
 
 
 func show_menu() -> void:

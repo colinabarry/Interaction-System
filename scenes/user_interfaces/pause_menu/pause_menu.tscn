@@ -59,7 +59,6 @@ text = "Quit"
 
 [node name="GraphicsOptions" type="VBoxContainer" parent="CenterContainer"]
 visible = false
-modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 
 [node name="GlobalIllumination" type="CheckButton" parent="CenterContainer/GraphicsOptions"]
@@ -68,7 +67,6 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/h_separation = 20
 theme_override_constants/outline_size = 5
 theme_override_font_sizes/font_size = 24
-button_pressed = true
 text = "Global Illumination"
 
 [node name="Ambient Occlusion" type="CheckButton" parent="CenterContainer/GraphicsOptions"]
@@ -77,7 +75,6 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/h_separation = 20
 theme_override_constants/outline_size = 5
 theme_override_font_sizes/font_size = 24
-button_pressed = true
 text = "Ambient Occlusion"
 
 [node name="Fog" type="CheckButton" parent="CenterContainer/GraphicsOptions"]
@@ -104,7 +101,6 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/h_separation = 20
 theme_override_constants/outline_size = 5
 theme_override_font_sizes/font_size = 24
-button_pressed = true
 text = "High Fidelity Shadows"
 
 [node name="HighFidelityTrees" type="CheckButton" parent="CenterContainer/GraphicsOptions"]
@@ -113,7 +109,6 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/h_separation = 20
 theme_override_constants/outline_size = 5
 theme_override_font_sizes/font_size = 24
-button_pressed = true
 text = "High Fidelity Trees"
 
 [node name="Back" type="Button" parent="CenterContainer/GraphicsOptions"]
