@@ -18,7 +18,7 @@ jobs:
                   # the folder with your projects.godot file in it
                   path: ""
                   # how long to spend importing assets before tests are run
-                  import-time: "500"
+                  import-time: "100"
                   # how long tests can run in seconds
                   test-timeout: "45"
                   # the ratio of tests that must pass for this action to pass
