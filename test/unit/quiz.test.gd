@@ -1,3 +1,3 @@
-extends Test
+extends GutTest
 
 

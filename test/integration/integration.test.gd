@@ -1,1 +1,1 @@
-extends Test
+extends TestConstants

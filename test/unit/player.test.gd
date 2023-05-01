@@ -10,7 +10,7 @@ extends GutTest
 # TODO: assign player from the node within the overworld scene
 #		rather than creating a duplicate player
 
-const OVERWORLD_SCENE_PATH = "res://scenes/levels/overworld/overworld.tscn"
+const OVERWORLD_SCENE_PATH = "res://scenes/levels/overworld/test_world.tscn"
 
 var overworld = preload(OVERWORLD_SCENE_PATH).instantiate()  # debugging view
 var sender = InputSender.new(Input)
@@ -47,7 +47,7 @@ var assert_map = {"-": assert_gt, "+": assert_lt}
 
 
 func assert_move(dir: String, hold_for_s := 2.0, wait_s := 2.5) -> void:
-	var player = Global.get_node("Player") as Player
+	var player = overworld.get_node("Player") as Player
 
 	var prev_pos = player.position[dir[1]]
 	sender.action_down("move_" + dir_map[dir]).hold_for(hold_for_s).wait(wait_s)

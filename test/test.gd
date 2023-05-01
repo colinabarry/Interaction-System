@@ -1,4 +1,4 @@
-class_name Test extends GutTest
+class_name TestConstants extends GutTest
 
 ## Hello World
 ##
