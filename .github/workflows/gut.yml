@@ -11,7 +11,7 @@ jobs:
             - uses: ghgsrt/godot-tester-ci@master
               with:
                   # required
-                  version: "4.0" 
+                  version: "4.0"
                   # the type of release of godot that the tests should be run with
                   release_type: "stable"
                   is-mono: "false"
