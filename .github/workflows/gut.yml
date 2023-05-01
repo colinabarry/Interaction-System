@@ -11,7 +11,7 @@ jobs:
             - uses: ghgsrt/godot-tester-ci@master
               with:
                   # required
-                  version: "4.0"
+                  version: "4.0" 
                   # the type of release of godot that the tests should be run with
                   release_type: "stable"
                   is-mono: "false"
@@ -49,4 +49,4 @@ jobs:
                   #   custom-godot-dl-url: "https://downloads.tuxfamily.org/godotengine/4.0/rc6/mono/Godot_v4.0-rc6_mono_linux_x86_64.zip"
                   # relative path to the xml file to read / write GUT's results from, recommended
                   # for direct-scene users to check this file if you have issues
-                  result-output-file: "test_results.xml" 
+                  result-output-file: "test_results.xml"
