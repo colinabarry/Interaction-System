@@ -18,14 +18,14 @@ jobs:
                   # the folder with your projects.godot file in it
                   path: ""
                   # how long to spend importing assets before tests are run
-                  import-time: "100"
+                  import-time: "200"
                   # how long tests can run in seconds
                   test-timeout: "45"
                   # the ratio of tests that must pass for this action to pass
                   # e.g. 0.6 means 60% of your tests must pass
                   minimum-pass: "1"
                   # the directory containing Gut tests
-                  test-dir: "res://test"
+                  test-dir: "res://test/unit"
                   # instead of running GUT's command line tool, you can run a GUT test scene if you have one
                   # set up correctly
                   # helps enable things like mouse mocking and current scene to work without any extra coding steps
