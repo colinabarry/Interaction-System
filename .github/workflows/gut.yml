@@ -49,4 +49,4 @@ jobs:
                   #   custom-godot-dl-url: "https://downloads.tuxfamily.org/godotengine/4.0/rc6/mono/Godot_v4.0-rc6_mono_linux_x86_64.zip"
                   # relative path to the xml file to read / write GUT's results from, recommended
                   # for direct-scene users to check this file if you have issues
-                  result-output-file: "test_results.xml" 
+                  result-output-file: "test_results.xml"
