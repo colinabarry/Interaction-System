@@ -36,8 +36,8 @@ func after_each():
 
 
 const dir_map = {
-	"-x": "left",
-	"+x": "right",
+	"+x": "left",
+	"-x": "right",
 	"-y": null,
 	"+y": "jump",
 	"-z": "backward",
@@ -50,28 +50,33 @@ func assert_move(dir: String, hold_for_s := 2.0, wait_s := 2.5) -> void:
 	var player = overworld.get_node("Player") as NewPlayer
 
 	var prev_pos = player.position[dir[1]]
-	sender.action_down("move_" + dir_map[dir]).hold_for(hold_for_s).wait(wait_s)
-	await sender
+	await sender.action_down("move_" + dir_map[dir]).hold_for(hold_for_s).wait_secs(wait_s)
+	await create_tween().tween_callback(func(): return false).set_delay(wait_s).finished
 	var new_pos = player.position[dir[1]]
 
 	assert_map[dir[0]].call(new_pos, prev_pos)
 
 
 func test_move_left():
-	assert_move("-x")
+	assert_move("+x")
+	await create_tween().tween_callback(func(): return false).set_delay(3).finished
 
 
 func test_move_right():
-	assert_move("+x")
+	assert_move("-x")
+	await create_tween().tween_callback(func(): return false).set_delay(3).finished
 
 
 func test_move_forward():
 	assert_move("+z")
+	await create_tween().tween_callback(func(): return false).set_delay(3).finished
 
 
 func test_move_backward():
 	assert_move("-z")
+	await create_tween().tween_callback(func(): return false).set_delay(3).finished
 
 
 func test_move_jump():
 	assert_move("+y")
+	await create_tween().tween_callback(func(): return false).set_delay(3).finished
