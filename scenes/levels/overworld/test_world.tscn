@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://dq0id8rwxjabl"]
+
+[ext_resource type="PackedScene" uid="uid://djjjhwb87gmgd" path="res://scenes/actors/characters/new_players/player_megan.tscn" id="1_1ghas"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b1xeg"]
+albedo_color = Color(0.0901961, 0.278431, 0.0431373, 1)
+metallic_specular = 0.0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_h7y82"]
+material = SubResource("StandardMaterial3D_b1xeg")
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_f4220"]
+data = PackedVector3Array(1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0, -1)
+
+[node name="TestWorld" type="Node3D"]
+
+[node name="Floor" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_h7y82")
+metadata/_edit_group_ = true
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Floor"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_f4220")
+
+[node name="Player" parent="." instance=ExtResource("1_1ghas")]

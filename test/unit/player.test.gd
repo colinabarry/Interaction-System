@@ -47,7 +47,7 @@ var assert_map = {"-": assert_gt, "+": assert_lt}
 
 
 func assert_move(dir: String, hold_for_s := 2.0, wait_s := 2.5) -> void:
-	var player = overworld.get_node("Player") as Player
+	var player = overworld.get_node("Player") as NewPlayer
 
 	var prev_pos = player.position[dir[1]]
 	sender.action_down("move_" + dir_map[dir]).hold_for(hold_for_s).wait(wait_s)
