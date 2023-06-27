@@ -26,8 +26,9 @@ var progress_state: int = PROGRESS_STATE.GAME_STARTED
 var pause_menu: TextureRect = (
 	preload("res://scenes/user_interfaces/pause_menu/pause_menu.tscn").instantiate()
 )
-var transition_rect: TransitionRect = (
-	preload("res://scenes/user_interfaces/transition_rect/transition_rect.tscn").instantiate()
+var transition_rect: TransitionArea = (
+	preload("res://scenes/user_interfaces/transition_rect/transition_rect.gd").new()
+	#preload("res://scenes/user_interfaces/transition_rect/transition_rect.gd").instantiate()
 )
 var overworld := preload("res://scenes/levels/overworld/SandboxOverworld.tscn")
 

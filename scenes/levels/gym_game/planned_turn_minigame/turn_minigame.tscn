@@ -1,0 +1,138 @@
+[gd_scene load_steps=10 format=3 uid="uid://bbh5nhfp57gmt"]
+
+[ext_resource type="Script" path="res://scenes/levels/gym_game/planned_turn_minigame/turn_minigame.gd" id="1_tdvxp"]
+[ext_resource type="Texture2D" uid="uid://b1wo8w1fl4irr" path="res://scenes/levels/gym_game/gym_assets/purplerect.png" id="2_ol6jp"]
+[ext_resource type="Texture2D" uid="uid://df8n8ogujkvch" path="res://scenes/levels/gym_game/gym_assets/icon_color.png" id="4_gewm5"]
+[ext_resource type="Texture2D" uid="uid://nplwji7qflni" path="res://assets/models/semicircle_colored.png" id="4_jf5xy"]
+[ext_resource type="Texture2D" uid="uid://ccj8tbv3h7bk3" path="res://assets/materials/textures/diagonal-arrow_colored.png" id="5_3qafl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w12w4"]
+size = Vector2(6, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7re2s"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bydn4"]
+size = Vector2(48.0655, 103.983)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wk7id"]
+size = Vector2(69.7846, 138.784)
+
+[node name="TurnMinigame" type="Node2D"]
+position = Vector2(-405, 83)
+scale = Vector2(1.676, 1.676)
+script = ExtResource("1_tdvxp")
+
+[node name="Bar" type="Sprite2D" parent="."]
+modulate = Color(0.176471, 0.690196, 0.32549, 1)
+self_modulate = Color(0.415686, 0.635294, 0.909804, 1)
+position = Vector2(310, 173.417)
+scale = Vector2(0.313103, 1.34136)
+texture = ExtResource("2_ol6jp")
+
+[node name="UI_overlay" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 136.0
+offset_top = 30.492
+offset_right = 136.0
+offset_bottom = 30.492
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Container" type="Container" parent="UI_overlay"]
+layout_mode = 0
+offset_left = 204.0
+offset_top = 136.001
+offset_right = 244.0
+offset_bottom = 176.001
+mouse_filter = 2
+
+[node name="Directions" type="Button" parent="UI_overlay/Container"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Hit SPACE twice, once for the distance and
+once for the sharp turn angle"
+
+[node name="YouWinButton" type="Button" parent="."]
+offset_left = 382.0
+offset_top = 247.5
+offset_right = 510.0
+offset_bottom = 310.5
+text = "Done!"
+
+[node name="Target" type="Area2D" parent="."]
+position = Vector2(309.666, 79.3556)
+
+[node name="TargetCollider" type="CollisionShape2D" parent="Target"]
+position = Vector2(0, -1.52588e-05)
+shape = SubResource("RectangleShape2D_w12w4")
+
+[node name="Texture" type="Sprite2D" parent="Target"]
+scale = Vector2(0.313103, 0.342246)
+texture = ExtResource("2_ol6jp")
+
+[node name="LilDude" type="Area2D" parent="."]
+position = Vector2(310, 189)
+
+[node name="LilDudeCollider" type="CollisionShape2D" parent="LilDude"]
+scale = Vector2(-0.68, -0.68)
+shape = SubResource("RectangleShape2D_7re2s")
+
+[node name="Texture" type="Sprite2D" parent="LilDude"]
+rotation = 3.14159
+scale = Vector2(-0.015, -0.015)
+texture = ExtResource("4_gewm5")
+
+[node name="Radial_game" type="Sprite2D" parent="."]
+position = Vector2(348.5, 22)
+rotation = -0.479966
+
+[node name="Radius" type="Sprite2D" parent="Radial_game"]
+rotation = -1.5708
+scale = Vector2(0.279896, 0.29029)
+texture = ExtResource("4_jf5xy")
+
+[node name="Target" type="Area2D" parent="Radial_game"]
+position = Vector2(-38.545, 0)
+rotation = 0.349066
+
+[node name="target" type="Sprite2D" parent="Radial_game/Target"]
+position = Vector2(38.382, 0)
+rotation = 1.5708
+scale = Vector2(0.274, 0.409)
+texture = ExtResource("2_ol6jp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Radial_game/Target"]
+visible = false
+position = Vector2(55.5566, 0.0275574)
+rotation = 1.5708
+scale = Vector2(0.274, 0.409)
+shape = SubResource("RectangleShape2D_bydn4")
+
+[node name="Player" type="Area2D" parent="Radial_game"]
+position = Vector2(-38.491, -1.11655)
+rotation = 2.00713
+
+[node name="player_arrow" type="Sprite2D" parent="Radial_game/Player"]
+position = Vector2(36.0253, -16.2246)
+rotation = 1.91987
+scale = Vector2(0.109, 0.109)
+texture = ExtResource("5_3qafl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Radial_game/Player"]
+visible = false
+position = Vector2(62.4503, -28.6606)
+rotation = 1.13447
+scale = Vector2(0.109, 0.109)
+shape = SubResource("RectangleShape2D_wk7id")
+debug_color = Color(0, 0.6, 0.701961, 0)
+
+[connection signal="area_entered" from="Target" to="." method="_on_target_area_entered"]
+[connection signal="area_exited" from="Target" to="." method="_on_target_area_exited"]
+[connection signal="area_entered" from="Radial_game/Target" to="." method="_on_target_area_entered"]
+[connection signal="area_entered" from="Radial_game/Player" to="." method="_arrow_entered"]
+[connection signal="area_exited" from="Radial_game/Player" to="." method="_arrow_exit"]

@@ -1,0 +1,99 @@
+[gd_scene load_steps=9 format=3 uid="uid://cir50yg71m8sv"]
+
+[ext_resource type="Script" path="res://scenes/levels/gym_game/Balance_Minigame/balance_minigame.gd" id="1_1h1lo"]
+[ext_resource type="Texture2D" uid="uid://b1wo8w1fl4irr" path="res://scenes/levels/gym_game/gym_assets/purplerect.png" id="2_urfbd"]
+[ext_resource type="Texture2D" uid="uid://df8n8ogujkvch" path="res://scenes/levels/gym_game/gym_assets/icon_color.png" id="3_wfqvi"]
+[ext_resource type="Texture2D" uid="uid://dli486nftixvk" path="res://scenes/actors/characters/new-moon-under.png" id="4_0lins"]
+[ext_resource type="Texture2D" uid="uid://cwaxgb3gila1x" path="res://scenes/actors/characters/new-moon-progress.png" id="5_2vpfc"]
+[ext_resource type="Script" path="res://scenes/levels/gym_game/Balance_Minigame/RadialProgress.gd" id="6_ycoox"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w12w4"]
+size = Vector2(14.4998, 64.0001)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7re2s"]
+
+[node name="balance_minigame" type="Node2D"]
+position = Vector2(38, 770)
+script = ExtResource("1_1h1lo")
+
+[node name="Bar" type="Sprite2D" parent="."]
+modulate = Color(0.176471, 0.690196, 0.32549, 1)
+self_modulate = Color(0.415686, 0.635294, 0.909804, 1)
+position = Vector2(649.17, -480.001)
+rotation = 1.5708
+scale = Vector2(0.626206, 2.68272)
+texture = ExtResource("2_urfbd")
+
+[node name="YouWinButton" type="Button" parent="."]
+offset_left = 596.0
+offset_top = -608.001
+offset_right = 724.001
+offset_bottom = -545.001
+text = "Done!"
+
+[node name="UI_overlay" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -30.0
+offset_top = -764.0
+offset_right = -30.0
+offset_bottom = -764.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Container" type="Container" parent="UI_overlay"]
+layout_mode = 0
+offset_left = 204.0
+offset_top = 18.0
+offset_right = 244.0
+offset_bottom = 58.0
+mouse_filter = 2
+
+[node name="Directions" type="Button" parent="UI_overlay/Container"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Use A and D to balance"
+
+[node name="Target" type="Area2D" parent="."]
+position = Vector2(652.004, -480.001)
+rotation = 1.5708
+scale = Vector2(2, 2)
+
+[node name="TargetCollider" type="CollisionShape2D" parent="Target"]
+position = Vector2(-0.249359, 0.00177002)
+shape = SubResource("RectangleShape2D_w12w4")
+
+[node name="Texture" type="Sprite2D" parent="Target"]
+scale = Vector2(0.313103, 0.342246)
+texture = ExtResource("2_urfbd")
+
+[node name="LilDude" type="Area2D" parent="."]
+position = Vector2(618.004, -480.001)
+rotation = 1.5708
+scale = Vector2(2, 2)
+
+[node name="LilDudeCollider" type="CollisionShape2D" parent="LilDude"]
+scale = Vector2(-0.68, -0.68)
+shape = SubResource("RectangleShape2D_7re2s")
+
+[node name="Texture" type="Sprite2D" parent="LilDude"]
+rotation = 1.5708
+scale = Vector2(-0.015, -0.015)
+texture = ExtResource("3_wfqvi")
+
+[node name="RadialProgress" type="TextureProgressBar" parent="."]
+offset_left = 178.0
+offset_top = -651.0
+offset_right = 690.003
+offset_bottom = -139.0
+scale = Vector2(0.3, 0.3)
+fill_mode = 4
+texture_under = ExtResource("4_0lins")
+texture_progress = ExtResource("5_2vpfc")
+script = ExtResource("6_ycoox")
+
+[connection signal="area_entered" from="Target" to="." method="_on_target_area_entered"]
+[connection signal="area_exited" from="Target" to="." method="_on_target_area_exited"]

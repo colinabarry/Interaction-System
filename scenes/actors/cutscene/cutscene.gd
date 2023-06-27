@@ -22,8 +22,7 @@ const animation_player_name := "AnimPlayer"
 var animation_player: AnimationPlayer
 var camera: Camera3D
 
-@onready var transition_rect := Global.transition_rect
-
+@onready var rect_transition : TransitionArea =  Global.transition_rect
 
 func _enter_tree() -> void:
 	# don't create the anim player again when the game runs
@@ -69,12 +68,12 @@ func end():
 		Global.player_has_control = true
 
 	if fade_out_in_when_finished:
-		transition_rect.fade_out()
+		rect_transition.fade_out()
 
-		await transition_rect.faded_out
+		await rect_transition.faded_out
 		if using_camera:
 			camera.current = false
-		transition_rect.fade_in()
+		rect_transition.fade_in()
 
 	else:
 		if using_camera:
@@ -90,12 +89,11 @@ func resume_animation():
 
 
 func fade_out(time := 0.0):
-	transition_rect.fade_out(time)
+	rect_transition.fade_out(time)
 
 
 func fade_in():
-	transition_rect.fade_in()
-
+	rect_transition.fade_in()
 
 func _create_anim_player() -> void:
 	animation_player = AnimationPlayer.new()

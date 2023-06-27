@@ -1,4 +1,4 @@
-class_name TransitionRect extends ColorRect
+class_name TransitionArea extends ColorRect
 
 signal faded_out
 signal faded_in
@@ -25,7 +25,9 @@ func fade_out(fade_time := 1.0, start_color := Color.BLACK, end_color := Color.B
 
 ## Fade over specified time to transparent specified color from last color
 func fade_in(fade_time := 1.0, end_color := Color.BLACK) -> bool:
+	print("Fade in called from rect_transition")
 	if visible == false and modulate == Color.TRANSPARENT:
+		print("Fade in failed")
 		return false
 
 	var fade_tween = create_tween().set_parallel(true).set_trans(Tween.TRANS_CUBIC)
@@ -37,5 +39,5 @@ func fade_in(fade_time := 1.0, end_color := Color.BLACK) -> bool:
 	await fade_tween.finished
 	faded_in.emit()
 	visible = false
-
+	print("Fade in success")
 	return true
